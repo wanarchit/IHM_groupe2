@@ -16,6 +16,7 @@ public class Classe {
     private ArrayList<Eleve> listeEleve;
     private Professeur professeur;
     
+    
     public Classe(String nomCl,Professeur leProf){
         nomClasse=nomCl;
         professeur=leProf;
