@@ -6,4 +6,8 @@ package ihm_groupe2.Noyau;
  */
 public class Commande {
     
+    
+    public Commande(){
+        
+    }
 }

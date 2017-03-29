@@ -29,21 +29,50 @@ public class Eleve extends Personne{
         laClasse = classe;
         lesRealisations = realisations;
     }
-
+    
+    /**
+     * Function getLaClasse
+     * Permet de renvoyer la classe a laquelle apratient l'élève
+     * @return laClasse : objet de type Classe
+     */
     public Classe getLaClasse() {
         return laClasse;
     }
-
+    
+    /**
+     * Function setLaClasse
+     * Permet de modifier la classe de l'élève
+     * @param laClasse : la nouvelle classe de l'élève
+     */
     public void setLaClasse(Classe laClasse) {
         this.laClasse = laClasse;
     }
-
+    
+    /**
+     * Function getLesRealisations
+     * Permet de récupérer toutes les réalistions de l'élève
+     * @return lesRealisations de l'élève
+     */
     public ArrayList<Realisation> getLesRealisations() {
         return lesRealisations;
     }
-
-    public void setLesRealisations(ArrayList<Realisation> lesRealisations) {
-        this.lesRealisations = lesRealisations;
+    
+    /**
+     * Function addRealisation
+     * Permet d'ajouter une réalisation dans la liste des réalisations faites par l'élève
+     * @param laReal : faite par l'élève
+     */
+    public void addRealisation(Realisation laReal){
+        lesRealisations.add(laReal);
+    }
+    
+    /**
+     * Function delRealisation
+     * Permet de supprimer une réalisation faite par l'élève
+     * @param laReal qui doit être supprimée
+     */
+    public void delRealisation(Realisation laReal){
+        lesRealisations.remove(laReal);
     }
     
 }
