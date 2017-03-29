@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ihm_groupe2;
+package ihm_groupe2.Noyau;
 
 import java.util.ArrayList;
 
@@ -17,9 +17,9 @@ public class Professeur extends Personne{
     private ArrayList listeClasse;
     
     public Professeur(String log, String mdp, String nom, String prenom) {
+        super(nom,prenom);
         login = log;
         motDePasse = mdp;
-        super.nom;
-        super.prenom;
+        
     }
 }

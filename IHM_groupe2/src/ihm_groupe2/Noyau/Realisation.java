@@ -9,6 +9,6 @@ package ihm_groupe2;
  *
  * @author Paul
  */
-public class Eleve {
+public class Realisation {
     
 }
