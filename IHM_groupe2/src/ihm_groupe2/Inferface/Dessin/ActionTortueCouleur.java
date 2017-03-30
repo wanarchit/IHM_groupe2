@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 public class ActionTortueCouleur extends ActionTortueG {
     /**
      * JPanel contenant les six boutons permettant de changer de couleur
-     * GridLayout (3,2)
+     * GridLayout (3,2).
      */
     protected JPanel butCouleur;
     
