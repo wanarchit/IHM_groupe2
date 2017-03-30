@@ -12,6 +12,7 @@ public class Realisation {
     private ArrayList<Commande> listeCommande;
     private String commentaire;
     private String note;
+    private boolean aCorriger;
     
     /**
      * Constructeur de Realisation, listeCommande vide de base ajout des commande via un bouton qui appelle addCommande
@@ -25,6 +26,7 @@ public class Realisation {
         commentaire = com;
         note = n;
         listeCommande = new ArrayList<Commande>();
+        aCorriger = true;
     }
     
     /**
@@ -86,5 +88,11 @@ public class Realisation {
     
     public Commande getCommandeInListe(int i) {
         return listeCommande.get(i);
+    }
+    
+    public void setACorriger(boolean bool) {
+        if (aCorriger) {
+            aCorriger = bool;
+        }
     }
 }
