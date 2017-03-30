@@ -60,6 +60,7 @@ public class Eleve extends Personne{
     /**
      * Function addRealisation
      * Permet d'ajouter une réalisation dans la liste des réalisations faites par l'élève
+     * On ne peut pas ajouter deux fois la même réalisation 
      * @param laReal : faite par l'élève
      */
     public void addRealisation(Realisation laReal){
@@ -69,6 +70,7 @@ public class Eleve extends Personne{
     /**
      * Function delRealisation
      * Permet de supprimer une réalisation faite par l'élève
+     * Il est nécessaire de vérifier que la réalisation est dans la liste lesRealisations
      * @param laReal qui doit être supprimée
      */
     public void delRealisation(Realisation laReal){
