@@ -3,8 +3,8 @@ package ihm_groupe2.Noyau_fonctionnel;
 import javax.swing.ImageIcon;
 
 /**
- *
- * @author Paul
+ * Classe exercice, permet au professeur de créer et modfier des exercices afin de les attribuer aux élèves
+ * @author Marin
  */
 public class Exercice {
     private String nom;
@@ -13,11 +13,11 @@ public class Exercice {
     private ImageIcon image;
     
     /**
-     * 
-     * @param nomEx
-     * @param commEx
-     * @param choixTortue 1: Tortue couleur / 2:Tortue rapide
-     * @param image 
+     * Constructeur de la classe exercice, permet de créer un exercice
+     * @param nomEx: nom donné à l'exercice
+     * @param commEx: commentaire du professeur à propos de l'exercice
+     * @param choixTortue Tortue imposée pour l'exercice 1: Tortue couleur / 2:Tortue rapide
+     * @param image : Image représentant l'exercice à faire
      */
     public Exercice(String nomEx, String commEx, int choixTortue, ImageIcon image){
         this.nom=nomEx;
@@ -30,15 +30,17 @@ public class Exercice {
         this.image=image;
     }
     /**
-     * 
-     * @return nom de l'exercice as string
+     * Function getNom
+     * Renvoi le nom de l'exercice
+     * @return nom : objet de type string
      */
     public String getNom(){
         return this.nom;
     }
     /**
-     * 
-     * @param commentaire a ajouter/modifier
+     * Function setCommentaire
+     * Permet de modifier le commentaire de l'exercice
+     * @param commentaire: Commentaire qu'on modifie de type string
      */
     public void setCommentaire(String commentaire){
         if (commentaire.length() < 300){
@@ -46,15 +48,17 @@ public class Exercice {
         }
     }
     /**
-     * 
-     * @return commentaire as string
+     * Function getCommentaire
+     * Permet de mofidier le commentaire d'un exercice
+     * @return commentaire: objet de type string
      */
     public String getCommentaire(){
         return this.commentaire;
     }
     /**
-     * 
-     * @return image de l'exercice as ImageIcon
+     * Function getImage
+     * Permet de renvoyer l'image de l'exercice
+     * @return image : Objet de type ImageIcon
      */
     public ImageIcon getImage(){
         return this.image;

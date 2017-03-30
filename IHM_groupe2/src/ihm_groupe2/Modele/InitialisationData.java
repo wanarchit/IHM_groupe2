@@ -5,10 +5,21 @@
  */
 package ihm_groupe2.Modele;
 
+import ihm_groupe2.Noyau_fonctionnel.Professeur;
+import java.util.ArrayList;
+
 /**
  *
  * @author Paul
  */
 public class InitialisationData {
+    private ArrayList<Professeur> listeProf;
+    
+    
+    
+    public InitialisationData(){
+        
+        
+    }
     
 }
