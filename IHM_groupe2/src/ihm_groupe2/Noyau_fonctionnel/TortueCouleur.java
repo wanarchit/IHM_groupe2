@@ -1,12 +1,14 @@
+package ihm_groupe2.Noyau_fonctionnel;
+
  
 /**
- * Tortue LOGO capable d'Žcrire en couleur
- * Seules les couleurs suivantes sont autorisŽes :
+ * Tortue LOGO capable d'ï¿½crire en couleur
+ * Seules les couleurs suivantes sont autorisï¿½es :
  *  "black", "red", "blue", "green", "yellow" , "magenta"
- *  Si la couleur demandŽe est diffŽrente, la tortue Žcrit en noir
+ *  Si la couleur demandï¿½e est diffï¿½rente, la tortue ï¿½crit en noir
  *  
  * @author Patrick Girard 
- * @version fŽvrier 2017
+ * @version fï¿½vrier 2017
  */
 
 
@@ -16,7 +18,7 @@ public class TortueCouleur extends TortueG {
     private static final String lesCouleurs[] = { "black", "red", "blue", "green", "yellow" , "magenta" };
     
     /**
-     * Constructeur par dŽfaut, la tortue Žcrit en noir
+     * Constructeur par dï¿½faut, la tortue ï¿½crit en noir
      *
      */
     public TortueCouleur() {
@@ -25,9 +27,9 @@ public class TortueCouleur extends TortueG {
 
     
     /**
-     * Constructeur permettant de spŽcifier la couleur
+     * Constructeur permettant de spï¿½cifier la couleur
      *
-     * @param coul la couleur demandŽe
+     * @param coul la couleur demandï¿½e
      */
     public TortueCouleur(String coul) {
         super();
@@ -35,9 +37,9 @@ public class TortueCouleur extends TortueG {
     }
     
     /**
-     * MŽthode setCouleur : change la couleur de la tortue
+     * Mï¿½thode setCouleur : change la couleur de la tortue
      *
-     * @param coul la couleur demandŽe
+     * @param coul la couleur demandï¿½e
      */
     public void setCouleur(String coul){
         couleurTrace = rendCouleur(coul);
@@ -53,11 +55,11 @@ public class TortueCouleur extends TortueG {
     }
     
     /**
-     * MŽthode rendCouleur : permet de vŽrifier que la couleur demandŽe est correcte
+     * Mï¿½thode rendCouleur : permet de vï¿½rifier que la couleur demandï¿½e est correcte
      * rend "black" sinon
      *
-     * @param coul la couleur demandŽe
-     * @return la couleur vŽrifiŽe
+     * @param coul la couleur demandï¿½e
+     * @return la couleur vï¿½rifiï¿½e
      */
     private String rendCouleur(String coul) {
         for (int i=0; i<lesCouleurs.length; i++)

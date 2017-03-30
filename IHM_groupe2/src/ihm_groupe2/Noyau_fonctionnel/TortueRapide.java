@@ -1,9 +1,11 @@
+package ihm_groupe2.Noyau_fonctionnel;
+
 
 /**
  * Tortue LOGO capable de faire de la vitesse
  * 
  * @author Patrick Girard 
- * @version fŽvrier 2017
+ * @version fï¿½vrier 2017
  */
 public class TortueRapide extends TortueG
 {
@@ -11,7 +13,7 @@ public class TortueRapide extends TortueG
     private int vitesse;
 
     /**
-     * Constructeur, initialisation ˆ 1 de la vitesse
+     * Constructeur, initialisation ï¿½ 1 de la vitesse
      */
     public TortueRapide()
     {
@@ -20,7 +22,7 @@ public class TortueRapide extends TortueG
     }
 
     /**
-     * RedŽfinition de la mŽthode avancer, pour tenir compte de la vitesse
+     * Redï¿½finition de la mï¿½thode avancer, pour tenir compte de la vitesse
      */
     public void avancer()
     {   for (int v=vitesse; v>0; v--)
@@ -47,7 +49,7 @@ public class TortueRapide extends TortueG
     }
     
     /**
-     * MŽthode accelerer : incrŽmente de 1 la vitesse de la tortue
+     * Mï¿½thode accelerer : incrï¿½mente de 1 la vitesse de la tortue
      *
      */
     public void accelerer()
@@ -56,7 +58,7 @@ public class TortueRapide extends TortueG
     }
     
     /**
-     * MŽthode ralentir : dŽcrŽmente de 1 la vitesse de la tortue
+     * Mï¿½thode ralentir : dï¿½crï¿½mente de 1 la vitesse de la tortue
      *
      */
     public void ralentir()

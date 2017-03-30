@@ -1,8 +1,10 @@
+package ihm_groupe2.Noyau_fonctionnel;
+
 /**
 * La tortue du programme LOGO. Graphique !
 *
 * @author Patrick Girard
-* @version fvrier 201
+* @version fï¿½vrier 201
 */
 public class TortueG {
     // Position de la tortue
@@ -27,8 +29,8 @@ public class TortueG {
 
     /**
     * Constructeur
-    * Initialise la direction ˆ la valeur 3 (vers le haut), la position en 0,0
-    * et la couleur ˆ "black"
+    * Initialise la direction ï¿½ la valeur 3 (vers le haut), la position en 0,0
+    * et la couleur ï¿½ "black"
     */
     public TortueG() {
         CanvasTortue.reset();
@@ -36,7 +38,7 @@ public class TortueG {
     }
     
     /**
-     * Efface le canvas et rinitialise la tortue ˆ sa position de dpart
+     * Efface le canvas et rï¿½initialise la tortue ï¿½ sa position de dï¿½part
      *
      */
     public void reset() {
@@ -54,9 +56,9 @@ public class TortueG {
     }
 
     /**
-     * Mthode permettant ˆ la tortue d'avancer dans la direction fixe
-     * de 0 ˆ 3, de l'Est vers le Nord
-     * La mthode raffiche la tortue aprs le mouvement
+     * Mï¿½thode permettant ï¿½ la tortue d'avancer dans la direction fixï¿½e
+     * de 0 ï¿½ 3, de l'Est vers le Nord
+     * La mï¿½thode rï¿½affiche la tortue aprï¿½s le mouvement
      * et trace une ligne si elle est en mode trace
      */
     public void avancer() {
@@ -81,8 +83,8 @@ public class TortueG {
     }
 
     /**
-     * Mthode permettant de tourner, dans le sens des aiguilles d'une montre
-     * La mthode raffiche la tortue aprs le mouvement
+     * Mï¿½thode permettant de tourner, dans le sens des aiguilles d'une montre
+     * La mï¿½thode rï¿½affiche la tortue aprï¿½s le mouvement
      */
     public void tourner() {
         direction++;
@@ -92,12 +94,12 @@ public class TortueG {
     }
 
     /**
-     * Mthode permettant de tracer ou non
-     * Remarque : cette implmentation n'est pas correcte : elle ne garantit pas
-     * un appel correct des mthodes ; on peut appeler deux fois de suite
+     * Mï¿½thode permettant de tracer ou non
+     * Remarque : cette implï¿½mentation n'est pas correcte : elle ne garantit pas
+     * un appel correct des mï¿½thodes ; on peut appeler deux fois de suite
      * tracer(true) par exemple
      *
-     * @param  mode   boolen reprsentant le mode de trace (vrai ou faux)
+     * @param  mode   boolï¿½en reprï¿½sentant le mode de trace (vrai ou faux)
      */
     public void tracer(boolean mode) {
         trace = mode;
@@ -133,7 +135,7 @@ public class TortueG {
     }
     
     /**
-     * Accesseur de la coordonne en X
+     * Accesseur de la coordonnï¿½e en X
      *
      * @return x
      */
@@ -142,7 +144,7 @@ public class TortueG {
     }
     
     /**
-     * Accesseur de la coordonne en Y
+     * Accesseur de la coordonnï¿½e en Y
      *
      * @return y
      */

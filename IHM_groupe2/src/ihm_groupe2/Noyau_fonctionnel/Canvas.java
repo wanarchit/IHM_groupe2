@@ -1,3 +1,5 @@
+package ihm_groupe2.Noyau_fonctionnel;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.List;
@@ -13,7 +15,7 @@ import java.util.*;
  * @author Michael Kolling (mik)
  * @author Patrick Girard for adaptation to the turtle project
  * 
- * @version fŽvrier 2013
+ * @version fï¿½vrier 2013
  */
 public class Canvas extends JFrame
 {

@@ -1,4 +1,4 @@
-package ihm_groupe2.Noyau;
+package ihm_groupe2.Noyau_fonctionnel;
 
 import java.util.ArrayList;
 
