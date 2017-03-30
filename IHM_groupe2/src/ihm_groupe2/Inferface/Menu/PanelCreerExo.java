@@ -2,6 +2,8 @@ package ihm_groupe2.Inferface.Menu;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
 
 /**
  * Classe PanelCreerExo
@@ -12,11 +14,13 @@ import javax.swing.JPanel;
  */
 public class PanelCreerExo extends JPanel{
     
-    private JButton butValidForm;
-    private JRadioButton butRadChoixTortue;
-    private JTextField textFieldNomExo;
-    private JTextField textFieldCommExo;
-    private 
+    private JButton butValidForm;           // Permet d'enregistrer un nouvel exercice
+    // Ce boutton va utiliser un controleur qui va vérifier le contenu du fomrulaire et créer un nouvel exercice.
+    
+    private JRadioButton butRadChoixTortue;     // Permet de renseigner le choix de la torute
+    private JTextField textFieldNomExo;     // Permet de renseigner le nom de l'exercice
+    private JTextField textFieldCommExo;    // Permet de renseigner le commentaire de l'exercice
+    // private UploadFile -> Image; // Permet de charger l'image de l'exercice
     
     public PanelCreerExo(){
         

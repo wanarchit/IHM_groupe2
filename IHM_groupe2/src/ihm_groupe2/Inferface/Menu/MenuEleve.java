@@ -1,6 +1,9 @@
 package ihm_groupe2.Inferface.Menu;
 
 import ihm_groupe2.Noyau_fonctionnel.Eleve;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
@@ -12,6 +15,17 @@ import javax.swing.JPanel;
 public class MenuEleve extends JPanel{
     
     private Eleve eleveConnecte;
+    
+    private JButton butPrecExo;
+    private JButton butSuivExo;
+    private JButton butPrecTent;
+    private JButton butSuivTent;
+    private JLabel labCommExo;
+    private JLabel labCommTent;
+    private JLabel labNomExo;
+    private JLabel labNumTent;
+    private ImageIcon iconExo;
+    //private ImageIcon iconTentative; // image de la tentative de l'elève
     
     /**
      * Constructeur de la classe MenuEleve
