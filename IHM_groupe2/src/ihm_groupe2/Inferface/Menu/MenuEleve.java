@@ -14,18 +14,20 @@ import javax.swing.JPanel;
  */
 public class MenuEleve extends JPanel{
     
-    private Eleve eleveConnecte;
+    private Eleve eleveConnecte;        // Conserve l'enfant qui est connecté
     
-    private JButton butPrecExo;
-    private JButton butSuivExo;
-    private JButton butPrecTent;
-    private JButton butSuivTent;
-    private JLabel labCommExo;
-    private JLabel labCommTent;
-    private JLabel labNomExo;
-    private JLabel labNumTent;
-    private ImageIcon iconExo;
-    //private ImageIcon iconTentative; // image de la tentative de l'elève
+    // Les boutons execrcicePrec/Suiv mettent à jour les labels "commExo" et "NomExo" et l'icone "iconExo" via le controleur "crtlMenuEleve"
+    // Les bouton tentPrec/Suiv mettent à jour les labels "commTent" et "numTent" via le controleur "ctrlMenuEleve"
+    private JButton butPrecExo;         // Bouton qui permet d'afficher l'exercice précédant
+    private JButton butSuivExo;         // Boutton qui permet d'afficher l'exercice suivant
+    private JButton butPrecTent;        // Button qui permet d'afficher la tentative de l'élève pour l'exercice selectionné
+    private JButton butSuivTent;        // Button qui permet d'afficher la tentative de l'élève pour l'exercice selectionnée
+    private JLabel labCommExo;          // Label pour afficher le commentaire de l'exercice selectionné
+    private JLabel labCommTent;         // Label pour afficher le commentaire (s'il y en a un) de la tentative selectionné
+    private JLabel labNomExo;           // Label pour afficher le nom de l'exercice selectionné
+    private JLabel labNumTent;          // Label pour afficher le numéro de la tentative selectionnée
+    private ImageIcon iconExo;          // Image de l'exercice selectionnée
+    //private ImageIcon iconTentative; // image de la tentative selectionnée de l'elève
     
     /**
      * Constructeur de la classe MenuEleve

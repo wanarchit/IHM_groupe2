@@ -6,13 +6,16 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 /**
- * Classe PanelCreerExo
- * Panel qui contient le formulaire pour pouvoir créer un exercice
- * Il y aura plusieurs champs : Nom exercice, Tortue choisi, Commentaire exercice, ajouter Image exercice
- * Il y aura un boutton de validation du formulaire qui renverra vers le controleur de validation du formulaire d'exercices "ControlFormExo"
+ * Classe PanelModifExo
+ * Panel qui contient le formulaire pour pouvoir modifier un exercice
+ * Il y aura plusieurs champs : Nom exercice, Tortue choisi, Commentaire exercice, modifier Image exercice
+ * Les champs seront préremplis avec les information de l'exercice selectionné
+ * Il y aura un bouton de validation du formulaire qui renverra vers le controleur de validation du formulaire d'exercices
+ * S'il n'y a aucune modification alors l'utilisateur sera simplement renvoyé vers la page de la liste des exercices
+ * Sinon il y aura un controle des champs via le controleur "ControlFormExo"
  * @author Paul
  */
-public class PanelCreerExo extends JPanel{
+public class PanelModifExo extends JPanel{
     
     private JButton butValidForm;           // Permet d'enregistrer un nouvel exercice
     // Ce boutton va utiliser un controleur qui va vérifier le contenu du fomrulaire et créer un nouvel exercice.
@@ -22,7 +25,7 @@ public class PanelCreerExo extends JPanel{
     private JTextField textFieldCommExo;    // Permet de renseigner le commentaire de l'exercice
     // private UploadFile -> Image; // Permet de charger l'image de l'exercice
     
-    public PanelCreerExo(){
+    public PanelModifExo(){
         
     }
 }
