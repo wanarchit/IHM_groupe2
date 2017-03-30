@@ -30,7 +30,7 @@ public class Classe {
     /**
      * Function getNomClasse
      * Permet de récupérer le nom de la classe
-     * @return 
+     * @return nomClasse: Objet de type string
      */
     public String getNomClasse() {
         return nomClasse;
@@ -39,7 +39,7 @@ public class Classe {
     /**
      * Function setNomClasse
      * Permet de modifier le nom de la classe
-     * @param nomClasse 
+     * @param nomClasse : Objet de type string
      */
     public void setNomClasse(String nomClasse) {
         this.nomClasse = nomClasse;
@@ -48,7 +48,7 @@ public class Classe {
     /**
      * Function getProfesseur
      * Permet de récupérer le professeur référent de la classe
-     * @return professeur : le professeur référent
+     * @return professeur : Objet de type professeur
      */
     public Professeur getProfesseur() {
         return professeur;
@@ -66,7 +66,7 @@ public class Classe {
     /**
      * Function ajoutEleve
      * Permet d'ajouter un élève dans la liste d'élève (donc dans la classe)
-     * @param monEleve 
+     * @param monEleve : Objet de type eleve
      */
     public void ajoutEleve(Eleve monEleve){
         listeEleve.add(monEleve);
@@ -75,12 +75,14 @@ public class Classe {
     /**
      * Function suppEleve
      * Permet de supprimer un eleve d'une classe
-     * @param monEleve : l'élève à supprimer
+     * @param monEleve : l'élève à supprimer (type eleve)
      */
     public void suppEleve(Eleve monEleve){
-        for(Eleve el:listeEleve){
-            if (el.equals(monEleve)){
-                listeEleve.remove(el);
+        if (listeEleve.size()!=0){
+            for(Eleve el:listeEleve){
+                if (el.equals(monEleve)){
+                    listeEleve.remove(el);
+                }
             }
         }
     }
