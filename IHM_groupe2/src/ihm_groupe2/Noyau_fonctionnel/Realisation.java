@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class Realisation {
     
     private int numTentative;
-    private ArrayList listeCommande;
+    private ArrayList<Commande> listeCommande;
     private String commentaire;
     private String note;
     
@@ -82,5 +82,9 @@ public class Realisation {
         int l;
         l = listeCommande.size();
         listeCommande.remove(l-1);
+    }
+    
+    public Commande getCommandeInListe(int i) {
+        return listeCommande.get(i);
     }
 }
