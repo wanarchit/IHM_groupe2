@@ -1,7 +1,7 @@
 package ihm_groupe2.Inferface.Menu;
 
 import ihm_groupe2.Controleur.CtrlMenuProf;
-import ihm_groupe2.Inferface.MainFrame;
+import Applications.MainFrame;
 import ihm_groupe2.Noyau_fonctionnel.Professeur;
 import java.awt.BorderLayout;
 import java.awt.GridBagConstraints;

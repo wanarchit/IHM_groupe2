@@ -1,6 +1,6 @@
 package ihm_groupe2.Inferface.Menu;
 
-import ihm_groupe2.Inferface.MainFrame;
+import Applications.MainFrame;
 import ihm_groupe2.Noyau_fonctionnel.Eleve;
 import java.awt.GridLayout;
 import javax.swing.ImageIcon;

@@ -1,7 +1,7 @@
 package ihm_groupe2.Inferface.Menu;
 
 import ihm_groupe2.Controleur.CtrlConnProf;
-import ihm_groupe2.Inferface.MainFrame;
+import Applications.MainFrame;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;

@@ -1,4 +1,4 @@
-package ihm_groupe2.Inferface;
+package Applications;
 
 import ihm_groupe2.Inferface.Menu.MenuPrincipal;
 import javax.swing.JFrame;
