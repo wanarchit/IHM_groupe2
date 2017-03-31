@@ -14,7 +14,7 @@ import javax.swing.border.BevelBorder;
 
 /**
  * Classe MenuProf
- * Peremt de créer le panel du menu du professeur (avec ses exercices, les classes et les élèves) 
+ * Peremt de créer le panel du menu du professeur (avec ses exercices, les classes et les élèves
  * @author Paul
  */
 public class MenuProf extends JPanel{
@@ -23,6 +23,7 @@ public class MenuProf extends JPanel{
     private Professeur profConnecte;
     private CtrlMenuProf controleur;
     private JPanel panelDroite;
+    
     
     // 4 bouttons qui va modifier le panel de droite de ce menu
     private JButton butCreerExo;        // on affichera un panel contenant le formulaire de création d'un exercice "PanelCreerExo"
