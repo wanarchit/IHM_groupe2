@@ -2,10 +2,12 @@ package ihm_groupe2.Inferface.Menu;
 
 import ihm_groupe2.Inferface.MainFrame;
 import ihm_groupe2.Noyau_fonctionnel.Eleve;
+import java.awt.GridLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.border.BevelBorder;
 
 /**
  * Classe MenuEleve
@@ -41,8 +43,19 @@ public class MenuEleve extends JPanel{
         
         JLabel monLabel = new JLabel("Prénom : " + eleveConnecte.getPrenomPersonne());
         JLabel monLabel2 = new JLabel("Nom : " + eleveConnecte.getNomPersonne());
-        this.add(monLabel);
-        this.add(monLabel2);
+        
+        JPanel panelHaut = new JPanel();
+        panelHaut.setBorder(new javax.swing.border.BevelBorder(BevelBorder.RAISED));
+        panelHaut.add(monLabel);
+        
+        
+        JPanel panelBas = new JPanel();
+        panelBas.setBorder(new javax.swing.border.BevelBorder(BevelBorder.RAISED));
+        panelBas.add(monLabel2);
+        
+        this.setLayout(new GridLayout(2,1));
+        this.add(panelHaut);
+        this.add(panelBas);
         
         
         fenetreMain.setContentPane(this);

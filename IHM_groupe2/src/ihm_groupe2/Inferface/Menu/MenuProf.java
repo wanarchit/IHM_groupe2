@@ -1,10 +1,16 @@
 package ihm_groupe2.Inferface.Menu;
 
+import ihm_groupe2.Controleur.CtrlMenuProf;
 import ihm_groupe2.Inferface.MainFrame;
 import ihm_groupe2.Noyau_fonctionnel.Professeur;
+import java.awt.BorderLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.border.BevelBorder;
 
 /**
  * Classe MenuProf
@@ -15,6 +21,9 @@ public class MenuProf extends JPanel{
     
     private MainFrame fenetreMain;
     private Professeur profConnecte;
+    private CtrlMenuProf controleur;
+    private JPanel panelDroite;
+    
     // 4 bouttons qui va modifier le panel de droite de ce menu
     private JButton butCreerExo;        // on affichera un panel contenant le formulaire de création d'un exercice "PanelCreerExo"
     private JButton butVoirExo;         // on affichera un panel contenant la liste des exercies "PanelModifExo"
@@ -32,12 +41,79 @@ public class MenuProf extends JPanel{
         
         JLabel monLabel = new JLabel("Prénom : " + profConnecte.getPrenomPersonne());
         JLabel monLabel2 = new JLabel("Nom : " + profConnecte.getNomPersonne());
-        this.add(monLabel);
-        this.add(monLabel2);
+        
+        butCreerExo = new JButton("Créer exercice");
+        butVoirExo = new JButton("Liste exercices");
+        butVoirEleve = new JButton("Liste élèves");
+        butVoirClasse = new JButton("Liste classes");
+        
+        controleur = new CtrlMenuProf(profConnecte,this);
+        butCreerExo.addActionListener(controleur);
+        butVoirExo.addActionListener(controleur);
+        butVoirEleve.addActionListener(controleur);
+        butVoirClasse.addActionListener(controleur);
+                
+                
+        
+        GridBagConstraints gbc = new GridBagConstraints();
+        
+        JPanel panBut1 = new JPanel();
+        panBut1.setLayout(new GridBagLayout());
+        panBut1.add(butCreerExo, gbc);
+        
+        JPanel panBut2 = new JPanel();
+        panBut2.setLayout(new GridBagLayout());
+        panBut2.add(butVoirExo, gbc);
+        
+        JPanel panBut3 = new JPanel();
+        panBut3.setLayout(new GridBagLayout());
+        panBut3.add(butVoirEleve, gbc);
+        
+        JPanel panBut4 = new JPanel();
+        panBut4.setLayout(new GridBagLayout());
+        panBut4.add(butVoirClasse, gbc);
+        
+                
+        JPanel panelGauche = new JPanel();
+        panelGauche.setBorder(new javax.swing.border.BevelBorder(BevelBorder.RAISED));
+        panelGauche.setLayout(new GridLayout(4,1));
+        panelGauche.add(panBut1);
+        panelGauche.add(panBut2);
+        panelGauche.add(panBut3);
+        panelGauche.add(panBut4);
+        
+        panelDroite = new JPanel();
+        panelDroite.setBorder(new javax.swing.border.BevelBorder(BevelBorder.RAISED));
+        panelDroite.add(monLabel);
+        panelDroite.add(monLabel2);
+        
+        this.setLayout(new BorderLayout());
+        this.add(panelGauche, BorderLayout.WEST);
+        this.add(panelDroite, BorderLayout.CENTER);
         
         
         fenetreMain.setContentPane(this);
         fenetreMain.repaint();
         fenetreMain.revalidate();
+    }
+    
+    public JPanel getPanelDroite(){
+        return panelDroite;
+    }
+    
+    public JButton getButtonCreerExo(){
+        return butCreerExo;
+    }
+    
+    public JButton getButtonExo(){
+        return butVoirExo;
+    }
+    
+    public JButton getButtonEleve(){
+        return butVoirEleve;
+    }
+    
+    public JButton getButtonClasse(){
+        return butVoirClasse;
     }
 }
