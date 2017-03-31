@@ -87,4 +87,8 @@ public class Classe {
         }
     }
     
+    public ArrayList<Eleve> getListEleveClasse(){
+        return listeEleve;
+    }
+    
 }

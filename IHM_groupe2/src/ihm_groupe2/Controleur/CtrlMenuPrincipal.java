@@ -1,5 +1,7 @@
 package ihm_groupe2.Controleur;
 
+import Applications.ApplicationEleve;
+import Applications.ApplicationProf;
 import ihm_groupe2.Inferface.Menu.MenuConnexionEleve;
 import ihm_groupe2.Inferface.Menu.MenuConnexionProf;
 import ihm_groupe2.Inferface.Menu.MenuPrincipal;
@@ -24,11 +26,13 @@ public class CtrlMenuPrincipal implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == leMenu.getButtonEleve()){
             // On affiche le menu de connexion d'un élève
-            new MenuConnexionEleve(leMenu.getMainFrame());
+            //new MenuConnexionEleve(leMenu.getMainFrame());
+            new ApplicationEleve(leMenu.getMainFrame());
             
         }else{      // bouton Professeur
             // On affiche le menu de connexion d'un professeur
-            new MenuConnexionProf(leMenu.getMainFrame());
+            //new MenuConnexionProf(leMenu.getMainFrame());
+            new ApplicationProf(leMenu.getMainFrame());
         }
         
     }

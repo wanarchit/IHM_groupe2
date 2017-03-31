@@ -28,6 +28,7 @@ public class Eleve extends Personne{
         super(leNom,lePrenom);
         laClasse = classe;
         lesRealisations = realisations;
+        laClasse.ajoutEleve(this);
     }
     
     /**
@@ -42,10 +43,13 @@ public class Eleve extends Personne{
     /**
      * Function setLaClasse
      * Permet de modifier la classe de l'élève
+     * En cas de changement de classe on supprime l'élève de sa classe actuelle et on l'ajoute dans sa nouvelle classe
      * @param laClasse : la nouvelle classe de l'élève
      */
     public void setLaClasse(Classe laClasse) {
+        this.laClasse.suppEleve(this);
         this.laClasse = laClasse;
+        this.laClasse.ajoutEleve(this);
     }
     
     /**

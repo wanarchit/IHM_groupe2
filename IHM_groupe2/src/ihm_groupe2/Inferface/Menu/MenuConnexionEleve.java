@@ -1,5 +1,6 @@
 package ihm_groupe2.Inferface.Menu;
 
+import Applications.ApplicationEleve;
 import ihm_groupe2.Controleur.CtrlConnEleve;
 import Applications.MainFrame;
 import javax.swing.JButton;
@@ -20,28 +21,30 @@ public class MenuConnexionEleve extends JPanel{
     
     // Permet de valider les informations de connexion de l'élève
     private JButton validationConnexion;
-    private MainFrame fenetreMain;
+    private ApplicationEleve appliEleve;
     private CtrlConnEleve controleur;
     
     // champs pour le formulaire
     private JTextField champsNom;
     private JTextField champsPrenom;
+    private JLabel textPrenom,textNom;
     
-    public MenuConnexionEleve(MainFrame main){
-        fenetreMain = main;
+    public MenuConnexionEleve(ApplicationEleve lAppli){
+        appliEleve = lAppli;
         
         
         
         
-        JLabel textPrenom = new JLabel("Entre ton prénom : ");
+        
+        textPrenom = new JLabel("Entre ton prénom : ");
         champsPrenom = new JTextField(20);
-        JLabel textNom = new JLabel("Entre ton nom : ");
+        textNom = new JLabel("Entre ton nom : ");
         champsNom = new JTextField(20);
         
         JLabel texteConnexion = new JLabel("te connecter : ");
         validationConnexion = new JButton("Je me connecte");
         
-        controleur = new CtrlConnEleve(this);
+        controleur = new CtrlConnEleve(this,appliEleve);
         validationConnexion.addActionListener(controleur);
         
         this.add(textPrenom);
@@ -51,13 +54,17 @@ public class MenuConnexionEleve extends JPanel{
         this.add(texteConnexion);
         this.add(validationConnexion);
         
-        fenetreMain.setContentPane(this);
-        fenetreMain.repaint();
-        fenetreMain.revalidate();
+        appliEleve.getMainFrame().setContentPane(this);
+        appliEleve.getMainFrame().repaint();
+        appliEleve.getMainFrame().revalidate();
     }
     
-    public MainFrame getMainFrame(){
-        return fenetreMain;
+    public JTextField getTextPrenom(){
+        return champsPrenom;
+    }
+            
+    public JTextField getTextNom(){
+        return champsNom;
     }
     
 }
