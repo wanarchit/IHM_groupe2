@@ -7,8 +7,8 @@ package ihm_groupe2.Controleur;
 
 /**
  *
- * @author Paul
+ * @author Delphine
  */
-public class ListenerTest {
+public class CtrlEvaluation {
     
 }

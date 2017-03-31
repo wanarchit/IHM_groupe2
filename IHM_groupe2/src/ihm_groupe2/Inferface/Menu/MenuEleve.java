@@ -1,5 +1,6 @@
 package ihm_groupe2.Inferface.Menu;
 
+import ihm_groupe2.Inferface.MainFrame;
 import ihm_groupe2.Noyau_fonctionnel.Eleve;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -15,7 +16,7 @@ import javax.swing.JPanel;
 public class MenuEleve extends JPanel{
     
     private Eleve eleveConnecte;        // Conserve l'enfant qui est connecté
-    
+    private MainFrame fenetreMain;
     // Les boutons execrcicePrec/Suiv mettent à jour les labels "commExo" et "NomExo" et l'icone "iconExo" via le controleur "crtlMenuEleve"
     // Les bouton tentPrec/Suiv mettent à jour les labels "commTent" et "numTent" via le controleur "ctrlMenuEleve"
     private JButton butPrecExo;         // Bouton qui permet d'afficher l'exercice précédant
@@ -34,7 +35,22 @@ public class MenuEleve extends JPanel{
      * Permet de créer le menu pour un eleve
      * @param eleve : concerné par le menu (ses dessins)
      */
-    public MenuEleve(Eleve eleve){
+    public MenuEleve(Eleve eleve,MainFrame main){
         eleveConnecte = eleve;
+        fenetreMain = main;
+        
+        JLabel monLabel = new JLabel("Prénom : " + eleveConnecte.getPrenomPersonne());
+        JLabel monLabel2 = new JLabel("Nom : " + eleveConnecte.getNomPersonne());
+        this.add(monLabel);
+        this.add(monLabel2);
+        
+        
+        fenetreMain.setContentPane(this);
+        fenetreMain.repaint();
+        fenetreMain.revalidate();
+    }
+    
+    public MainFrame getMainFrame(){
+        return fenetreMain;
     }
 }
