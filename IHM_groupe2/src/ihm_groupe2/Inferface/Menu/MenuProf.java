@@ -14,7 +14,7 @@ import javax.swing.border.BevelBorder;
 
 /**
  * Classe MenuProf
- * Peremt de créer le panel du menu du professeur (avec ses exercices, les classes et les élèves)
+ * Peremt de créer le panel du menu du professeur (avec ses exercices, les classes et les élèves) 
  * @author Paul
  */
 public class MenuProf extends JPanel{
@@ -71,7 +71,7 @@ public class MenuProf extends JPanel{
         
         JPanel panBut4 = new JPanel();
         panBut4.setLayout(new GridBagLayout());
-        panBut4.add(butVoirClasse, gbc);
+        panBut4.add(butVoirClasse, gbc);   
         
                 
         JPanel panelGauche = new JPanel();
