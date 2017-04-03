@@ -44,7 +44,7 @@ public class PanelCreerExo extends JPanel{
         panel0.setBorder(new javax.swing.border.BevelBorder(BevelBorder.RAISED));
         panel0.add(textEntete,BorderLayout.CENTER);
         
-        JLabel textChampsNomExo = new JLabel("Entrer le nom de l'exerice :");
+        JLabel textChampsNomExo = new JLabel("Entrer le nom de l'exercice :");
         textFieldNomExo = new JTextField(20);
         
         JPanel panel1 = new JPanel();
@@ -52,7 +52,7 @@ public class PanelCreerExo extends JPanel{
         panel1.add(textFieldNomExo);
         
         
-        JLabel textChampsCommExo = new JLabel("Entrer un commentaire pour cet exerice :");
+        JLabel textChampsCommExo = new JLabel("Entrer un commentaire pour cet exercice :");
         textFieldCommExo = new JTextField(20);
         
         JPanel panel2 = new JPanel();
