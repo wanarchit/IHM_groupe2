@@ -48,7 +48,7 @@ public class Exercice {
      * @param commentaire: Commentaire qu'on modifie de type string
      */
     public void setCommentaire(String commentaire){
-        if (commentaire.length() < 300){
+        if (commentaire.length() < 250){
             this.commentaire=commentaire;
         }
     }

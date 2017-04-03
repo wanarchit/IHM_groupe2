@@ -91,7 +91,7 @@ public class Realisation {
     }
     
     public void setACorriger(boolean bool) {
-        if (aCorriger) {
+        if (aCorriger) { //ne change pas si à false, pas besoin de le corriger
             aCorriger = bool;
         }
     }
