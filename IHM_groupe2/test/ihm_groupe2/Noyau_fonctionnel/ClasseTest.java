@@ -4,8 +4,6 @@
  * and open the template in the editor.
  */
 package ihm_groupe2.Noyau_fonctionnel;
-
-import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -19,7 +17,9 @@ import static org.junit.Assert.*;
  */
 public class ClasseTest {
     private Eleve e;
+    private Eleve e1;
     private Professeur p;
+    private Professeur p1;
     private Classe cl;
     
     public ClasseTest() {
@@ -37,8 +37,10 @@ public class ClasseTest {
     @Before
     public void setUp() {
         p = new Professeur("logProf","12345","LeGrand","Jean");
+        p1 = new Professeur("logProf","12345","Bon","Jean");
         cl = new Classe("CM1",p);
-        e = new Eleve(cl,)
+        e = new Eleve("Rousse","Delphine");
+        e1 = new Eleve("ihb","iyg");
     }
     
     @After
@@ -51,12 +53,9 @@ public class ClasseTest {
     @Test
     public void testGetNomClasse() {
         System.out.println("getNomClasse");
-        Classe instance = null;
-        String expResult = "";
-        String result = instance.getNomClasse();
+        String expResult = "CM1";
+        String result = cl.getNomClasse();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -65,11 +64,9 @@ public class ClasseTest {
     @Test
     public void testSetNomClasse() {
         System.out.println("setNomClasse");
-        String nomClasse = "";
-        Classe instance = null;
-        instance.setNomClasse(nomClasse);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        String nomClasse = "CM2";
+        cl.setNomClasse(nomClasse);
+        assertEquals(nomClasse,"CM2");
     }
 
     /**
@@ -78,12 +75,9 @@ public class ClasseTest {
     @Test
     public void testGetProfesseur() {
         System.out.println("getProfesseur");
-        Classe instance = null;
-        Professeur expResult = null;
-        Professeur result = instance.getProfesseur();
+        Professeur expResult = p;
+        Professeur result = cl.getProfesseur();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -92,11 +86,8 @@ public class ClasseTest {
     @Test
     public void testSetProfesseur() {
         System.out.println("setProfesseur");
-        Professeur professeur = null;
-        Classe instance = null;
-        instance.setProfesseur(professeur);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        cl.setProfesseur(p1);
+        assertEquals(cl.getProfesseur().getPrenomPersonne(),"Jean");
     }
 
     /**
@@ -105,11 +96,16 @@ public class ClasseTest {
     @Test
     public void testAjoutEleve() {
         System.out.println("ajoutEleve");
-        Eleve monEleve = null;
-        Classe instance = null;
-        instance.ajoutEleve(monEleve);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        cl.ajoutEleve(e);
+        assertEquals(cl.getSizeClasse(),1);
+    }
+    
+    @Test
+    public void testAjoutEleveIdentique() {
+        System.out.println("Eleve identique");
+        cl.ajoutEleve(e);
+        cl.ajoutEleve(e);
+        assertEquals(cl.getSizeClasse(),1);
     }
 
     /**
@@ -118,25 +114,9 @@ public class ClasseTest {
     @Test
     public void testSuppEleve() {
         System.out.println("suppEleve");
-        Eleve monEleve = null;
-        Classe instance = null;
-        instance.suppEleve(monEleve);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getListEleveClasse method, of class Classe.
-     */
-    @Test
-    public void testGetListEleveClasse() {
-        System.out.println("getListEleveClasse");
-        Classe instance = null;
-        ArrayList<Eleve> expResult = null;
-        ArrayList<Eleve> result = instance.getListEleveClasse();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-    
+        cl.ajoutEleve(e);
+        cl.ajoutEleve(e1);
+        cl.suppEleve(e);
+        assertEquals(cl.getSizeClasse(),1);
+    } 
 }

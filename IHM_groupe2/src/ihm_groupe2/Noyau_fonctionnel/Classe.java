@@ -91,4 +91,8 @@ public class Classe {
         return listeEleve;
     }
     
+    public int getSizeClasse() {
+        return (listeEleve.size());
+    }
+    
 }
