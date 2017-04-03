@@ -1,5 +1,6 @@
 package Applications;
 
+import ihm_groupe2.Inferface.Dessin.Dessin;
 import ihm_groupe2.Inferface.Menu.MenuConnexionEleve;
 import ihm_groupe2.Inferface.Menu.MenuEleve;
 import ihm_groupe2.Noyau_fonctionnel.Classe;
@@ -22,6 +23,7 @@ public class ApplicationEleve {
     private Eleve eleve;
     private ArrayList<Realisation> mesDessins;
     private ArrayList<Classe> lesClasses;
+    
     
     
     public ApplicationEleve(MainFrame main){
@@ -69,5 +71,9 @@ public class ApplicationEleve {
     
     public Eleve getEleveConnecte(){
         return eleve;
+    }
+    
+    public void faireExercice(){
+        new Dessin(this);
     }
 }

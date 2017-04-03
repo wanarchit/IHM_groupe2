@@ -2,6 +2,7 @@ package ihm_groupe2.Inferface.Menu;
 
 import Applications.ApplicationEleve;
 import Applications.MainFrame;
+import ihm_groupe2.Controleur.CtrlMenuEleve;
 import ihm_groupe2.Noyau_fonctionnel.Eleve;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -38,7 +39,8 @@ public class MenuEleve extends JPanel{
     private JLabel labNumTent;          // Label pour afficher le numéro de la tentative selectionnée
     private ImageIcon iconExo;          // Image de l'exercice selectionnée
     private ImageIcon iconTent; // image de la tentative selectionnée de l'elève
-    
+    private JButton butFaireExo;
+    private CtrlMenuEleve controleur;
     /**
      * Constructeur de la classe MenuEleve
      * Permet de créer le menu pour un eleve
@@ -107,7 +109,9 @@ public class MenuEleve extends JPanel{
         labImage.setVerticalAlignment(JLabel.CENTER);
         iconExo = new ImageIcon(getClass().getResource("IconEleve.png"));
         labImage.setIcon(iconExo);
-        panImage.add(labImage, BorderLayout.CENTER);
+        butFaireExo = new JButton();
+        butFaireExo.add(labImage);
+        panImage.add(butFaireExo, BorderLayout.CENTER);
         
         
         
@@ -192,10 +196,16 @@ public class MenuEleve extends JPanel{
         this.add(panelTitre, BorderLayout.NORTH);
         this.add(panelDessin, BorderLayout.CENTER);
         
-        
+        controleur = new CtrlMenuEleve(this,appli);
+        butFaireExo.addActionListener(controleur);
+                
+                
         appli.getMainFrame().setContentPane(this);
         appli.getMainFrame().repaint();
         appli.getMainFrame().revalidate();
     }
     
+    public JButton getButFaireExo(){
+        return butFaireExo;
+    }
 }

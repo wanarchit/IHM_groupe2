@@ -5,6 +5,7 @@
  */
 package ihm_groupe2.Controleur;
 
+import ihm_groupe2.Inferface.Menu.ListeEleves;
 import ihm_groupe2.Inferface.Menu.MenuProf;
 import ihm_groupe2.Inferface.Menu.PanelCreerExo;
 import ihm_groupe2.Noyau_fonctionnel.Professeur;
@@ -67,9 +68,8 @@ public class CtrlMenuProf implements ActionListener{
             
             
             JLabel monLabel1 = new JLabel("Liste des élèves");
-            JPanel newPanelDroite = new JPanel();
-            newPanelDroite.add(monLabel1);
-            menuProfesseur.add(newPanelDroite,BorderLayout.CENTER);
+            ListeEleves newPanelListeEleves = new ListeEleves();
+            menuProfesseur.add(newPanelListeEleves,BorderLayout.CENTER);
             menuProfesseur.validate();
             
         }else if (e.getSource() == menuProfesseur.getButtonClasse()){
