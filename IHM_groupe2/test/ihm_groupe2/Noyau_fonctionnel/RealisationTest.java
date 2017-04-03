@@ -6,6 +6,7 @@
 package ihm_groupe2.Noyau_fonctionnel;
 
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,12 +17,24 @@ import static org.junit.Assert.*;
  * @author Jonathan
  */
 public class RealisationTest {
+    private Realisation r1;
+    private Realisation r2;
+    private Exercice exo1;
+    private Exercice exo2;
+    private TortueG t;
+    private Commande c;
     
     public RealisationTest() {
     }
     
     @Before
     public void setUp() {
+        exo1 = new Exercice("Ex1","",1,new ImageIcon());
+        exo2 = new Exercice("Ex2","",2,new ImageIcon());
+        r1 = new Realisation(1,"","",exo1);
+        r2 = new Realisation(1,"","",exo2);
+        t = new TortueG();
+        c = new Commande("avancer",t);
     }
     
     @After
@@ -34,9 +47,8 @@ public class RealisationTest {
     @Test
     public void testAjouterCommande() {
         System.out.println("ajouterCommande");
-        Commande cmd = null;
-        Realisation instance = null;
-        instance.ajouterCommande(cmd);
+        r1.ajouterCommande(c);
+        assertEquals(1,r1.getListeCommande().size());
     }
 
     /**
@@ -45,8 +57,11 @@ public class RealisationTest {
     @Test
     public void testSupprimeDerniereCommande() {
         System.out.println("supprimeDerniereCommande");
-        Realisation instance = null;
-        instance.supprimeDerniereCommande();
+        r1.ajouterCommande(c);
+        r1.ajouterCommande(c);
+        assertEquals(2,r1.getListeCommande().size());
+        r1.supprimeDerniereCommande();
+        assertEquals(1,r1.getListeCommande().size());
     }
 
     /**
@@ -56,21 +71,9 @@ public class RealisationTest {
     public void testGetCommandeInListe() {
         System.out.println("getCommandeInListe");
         int i = 0;
-        Realisation instance = null;
-        Commande expResult = null;
-        Commande result = instance.getCommandeInListe(i);
-        assertEquals(expResult, result);
-    }
-
-    /**
-     * Test of setACorriger method, of class Realisation.
-     */
-    @Test
-    public void testSetACorriger() {
-        System.out.println("setACorriger");
-        boolean bool = false;
-        Realisation instance = null;
-        instance.setACorriger(bool);
+        r1.ajouterCommande(c);
+        Commande result = r1.getCommandeInListe(i);
+        assertEquals(c, result);
     }
     
 }

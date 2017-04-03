@@ -13,6 +13,7 @@ public class Realisation {
     private String commentaire;
     private String note;
     private boolean aCorriger;
+    private Exercice exo;
     
     /**
      * Constructeur de Realisation, listeCommande vide de base ajout des commande via un bouton qui appelle addCommande
@@ -21,7 +22,8 @@ public class Realisation {
      * @param com
      * @param n
      */
-    public Realisation(int numero, String com, String n) {
+    public Realisation(int numero, String com, String n, Exercice exerc) {
+        exo = exerc;
         numTentative = numero;
         commentaire = com;
         note = n;
@@ -35,6 +37,14 @@ public class Realisation {
      */
     public void setNote(String n){
         note = n;
+    }
+    
+    /**
+     * Getter de l'exercie
+     * @return L'exercice pour lequel la réalisation a été faite.
+     */
+    public Exercice getExercice(){
+        return(exo);
     }
     
     /**

@@ -6,6 +6,7 @@
 package ihm_groupe2.Noyau_fonctionnel;
 
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,13 +22,15 @@ public class EleveTest {
     private Realisation r2;
     private Professeur p;
     private Classe c;
+    private Exercice exo;
     
     public EleveTest() {
+        exo = new Exercice("Ex1","",1,new ImageIcon());
         p = new Professeur("logProf","12345","LeGrand","Jean");
         c = new Classe("CM1",p);
         e = new Eleve(c,"Jean","Bon");
-        r1 = new Realisation(1,"Joli","Bien");
-        r2 = new Realisation(2,"Moins joli","Moins bien");
+        r1 = new Realisation(1,"Joli","Bien",exo);
+        r2 = new Realisation(2,"Moins joli","Moins bien",exo);
     }
     
     @Before
