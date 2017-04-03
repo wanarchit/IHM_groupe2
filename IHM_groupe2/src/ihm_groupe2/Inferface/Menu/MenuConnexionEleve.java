@@ -53,10 +53,7 @@ public class MenuConnexionEleve extends JPanel{
         this.add(champsNom);
         this.add(texteConnexion);
         this.add(validationConnexion);
-        
-        appliEleve.getMainFrame().setContentPane(this);
-        appliEleve.getMainFrame().repaint();
-        appliEleve.getMainFrame().revalidate();
+
     }
     
     public JTextField getTextPrenom(){

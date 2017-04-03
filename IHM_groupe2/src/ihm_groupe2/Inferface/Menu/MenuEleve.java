@@ -200,9 +200,6 @@ public class MenuEleve extends JPanel{
         butFaireExo.addActionListener(controleur);
                 
                 
-        appli.getMainFrame().setContentPane(this);
-        appli.getMainFrame().repaint();
-        appli.getMainFrame().revalidate();
     }
     
     public JButton getButFaireExo(){

@@ -6,6 +6,7 @@
 package ihm_groupe2.Inferface.Dessin;
 
 import Applications.ApplicationEleve;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
@@ -18,6 +19,15 @@ public class Dessin extends JPanel{
     
     public Dessin(ApplicationEleve lAppli){
         appli=lAppli;
+        
+        
+        
+        
+        
+        
+        JLabel monLabel = new JLabel("toto");
+        this.add(monLabel);
+        
         
     }
 }
