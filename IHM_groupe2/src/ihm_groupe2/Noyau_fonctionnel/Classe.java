@@ -21,10 +21,10 @@ public class Classe {
      * @param leProf : professeur qui gère la classe
      * @param lesEleves : liste des élèves de la classe
      */
-    public Classe(String nomCl,Professeur leProf, ArrayList<Eleve> lesEleves ){
+    public Classe(String nomCl,Professeur leProf){
         nomClasse=nomCl;
         professeur=leProf;
-        listeEleve=lesEleves;
+        listeEleve=new ArrayList<Eleve>();
     }
     
     /**

@@ -28,7 +28,7 @@ public class ApplicationEleve {
         fenetreMain = main;
         LesEleves = new ArrayList();
         leProf = new Professeur("MrProf","12345","LeGrand","Didier");
-        maClasse = new Classe("CM1",leProf,LesEleves);
+        maClasse = new Classe("CM1",leProf);
         lesClasses = new ArrayList();
         lesClasses.add(maClasse);
         mesDessins = new ArrayList();

@@ -25,6 +25,7 @@ public class Professeur extends Personne{
         super(nom,prenom);
         login = log;
         motDePasse = mdp;
+        listeClasse = new ArrayList<Classe>();
     }
     
     /**
