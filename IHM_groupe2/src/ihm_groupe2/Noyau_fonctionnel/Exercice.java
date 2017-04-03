@@ -21,7 +21,7 @@ public class Exercice {
      * @param image : Image représentant l'exercice à faire
      * @param modif : si l'exercice est modifiable
      */
-    public Exercice(String nomEx, String commEx, int choixTortue, ImageIcon image, boolean modif){
+    public Exercice(String nomEx, String commEx, int choixTortue, ImageIcon image){
         this.nom=nomEx;
         this.commentaire=commEx;
         if (choixTortue==1){
@@ -30,7 +30,7 @@ public class Exercice {
             tortue=new TortueRapide();
         }
         this.image=image;
-        this.modifiable = modif;
+        this.modifiable = true;
     }
     /**
      * Function getNom
