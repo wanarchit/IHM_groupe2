@@ -35,7 +35,7 @@ public class ApplicationEleve {
         lesClasses = new ArrayList();
         lesClasses.add(maClasse);
         mesDessins = new ArrayList();
-        eleve = new Eleve("Rousse","Delphine");
+        eleve = new Eleve(maClasse,"Rousse","Delphine");
         maClasse.ajoutEleve(eleve);
         lesExercices = new ArrayList();
         //Exercice exo1 = new Exercice();
