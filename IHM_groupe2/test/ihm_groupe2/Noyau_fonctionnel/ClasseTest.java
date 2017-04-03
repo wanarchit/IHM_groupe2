@@ -20,7 +20,7 @@ public class ClasseTest {
     private Eleve e1;
     private Professeur p;
     private Professeur p1;
-    private Classe cl;
+    private Classe c;
     
     public ClasseTest() {
     }
@@ -38,9 +38,7 @@ public class ClasseTest {
     public void setUp() {
         p = new Professeur("logProf","12345","LeGrand","Jean");
         p1 = new Professeur("logProf","12345","Bon","Jean");
-        cl = new Classe("CM1",p);
-        e = new Eleve("Rousse","Delphine");
-        e1 = new Eleve("ihb","iyg");
+        c = new Classe("CM1",p);
     }
     
     @After
@@ -54,7 +52,7 @@ public class ClasseTest {
     public void testGetNomClasse() {
         System.out.println("getNomClasse");
         String expResult = "CM1";
-        String result = cl.getNomClasse();
+        String result = c.getNomClasse();
         assertEquals(expResult, result);
     }
 
@@ -65,7 +63,7 @@ public class ClasseTest {
     public void testSetNomClasse() {
         System.out.println("setNomClasse");
         String nomClasse = "CM2";
-        cl.setNomClasse(nomClasse);
+        c.setNomClasse(nomClasse);
         assertEquals(nomClasse,"CM2");
     }
 
@@ -76,7 +74,7 @@ public class ClasseTest {
     public void testGetProfesseur() {
         System.out.println("getProfesseur");
         Professeur expResult = p;
-        Professeur result = cl.getProfesseur();
+        Professeur result = c.getProfesseur();
         assertEquals(expResult, result);
     }
 
@@ -86,8 +84,8 @@ public class ClasseTest {
     @Test
     public void testSetProfesseur() {
         System.out.println("setProfesseur");
-        cl.setProfesseur(p1);
-        assertEquals(cl.getProfesseur().getPrenomPersonne(),"Jean");
+        c.setProfesseur(p1);
+        assertEquals(c.getProfesseur().getPrenomPersonne(),"Jean");
     }
 
     /**
@@ -96,16 +94,16 @@ public class ClasseTest {
     @Test
     public void testAjoutEleve() {
         System.out.println("ajoutEleve");
-        cl.ajoutEleve(e);
-        assertEquals(cl.getSizeClasse(),1);
+        e = new Eleve(c,"Rousse","Delphine");
+        assertEquals(c.getListEleveClasse().size(),1);
     }
     
     @Test
     public void testAjoutEleveIdentique() {
         System.out.println("Eleve identique");
-        cl.ajoutEleve(e);
-        cl.ajoutEleve(e);
-        assertEquals(cl.getSizeClasse(),1);
+        e = new Eleve(c,"Rousse","Delphine");
+        c.ajoutEleve(e);
+        assertEquals(c.getListEleveClasse().size(),1);
     }
 
     /**
@@ -114,9 +112,9 @@ public class ClasseTest {
     @Test
     public void testSuppEleve() {
         System.out.println("suppEleve");
-        cl.ajoutEleve(e);
-        cl.ajoutEleve(e1);
-        cl.suppEleve(e);
-        assertEquals(cl.getSizeClasse(),1);
+        e = new Eleve(c,"Rousse","Delphine");
+        e1 = new Eleve(c,"ihb","iyg");
+        c.suppEleve(e);
+        assertEquals(c.getListEleveClasse().size(),1);
     } 
 }
