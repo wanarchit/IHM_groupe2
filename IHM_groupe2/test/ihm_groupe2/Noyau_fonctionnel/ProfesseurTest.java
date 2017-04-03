@@ -18,6 +18,7 @@ import static org.junit.Assert.*;
 public class ProfesseurTest {
     private Professeur p;
     private Classe c;
+    private Classe c1;
     
     public ProfesseurTest() {
     }
@@ -40,9 +41,8 @@ public class ProfesseurTest {
     @Test
     public void testSetLogin() {
         System.out.println("setLogin");
-        String newLogin = "";
-        Professeur instance = null;
-        instance.setLogin(newLogin);
+        p.setLogin("poupoupou");
+        assertEquals("poupoupou", p.getLogin());
     }
 
     /**
@@ -51,9 +51,8 @@ public class ProfesseurTest {
     @Test
     public void testSetMotDePasse() {
         System.out.println("setMotDePasse");
-        String newMotDePasse = "";
-        Professeur instance = null;
-        instance.setMotDePasse(newMotDePasse);
+        p.setMotDePasse("dude");
+        assertEquals("dude", p.getMotdePasse());
     }
 
 
@@ -65,6 +64,10 @@ public class ProfesseurTest {
         System.out.println("addClasse");
         c = new Classe("CM1",p);
         assertEquals(1,p.getLesClasses().size());
+        p.addClasse(c);
+        assertEquals(1,p.getLesClasses().size());
+        c1 = new Classe("CM2",p);
+        assertEquals(2,p.getLesClasses().size());
     }
 
     /**
@@ -73,9 +76,9 @@ public class ProfesseurTest {
     @Test
     public void testDelClasse() {
         System.out.println("delClasse");
-        Classe laClasse = null;
-        Professeur instance = null;
-        instance.delClasse(laClasse);
+        c = new Classe("CM1",p);
+        c1 = new Classe("CM2",p);
+        p.delClasse(c1);
     }
     
 }
