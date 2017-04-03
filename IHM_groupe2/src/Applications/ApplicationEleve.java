@@ -34,7 +34,7 @@ public class ApplicationEleve {
         lesClasses = new ArrayList();
         lesClasses.add(maClasse);
         mesDessins = new ArrayList();
-        eleve = new Eleve(maClasse,"Rousse","Delphine");
+        eleve = new Eleve("Rousse","Delphine");
         
         
         new MenuConnexionEleve(this);

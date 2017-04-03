@@ -13,44 +13,20 @@ import java.util.ArrayList;
  */
 public class Eleve extends Personne{
     
-    private Classe laClasse;
     private ArrayList<Realisation> lesRealisations;
     
     /**
      * Constructeur de la classe Eleve, permet de créer un élève
      * 
      * @param classe : la classe à laquelle l'élève appartient
-     * @param realisations : la liste des réalisations de l'élève
      * @param leNom : le nom de l'élève
      * @param lePrenom  : le prénom de l'élève
      */
-    public Eleve(Classe classe, String leNom, String lePrenom){
+    public Eleve(String leNom, String lePrenom){
         super(leNom,lePrenom);
-        laClasse = classe;
         lesRealisations = new ArrayList<Realisation>();
-        laClasse.ajoutEleve(this);
     }
     
-    /**
-     * Function getLaClasse
-     * Permet de renvoyer la classe a laquelle apratient l'élève
-     * @return laClasse : objet de type Classe
-     */
-    public Classe getLaClasse() {
-        return laClasse;
-    }
-    
-    /**
-     * Function setLaClasse
-     * Permet de modifier la classe de l'élève
-     * En cas de changement de classe on supprime l'élève de sa classe actuelle et on l'ajoute dans sa nouvelle classe
-     * @param laClasse : la nouvelle classe de l'élève
-     */
-    public void setLaClasse(Classe laClasse) {
-        this.laClasse.suppEleve(this);
-        this.laClasse = laClasse;
-        this.laClasse.ajoutEleve(this);
-    }
     
     /**
      * Function getLesRealisations
