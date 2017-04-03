@@ -26,8 +26,10 @@ public class Exercice {
         this.commentaire=commEx;
         if (choixTortue==1){
             tortue=new TortueCouleur();
-        }else {
+        }else if(choixTortue==2){
             tortue=new TortueRapide();
+        }else{
+            tortue=new TortueG();
         }
         this.image=image;
         this.modifiable = true;

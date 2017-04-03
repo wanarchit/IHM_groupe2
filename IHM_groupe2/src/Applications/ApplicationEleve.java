@@ -9,6 +9,7 @@ import ihm_groupe2.Noyau_fonctionnel.Exercice;
 import ihm_groupe2.Noyau_fonctionnel.Professeur;
 import ihm_groupe2.Noyau_fonctionnel.Realisation;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 
 /**
  * Classe ApplicationEleve : permet de gérer tous les éléments liés aux élèves
@@ -38,7 +39,8 @@ public class ApplicationEleve {
         eleve = new Eleve(maClasse,"Rousse","Delphine");
         maClasse.ajoutEleve(eleve);
         lesExercices = new ArrayList();
-        //Exercice exo1 = new Exercice();
+        ImageIcon imageExo = new ImageIcon();
+        Exercice exo1 = new Exercice("Exercice 1","Vous devez faire ce dessin en 10 minutes",0,imageExo);
         
         MenuConnexionEleve menuCoEleve = new MenuConnexionEleve(this);
         fenetreMain.setContentPane(menuCoEleve);
