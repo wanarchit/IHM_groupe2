@@ -4,10 +4,12 @@ import Applications.ApplicationEleve;
 import Applications.MainFrame;
 import ihm_groupe2.Controleur.CtrlMenuEleve;
 import ihm_groupe2.Noyau_fonctionnel.Eleve;
+import ihm_groupe2.Noyau_fonctionnel.Exercice;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -41,6 +43,8 @@ public class MenuEleve extends JPanel{
     private ImageIcon iconTent; // image de la tentative selectionnée de l'elève
     private JButton butFaireExo;
     private CtrlMenuEleve controleur;
+    
+    private ArrayList<Exercice> lesExos;
     /**
      * Constructeur de la classe MenuEleve
      * Permet de créer le menu pour un eleve
@@ -49,7 +53,7 @@ public class MenuEleve extends JPanel{
     public MenuEleve(Eleve eleve,ApplicationEleve lAppli){
         eleveConnecte = eleve;
         appli = lAppli;
-        
+        lesExos=appli.getListeExercice();
         
         /** PANEL TITRE AU NORD*/
         
@@ -64,13 +68,14 @@ public class MenuEleve extends JPanel{
         /** Partie gauche : */
                
         JPanel panNomExo = new JPanel();
-        labNomExo = new JLabel("Exercice 10");
+        labNomExo = new JLabel(lesExos.get(0).getNom());
         panNomExo.add(labNomExo);
         
         JPanel panComExo = new JPanel(new BorderLayout());
-        labCommExo = new JTextArea("Tortue rapide, vous devez dessinez en moins de 30 coups le dessin ci-contre");
+        labCommExo = new JTextArea(lesExos.get(0).getCommentaire());
         labCommExo.setLineWrap(true);
         labCommExo.setWrapStyleWord(true);
+        labCommExo.setEnabled(false);
         panComExo.add(labCommExo,BorderLayout.CENTER);
         
         
@@ -135,6 +140,7 @@ public class MenuEleve extends JPanel{
         labCommTent = new JTextArea("Note : Non Aquis - Exercice complètement loupé !");
         labCommTent.setLineWrap(true);
         labCommTent.setWrapStyleWord(true);
+        labCommTent.setEnabled(false);
         panComTent.add(labCommTent,BorderLayout.CENTER);
         
         /** Boutons **/

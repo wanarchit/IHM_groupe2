@@ -41,6 +41,7 @@ public class ApplicationEleve {
         lesExercices = new ArrayList();
         ImageIcon imageExo = new ImageIcon();
         Exercice exo1 = new Exercice("Exercice 1","Vous devez faire ce dessin en 10 minutes",0,imageExo);
+        lesExercices.add(exo1);
         
         MenuConnexionEleve menuCoEleve = new MenuConnexionEleve(this);
         fenetreMain.setContentPane(menuCoEleve);
@@ -89,5 +90,9 @@ public class ApplicationEleve {
         fenetreMain.setContentPane(leDessin);
         fenetreMain.repaint();
         fenetreMain.revalidate();
+    }
+    
+    public ArrayList<Exercice> getListeExercice(){
+        return lesExercices;
     }
 }
