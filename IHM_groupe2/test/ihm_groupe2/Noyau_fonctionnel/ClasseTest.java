@@ -18,12 +18,16 @@ import static org.junit.Assert.*;
  * @author Jonathan
  */
 public class ClasseTest {
+    private Eleve e;
+    private Professeur p;
+    private Classe cl;
     
     public ClasseTest() {
     }
     
     @BeforeClass
     public static void setUpClass() {
+        
     }
     
     @AfterClass
@@ -32,6 +36,9 @@ public class ClasseTest {
     
     @Before
     public void setUp() {
+        p = new Professeur("logProf","12345","LeGrand","Jean");
+        cl = new Classe("CM1",p);
+        e = new Eleve(cl,)
     }
     
     @After

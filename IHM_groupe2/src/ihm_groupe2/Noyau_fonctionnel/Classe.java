@@ -65,7 +65,7 @@ public class Classe {
         
     /**
      * Function ajoutEleve
-     * Permet d'ajouter un élève dans la liste d'élève (donc dans la classe)
+     * Permet d'ajouter un élève dans la liste d'élève (donc dans la classe), si il n'est pas déjà dedans
      * @param monEleve : Objet de type eleve
      */
     public void ajoutEleve(Eleve monEleve){

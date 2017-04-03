@@ -24,10 +24,10 @@ public class Eleve extends Personne{
      * @param leNom : le nom de l'élève
      * @param lePrenom  : le prénom de l'élève
      */
-    public Eleve(Classe classe,ArrayList<Realisation> realisations, String leNom, String lePrenom){
+    public Eleve(Classe classe, String leNom, String lePrenom){
         super(leNom,lePrenom);
         laClasse = classe;
-        lesRealisations = realisations;
+        lesRealisations = new ArrayList<Realisation>();
         laClasse.ajoutEleve(this);
     }
     

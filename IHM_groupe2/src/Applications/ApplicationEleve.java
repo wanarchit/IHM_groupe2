@@ -32,7 +32,7 @@ public class ApplicationEleve {
         lesClasses = new ArrayList();
         lesClasses.add(maClasse);
         mesDessins = new ArrayList();
-        eleve = new Eleve(maClasse,mesDessins,"Rousse","Delphine");
+        eleve = new Eleve(maClasse,"Rousse","Delphine");
         
         
         new MenuConnexionEleve(this);
