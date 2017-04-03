@@ -68,7 +68,7 @@ public class Classe {
      * Permet d'ajouter un élève dans la liste d'élève (donc dans la classe), si il n'est pas déjà dedans
      * @param monEleve : Objet de type eleve
      */
-    public void ajoutEleve(Eleve monEleve){
+    public void ajoutEleve(Eleve monEleve){ //ajouter if pour savoir si élève existe déjà
         listeEleve.add(monEleve);
     }
     
@@ -90,5 +90,6 @@ public class Classe {
     public ArrayList<Eleve> getListEleveClasse(){
         return listeEleve;
     }
+    
     
 }

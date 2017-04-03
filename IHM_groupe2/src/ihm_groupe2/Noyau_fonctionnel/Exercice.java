@@ -11,6 +11,7 @@ public class Exercice {
     private String commentaire;
     private TortueG tortue;
     private ImageIcon image;
+    private boolean modifiable;
     
     /**
      * Constructeur de la classe exercice, permet de créer un exercice
@@ -18,16 +19,20 @@ public class Exercice {
      * @param commEx: commentaire du professeur à propos de l'exercice
      * @param choixTortue Tortue imposée pour l'exercice 1: Tortue couleur / 2:Tortue rapide
      * @param image : Image représentant l'exercice à faire
+     * @param modif : si l'exercice est modifiable
      */
     public Exercice(String nomEx, String commEx, int choixTortue, ImageIcon image){
         this.nom=nomEx;
         this.commentaire=commEx;
         if (choixTortue==1){
             tortue=new TortueCouleur();
-        }else {
+        }else if(choixTortue==2){
             tortue=new TortueRapide();
+        }else{
+            tortue=new TortueG();
         }
         this.image=image;
+        this.modifiable = true;
     }
     /**
      * Function getNom
@@ -43,7 +48,7 @@ public class Exercice {
      * @param commentaire: Commentaire qu'on modifie de type string
      */
     public void setCommentaire(String commentaire){
-        if (commentaire.length() < 300){
+        if (commentaire.length() < 250){
             this.commentaire=commentaire;
         }
     }
@@ -62,5 +67,13 @@ public class Exercice {
      */
     public ImageIcon getImage(){
         return this.image;
+    }
+    
+    public boolean isModifiable(){
+        return modifiable;
+    }
+    
+    public void setModifiable(boolean newModif){
+        modifiable = newModif;
     }
 }

@@ -13,22 +13,31 @@ import java.util.ArrayList;
  */
 public class Eleve extends Personne{
     
-    private Classe laClasse;
     private ArrayList<Realisation> lesRealisations;
+    private Classe laClasse;
     
     /**
      * Constructeur de la classe Eleve, permet de créer un élève
      * 
-     * @param classe : la classe à laquelle l'élève appartient
-     * @param realisations : la liste des réalisations de l'élève
+     * @param maClasse : la classe à laquelle l'élève appartient
      * @param leNom : le nom de l'élève
      * @param lePrenom  : le prénom de l'élève
      */
-    public Eleve(Classe classe, String leNom, String lePrenom){
+    public Eleve(Classe maClasse, String leNom, String lePrenom){
         super(leNom,lePrenom);
-        laClasse = classe;
+        laClasse = maClasse;
         lesRealisations = new ArrayList<Realisation>();
         laClasse.ajoutEleve(this);
+    }
+    
+    
+    /**
+     * Function getLesRealisations
+     * Permet de récupérer toutes les réalistions de l'élève
+     * @return lesRealisations de l'élève
+     */
+    public ArrayList<Realisation> getLesRealisations() {
+        return lesRealisations;
     }
     
     /**
@@ -51,16 +60,6 @@ public class Eleve extends Personne{
         this.laClasse = laClasse;
         this.laClasse.ajoutEleve(this);
     }
-    
-    /**
-     * Function getLesRealisations
-     * Permet de récupérer toutes les réalistions de l'élève
-     * @return lesRealisations de l'élève
-     */
-    public ArrayList<Realisation> getLesRealisations() {
-        return lesRealisations;
-    }
-    
     /**
      * Function addRealisation
      * Permet d'ajouter une réalisation dans la liste des réalisations faites par l'élève
