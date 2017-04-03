@@ -51,7 +51,7 @@ public class MenuConnexionProf extends JPanel{
         
         fenetreMain.setContentPane(this);
         fenetreMain.repaint();
-        fenetreMain.revalidate();
+        fenetreMain.revalidate(); 
     }
     
     public MainFrame getMainFrame(){
