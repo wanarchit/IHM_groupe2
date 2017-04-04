@@ -29,7 +29,7 @@ public class MenuConnexionProf extends JPanel{
     
     public MenuConnexionProf(MainFrame main){
         fenetreMain = main;
-        
+        System.out.println("tototototot");
         JLabel textLogin = new JLabel("Entre votre login : ");
         champsLogin = new JTextField(20);
         JLabel textMdp = new JLabel("Entre votre mot de passe : ");
