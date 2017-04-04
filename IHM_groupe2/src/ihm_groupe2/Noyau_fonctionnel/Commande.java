@@ -36,9 +36,10 @@ public class Commande {
     }
     
     /**
-     * Rejoue une action
+     * Rejoue une commande, pour une tortue
+     * @param c la commande à rejouer
      */
-    public void doAction() {
+    public void doAction(Commande c) {
         
     }
 }

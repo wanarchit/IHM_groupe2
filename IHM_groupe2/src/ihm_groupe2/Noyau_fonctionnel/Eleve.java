@@ -50,34 +50,22 @@ public class Eleve extends Personne{
     }
     
     /**
-     * Function setLaClasse
-     * Permet de modifier la classe de l'élève
-     * En cas de changement de classe on supprime l'élève de sa classe actuelle et on l'ajoute dans sa nouvelle classe
-     * @param laClasse : la nouvelle classe de l'élève
-     */
-    public void setLaClasse(Classe laClasse) {
-        this.laClasse.suppEleve(this);
-        this.laClasse = laClasse;
-        this.laClasse.ajoutEleve(this);
-    }
-    /**
      * Function addRealisation
      * Permet d'ajouter une réalisation dans la liste des réalisations faites par l'élève
      * On ne peut pas ajouter deux fois la même réalisation 
      * @param laReal : faite par l'élève
      */
     public void addRealisation(Realisation laReal){
+        boolean nouvelle = true;
+        for (int i=0; i<lesRealisations.size();i++){
+            if (laReal.equals(lesRealisations.get(i))){
+                nouvelle = false;
+                break;
+            }
+        }
+        if (nouvelle){
         lesRealisations.add(laReal);
-    }
-    
-    /**
-     * Function delRealisation
-     * Permet de supprimer une réalisation faite par l'élève
-     * Il est nécessaire de vérifier que la réalisation est dans la liste lesRealisations
-     * @param laReal qui doit être supprimée
-     */
-    public void delRealisation(Realisation laReal){
-        lesRealisations.remove(laReal);
+        }   
     }
     
 }
