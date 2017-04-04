@@ -106,15 +106,4 @@ public class ClasseTest {
         assertEquals(c.getListEleveClasse().size(),1);
     }
 
-    /**
-     * Test of suppEleve method, of class Classe.
-     */
-    @Test
-    public void testSuppEleve() {
-        System.out.println("suppEleve");
-        e = new Eleve(c,"Rousse","Delphine");
-        e1 = new Eleve(c,"ihb","iyg");
-        c.suppEleve(e);
-        assertEquals(c.getListEleveClasse().size(),1);
-    } 
 }

@@ -7,7 +7,10 @@ package ihm_groupe2.Inferface.Dessin;
 
 import Applications.ApplicationEleve;
 import ihm_groupe2.Controleur.CtrlDessinEleve;
+import ihm_groupe2.Noyau_fonctionnel.Canvas;
+import ihm_groupe2.Noyau_fonctionnel.CanvasTortue;
 import ihm_groupe2.Noyau_fonctionnel.Exercice;
+import ihm_groupe2.Noyau_fonctionnel.TortueG;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -35,6 +38,8 @@ public class Dessin extends JPanel{
     
     private CtrlDessinEleve controleur;
     
+    private TortueG maTortue;
+    
     
     public Dessin(ApplicationEleve lAppli, Exercice exo){
         appli=lAppli;
@@ -56,8 +61,15 @@ public class Dessin extends JPanel{
         /** ssPanel Milieu : canvas */
         JPanel ssPanelMilieu = new JPanel();
         ssPanelMilieu.setBorder(new javax.swing.border.BevelBorder(BevelBorder.RAISED));
-        JLabel lab8 = new JLabel("toto");
-        ssPanelMilieu.add(lab8);
+        
+        
+        maTortue = new TortueG();
+        //JPanel canv = Canvas.getCanvasPanel();
+        ssPanelMilieu.add (Canvas.getCanvasPanel(), BorderLayout.CENTER);
+        
+        //CanvasTortue monCanvas = new CanvasTortue();
+        //JLabel lab8 = new JLabel("toto");
+        //ssPanelMilieu.add(lab8);
         
         /** ssPanel bas : boutons actions : écrire / avancer / tourner */
         JPanel ssPanelBas = new JPanel(new GridLayout(1,3));
@@ -73,7 +85,7 @@ public class Dessin extends JPanel{
         /** ssPanel gauche : liste actions */
         JPanel ssPanelGauche = new JPanel(new BorderLayout());
         ssPanelGauche.setBorder(new javax.swing.border.BevelBorder(BevelBorder.RAISED));
-        JLabel labelJai = new JLabel("J'ai ...      ");
+        JLabel labelJai = new JLabel("J'ai ...                   ");
         JLabel labelAction = new JLabel("Avancé");
         ssPanelGauche.add(labelJai, BorderLayout.NORTH);
         ssPanelGauche.add(labelAction, BorderLayout.CENTER);
@@ -143,6 +155,9 @@ public class Dessin extends JPanel{
         
         controleur = new CtrlDessinEleve(appli,this);
         butRetour.addActionListener(controleur);
+        butAvancer.addActionListener(controleur);
+        butTourner.addActionListener(controleur);
+        butEcrire.addActionListener(controleur);
         
         this.setLayout(new BorderLayout());
         this.setBorder(new javax.swing.border.BevelBorder(BevelBorder.RAISED));
@@ -181,5 +196,11 @@ public class Dessin extends JPanel{
     public Exercice getExoEnCours(){
         return exoEnCours;
     }
+    
+    public TortueG getLaTortue(){
+        return maTortue;
+    }
+    
+
 }
 

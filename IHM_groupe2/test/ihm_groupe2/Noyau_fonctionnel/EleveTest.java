@@ -55,16 +55,5 @@ public class EleveTest {
         assertEquals(2,e.getLesRealisations().size());
     }
 
-    /**
-     * Test of delRealisation method, of class Eleve.
-     */
-    @Test
-    public void testDelRealisation() {
-        System.out.println("delRealisation");
-        e.addRealisation(r1);
-        e.addRealisation(r2);
-        e.delRealisation(r1);
-        assertEquals(1,e.getLesRealisations().size());
-    }
     
 }

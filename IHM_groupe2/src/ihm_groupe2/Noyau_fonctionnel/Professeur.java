@@ -80,18 +80,15 @@ public class Professeur extends Personne{
      * @param laClasse : classe à ajouter
      */
     public void addClasse(Classe laClasse){
+        boolean dejaProf = false;
+        for (int i=0; i<listeClasse.size();i++){
+            if (laClasse.equals(listeClasse.get(i))){
+                dejaProf = true;
+                break;
+            }
+        }
+        if (!dejaProf){
         listeClasse.add(laClasse);
+        }
     }
-    
-    /**
-     * Function delClasse
-     * Permet de supprimer le proffesseur d'une de ses classes
-     * Il est nécessaire de vérifier que la classe que l'on veut supprimer est dans la liste listeClasse
-     * @param laClasse qui doit être supprimée
-     */
-    public void delClasse(Classe laClasse){
-        listeClasse.remove(laClasse);
-    }
-    
-    
 }
