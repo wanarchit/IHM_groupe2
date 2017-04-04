@@ -21,16 +21,6 @@ public class Commande {
         tortG = t;
     }
     
-    public Commande(String nomCom, TortueRapide t){
-        nomCommande = nomCom;
-        tortR = t;
-    }
-    
-    public Commande(String nomCom, TortueCouleur t){
-        nomCommande = nomCom;
-        tortC = t;
-    }
-    
     /**
      * Getter de nomCommande
      * @return Le nom de la commande
