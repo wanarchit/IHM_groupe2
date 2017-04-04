@@ -1,6 +1,7 @@
 package ihm_groupe2.Modele;
 
 import ihm_groupe2.Noyau_fonctionnel.*;
+import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 
 /**
@@ -14,10 +15,10 @@ import javax.swing.table.AbstractTableModel;
 public class TableExercices extends AbstractTableModel{
     
     private String[] columnName = {"Nom exercice", "Modifications"};
-    private Exercice exo;
+    private ArrayList<Exercice> listeExo;
     
-    public TableExercices (Exercice exo){
-        this.exo = exo;
+    public TableExercices (ArrayList <Exercice> listeExo){
+        this.listeExo = listeExo;
     }
     
     /**
@@ -36,7 +37,7 @@ public class TableExercices extends AbstractTableModel{
      */
     @Override
     public int getRowCount(){
-        return (exo == null ? 0:1);
+        return (listeExo.size());
     }
     
      /**
@@ -59,9 +60,9 @@ public class TableExercices extends AbstractTableModel{
     public Object getValueAt(int rowIndex, int columnIndex){
 
         switch(columnIndex){
-            case 0: return exo.getNom();
+            case 0: return listeExo.get(rowIndex).getNom();
             case 1: 
-                if (exo.isModifiable()){  //A CREER DANS CLASSE EXERCICE
+                if (listeExo.get(rowIndex).isModifiable()){  //A CREER DANS CLASSE EXERCICE
                     return "Possible";
                 }
                 else{
@@ -71,8 +72,8 @@ public class TableExercices extends AbstractTableModel{
         }
     }
     
-    public void setData(Exercice exo){
-        this.exo = exo;
+    public void setData(ArrayList <Exercice> listeExo){
+        this.listeExo = listeExo;
     } 
     
     @Override
@@ -81,5 +82,13 @@ public class TableExercices extends AbstractTableModel{
      */
     public boolean isCellEditable(int rowIndex, int columnIndex) {
         return false; //Toutes les cellules sont non éditables
+    }
+    
+    @Override
+    public Class getColumnClass(int columnIndex){
+        switch(columnIndex){
+            default:
+                return Object.class;
+        }
     }
 }
