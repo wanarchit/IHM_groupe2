@@ -83,7 +83,7 @@ public class Realisation {
      * Getter de listeCommande
      * @return la liste de Commande
      */
-    public ArrayList getListeCommande() {
+    public ArrayList<Commande> getListeCommande() {
         return listeCommande;
     }
     

@@ -137,4 +137,15 @@ public class ApplicationEleve {
         fenetreMain.revalidate();
     }
     
+    public int getNumTentative(Exercice exoEnCours){
+        int numTentative = 1;
+        for (Realisation rea:eleve.getLesRealisations()){
+            if (rea.getExercice().equals(exoEnCours)){
+                numTentative+=1;
+            }
+        }
+        return numTentative;
+    }
+    
+    
 }
