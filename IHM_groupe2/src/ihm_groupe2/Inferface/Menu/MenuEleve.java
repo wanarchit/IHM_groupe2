@@ -4,10 +4,12 @@ import Applications.ApplicationEleve;
 import Applications.MainFrame;
 import ihm_groupe2.Controleur.CtrlMenuEleve;
 import ihm_groupe2.Noyau_fonctionnel.Eleve;
+import ihm_groupe2.Noyau_fonctionnel.Exercice;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -38,18 +40,25 @@ public class MenuEleve extends JPanel{
     private JLabel labNomExo;           // Label pour afficher le nom de l'exercice selectionné
     private JLabel labNumTent;          // Label pour afficher le numéro de la tentative selectionnée
     private ImageIcon iconExo;          // Image de l'exercice selectionnée
+    private JLabel labImage;
     private ImageIcon iconTent; // image de la tentative selectionnée de l'elève
     private JButton butFaireExo;
     private CtrlMenuEleve controleur;
+    private Exercice exoEnCours;
+    
+    private ArrayList<Exercice> lesExos;
+    
     /**
      * Constructeur de la classe MenuEleve
      * Permet de créer le menu pour un eleve
      * @param eleve : concerné par le menu (ses dessins)
+     * @param lAppli
+     * @param exo 
      */
-    public MenuEleve(Eleve eleve,ApplicationEleve lAppli){
+    public MenuEleve(Eleve eleve,ApplicationEleve lAppli, Exercice exo){
         eleveConnecte = eleve;
         appli = lAppli;
-        
+        exoEnCours = exo;
         
         /** PANEL TITRE AU NORD*/
         
@@ -64,25 +73,36 @@ public class MenuEleve extends JPanel{
         /** Partie gauche : */
                
         JPanel panNomExo = new JPanel();
-        labNomExo = new JLabel("Exercice 10");
+        labNomExo = new JLabel(exoEnCours.getNom());
         panNomExo.add(labNomExo);
         
         JPanel panComExo = new JPanel(new BorderLayout());
-        labCommExo = new JTextArea("Tortue rapide, vous devez dessinez en moins de 30 coups le dessin ci-contre");
+        labCommExo = new JTextArea(exoEnCours.getCommentaire());
         labCommExo.setLineWrap(true);
         labCommExo.setWrapStyleWord(true);
+        labCommExo.setEnabled(false);
         panComExo.add(labCommExo,BorderLayout.CENTER);
         
         
         /** Boutons **/
         JPanel ssPanButPrec = new JPanel();
         butPrecExo = new JButton("Précédent");
+        if (appli.exercicePrecExist(exoEnCours)){
+            butPrecExo.setEnabled(true);
+        }else{
+            butPrecExo.setEnabled(false);
+        }
         ssPanButPrec.add(butPrecExo);
         JPanel panButPrec = new JPanel();
         panButPrec.add(ssPanButPrec);
         
         JPanel ssPanButSuiv = new JPanel();
         butSuivExo = new JButton("Suivant");
+        if (appli.exerciceSuivExist(exoEnCours)){
+            butSuivExo.setEnabled(true);
+        }else{
+            butSuivExo.setEnabled(false);
+        }
         ssPanButSuiv.add(butSuivExo);
         JPanel panButSuiv = new JPanel();
         panButSuiv.add(ssPanButSuiv);
@@ -104,10 +124,10 @@ public class MenuEleve extends JPanel{
         JPanel panImage = new JPanel(new BorderLayout());
         panImage.setBorder(new javax.swing.border.BevelBorder(BevelBorder.RAISED));
         panImage.setPreferredSize(new Dimension(300,300));
-        JLabel labImage = new JLabel();
+        labImage = new JLabel();
         labImage.setHorizontalAlignment(JLabel.CENTER);
         labImage.setVerticalAlignment(JLabel.CENTER);
-        iconExo = new ImageIcon(getClass().getResource("IconEleve.png"));
+        iconExo = exoEnCours.getImage();
         labImage.setIcon(iconExo);
         butFaireExo = new JButton();
         butFaireExo.add(labImage);
@@ -135,6 +155,7 @@ public class MenuEleve extends JPanel{
         labCommTent = new JTextArea("Note : Non Aquis - Exercice complètement loupé !");
         labCommTent.setLineWrap(true);
         labCommTent.setWrapStyleWord(true);
+        labCommTent.setEnabled(false);
         panComTent.add(labCommTent,BorderLayout.CENTER);
         
         /** Boutons **/
@@ -198,11 +219,35 @@ public class MenuEleve extends JPanel{
         
         controleur = new CtrlMenuEleve(this,appli);
         butFaireExo.addActionListener(controleur);
+        butPrecExo.addActionListener(controleur);
+        butSuivExo.addActionListener(controleur);
+        butPrecTent.addActionListener(controleur);
+        butSuivTent.addActionListener(controleur);
                 
                 
     }
     
     public JButton getButFaireExo(){
         return butFaireExo;
+    }
+    
+    public JButton getButExoSuiv(){
+        return butSuivExo;
+    }
+    
+    public JButton getButExoPrec(){
+        return butPrecExo;
+    }
+    
+    public JButton getButTentSuiv(){
+        return butSuivTent;
+    }
+    
+    public JButton getButTentPrec(){
+        return butPrecTent;
+    }
+    
+    public Exercice getExoEnCours(){
+        return exoEnCours;
     }
 }

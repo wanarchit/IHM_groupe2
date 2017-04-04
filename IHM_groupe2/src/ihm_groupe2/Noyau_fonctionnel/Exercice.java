@@ -9,7 +9,7 @@ import javax.swing.ImageIcon;
 public class Exercice {
     private String nom;
     private String commentaire;
-    private TortueG tortue;
+    private int tortue;
     private ImageIcon image;
     private boolean modifiable;
     
@@ -17,20 +17,13 @@ public class Exercice {
      * Constructeur de la classe exercice, permet de créer un exercice
      * @param nomEx: nom donné à l'exercice
      * @param commEx: commentaire du professeur à propos de l'exercice
-     * @param choixTortue Tortue imposée pour l'exercice 1: Tortue couleur / 2:Tortue rapide
+     * @param choixTortue Tortue imposée pour l'exercice 0: tortue classique / 1: Tortue couleur / 2:Tortue rapide
      * @param image : Image représentant l'exercice à faire
-     * @param modif : si l'exercice est modifiable
      */
     public Exercice(String nomEx, String commEx, int choixTortue, ImageIcon image){
         this.nom=nomEx;
         this.commentaire=commEx;
-        if (choixTortue==1){
-            tortue=new TortueCouleur();
-        }else if(choixTortue==2){
-            tortue=new TortueRapide();
-        }else{
-            tortue=new TortueG();
-        }
+        tortue = choixTortue;
         this.image=image;
         this.modifiable = true;
     }
@@ -75,5 +68,9 @@ public class Exercice {
     
     public void setModifiable(boolean newModif){
         modifiable = newModif;
+    }
+    
+    public int getTortueChoisie(){
+        return tortue;
     }
 }

@@ -25,6 +25,7 @@ public class Classe {
         nomClasse=nomCl;
         professeur=leProf;
         listeEleve=new ArrayList<Eleve>();
+        leProf.addClasse(this);
     }
     
     /**
@@ -68,24 +69,19 @@ public class Classe {
      * Permet d'ajouter un élève dans la liste d'élève (donc dans la classe), si il n'est pas déjà dedans
      * @param monEleve : Objet de type eleve
      */
-    public void ajoutEleve(Eleve monEleve){ //ajouter if pour savoir si élève existe déjà
-        listeEleve.add(monEleve);
-    }
-    
-    /**
-     * Function suppEleve
-     * Permet de supprimer un eleve d'une classe
-     * @param monEleve : l'élève à supprimer (type eleve)
-     */
-    public void suppEleve(Eleve monEleve){
-        if (listeEleve.size()!=0){
-            for(Eleve el:listeEleve){
-                if (el.equals(monEleve)){
-                    listeEleve.remove(el);
-                }
+    public void ajoutEleve(Eleve monEleve){ 
+        boolean absent = true;
+        for (int i=0; i<listeEleve.size();i++){
+            if (monEleve.equals(listeEleve.get(i))){
+                absent = false;
+                break;
             }
         }
+        if (absent){
+            listeEleve.add(monEleve);
+        }
     }
+
     
     public ArrayList<Eleve> getListEleveClasse(){
         return listeEleve;
