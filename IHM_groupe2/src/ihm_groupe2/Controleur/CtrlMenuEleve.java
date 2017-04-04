@@ -3,6 +3,7 @@ package ihm_groupe2.Controleur;
 import Applications.ApplicationEleve;
 import ihm_groupe2.Inferface.Menu.MenuEleve;
 import ihm_groupe2.Noyau_fonctionnel.Eleve;
+import ihm_groupe2.Noyau_fonctionnel.Exercice;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -34,7 +35,11 @@ public class CtrlMenuEleve implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         //Eleve leEleve = new Eleve(null,null,"Rousse","Delphine");
         if (e.getSource() == leMenu.getButFaireExo() ){
-            appli.faireExercice();
+            appli.faireExercice(leMenu.getExoEnCours());
+        }else if(e.getSource() == leMenu.getButExoSuiv()){
+            appli.afficheExerciceSuivant(leMenu.getExoEnCours());
+        }else if(e.getSource() == leMenu.getButExoPrec()){
+            appli.afficheExercicePrecedant(leMenu.getExoEnCours());
         }
     
         

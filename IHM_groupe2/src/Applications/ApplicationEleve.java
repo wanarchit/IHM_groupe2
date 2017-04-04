@@ -39,9 +39,15 @@ public class ApplicationEleve {
         eleve = new Eleve(maClasse,"Rousse","Delphine");
         maClasse.ajoutEleve(eleve);
         lesExercices = new ArrayList();
-        ImageIcon imageExo = new ImageIcon();
-        Exercice exo1 = new Exercice("Exercice 1","Vous devez faire ce dessin en 10 minutes",0,imageExo);
+        ImageIcon imageExo = new ImageIcon(getClass().getResource("Exercice1_image.png"));
+        Exercice exo1 = new Exercice("Exercice 1","Vous devez faire ce dessin en 10 minutes avec la tortue normale",0,imageExo);
+        ImageIcon imageExo2 = new ImageIcon(getClass().getResource("Exercice2_image.png"));
+        Exercice exo2 = new Exercice("Exercice 2","Vous devez faire ce dessin en 5 minutes avec la tortue rapide",2,imageExo2);
+        ImageIcon imageExo3 = new ImageIcon(getClass().getResource("Exercice3_image.png"));
+        Exercice exo3 = new Exercice("Exercice 3","Vous devez faire ce dessin en 15 minutes avec la tortue couleur",1,imageExo3);
         lesExercices.add(exo1);
+        lesExercices.add(exo2);
+        lesExercices.add(exo3);
         
         MenuConnexionEleve menuCoEleve = new MenuConnexionEleve(this);
         fenetreMain.setContentPane(menuCoEleve);
@@ -75,7 +81,7 @@ public class ApplicationEleve {
     }
     
     public void seConnecter(){
-        MenuEleve leMenuEleve = new MenuEleve(eleve,this);
+        MenuEleve leMenuEleve = new MenuEleve(eleve,this,lesExercices.get(0));
         fenetreMain.setContentPane(leMenuEleve);
         fenetreMain.repaint();
         fenetreMain.revalidate();
@@ -85,14 +91,50 @@ public class ApplicationEleve {
         return eleve;
     }
     
-    public void faireExercice(){
-        Dessin leDessin = new Dessin(this);
+    public void faireExercice(Exercice exerciceActu){
+        Dessin leDessin = new Dessin(this,exerciceActu);
         fenetreMain.setContentPane(leDessin);
         fenetreMain.repaint();
         fenetreMain.revalidate();
     }
     
-    public ArrayList<Exercice> getListeExercice(){
-        return lesExercices;
+    public boolean exerciceSuivExist(Exercice exerciceActu){
+        if (lesExercices.indexOf(exerciceActu) < lesExercices.size()-1){
+            return true;
+        }else{
+            return false;
+        }
     }
+    
+    public boolean exercicePrecExist(Exercice exerciceActu){
+        if (lesExercices.indexOf(exerciceActu) != 0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+    public void afficheExerciceSuivant(Exercice exoEnCours){
+        Exercice exoSuiv = lesExercices.get(lesExercices.indexOf(exoEnCours)+1);
+        MenuEleve leMenuEleve = new MenuEleve(eleve,this,exoSuiv);
+        fenetreMain.setContentPane(leMenuEleve);
+        fenetreMain.repaint();
+        fenetreMain.revalidate();
+    }
+    
+    public void afficheExercicePrecedant(Exercice exoEnCours){
+        Exercice exoPrec = lesExercices.get(lesExercices.indexOf(exoEnCours)-1);
+        MenuEleve leMenuEleve = new MenuEleve(eleve,this,exoPrec);
+        fenetreMain.setContentPane(leMenuEleve);
+        fenetreMain.repaint();
+        fenetreMain.revalidate();
+    }
+    
+    public void annulerDessin(Exercice exoEnCours){
+        MenuEleve leMenuEleve = new MenuEleve(eleve,this,exoEnCours);
+        fenetreMain.setContentPane(leMenuEleve);
+        fenetreMain.repaint();
+        fenetreMain.revalidate();
+    }
+    
 }
