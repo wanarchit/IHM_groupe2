@@ -57,7 +57,7 @@ public class ProfesseurTest {
 
 
     /**
-     * Test of addClasse method, of class Professeur.
+     * Test of addClasse method, of class Professeur. 
      */
     @Test
     public void testAddClasse() {
@@ -69,16 +69,4 @@ public class ProfesseurTest {
         c1 = new Classe("CM2",p);
         assertEquals(2,p.getLesClasses().size());
     }
-
-    /**
-     * Test of delClasse method, of class Professeur.
-     */
-    @Test
-    public void testDelClasse() {
-        System.out.println("delClasse");
-        c = new Classe("CM1",p);
-        c1 = new Classe("CM2",p);
-        p.delClasse(c1);
-    }
-    
 }
