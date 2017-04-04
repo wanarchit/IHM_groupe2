@@ -46,7 +46,7 @@ public class SqliteJDBC {
       
       String tableEleve = "CREATE TABLE ELEVE " +
       "(ID_Eleve INT PRIMARY KEY      NOT NULL," +
-      " Nom_Eleve      CHAR(50) NOT NULL," +
+      "Nom_Eleve      CHAR(50) NOT NULL," +
       "Id_Classe       INT      NOT NULL,"+
       " Prenom_Eleve   CHAR(50) NOT NULL,"+
       "FOREIGN KEY(Id_Classe) REFERENCES CLASSE(ID_Classe))";

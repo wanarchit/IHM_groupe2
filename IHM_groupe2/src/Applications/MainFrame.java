@@ -1,6 +1,7 @@
 package Applications;
 
 import ihm_groupe2.Inferface.Menu.MenuPrincipal;
+import ihm_groupe2.Modele.Peuplement;
 import ihm_groupe2.Modele.SqliteJDBC;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
@@ -28,6 +29,8 @@ public class MainFrame extends JFrame{
         this.setVisible(true);
         SqliteJDBC db = new SqliteJDBC();
         db.dbConnection();
+        Peuplement remplissage= new Peuplement();
+        remplissage.Peuplement();
     }
     
     public static void main(String[] args)
