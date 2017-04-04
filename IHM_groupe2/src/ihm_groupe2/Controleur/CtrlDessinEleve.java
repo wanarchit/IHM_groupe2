@@ -23,6 +23,12 @@ public class CtrlDessinEleve implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == leDessin.getButRetour() ){
             appli.annulerDessin(leDessin.getExoEnCours());
+        }else if (e.getSource() == leDessin.getButAvancer()){
+            leDessin.getLaTortue().avancer();
+        }else if (e.getSource() == leDessin.getButTourner()){
+            leDessin.getLaTortue().tourner();
+        }else if (e.getSource() == leDessin.getButEcrire()){
+            leDessin.getLaTortue().tracer(!leDessin.getLaTortue().enTrace());
         }
     
         
