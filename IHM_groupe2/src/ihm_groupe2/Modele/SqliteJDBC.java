@@ -34,7 +34,6 @@ public class SqliteJDBC {
       "Id_Professeur      INT       NOT NULL,"+
       "Image_Exo         CHAR(250) NOT NULL,"+
       "FOREIGN KEY(Id_Professeur) REFERENCES PROFESSEUR(ID_Professeur))";
-       
       stmt.executeUpdate(tableExercice);
       
       String tableClasse = "CREATE TABLE CLASSE " +
@@ -58,6 +57,7 @@ public class SqliteJDBC {
       "Id_Eleve                    INT       NOT NULL,"+
       "Id_Exo                      INT       NOT NULL,"+
       "Commentaire_Realisation    CHAR(250) NOT NULL,"+
+      "Numero_Tentative            INT      NOT NULL,"+
       "FOREIGN KEY(Id_Eleve) REFERENCES ELEVE(ID_Eleve),"+
       "FOREIGN KEY(Id_Exo) REFERENCES EXERCICE(ID_Exo))";
        
@@ -80,9 +80,10 @@ public class SqliteJDBC {
       String tableUtilise = "CREATE TABLE UTILISE " +
       "(Id_Commande     INT NOT NULL,"+
       "Id_Realisation  INT NOT NULL,"+
+      "Iteration       INT NOT NULL,"+
       "FOREIGN KEY(Id_Commande) REFERENCES COMMANDES(ID_Commande),"+
       "FOREIGN KEY(Id_Realisation) REFERENCES REALISATION(ID_Realisation),"+
-      "PRIMARY KEY(Id_Commande,Id_Realisation))";
+      "PRIMARY KEY(Id_Commande,Id_Realisation,Iteration))";
       stmt.executeUpdate(tableUtilise);
       stmt.close();
       c.close();
