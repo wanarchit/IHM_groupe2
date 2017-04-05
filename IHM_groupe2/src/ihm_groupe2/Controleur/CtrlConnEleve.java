@@ -28,10 +28,11 @@ public class CtrlConnEleve implements ActionListener {
         //Eleve leEleve = new Eleve(null,null,"Rousse","Delphine");
         if (!leMenu.getTextPrenom().getText().isEmpty() ){
             if (!leMenu.getTextNom().getText().isEmpty()){
-                if (Appli.tryConnexion(leMenu.getTextPrenom().getText(), leMenu.getTextNom().getText())){
-                    Appli.seConnecter();
+                Eleve leEleve = Appli.tryConnexion(leMenu.getTextPrenom().getText(), leMenu.getTextNom().getText());
+                if (leEleve != null){
+                    Appli.seConnecter(leEleve);
                 }else{
-                    System.out.println("Impossible de se connecter ...");
+                    System.out.println("Cet élève n'existe pas !");
                 }
             }else{
                 System.out.println("Vous devez renseigner le nom de l'élève");

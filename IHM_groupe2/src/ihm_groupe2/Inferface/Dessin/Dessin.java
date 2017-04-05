@@ -18,10 +18,12 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.border.BevelBorder;
 
@@ -61,9 +63,9 @@ public class Dessin extends JPanel{
     public Dessin(ApplicationEleve lAppli, Exercice exo){
         appli=lAppli;
         exoEnCours = exo;
+        exoEnCours.getMaTortue().reset();
         
-        
-        laRealisation = new Realisation(appli.getNumTentative(exoEnCours),"","",exoEnCours);
+        laRealisation = new Realisation(appli.getNumTentativeSuiv(exoEnCours),"","",exoEnCours);
         
         
         /** ssPanel du haut :  bouton terminer (valider),
@@ -169,15 +171,16 @@ public class Dessin extends JPanel{
         JLabel labelJai = new JLabel("J'ai ...                   ");
         
         String lesCmd = "";
-        for (Commande cmd : laRealisation.getListeCommande()){
-            lesCmd += cmd.getCommande() + '\n' + '\r';
-        }
+        
+        
         
         labelAction = new JLabel(lesCmd);
         
+        JScrollPane scrollF = new JScrollPane(labelAction,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+	    	       JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         
         ssPanelGauche.add(labelJai, BorderLayout.NORTH);
-        ssPanelGauche.add(labelAction, BorderLayout.CENTER);
+        ssPanelGauche.add(scrollF, BorderLayout.CENTER);
         
        
         /** ssPanel Centre : ssPanel Milieu / ssPanel haut / ssPanel bas */
@@ -238,7 +241,8 @@ public class Dessin extends JPanel{
         
         
         butRetour.addActionListener(controleur);
-        
+        butAnnuler.addActionListener(controleur);
+        butValider.addActionListener(controleur);
         
         
         
@@ -331,11 +335,13 @@ public class Dessin extends JPanel{
     }
     
     public void RefreshListAction(){
-        String lesCmd = "";
-        for (Commande cmd : laRealisation.getListeCommande()){
-            lesCmd += cmd.getCommande() + '\n' + '\r';
+        String lesCmd = "<html>";
+        ArrayList<Commande> lesCommandes = laRealisation.getListeCommande();
+        int tailleListe = lesCommandes.size();
+        for (int i = tailleListe-1; i >= 0 ; i--){
+            lesCmd += lesCommandes.get(i).getCommande() + "<br>";
         }
-        
+        lesCmd+="</html>";
         labelAction.setText(lesCmd);
     }
 

@@ -63,6 +63,10 @@ public class Realisation {
         return commentaire;
     }
     
+    public int getNumeroTentative(){
+        return numTentative;
+    }
+    
     /**
      * Setter de commentaire
      * @param com le nouveau commentaire
