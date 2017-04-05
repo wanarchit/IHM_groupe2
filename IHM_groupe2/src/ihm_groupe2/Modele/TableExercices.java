@@ -91,4 +91,13 @@ public class TableExercices extends AbstractTableModel{
                 return Object.class;
         }
     }
+    
+    /**
+     * Permet de récupérer l'objet d'une ligne
+     * @param rowIndex
+     * @return
+     */
+    public Exercice getExoRow(int rowIndex){
+	return listeExo.get(rowIndex);
+    }
 }
