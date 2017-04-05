@@ -3,6 +3,9 @@ package ihm_groupe2.Inferface.Menu;
 import ihm_groupe2.Controleur.CtrlFormExo;
 import ihm_groupe2.Controleur.CtrlModifExo;
 import ihm_groupe2.Noyau_fonctionnel.Exercice;
+import ihm_groupe2.Noyau_fonctionnel.TortueCouleur;
+import ihm_groupe2.Noyau_fonctionnel.TortueG;
+import ihm_groupe2.Noyau_fonctionnel.TortueRapide;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import javax.swing.ButtonGroup;
@@ -71,9 +74,20 @@ public class PanelModifExo extends JPanel{
         
         
         groupe =  new ButtonGroup();
-        butRadTortueNorm = new JRadioButton("Tortue Normale");
-        butRadTortueRap = new JRadioButton("Tortue Rapide");
-        butRadTortueCoul = new JRadioButton("Tortue Couleur");
+        if (e.getMaTortue().getClass().equals(TortueRapide.class)){
+            butRadTortueNorm = new JRadioButton("Tortue Normale");
+            butRadTortueRap = new JRadioButton("Tortue Rapide",true);
+            butRadTortueCoul = new JRadioButton("Tortue Couleur");
+        }else if(e.getMaTortue().getClass().equals(TortueCouleur.class)){
+            butRadTortueNorm = new JRadioButton("Tortue Normale");
+            butRadTortueRap = new JRadioButton("Tortue Rapide");
+            butRadTortueCoul = new JRadioButton("Tortue Couleur",true);
+        }else{
+            butRadTortueNorm = new JRadioButton("Tortue Normale",true);
+            butRadTortueRap = new JRadioButton("Tortue Rapide");
+            butRadTortueCoul = new JRadioButton("Tortue Couleur");
+        }
+        
     // ajout des boutons radio dans le groupe bg
         groupe.add(butRadTortueNorm);
         groupe.add(butRadTortueRap);
@@ -92,7 +106,7 @@ public class PanelModifExo extends JPanel{
         butAddImage.addActionListener(controleur);
         
                
-        imageExo = new ImageIcon();
+        imageExo = e.getImage();
         JLabel textAffImage = new JLabel("Aperçu de votre image :   ");
         affImageExo = new JLabel();
         affImageExo.setIcon(imageExo);

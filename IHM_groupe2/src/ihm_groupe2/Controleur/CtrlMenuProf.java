@@ -8,10 +8,13 @@ package ihm_groupe2.Controleur;
 import ihm_groupe2.Inferface.Menu.ListeEleves;
 import ihm_groupe2.Inferface.Menu.MenuProf;
 import ihm_groupe2.Inferface.Menu.PanelCreerExo;
+import ihm_groupe2.Inferface.Menu.PanelModifExo;
+import ihm_groupe2.Noyau_fonctionnel.Exercice;
 import ihm_groupe2.Noyau_fonctionnel.Professeur;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -43,7 +46,6 @@ public class CtrlMenuProf implements ActionListener{
         //menuProfesseur.getPanelDroite(); (maj du panel de droite)
         if (e.getSource() == menuProfesseur.getButtonCreerExo()){
             menuProfesseur.remove(menuProfesseur.getPanelDroite());
-            
             // On fera appel à un new PanelCreerExo
             JPanel newPanelDroite = new PanelCreerExo();
             menuProfesseur.add(newPanelDroite,BorderLayout.CENTER);
@@ -51,7 +53,7 @@ public class CtrlMenuProf implements ActionListener{
             
         }else if (e.getSource() == menuProfesseur.getButtonExo()){
             menuProfesseur.remove(menuProfesseur.getPanelDroite());
-            
+            //menuProfesseur.getPanelDroite().removeAll();
             // On fera appel à un panel new ListeExercice
             
             
