@@ -1,38 +1,26 @@
 package ihm_groupe2.Controleur;
 
 import ihm_groupe2.Inferface.Menu.ListeExercices;
+import ihm_groupe2.Noyau_fonctionnel.Exercice;
+import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 /**
  *
  * @author Delphine
  */
-public class CtrlTableExercices {
+public class CtrlTableExercices implements ListSelectionListener {
     
+    private ListeExercices myTable;
+            
     public CtrlTableExercices(ListeExercices myTable){
-        myTable = new ListeExercices();
+        this.myTable = myTable;
     }
-    
-    //CODE A ADAPTER PROBABLEMENT A NOTRE SITUATION
-   // ListSelectionModel cellSelectionModel = myTable.getSelectionModel();
-   // cellSelectionModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-
-  //  cellSelectionModel.addListSelectionListener(new ListSelectionListener() {
-  //  public void valueChanged(ListSelectionEvent e){
-    //    {
-   //     String selectedData = null;
-
- //       int[] selectedRow = myTable.getSelectedRows();
-  //      int[] selectedColumns = myTable.getSelectedColumns();
-//
-     //   for (int i = 0; i < selectedRow.length; i++) {
-     //     for (int j = 0; j < selectedColumns.length; j++) {
-     //       selectedData = (String) myTable.getValueAt(selectedRow[i], selectedColumns[j]);
-     //     }
-    //    }
-    //    System.out.println("Selected: " + selectedData);
-   //   }
-   // }
-//}
+    @Override
+    public void valueChanged(ListSelectionEvent e) {
+        Exercice e1 = (Exercice) myTable.getJTable().getValueAt(myTable.getJTable().getSelectedRow(),2);
+        //appeller la méthode pour basuler vers la fiche de modification de l'exercice e1
+    }
 }

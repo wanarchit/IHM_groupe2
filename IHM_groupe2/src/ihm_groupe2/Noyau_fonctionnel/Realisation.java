@@ -63,6 +63,10 @@ public class Realisation {
         return commentaire;
     }
     
+    public int getNumeroTentative(){
+        return numTentative;
+    }
+    
     /**
      * Setter de commentaire
      * @param com le nouveau commentaire
@@ -83,7 +87,7 @@ public class Realisation {
      * Getter de listeCommande
      * @return la liste de Commande
      */
-    public ArrayList getListeCommande() {
+    public ArrayList<Commande> getListeCommande() {
         return listeCommande;
     }
     

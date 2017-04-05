@@ -40,6 +40,10 @@ public class CtrlMenuEleve implements ActionListener{
             appli.afficheExerciceSuivant(leMenu.getExoEnCours());
         }else if(e.getSource() == leMenu.getButExoPrec()){
             appli.afficheExercicePrecedant(leMenu.getExoEnCours());
+        }else if(e.getSource() == leMenu.getButTentSuiv()){
+            appli.afficheTentativeSuivante(leMenu.getExoEnCours(),leMenu.getReaEnCours());
+        }else if (e.getSource() == leMenu.getButTentPrec()){
+            appli.afficheTentativePrecedante(leMenu.getExoEnCours(),leMenu.getReaEnCours());
         }
     
         
