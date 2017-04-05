@@ -41,5 +41,4 @@ public class FrameTest extends JFrame{
             }
         });
     }
-    
 }
