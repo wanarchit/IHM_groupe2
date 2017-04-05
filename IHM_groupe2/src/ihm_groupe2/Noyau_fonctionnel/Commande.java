@@ -7,9 +7,8 @@ package ihm_groupe2.Noyau_fonctionnel;
 public class Commande {
     
     private String nomCommande;
-    private TortueG tortG;
-    private TortueRapide tortR;
-    private TortueCouleur tortC;
+    private TortueG maTortue;
+
     
     /**
      * Constructeur de commande
@@ -18,17 +17,7 @@ public class Commande {
      */
     public Commande(String nomCom, TortueG t){
         nomCommande = nomCom;
-        tortG = t;
-    }
-    
-    public Commande(String nomCom, TortueRapide t){
-        nomCommande = nomCom;
-        tortR = t;
-    }
-    
-    public Commande(String nomCom, TortueCouleur t){
-        nomCommande = nomCom;
-        tortC = t;
+        maTortue = t;
     }
     
     /**
@@ -44,7 +33,7 @@ public class Commande {
      * @return Le type de tortue utilisée
      */
     public TortueG getTortue() {
-        return tortG;
+        return maTortue;
     }
     
     /**

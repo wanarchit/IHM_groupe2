@@ -12,6 +12,8 @@ public class Exercice {
     private int tortue;
     private ImageIcon image;
     private boolean modifiable;
+    private TortueG maTortue;
+
     
     /**
      * Constructeur de la classe exercice, permet de créer un exercice
@@ -24,6 +26,13 @@ public class Exercice {
         this.nom=nomEx;
         this.commentaire=commEx;
         tortue = choixTortue;
+        if (choixTortue == 1){
+            maTortue = new TortueCouleur();
+        }else if(choixTortue == 2){
+            maTortue = new TortueRapide();
+        }else{
+            maTortue = new TortueG();
+        }
         this.image=image;
         this.modifiable = true;
     }
@@ -72,5 +81,9 @@ public class Exercice {
     
     public int getTortueChoisie(){
         return tortue;
+    }
+    
+    public TortueG getMaTortue(){
+        return maTortue;
     }
 }

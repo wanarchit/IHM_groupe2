@@ -8,16 +8,23 @@ package ihm_groupe2.Inferface.Dessin;
 import Applications.ApplicationEleve;
 import ihm_groupe2.Controleur.CtrlDessinEleve;
 import ihm_groupe2.Noyau_fonctionnel.Canvas;
-import ihm_groupe2.Noyau_fonctionnel.CanvasTortue;
+import ihm_groupe2.Noyau_fonctionnel.Commande;
 import ihm_groupe2.Noyau_fonctionnel.Exercice;
+import ihm_groupe2.Noyau_fonctionnel.Realisation;
+import ihm_groupe2.Noyau_fonctionnel.TortueCouleur;
 import ihm_groupe2.Noyau_fonctionnel.TortueG;
+import ihm_groupe2.Noyau_fonctionnel.TortueRapide;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.border.BevelBorder;
 
 /**
@@ -36,14 +43,29 @@ public class Dessin extends JPanel{
     private JButton butAvancer;
     private JButton butTourner;
     
+    private JButton butPlusVite;
+    private JButton butMoinsVite;
+    
+    private JButton butCoulNoir;
+    private JButton butCoulRouge;
+    private JButton butCoulVert;
+    private JButton butCoulRose;
+    private JButton butCoulBleu;
+    private JButton butCoulJaune;
     private CtrlDessinEleve controleur;
     
-    private TortueG maTortue;
+    private Realisation laRealisation;
+    
+    private JLabel labelAction;
+    
     
     
     public Dessin(ApplicationEleve lAppli, Exercice exo){
         appli=lAppli;
         exoEnCours = exo;
+        exoEnCours.getMaTortue().reset();
+        
+        laRealisation = new Realisation(appli.getNumTentativeSuiv(exoEnCours),"","",exoEnCours);
         
         
         /** ssPanel du haut :  bouton terminer (valider),
@@ -58,37 +80,107 @@ public class Dessin extends JPanel{
         ssPanelHaut.add(butRetour);
         ssPanelHaut.add(butAnnuler);
         
+        
         /** ssPanel Milieu : canvas */
         JPanel ssPanelMilieu = new JPanel();
         ssPanelMilieu.setBorder(new javax.swing.border.BevelBorder(BevelBorder.RAISED));
-        
-        
-        maTortue = new TortueG();
-        //JPanel canv = Canvas.getCanvasPanel();
         ssPanelMilieu.add (Canvas.getCanvasPanel(), BorderLayout.CENTER);
-        
-        //CanvasTortue monCanvas = new CanvasTortue();
-        //JLabel lab8 = new JLabel("toto");
-        //ssPanelMilieu.add(lab8);
+
         
         /** ssPanel bas : boutons actions : écrire / avancer / tourner */
         JPanel ssPanelBas = new JPanel(new GridLayout(1,3));
         ssPanelBas.setBorder(new javax.swing.border.BevelBorder(BevelBorder.RAISED));
+        
         butEcrire = new JButton("Ecrire");
         butAvancer = new JButton("Avancer");
         butTourner = new JButton("Tourner");
+        
+        controleur = new CtrlDessinEleve(appli,this);
+        
         ssPanelBas.add(butEcrire);
         ssPanelBas.add(butAvancer);
         ssPanelBas.add(butTourner);
+        
+
+        butAvancer.addActionListener(controleur);
+        butTourner.addActionListener(controleur);
+        butEcrire.addActionListener(controleur);
+        
+        if (exoEnCours.getTortueChoisie() == 0){
+            // Tortue classique
+            
+            
+        }else if (exoEnCours.getTortueChoisie() == 1){
+            // Tortue couleur
+            butCoulNoir = new JButton();
+            butCoulNoir.setBackground(Color.black);
+            butCoulRouge = new JButton();
+            butCoulRouge.setBackground(Color.red);
+            butCoulVert = new JButton();
+            butCoulVert.setBackground(Color.green);
+            butCoulRose = new JButton();
+            butCoulRose.setBackground(Color.magenta);
+            butCoulBleu = new JButton();
+            butCoulBleu.setBackground(Color.blue);
+            butCoulJaune = new JButton();
+            butCoulJaune.setBackground(Color.yellow);
+            
+            butCoulNoir.addActionListener(controleur);
+            butCoulRouge.addActionListener(controleur);
+            butCoulVert.addActionListener(controleur);
+            butCoulRose.addActionListener(controleur);
+            butCoulBleu.addActionListener(controleur);
+            butCoulJaune.addActionListener(controleur);
+            
+            JPanel panelActionCouleur = new JPanel(new GridLayout(2,3));
+            panelActionCouleur.add(butCoulNoir);
+            panelActionCouleur.add(butCoulRouge);
+            panelActionCouleur.add(butCoulVert);
+            panelActionCouleur.add(butCoulRose);
+            panelActionCouleur.add(butCoulBleu);
+            panelActionCouleur.add(butCoulJaune);
+            
+            ssPanelBas.setLayout(new GridLayout(1,4));
+            ssPanelBas.add(panelActionCouleur);
+            
+        }else{
+            // Tortue rapide
+            butPlusVite = new JButton("Vite");
+            butMoinsVite = new JButton("Lent");
+             butPlusVite.addActionListener(controleur);
+            butMoinsVite.addActionListener(controleur);
+            
+            JPanel panelActionRapide = new JPanel(new GridLayout(2,1));
+            panelActionRapide.add(butPlusVite);
+            panelActionRapide.add(butMoinsVite);
+            
+            ssPanelBas.setLayout(new GridLayout(1,4));
+            ssPanelBas.add(panelActionRapide);
+        }
+        
+        
+        
+        
+        
+        
         
         
         /** ssPanel gauche : liste actions */
         JPanel ssPanelGauche = new JPanel(new BorderLayout());
         ssPanelGauche.setBorder(new javax.swing.border.BevelBorder(BevelBorder.RAISED));
         JLabel labelJai = new JLabel("J'ai ...                   ");
-        JLabel labelAction = new JLabel("Avancé");
+        
+        String lesCmd = "";
+        
+        
+        
+        labelAction = new JLabel(lesCmd);
+        
+        JScrollPane scrollF = new JScrollPane(labelAction,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+	    	       JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        
         ssPanelGauche.add(labelJai, BorderLayout.NORTH);
-        ssPanelGauche.add(labelAction, BorderLayout.CENTER);
+        ssPanelGauche.add(scrollF, BorderLayout.CENTER);
         
        
         /** ssPanel Centre : ssPanel Milieu / ssPanel haut / ssPanel bas */
@@ -148,16 +240,20 @@ public class Dessin extends JPanel{
 
         
         
-        
-        
-        
-        
-        
-        controleur = new CtrlDessinEleve(appli,this);
         butRetour.addActionListener(controleur);
-        butAvancer.addActionListener(controleur);
-        butTourner.addActionListener(controleur);
-        butEcrire.addActionListener(controleur);
+        butAnnuler.addActionListener(controleur);
+        butValider.addActionListener(controleur);
+        
+        
+        
+        
+        
+        
+        
+        
+       
+            
+            
         
         this.setLayout(new BorderLayout());
         this.setBorder(new javax.swing.border.BevelBorder(BevelBorder.RAISED));
@@ -193,14 +289,61 @@ public class Dessin extends JPanel{
         return butTourner;
     }
     
+    public JButton getButMoinsVite(){
+        return butMoinsVite;
+    }
+    
+    public JButton getButPlusVite(){
+        return butPlusVite;
+    }
+    
+    public JButton getButNoir(){
+        return butCoulNoir;
+    }
+    
+    public JButton getButRouge(){
+        return butCoulRouge;
+    }
+    
+    public JButton getButVert(){
+        return butCoulVert;
+    }
+    
+    public JButton getButRose(){
+        return butCoulRose;
+    }
+    
+    public JButton getButBleu(){
+        return butCoulBleu;
+    }
+    
+    public JButton getButJaune(){
+        return butCoulJaune;
+    }
+    
+    
     public Exercice getExoEnCours(){
         return exoEnCours;
     }
     
     public TortueG getLaTortue(){
-        return maTortue;
+        return exoEnCours.getMaTortue();
     }
     
+    public Realisation getNewRealisation(){
+        return laRealisation;
+    }
+    
+    public void RefreshListAction(){
+        String lesCmd = "<html>";
+        ArrayList<Commande> lesCommandes = laRealisation.getListeCommande();
+        int tailleListe = lesCommandes.size();
+        for (int i = tailleListe-1; i >= 0 ; i--){
+            lesCmd += lesCommandes.get(i).getCommande() + "<br>";
+        }
+        lesCmd+="</html>";
+        labelAction.setText(lesCmd);
+    }
 
 }
 

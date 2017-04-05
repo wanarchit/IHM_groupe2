@@ -5,6 +5,7 @@ import Applications.MainFrame;
 import ihm_groupe2.Controleur.CtrlMenuEleve;
 import ihm_groupe2.Noyau_fonctionnel.Eleve;
 import ihm_groupe2.Noyau_fonctionnel.Exercice;
+import ihm_groupe2.Noyau_fonctionnel.Realisation;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -45,8 +46,12 @@ public class MenuEleve extends JPanel{
     private JButton butFaireExo;
     private CtrlMenuEleve controleur;
     private Exercice exoEnCours;
+    private Realisation tentEnCours;
+    private String textNote,textComm;
+    private int numTent;
     
     private ArrayList<Exercice> lesExos;
+    private ArrayList<Realisation> lesTents;
     
     /**
      * Constructeur de la classe MenuEleve
@@ -55,10 +60,16 @@ public class MenuEleve extends JPanel{
      * @param lAppli
      * @param exo 
      */
-    public MenuEleve(Eleve eleve,ApplicationEleve lAppli, Exercice exo){
+    public MenuEleve(Eleve eleve,ApplicationEleve lAppli, Exercice exo, int num){
         eleveConnecte = eleve;
         appli = lAppli;
         exoEnCours = exo;
+        numTent = num;
+        System.out.println(numTent);
+        lesTents = appli.getTentativeExo(exoEnCours);
+        if (lesTents.size() != 0){
+            tentEnCours = lesTents.get(numTent);
+        }
         
         /** PANEL TITRE AU NORD*/
         
@@ -80,7 +91,7 @@ public class MenuEleve extends JPanel{
         labCommExo = new JTextArea(exoEnCours.getCommentaire());
         labCommExo.setLineWrap(true);
         labCommExo.setWrapStyleWord(true);
-        labCommExo.setEnabled(false);
+        labCommExo.getCaret().deinstall(labCommExo);
         panComExo.add(labCommExo,BorderLayout.CENTER);
         
         
@@ -146,28 +157,76 @@ public class MenuEleve extends JPanel{
         /** AFFICHAGE DES TENTATIVES - PARTIE BASSE */
         
         /** Partie gauche : */
-               
+        
+        
+        
+        
+        
+        
+        if (lesTents.size() != 0){
+            labNumTent = new JLabel("Tentative n°"+tentEnCours.getNumeroTentative());
+            if (tentEnCours.getNote().equals("")){
+                textNote = "Non évalué";
+            }else{
+                textNote = tentEnCours.getNote();
+            }
+            
+            if (tentEnCours.getCommentaire().equals("")){
+                textComm = "Pas de commentaires pour la tentative "+tentEnCours.getNumeroTentative();
+            }else{
+                textComm = "\""+tentEnCours.getCommentaire()+"\"";
+            }
+
+            labCommTent = new JTextArea("Note : "+textNote+"    --    Commentaire de l'enseignant : "+textComm);
+            
+            iconTent = new ImageIcon(getClass().getResource("IconContent.jpg"));
+            
+        }else{
+            labNumTent = new JLabel("Pas de tentative pour cet exercice");
+            labCommTent = new JTextArea("Exercice a réaliser");
+            iconTent = new ImageIcon(getClass().getResource("IconTriste.jpg"));
+        }
+        
+        
+        
         JPanel panNomTent = new JPanel();
-        labNumTent = new JLabel("Tentative 3");
         panNomTent.add(labNumTent);
         
         JPanel panComTent = new JPanel(new BorderLayout());
-        labCommTent = new JTextArea("Note : Non Aquis - Exercice complètement loupé !");
         labCommTent.setLineWrap(true);
         labCommTent.setWrapStyleWord(true);
-        labCommTent.setEnabled(false);
+        labCommTent.getCaret().deinstall(labCommTent);
         panComTent.add(labCommTent,BorderLayout.CENTER);
         
         /** Boutons **/
         JPanel ssPanButPrecT = new JPanel();
         butPrecTent = new JButton("Précédent");
         ssPanButPrecT.add(butPrecTent);
+        if (lesTents.size() != 0){
+            if (appli.tentativePrecExist(exoEnCours,tentEnCours)){
+                butPrecTent.setEnabled(true);
+            }else{
+                butPrecTent.setEnabled(false);
+            }
+        }else{
+            butPrecTent.setEnabled(false);
+        }
         JPanel panButPrecT = new JPanel();
         panButPrecT.add(ssPanButPrecT);
         
         JPanel ssPanButSuivT = new JPanel();
         butSuivTent = new JButton("Suivant");
         ssPanButSuivT.add(butSuivTent);
+        if (lesTents.size() != 0){
+            if (appli.tentativeSuivExist(exoEnCours,tentEnCours)){
+            butSuivTent.setEnabled(true);
+            }else{
+                butSuivTent.setEnabled(false);
+            }
+        }else{
+            butSuivTent.setEnabled(false);
+        }
+        
         JPanel panButSuivT = new JPanel();
         panButSuivT.add(ssPanButSuivT);
         
@@ -191,7 +250,7 @@ public class MenuEleve extends JPanel{
         JLabel labImageT = new JLabel();
         labImageT.setHorizontalAlignment(JLabel.CENTER);
         labImageT.setVerticalAlignment(JLabel.CENTER);
-        iconTent = new ImageIcon(getClass().getResource("IconEleve.png"));
+        
         labImageT.setIcon(iconTent);
         panImageT.add(labImageT, BorderLayout.CENTER);
         
@@ -250,4 +309,12 @@ public class MenuEleve extends JPanel{
     public Exercice getExoEnCours(){
         return exoEnCours;
     }
+    
+    public Realisation getReaEnCours(){
+        return tentEnCours;
+    }
+    
+    
+    
+    
 }
