@@ -1,12 +1,10 @@
 package ihm_groupe2.Inferface.Menu;
 
-import ihm_groupe2.Controleur.ControleurTableResultat;
+import ihm_groupe2.Controleur.ControleurTableEleves;
 import ihm_groupe2.Modele.ArbreExercicesEleve;
 import ihm_groupe2.Modele.TableEleves;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JTree;
-import javax.swing.ListSelectionModel;
 
 /**
  *
@@ -14,11 +12,11 @@ import javax.swing.ListSelectionModel;
  */
 public class ListeEleves extends JScrollPane {
     
+    //public JTree tree;
+    public TableEleves myTable;
     JTable table;
-    
-    public JTree tree;
     ArbreExercicesEleve modele;
-    ControleurTableResultat control;
+    ControleurTableEleves control;
     
     public ListeEleves(){
     super();
@@ -28,4 +26,7 @@ public class ListeEleves extends JScrollPane {
     table.getSelectionModel().addListSelectionListener(control);;
 
     } 
+    public TableEleves getModele(){
+        return myTable;
+    }
 }

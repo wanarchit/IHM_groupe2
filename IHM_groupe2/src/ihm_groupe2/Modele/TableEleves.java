@@ -8,6 +8,7 @@ package ihm_groupe2.Modele;
 import ihm_groupe2.Noyau_fonctionnel.Classe;
 import ihm_groupe2.Noyau_fonctionnel.Eleve;
 import ihm_groupe2.Noyau_fonctionnel.Professeur;
+import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 
 /**
@@ -17,13 +18,14 @@ import javax.swing.table.AbstractTableModel;
 public class TableEleves extends AbstractTableModel {
     
     private final Eleve[] eleves;
- 
+    private ArrayList<Eleve> listeEleves;
+    
     private final String[] entetes = {"Classe", "Prénom", "Nom"};
     
-    public TableEleves() {
-        
+    public TableEleves(ArrayList <Eleve> listeEleves) {   
     super();
-        
+    this.listeEleves = listeEleves;
+    
     Professeur P1 = new Professeur ("azerty", "123456", "Thomas", "Kerdreux");
     Professeur P2 = new Professeur ("zqsd", "wxcvbn", "Patrick", "Girard");
     Classe CP = new Classe ("CP", P1);
@@ -38,6 +40,13 @@ public class TableEleves extends AbstractTableModel {
                 new Eleve(CE2, "Jonathan", "Rivault"),
                 new Eleve(CE2, "Marin", "Conrady"),
         };
+    
+    listeEleves.add(new Eleve(CP, "Maxime", "Tanguy"));
+    listeEleves.add(new Eleve(CP, "Alphonse", "Brown"));
+    listeEleves.add(new Eleve(CE1, "Delphine", "Rousse"));
+    listeEleves.add(new Eleve(CE1, "Paul", "Gand"));
+    listeEleves.add(new Eleve(CE2, "Jonathan", "Rivault"));
+    listeEleves.add(new Eleve(CE2, "Marin", "Conrady"));
     
     }
 
@@ -73,5 +82,14 @@ public class TableEleves extends AbstractTableModel {
             default:
                 return null; //Ne devrait jamais arriver  
         }
+    }
+    
+    /**
+     * Permet de récupérer l'objet d'une ligne
+     * @param rowIndex
+     * @return
+     */
+    public Eleve getElevesRow(int rowIndex){
+	return listeEleves.get(rowIndex);
     }
 }
