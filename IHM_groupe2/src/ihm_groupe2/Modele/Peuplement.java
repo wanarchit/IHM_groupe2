@@ -15,14 +15,16 @@ public class Peuplement {
             c = DriverManager.getConnection("jdbc:sqlite:IHM_G2.db");
             System.out.println("Opened database successfully");
             stmt = c.createStatement();
-            
+            System.out.println("Ouais5555");
             //Peuplement de la table Professeur
-           stmt.executeUpdate("INSERT INTO PROFESSEUR (ID_Professeur,Nom_Professeur,Prenom_Professeur,Login,Mot_De_Passe) VALUES (1,'Conrady','Marin','marinPoitiers','mdpMarin');");
-           stmt.executeUpdate("INSERT INTO PROFESSEUR (ID_Professeur,Nom_Professeur,Prenom_Professeur,Login,Mot_De_Passe) VALUES (2,'Gand','Paul','paulPoitiers','mdpPaul') ;");
-           stmt.executeUpdate("INSERT INTO PROFESSEUR (ID_Professeur,Nom_Professeur,Prenom_Professeur,Login,Mot_De_Passe) VALUES (3,'Rousse','Delphine','delphinePoitiers','mdpDelphine') ;");
-           stmt.executeUpdate("INSERT INTO PROFESSEUR (ID_Professeur,Nom_Professeur,Prenom_Professeur,Login,Mot_De_Passe) VALUES (4,'Rivault','Joe','joePoitiers','mdpJoe');");
-           stmt.executeUpdate("INSERT INTO PROFESSEUR (ID_Professeur,Nom_Professeur,Prenom_Professeur,Login,Mot_De_Passe) VALUES (5,'Tanguy','Maxime','maxPoitiers','mdpMax');");   
-           
+            int check = stmt.executeUpdate("INSERT INTO PROFESSEUR (ID_Professeur,Nom_Professeur,Prenom_Professeur,Login,Mot_De_Passe) VALUES (1,'Conrady','Marin','marinPoitiers','mdpMarin');");
+            stmt.executeUpdate("INSERT INTO PROFESSEUR (ID_Professeur,Nom_Professeur,Prenom_Professeur,Login,Mot_De_Passe) VALUES (2,'Gand','Paul','paulPoitiers','mdpPaul') ;");
+            stmt.executeUpdate("INSERT INTO PROFESSEUR (ID_Professeur,Nom_Professeur,Prenom_Professeur,Login,Mot_De_Passe) VALUES (3,'Rousse','Delphine','delphinePoitiers','mdpDelphine') ;");
+            stmt.executeUpdate("INSERT INTO PROFESSEUR (ID_Professeur,Nom_Professeur,Prenom_Professeur,Login,Mot_De_Passe) VALUES (4,'Rivault','Joe','joePoitiers','mdpJoe');");
+            stmt.executeUpdate("INSERT INTO PROFESSEUR (ID_Professeur,Nom_Professeur,Prenom_Professeur,Login,Mot_De_Passe) VALUES (5,'Tanguy','Maxime','maxPoitiers','mdpMax');");   
+            if (check ==1){
+                            System.out.println("ouais");
+                    }
             //Peuplement de la table Classe
            stmt.executeUpdate("INSERT INTO CLASSE (ID_Classe,Id_Professeur,Nom_Classe) VALUES (1,1,'CM2');");
            stmt.executeUpdate("INSERT INTO CLASSE (ID_Classe,Id_Professeur,Nom_Classe) VALUES (2,2,'CM1');");
