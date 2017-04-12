@@ -5,6 +5,7 @@
  */
 package ihm_groupe2.Controleur;
 
+import Applications.ApplicationProf;
 import ihm_groupe2.Inferface.Menu.ListeEleves;
 import ihm_groupe2.Inferface.Menu.PanelModifExo;
 import ihm_groupe2.Modele.TableEleves;
@@ -16,16 +17,19 @@ import javax.swing.event.ListSelectionListener;
 
 /**
  *
- * @author Maxime
+ * @author Groupe_2
  */
 public class ControleurTableEleves  implements ListSelectionListener{
     
     private ListeEleves myTable;
+    private ApplicationProf appli;
             
-    public ControleurTableEleves(ListeEleves myTable){
+    public ControleurTableEleves(ListeEleves myTable, ApplicationProf lAppli){
+        appli = lAppli;
         this.myTable = myTable;
 
     }
+    
     @Override
     public void valueChanged(ListSelectionEvent act) {
 
@@ -36,16 +40,9 @@ public class ControleurTableEleves  implements ListSelectionListener{
         if (!lsm.isSelectionEmpty()) {
 
             int selectedRow = lsm.getMinSelectionIndex();
-            Eleve e = modelTable.getElevesRow(selectedRow);
-            PanelModifExo pan = new PanelModifExo(e);
-
-            JFrame theFram = new JFrame();
-            theFram.add(pan);
-            theFram.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            theFram.setTitle("Application gestion exercices");  
-            theFram.setSize(1000, 600);
-            theFram.setLocationRelativeTo(null);
-            theFram.setVisible(true);
+            Eleve el = modelTable.getEleveRow(selectedRow);
+            
+            appli.affichelEleve(el);
         }
     }   
 }

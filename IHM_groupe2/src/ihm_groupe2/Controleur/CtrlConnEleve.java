@@ -16,11 +16,11 @@ import java.awt.event.ActionListener;
 public class CtrlConnEleve implements ActionListener {
     
     private MenuConnexionEleve leMenu;
-    private ApplicationEleve Appli;
+    private ApplicationEleve appli;
     
     public CtrlConnEleve(MenuConnexionEleve menuCo, ApplicationEleve lAppli){
         leMenu = menuCo;
-        Appli = lAppli;
+        appli = lAppli;
     }
     
     @Override
@@ -28,9 +28,9 @@ public class CtrlConnEleve implements ActionListener {
         //Eleve leEleve = new Eleve(null,null,"Rousse","Delphine");
         if (!leMenu.getTextPrenom().getText().isEmpty() ){
             if (!leMenu.getTextNom().getText().isEmpty()){
-                Eleve leEleve = Appli.tryConnexion(leMenu.getTextPrenom().getText(), leMenu.getTextNom().getText());
+                Eleve leEleve = appli.tryConnexion(leMenu.getTextPrenom().getText(), leMenu.getTextNom().getText());
                 if (leEleve != null){
-                    Appli.seConnecter(leEleve);
+                    appli.seConnecter(leEleve);
                 }else{
                     System.out.println("Cet élève n'existe pas !");
                 }

@@ -13,83 +13,63 @@ import javax.swing.table.AbstractTableModel;
 
 /**
  *
- * @author Maxime
+ * @author Groupe_2
  */
 public class TableEleves extends AbstractTableModel {
     
-    private final Eleve[] eleves;
-    private ArrayList<Eleve> listeEleves;
+    private String[] columnName = {"Prénom", "Nom", "Classe"};
+    private ArrayList<Eleve> listeEleve;
     
-    private final String[] entetes = {"Classe", "Prénom", "Nom"};
-    
-    public TableEleves(ArrayList <Eleve> listeEleves) {   
-    super();
-    this.listeEleves = listeEleves;
-    
-    Professeur P1 = new Professeur ("azerty", "123456", "Thomas", "Kerdreux");
-    Professeur P2 = new Professeur ("zqsd", "wxcvbn", "Patrick", "Girard");
-    Classe CP = new Classe ("CP", P1);
-    Classe CE1 = new Classe ("CE1", P1);
-    Classe CE2 = new Classe ("CE2", P2);
-    
-    eleves = new Eleve[]{
-                new Eleve(CP, "Maxime", "Tanguy"),
-                new Eleve(CP, "Alphonse", "Brown"),
-                new Eleve(CE1, "Delphine", "Rousse"),
-                new Eleve(CE1, "Paul", "Gand"),
-                new Eleve(CE2, "Jonathan", "Rivault"),
-                new Eleve(CE2, "Marin", "Conrady"),
-        };
-    
-    listeEleves.add(new Eleve(CP, "Maxime", "Tanguy"));
-    listeEleves.add(new Eleve(CP, "Alphonse", "Brown"));
-    listeEleves.add(new Eleve(CE1, "Delphine", "Rousse"));
-    listeEleves.add(new Eleve(CE1, "Paul", "Gand"));
-    listeEleves.add(new Eleve(CE2, "Jonathan", "Rivault"));
-    listeEleves.add(new Eleve(CE2, "Marin", "Conrady"));
-    
+    public TableEleves(ArrayList<Eleve> listeEleves) {   
+        this.listeEleve = listeEleves;
     }
 
     @Override
-    public int getRowCount() {
-        return eleves.length;
+    public int getColumnCount(){
+        return columnName.length;
     }
 
     @Override
-    public int getColumnCount() {
-       return entetes.length; 
+    public int getRowCount(){
+        return (listeEleve.size());
     }
     
-    /**
-     *
-     * @param columnIndex
-     * @return
-     */
-    @Override
-    public String getColumnName(int columnIndex) {
-        return entetes[columnIndex];
+    public String getColumnName(int i){
+        switch(i){
+            case 0: return"Prénom";
+            case 1: return"Nom";
+            case 2: return"Classe";
+            default: return "";
+        }
     }
 
     @Override
-    public Object getValueAt(int rowIndex, int columnIndex) {
-        switch (columnIndex){
-            case 0: 
-                return eleves[rowIndex].getLaClasse().getNomClasse();
-            case 1:
-                return eleves[rowIndex].getNomPersonne();
-            case 2:
-                return eleves[rowIndex].getPrenomPersonne();
+    public Object getValueAt(int rowIndex, int columnIndex){
+
+        switch(columnIndex){
+            case 0: return listeEleve.get(rowIndex).getPrenomPersonne();
+            case 1: return listeEleve.get(rowIndex).getNomPersonne();
+            case 2: return listeEleve.get(rowIndex).getLaClasse().getNomClasse();
+            default: return "";
+        }
+    }
+ 
+    public void setData(ArrayList <Eleve> listeExo){
+        this.listeEleve = listeExo;
+    }
+    
+    public boolean isCellEditable(int rowIndex, int columnIndex) {
+        return false; //Toutes les cellules sont non éditables
+    }
+    
+    public Class getColumnClass(int columnIndex){
+        switch(columnIndex){
             default:
-                return null; //Ne devrait jamais arriver  
+                return Object.class;
         }
     }
     
-    /**
-     * Permet de récupérer l'objet d'une ligne
-     * @param rowIndex
-     * @return
-     */
-    public Eleve getElevesRow(int rowIndex){
-	return listeEleves.get(rowIndex);
+    public Eleve getEleveRow(int rowIndex){
+	return listeEleve.get(rowIndex);
     }
 }

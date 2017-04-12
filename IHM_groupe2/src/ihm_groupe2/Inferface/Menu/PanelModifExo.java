@@ -1,13 +1,13 @@
 package ihm_groupe2.Inferface.Menu;
 
-import ihm_groupe2.Controleur.CtrlFormExo;
+import Applications.ApplicationProf;
 import ihm_groupe2.Controleur.CtrlModifExo;
 import ihm_groupe2.Noyau_fonctionnel.Exercice;
 import ihm_groupe2.Noyau_fonctionnel.TortueCouleur;
-import ihm_groupe2.Noyau_fonctionnel.TortueG;
 import ihm_groupe2.Noyau_fonctionnel.TortueRapide;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.awt.Image;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -29,10 +29,9 @@ import javax.swing.border.BevelBorder;
  */
 public class PanelModifExo extends JPanel{
     
+    private ApplicationProf appli;
     private JButton butValidForm;           // Permet d'enregistrer un nouvel exercice
-    private CtrlModifExo controleur;
-    // Ce boutton va utiliser un controleur qui va vérifier le contenu du fomrulaire et créer un nouvel exercice.
-    
+    private CtrlModifExo controleur;   
     private JTextField textFieldNomExo;     // Permet de renseigner le nom de l'exercice
     private JTextField textFieldCommExo;    // Permet de renseigner le commentaire de l'exercice
     private ButtonGroup groupe;
@@ -40,11 +39,13 @@ public class PanelModifExo extends JPanel{
     private JRadioButton butRadTortueRap;
     private JRadioButton butRadTortueCoul;
     private JButton butAddImage;
-     private ImageIcon imageExo; // Permet de charger l'image de l'exercice
-     private JLabel affImageExo;
+    private ImageIcon imageExo; // Permet de charger l'image de l'exercice
+    private JLabel affImageExo;
+    private Exercice lExo;
     
-    public PanelModifExo(Exercice e){
-        
+    public PanelModifExo(Exercice exerciceModifie, ApplicationProf lAppli){
+        appli = lAppli;
+        lExo = exerciceModifie;
         JLabel textEntete = new JLabel("MODIFICATION D'UN EXERCICE : ");
         textEntete.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         
@@ -54,7 +55,7 @@ public class PanelModifExo extends JPanel{
         
         JLabel textChampsNomExo = new JLabel("Entrer le nom de l'exercice :");
         textFieldNomExo = new JTextField(20);
-        textFieldNomExo.setText(e.getNom());
+        textFieldNomExo.setText(lExo.getNom());
         
         JPanel panel1 = new JPanel();
         panel1.add(textChampsNomExo);
@@ -62,8 +63,8 @@ public class PanelModifExo extends JPanel{
         
         
         JLabel textChampsCommExo = new JLabel("Entrer un commentaire pour cet exercice :");
-        textFieldCommExo = new JTextField(20);
-        textFieldCommExo.setText(e.getCommentaire());
+        textFieldCommExo = new JTextField(50);
+        textFieldCommExo.setText(lExo.getCommentaire());
         
         JPanel panel2 = new JPanel();
         panel2.add(textChampsCommExo);
@@ -74,11 +75,11 @@ public class PanelModifExo extends JPanel{
         
         
         groupe =  new ButtonGroup();
-        if (e.getMaTortue().getClass().equals(TortueRapide.class)){
+        if (lExo.getMaTortue().getClass().equals(TortueRapide.class)){
             butRadTortueNorm = new JRadioButton("Tortue Normale");
             butRadTortueRap = new JRadioButton("Tortue Rapide",true);
             butRadTortueCoul = new JRadioButton("Tortue Couleur");
-        }else if(e.getMaTortue().getClass().equals(TortueCouleur.class)){
+        }else if(lExo.getMaTortue().getClass().equals(TortueCouleur.class)){
             butRadTortueNorm = new JRadioButton("Tortue Normale");
             butRadTortueRap = new JRadioButton("Tortue Rapide");
             butRadTortueCoul = new JRadioButton("Tortue Couleur",true);
@@ -101,20 +102,28 @@ public class PanelModifExo extends JPanel{
         
         
         
-        butAddImage = new JButton("Chercher une image");
-        controleur = new CtrlModifExo(this);
-        butAddImage.addActionListener(controleur);
         
-               
-        imageExo = e.getImage();
+        
+        imageExo = new ImageIcon((lExo.getImage()).getImage().getScaledInstance(300,300, Image.SCALE_DEFAULT));
         JLabel textAffImage = new JLabel("Aperçu de votre image :   ");
+        textAffImage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         affImageExo = new JLabel();
         affImageExo.setIcon(imageExo);
+
+        JPanel ssPanel41 = new JPanel(new GridLayout(1,2));
+        ssPanel41.add(textAffImage);
+        ssPanel41.add(affImageExo);
         
-        JPanel panel4 = new JPanel();
-        panel4.add(butAddImage);
-        panel4.add(textAffImage);
-        panel4.add(affImageExo);
+        
+        butAddImage = new JButton("Chercher une nouvelle image");
+        controleur = new CtrlModifExo(this,appli);
+        butAddImage.addActionListener(controleur);
+        JPanel ssPanel42 = new JPanel();
+        ssPanel42.add(butAddImage);
+        
+        JPanel panel4 = new JPanel(new BorderLayout());
+        panel4.add(ssPanel41,BorderLayout.CENTER);
+        panel4.add(ssPanel42,BorderLayout.SOUTH);
         
         
         JPanel panel5 = new JPanel();
@@ -122,16 +131,25 @@ public class PanelModifExo extends JPanel{
         butValidForm.addActionListener(controleur);
         panel5.add(butValidForm);
         
-        this.setLayout(new GridLayout(6,1));
-        this.add(panel0);
-        this.add(panel1);
-        this.add(panel2);
-        this.add(panel3);
-        this.add(panel4);
-        this.add(panel5);
+        JPanel globalPan1 = new JPanel(new GridLayout(3,1));
+        globalPan1.add(panel1);
+        globalPan1.add(panel2);
+        globalPan1.add(panel3);
+        
+        JPanel globalPan = new JPanel(new BorderLayout());
+        globalPan.add(globalPan1,BorderLayout.NORTH);
+        globalPan.add(panel4,BorderLayout.CENTER);
+        this.setLayout(new BorderLayout());
+        this.add(panel0,BorderLayout.NORTH);
+        this.add(globalPan,BorderLayout.CENTER);
+        this.add(panel5,BorderLayout.SOUTH);
         this.setBorder(new javax.swing.border.BevelBorder(BevelBorder.RAISED));
         
         
+    }
+    
+    public Exercice getExoModif(){
+        return lExo;
     }
     
     public JButton getButAddImage(){
@@ -147,10 +165,31 @@ public class PanelModifExo extends JPanel{
     }
     
     public void setImageExo(ImageIcon newImage){
-        imageExo = newImage;
+        imageExo=newImage;
+        affImageExo.setIcon(new ImageIcon((newImage).getImage().getScaledInstance(300,300, Image.SCALE_DEFAULT)));
     }
     
     public JLabel getLabAffImage(){
         return affImageExo;
+    }
+    
+    public JTextField getTextNomExo(){
+        return textFieldNomExo;
+    }
+    
+    public JTextField getTextComExo(){
+        return textFieldCommExo;
+    }
+    
+    public JRadioButton getRadTortNorm(){
+        return butRadTortueNorm;
+    }
+    
+    public JRadioButton getRadTortRap(){
+        return butRadTortueRap;
+    }
+    
+    public JRadioButton getRadTortCoul(){
+        return butRadTortueCoul; 
     }
 }

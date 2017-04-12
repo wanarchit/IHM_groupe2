@@ -1,5 +1,6 @@
 package ihm_groupe2.Inferface.Menu;
 
+import Applications.ApplicationProf;
 import ihm_groupe2.Controleur.CtrlConnProf;
 import Applications.MainFrame;
 import javax.swing.JButton;
@@ -20,16 +21,16 @@ public class MenuConnexionProf extends JPanel{
     
     // Permet de valider les informations de connexion de l'élève
     private JButton validationConnexion;
-    private MainFrame fenetreMain;
+    private ApplicationProf appliProf;
     private CtrlConnProf controleur;
     
     // Champs pour le formulaire de connexion
     private JTextField champsLogin;
     private JPasswordField champsMdp;
     
-    public MenuConnexionProf(MainFrame main){
-        fenetreMain = main;
-        System.out.println("tototototot");
+    public MenuConnexionProf(ApplicationProf lAppli){
+        appliProf = lAppli;
+                
         JLabel textLogin = new JLabel("Entre votre login : ");
         champsLogin = new JTextField(20);
         JLabel textMdp = new JLabel("Entre votre mot de passe : ");
@@ -39,7 +40,7 @@ public class MenuConnexionProf extends JPanel{
         JLabel texteConnexion = new JLabel("Vous connecter : ");
         validationConnexion = new JButton("Se connecter");
         
-        controleur = new CtrlConnProf(this);
+        controleur = new CtrlConnProf(this,appliProf);
         validationConnexion.addActionListener(controleur);
         
         this.add(textLogin);
@@ -48,13 +49,14 @@ public class MenuConnexionProf extends JPanel{
         this.add(champsMdp);
         this.add(texteConnexion);
         this.add(validationConnexion);
-        
-        fenetreMain.setContentPane(this);
-        fenetreMain.repaint();
-        fenetreMain.revalidate(); 
+         
     }
     
-    public MainFrame getMainFrame(){
-        return fenetreMain;
+    public JTextField getTextLogin(){
+        return champsLogin;
+    }
+            
+    public JTextField getTextMdp(){
+        return champsMdp;
     }
 }

@@ -1,7 +1,8 @@
 package ihm_groupe2.Controleur;
 
-import ihm_groupe2.Inferface.Menu.PanelCreerExo;
+import Applications.ApplicationProf;
 import ihm_groupe2.Inferface.Menu.PanelModifExo;
+import ihm_groupe2.Noyau_fonctionnel.Exercice;
 import ihm_groupe2.Noyau_fonctionnel.FiltreSimple;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,9 +22,11 @@ import javax.swing.filechooser.FileSystemView;
  * @author Jonathan
  */
 public class CtrlModifExo implements ActionListener {
+    private ApplicationProf appli;
     private PanelModifExo panelFormExo;
     
-    public CtrlModifExo(PanelModifExo lePanel){
+    public CtrlModifExo(PanelModifExo lePanel, ApplicationProf lAppli){
+        appli = lAppli;
         panelFormExo = lePanel;
         
     }
@@ -60,16 +63,60 @@ public class CtrlModifExo implements ActionListener {
                 try {
                     image = ImageIO.read(monFichier);
                     panelFormExo.setImageExo(new ImageIcon(image));
-                    panelFormExo.getLabAffImage().setIcon(new ImageIcon(image));
                 } catch (IOException ex) {
                     Logger.getLogger(CtrlFormExo.class.getName()).log(Level.SEVERE, null, ex);
                 }
              }
             
         } else if (e.getSource() == panelFormExo.getButValidForm()){
-            // Validation des informations 
-            // Ajout dans la base de donnée du nouvelle exercice
-            // Redirection de l'utilisateur vers le panel "ListeExercice"
+            Boolean validation = true;
+            int choixTortue = -1;
+            String comExo = "";
+            String nomExo = "";
+            ImageIcon imageExo = null;
+            if (!panelFormExo.getTextNomExo().getText().isEmpty()){
+                nomExo = panelFormExo.getTextNomExo().getText();
+                if (panelFormExo.getLabAffImage().getIcon().getIconHeight()!=-1){
+                    imageExo = panelFormExo.getImageExo();                
+                    if (!panelFormExo.getTextComExo().getText().isEmpty()){
+                        comExo = panelFormExo.getTextComExo().getText();
+                        if (panelFormExo.getRadTortNorm().isSelected()){
+                            choixTortue=0;
+                        }else if (panelFormExo.getRadTortRap().isSelected()){
+                            choixTortue=2;
+                        }else if (panelFormExo.getRadTortCoul().isSelected()){
+                            choixTortue=1;
+                        }else{
+                            validation = false;
+                            System.out.println("Vous devez choisir une tortue");
+                        }
+                    }else{
+                        comExo = "Pas de commentaire";
+                        if (panelFormExo.getRadTortNorm().isSelected()){
+                            choixTortue=0;
+                        }else if (panelFormExo.getRadTortRap().isSelected()){
+                            choixTortue=2;
+                        }else if (panelFormExo.getRadTortCoul().isSelected()){
+                            choixTortue=1;
+                        }else{
+                            validation = false;
+                            System.out.println("Vous devez choisir une tortue");
+                        }
+                    }
+                }else{
+                    validation = false;
+                    System.out.println("Vous devez ajouter une image pour cet exercice");
+                }
+            }else{
+                validation = false;
+                System.out.println("Vous devez renseigner le nom de l'exercice");
+            }
+            if (validation){
+                Exercice newExo = new Exercice(nomExo,comExo,choixTortue,imageExo);
+                appli.getListeExo().remove(panelFormExo.getExoModif());
+                appli.getListeExo().add(newExo);
+                appli.afficheExercices();
+            }
         }
     }
 }

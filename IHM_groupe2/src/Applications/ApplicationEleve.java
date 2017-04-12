@@ -61,9 +61,6 @@ public class ApplicationEleve {
         fenetreMain.revalidate();
     }
     
-    public MainFrame getMainFrame(){
-        return fenetreMain;
-    }
     
     public void chargerDonnees(){
         

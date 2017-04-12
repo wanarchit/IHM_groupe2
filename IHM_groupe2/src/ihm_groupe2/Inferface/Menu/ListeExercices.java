@@ -1,11 +1,10 @@
 package ihm_groupe2.Inferface.Menu;
 
-import Applications.FrameTest;
+import Applications.ApplicationProf;
 import ihm_groupe2.Controleur.CtrlTableExercices;
 import ihm_groupe2.Modele.TableExercices;
 import ihm_groupe2.Noyau_fonctionnel.*;
 import java.util.ArrayList;
-import javax.swing.ImageIcon;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
@@ -15,24 +14,20 @@ import javax.swing.ListSelectionModel;
  * @author Delphine
  */
 public class ListeExercices extends JScrollPane{
+    private ApplicationProf appli;
     private JTable tableExercices;
     private TableExercices modeleTable;
     private CtrlTableExercices controleur;
+    private ArrayList<Exercice> maListe;
 
     /**
      * Constructeur de listeExercices
      */
-    public ListeExercices(){
-        ArrayList<Exercice> maListe = new ArrayList();
+    public ListeExercices(ArrayList<Exercice> maListeExo, ApplicationProf lAppli){
+        appli = lAppli;
+        maListe = maListeExo;
 
-        ImageIcon monImage = new ImageIcon(); //récupérer l'url de l'icone
-        controleur = new CtrlTableExercices(this);
-        
-        //Pour les tests création de ma liste ici sera envoyé via l'application prof
-        Exercice ex = new Exercice ("Exercice1", "Comm", 1, monImage);
-        Exercice ex2 = new Exercice ("Exercice2", "Comm", 1, monImage);
-        maListe.add(ex);
-        maListe.add(ex2);
+        controleur = new CtrlTableExercices(this,appli);
         
         modeleTable = new TableExercices(maListe);
         tableExercices = new JTable (modeleTable);

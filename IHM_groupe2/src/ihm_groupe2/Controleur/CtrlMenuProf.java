@@ -5,6 +5,7 @@
  */
 package ihm_groupe2.Controleur;
 
+import Applications.ApplicationProf;
 import ihm_groupe2.Inferface.Menu.ListeEleves;
 import ihm_groupe2.Inferface.Menu.MenuProf;
 import ihm_groupe2.Inferface.Menu.PanelCreerExo;
@@ -28,7 +29,7 @@ import javax.swing.JPanel;
 public class CtrlMenuProf implements ActionListener{
     
     
-    private Professeur professeur;
+    private ApplicationProf appli;
     private MenuProf menuProfesseur;
     
     /**
@@ -36,8 +37,8 @@ public class CtrlMenuProf implements ActionListener{
      * @param leProf qui est connecté au menu
      * @param leMenu du professeur qu'on va modifier
      */
-    public CtrlMenuProf(Professeur leProf, MenuProf leMenu){
-        professeur=leProf;
+    public CtrlMenuProf(ApplicationProf lAppli, MenuProf leMenu){
+        appli = lAppli;
         menuProfesseur = leMenu;
     }
     
@@ -45,46 +46,13 @@ public class CtrlMenuProf implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         //menuProfesseur.getPanelDroite(); (maj du panel de droite)
         if (e.getSource() == menuProfesseur.getButtonCreerExo()){
-            menuProfesseur.remove(menuProfesseur.getPanelDroite());
-            // On fera appel à un new PanelCreerExo
-            JPanel newPanelDroite = new PanelCreerExo();
-            menuProfesseur.add(newPanelDroite,BorderLayout.CENTER);
-            menuProfesseur.validate();
-            
-        }else if (e.getSource() == menuProfesseur.getButtonExo()){
-            menuProfesseur.remove(menuProfesseur.getPanelDroite());
-            //menuProfesseur.getPanelDroite().removeAll();
-            // On fera appel à un panel new ListeExercice
-            
-            
-            JLabel monLabel1 = new JLabel("Liste des exercices");
-            JPanel newPanelDroite = new JPanel();
-            newPanelDroite.add(monLabel1);
-            menuProfesseur.add(newPanelDroite,BorderLayout.CENTER);
-            menuProfesseur.validate();
-            
+            appli.creerExercice();
+        }else if (e.getSource() == menuProfesseur.getButtonExo()){           
+            appli.afficheExercices();
         }else if (e.getSource() == menuProfesseur.getButtonEleve()){
-            menuProfesseur.remove(menuProfesseur.getPanelDroite());
-            
-            // On fera appel à un panel new ListeEleve
-            
-            
-            JLabel monLabel1 = new JLabel("Liste des élèves");
-            ListeEleves newPanelListeEleves = new ListeEleves();
-            menuProfesseur.add(newPanelListeEleves,BorderLayout.CENTER);
-            menuProfesseur.validate();
-            
+            appli.afficheEleves();
         }else if (e.getSource() == menuProfesseur.getButtonClasse()){
-            menuProfesseur.remove(menuProfesseur.getPanelDroite());
-            
-            // On fera appel à un panel new ListeClasse
-            
-            
-            JLabel monLabel1 = new JLabel("Liste des classes");
-            JPanel newPanelDroite = new JPanel();
-            newPanelDroite.add(monLabel1);
-            menuProfesseur.add(newPanelDroite,BorderLayout.CENTER);
-            menuProfesseur.validate();
+            appli.afficheClasses();
         }
         
     }

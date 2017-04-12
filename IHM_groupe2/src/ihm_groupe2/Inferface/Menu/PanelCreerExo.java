@@ -1,8 +1,10 @@
 package ihm_groupe2.Inferface.Menu;
 
+import Applications.ApplicationProf;
 import ihm_groupe2.Controleur.CtrlFormExo;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.awt.Image;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -21,6 +23,7 @@ import javax.swing.border.BevelBorder;
  */
 public class PanelCreerExo extends JPanel{
     
+    private ApplicationProf appli;
     private JButton butValidForm;           // Permet d'enregistrer un nouvel exercice
     private CtrlFormExo controleur;
     // Ce boutton va utiliser un controleur qui va vérifier le contenu du fomrulaire et créer un nouvel exercice.
@@ -35,8 +38,8 @@ public class PanelCreerExo extends JPanel{
      private ImageIcon imageExo; // Permet de charger l'image de l'exercice
      private JLabel affImageExo;
     
-    public PanelCreerExo(){
-        
+    public PanelCreerExo(ApplicationProf lAppli){
+        appli = lAppli;
         JLabel textEntete = new JLabel("CREATION D'UN EXERCICE : ");
         textEntete.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         
@@ -80,19 +83,28 @@ public class PanelCreerExo extends JPanel{
         
         
         
-        butAddImage = new JButton("Chercher une image");
-        controleur = new CtrlFormExo(this);
-        butAddImage.addActionListener(controleur);
+        
+        
                
         imageExo = new ImageIcon();
         JLabel textAffImage = new JLabel("Aperçu de votre image :   ");
+        textAffImage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         affImageExo = new JLabel();
         affImageExo.setIcon(imageExo);
+
+        JPanel ssPanel41 = new JPanel(new GridLayout(1,2));
+        ssPanel41.add(textAffImage);
+        ssPanel41.add(affImageExo);
         
-        JPanel panel4 = new JPanel();
-        panel4.add(butAddImage);
-        panel4.add(textAffImage);
-        panel4.add(affImageExo);
+        butAddImage = new JButton("Chercher une image");
+        controleur = new CtrlFormExo(this,appli);
+        butAddImage.addActionListener(controleur);
+        JPanel ssPanel42 = new JPanel();
+        ssPanel42.add(butAddImage);
+        
+        JPanel panel4 = new JPanel(new BorderLayout());
+        panel4.add(ssPanel41,BorderLayout.CENTER);
+        panel4.add(ssPanel42,BorderLayout.SOUTH);
         
         
         JPanel panel5 = new JPanel();
@@ -100,13 +112,18 @@ public class PanelCreerExo extends JPanel{
         butValidForm.addActionListener(controleur);
         panel5.add(butValidForm);
         
-        this.setLayout(new GridLayout(6,1));
-        this.add(panel0);
-        this.add(panel1);
-        this.add(panel2);
-        this.add(panel3);
-        this.add(panel4);
-        this.add(panel5);
+        JPanel globalPan1 = new JPanel(new GridLayout(3,1));
+        globalPan1.add(panel1);
+        globalPan1.add(panel2);
+        globalPan1.add(panel3);
+        
+        JPanel globalPan = new JPanel(new BorderLayout());
+        globalPan.add(globalPan1,BorderLayout.NORTH);
+        globalPan.add(panel4,BorderLayout.CENTER);
+        this.setLayout(new BorderLayout());
+        this.add(panel0,BorderLayout.NORTH);
+        this.add(globalPan,BorderLayout.CENTER);
+        this.add(panel5,BorderLayout.SOUTH);
         this.setBorder(new javax.swing.border.BevelBorder(BevelBorder.RAISED));
         
         
@@ -125,10 +142,31 @@ public class PanelCreerExo extends JPanel{
     }
     
     public void setImageExo(ImageIcon newImage){
-        imageExo = newImage;
+        imageExo=newImage;
+        affImageExo.setIcon(new ImageIcon((newImage).getImage().getScaledInstance(300,300, Image.SCALE_DEFAULT)));
     }
     
     public JLabel getLabAffImage(){
         return affImageExo;
+    }
+    
+    public JTextField getTextNomExo(){
+        return textFieldNomExo;
+    }
+    
+    public JTextField getTextComExo(){
+        return textFieldCommExo;
+    }
+    
+    public JRadioButton getRadTortNorm(){
+        return butRadTortueNorm;
+    }
+    
+    public JRadioButton getRadTortRap(){
+        return butRadTortueRap;
+    }
+    
+    public JRadioButton getRadTortCoul(){
+        return butRadTortueCoul;
     }
 }

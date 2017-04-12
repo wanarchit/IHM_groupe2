@@ -1,5 +1,6 @@
 package ihm_groupe2.Inferface.Menu;
 
+import Applications.ApplicationProf;
 import ihm_groupe2.Controleur.CtrlMenuProf;
 import Applications.MainFrame;
 import ihm_groupe2.Noyau_fonctionnel.Professeur;
@@ -19,10 +20,10 @@ import javax.swing.border.BevelBorder;
  */
 public class MenuProf extends JPanel{
     
-    private MainFrame fenetreMain;
+    private ApplicationProf appli;
     private Professeur profConnecte;
     private CtrlMenuProf controleur;
-    private JPanel panelDroite;
+    private JPanel panelDroite,panelGauche;
     
     
     // 4 bouttons qui va modifier le panel de droite de ce menu
@@ -36,9 +37,10 @@ public class MenuProf extends JPanel{
      * Il sera initialisé avec un panel contenant les 4 boutons et un panel vide à droite.
      * @param leProf qui s'est connecté
      */
-    public MenuProf(Professeur leProf, MainFrame main){
+    public MenuProf(Professeur leProf, ApplicationProf lAppli){
         profConnecte = leProf;
-        fenetreMain = main;
+        appli = lAppli;
+        //fenetreMain = main;
         
         JLabel monLabel = new JLabel("Prénom : " + profConnecte.getPrenomPersonne());
         JLabel monLabel2 = new JLabel("Nom : " + profConnecte.getNomPersonne());
@@ -48,7 +50,7 @@ public class MenuProf extends JPanel{
         butVoirEleve = new JButton("Liste élèves");
         butVoirClasse = new JButton("Liste classes");
         
-        controleur = new CtrlMenuProf(profConnecte,this);
+        controleur = new CtrlMenuProf(appli,this);
         butCreerExo.addActionListener(controleur);
         butVoirExo.addActionListener(controleur);
         butVoirEleve.addActionListener(controleur);
@@ -75,7 +77,7 @@ public class MenuProf extends JPanel{
         panBut4.add(butVoirClasse, gbc);   
         
                 
-        JPanel panelGauche = new JPanel();
+        panelGauche = new JPanel();
         panelGauche.setBorder(new javax.swing.border.BevelBorder(BevelBorder.RAISED));
         panelGauche.setLayout(new GridLayout(4,1));
         panelGauche.add(panBut1);
@@ -91,15 +93,11 @@ public class MenuProf extends JPanel{
         this.setLayout(new BorderLayout());
         this.add(panelGauche, BorderLayout.WEST);
         this.add(panelDroite, BorderLayout.CENTER);
-        
-        
-        fenetreMain.setContentPane(this);
-        fenetreMain.repaint();
-        fenetreMain.revalidate();
     }
     
-    public JPanel getPanelDroite(){
-        return panelDroite;
+    public void setPanelDroite(JPanel newPanel){
+        this.add(panelGauche, BorderLayout.WEST);
+        this.add(newPanel, BorderLayout.CENTER);
     }
     
     public JButton getButtonCreerExo(){
