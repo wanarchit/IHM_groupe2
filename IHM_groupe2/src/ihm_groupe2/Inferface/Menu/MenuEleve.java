@@ -10,6 +10,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -49,6 +50,7 @@ public class MenuEleve extends JPanel{
     private Realisation tentEnCours;
     private String textNote,textComm;
     private int numTent;
+    private JButton rejouerTentative;
     
     private ArrayList<Exercice> lesExos;
     private ArrayList<Realisation> lesTents;
@@ -139,8 +141,12 @@ public class MenuEleve extends JPanel{
         labImage.setHorizontalAlignment(JLabel.CENTER);
         labImage.setVerticalAlignment(JLabel.CENTER);
         iconExo = exoEnCours.getImage();
+        iconExo = new ImageIcon((exoEnCours.getImage()).getImage().getScaledInstance(300,300, Image.SCALE_DEFAULT));
         labImage.setIcon(iconExo);
         butFaireExo = new JButton();
+        butFaireExo.setPreferredSize(new Dimension(300,300));
+        butFaireExo.setMinimumSize(new Dimension(300,300));
+        butFaireExo.setBorderPainted(false);
         butFaireExo.add(labImage);
         panImage.add(butFaireExo, BorderLayout.CENTER);
         
@@ -178,6 +184,8 @@ public class MenuEleve extends JPanel{
             }
 
             labCommTent = new JTextArea("Note : "+textNote+"    --    Commentaire de l'enseignant : "+textComm);
+            
+            
             
             iconTent = new ImageIcon(getClass().getResource("IconContent.jpg"));
             
@@ -248,11 +256,21 @@ public class MenuEleve extends JPanel{
         panImageT.setBorder(new javax.swing.border.BevelBorder(BevelBorder.RAISED));
         panImageT.setPreferredSize(new Dimension(300,300));
         JLabel labImageT = new JLabel();
+        
         labImageT.setHorizontalAlignment(JLabel.CENTER);
         labImageT.setVerticalAlignment(JLabel.CENTER);
         
         labImageT.setIcon(iconTent);
-        panImageT.add(labImageT, BorderLayout.CENTER);
+        rejouerTentative = new JButton();
+        rejouerTentative.setIcon(iconTent);
+        
+        if (lesTents.size() != 0){
+            rejouerTentative.setEnabled(true);
+        }else{
+            rejouerTentative.setEnabled(false);
+        }
+        
+        panImageT.add(rejouerTentative, BorderLayout.CENTER);
         
          /** Tentative : regroupement gauche/droite */
         
