@@ -27,10 +27,10 @@ public class MainFrame extends JFrame{
         this.setSize(1000, 600);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
-//        SqliteJDBC db = new SqliteJDBC();
-//        db.dbConnection();
-//        Peuplement remplissage= new Peuplement();
-//        remplissage.Peuplement();
+        SqliteJDBC db = new SqliteJDBC();
+        db.dbConnection();
+        Peuplement remplissage= new Peuplement();
+        remplissage.Peuplement();
     }
     
     public static void main(String[] args)
