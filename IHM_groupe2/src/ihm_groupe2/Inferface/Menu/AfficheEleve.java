@@ -1,43 +1,88 @@
 package ihm_groupe2.Inferface.Menu;
 
-import ihm_groupe2.Modele.ArbreExercicesEleve;
-import javax.swing.JScrollPane;
+import ihm_groupe2.Noyau_fonctionnel.Eleve;
+import ihm_groupe2.Noyau_fonctionnel.Exercice;
+import ihm_groupe2.Noyau_fonctionnel.Realisation;
+import java.awt.Color;
+import java.awt.Component;
+import java.util.ArrayList;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.TreeCellRenderer;
 
 /**
  *
  * @author Delphine
  */
-public class AfficheEleve extends JScrollPane{
+public class AfficheEleve{
     
-    public JTree tree;
-    ArbreExercicesEleve modele;
+    private JTree myTree;
+    private ArrayList<Realisation> lesRealisations;
 
-    public AfficheEleve() {
-        super();
+    public AfficheEleve(Eleve monEleve, ArrayList<Exercice> Exos) {
         
-        modele = new ArbreExercicesEleve();
+        lesRealisations = monEleve.getLesRealisations();
+        /* Création de l'arbre */
+        DefaultMutableTreeNode root = new DefaultMutableTreeNode(monEleve);
+        DefaultMutableTreeNode exercice;
+        DefaultMutableTreeNode realisation;
         
-        DefaultMutableTreeNode racine = new DefaultMutableTreeNode(modele.E1.getNomPersonne());
-        tree = new JTree(racine);
+        for (Exercice ex : Exos){
+            exercice = new DefaultMutableTreeNode(ex);
+            root.add(exercice);  
         
-        //Nous allons ajouter des branches et des feuilles à notre racine
-        for(int i = 0; i < modele.lesExercices.size() ; i++){
-            DefaultMutableTreeNode ex = new DefaultMutableTreeNode(modele.lesExercices.get(i).getNom());
-         
-            //On rajoute les branches 
-            for(int j = 0; j < modele.E1.getLesRealisations().size() ; j++){ 
-                if (modele.E1.getLesRealisations().get(j).getExercice().getNom() == modele.lesExercices.get(i).getNom()){
-                    DefaultMutableTreeNode res = new DefaultMutableTreeNode(modele.E1.getLesRealisations().get(j).getCommentaire());
-                    ex.add(res);
+            for (Realisation rea : lesRealisations) 
+            {
+                if (rea.getExercice().equals(ex)){
+                    realisation = new DefaultMutableTreeNode(rea.getExercice());
+                    exercice.add(realisation);  
                 }
             }
-            //On ajoute la feuille ou la branche à la racine
-            racine.add(ex);
         }
-        this.add(tree);
-        this.setViewportView(tree); 
+        
+        myTree = new JTree(root);
+        myTree.setShowsRootHandles(true);  //Poignée sur la racine
+        
+        /**
+         * Personnalisation du rendu des noeuds
+         */
+        myTree.setCellRenderer(new TreeCellRenderer(){
+            @Override
+            public Component getTreeCellRendererComponent(JTree tree, Object value, boolean selected, boolean expanded, boolean leaf, int row, boolean hasFocus) {
+            JLabel myLabel = new JLabel("");
+            if (value instanceof DefaultMutableTreeNode){
+                DefaultMutableTreeNode myNode = (DefaultMutableTreeNode) value;
+                if (myNode.getUserObject() instanceof Exercice){  // Si c'est un exercice
+                    Exercice ex = (Exercice)myNode.getUserObject();
+                    myLabel = new JLabel(ex.getNom());   //Afficher le nom de l'exercice
+                    if (selected & leaf & hasFocus){
+                        myLabel.setForeground(Color.ORANGE);   //Colorie le noeud sélectionné en orange
+                    }
+                }
+                else if (myNode.getUserObject() instanceof Eleve){
+                    Eleve e = (Eleve)myNode.getUserObject();
+                    myLabel = new JLabel(e.getNomPersonne() + " " + e.getPrenomPersonne());   //Afficher nom, prénom de l'élève
+                }
+                else{
+                    Realisation rea = (Realisation)myNode.getUserObject();          //si le noeud est une réalisation
+                    myLabel = new JLabel("Réalisation " + rea.getNumeroTentative());
+                    if (selected & expanded & hasFocus){
+                        myLabel.setForeground(Color.BLUE);      //colorie le noeud sélectionné en bleu
+                    }
+                }
+            }
+            JPanel pan = new JPanel();
+            pan.setBackground(Color.WHITE);
+            pan.add(myLabel);
+            return pan;   
+        }
+        });            
+    }
+    
+    public JTree getArbre(){
+        return myTree;
     }
 }
    

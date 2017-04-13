@@ -2,7 +2,6 @@ package ihm_groupe2.Inferface.Menu;
 
 import Applications.ApplicationProf;
 import ihm_groupe2.Controleur.ControleurTableEleves;
-import ihm_groupe2.Modele.ArbreExercicesEleve;
 import ihm_groupe2.Modele.TableEleves;
 import ihm_groupe2.Noyau_fonctionnel.Eleve;
 import java.util.ArrayList;
