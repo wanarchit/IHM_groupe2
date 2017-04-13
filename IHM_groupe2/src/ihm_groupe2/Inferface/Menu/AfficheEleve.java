@@ -44,8 +44,6 @@ public class AfficheEleve{
         
         myTree = new JTree(root);
         myTree.setShowsRootHandles(true);  //Poignée sur la racine
-        myTree.setRootVisible(false);     //Cache la racine
-        
         
         /**
          * Personnalisation du rendu des noeuds
@@ -65,10 +63,10 @@ public class AfficheEleve{
                 }
                 else if (myNode.getUserObject() instanceof Eleve){
                     Eleve e = (Eleve)myNode.getUserObject();
-                    myLabel = new JLabel(e.getNomPersonne());   //Afficher le nom de l'exercice
+                    myLabel = new JLabel(e.getNomPersonne() + " " + e.getPrenomPersonne());   //Afficher nom, prénom de l'élève
                 }
                 else{
-                    Realisation rea = (Realisation)myNode.getUserObject();          //si le noeud est une classe
+                    Realisation rea = (Realisation)myNode.getUserObject();          //si le noeud est une réalisation
                     myLabel = new JLabel("Réalisation " + rea.getNumeroTentative());
                     if (selected & expanded & hasFocus){
                         myLabel.setForeground(Color.BLUE);      //colorie le noeud sélectionné en bleu
@@ -81,6 +79,10 @@ public class AfficheEleve{
             return pan;   
         }
         });            
-    } 
+    }
+    
+    public JTree getArbre(){
+        return myTree;
+    }
 }
    

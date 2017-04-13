@@ -1,5 +1,6 @@
 package Applications;
 
+import ihm_groupe2.Inferface.Menu.AfficheEleve;
 import ihm_groupe2.Inferface.Menu.ListeClasse;
 import ihm_groupe2.Inferface.Menu.ListeEleves;
 import ihm_groupe2.Inferface.Menu.ListeExercices;
@@ -151,10 +152,10 @@ public class ApplicationProf {
     
     public void affichelEleve(Eleve leEleve){
         leMenuProf.removeAll();
-        JPanel testPanel = new JPanel();
-        JLabel monLabel = new JLabel("Prénom : "+leEleve.getPrenomPersonne()+" / Nom : "+leEleve.getNomPersonne()+" / Classe : "+leEleve.getLaClasse().getNomClasse());
-        testPanel.add(monLabel);
-        leMenuProf.setPanelDroite(testPanel);
+        AfficheEleve affEleve = new AfficheEleve(leEleve,lesExercices);
+        JPanel newPanelDroite = new JPanel(new BorderLayout());
+        newPanelDroite.add(affEleve.getArbre(),BorderLayout.CENTER);
+        leMenuProf.setPanelDroite(newPanelDroite);
         leMenuProf.revalidate();
     }
     
