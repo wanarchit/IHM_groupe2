@@ -4,6 +4,7 @@ import Applications.ApplicationProf;
 import ihm_groupe2.Inferface.Menu.ListeExercices;
 import ihm_groupe2.Modele.TableExercices;
 import ihm_groupe2.Noyau_fonctionnel.Exercice;
+import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -33,8 +34,14 @@ public class CtrlTableExercices implements ListSelectionListener {
 
             int selectedRow = lsm.getMinSelectionIndex();
             Exercice e = modelTable.getExoRow(selectedRow);
+            if (e.isModifiable()){
+                appli.modifExercice(e);
+            }else{
+                //Boîte du message d'information
+               JOptionPane nonModif = new JOptionPane();
+               nonModif.showMessageDialog(null, "Vous ne pouvez pas modifier cet exercice. Des élèves l'ont déjà fait.", "Information", JOptionPane.INFORMATION_MESSAGE);
+            }
             
-            appli.modifExercice(e);
         }
     }   
 }   

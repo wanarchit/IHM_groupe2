@@ -21,6 +21,7 @@ public class MenuConnexionEleve extends JPanel{
     
     // Permet de valider les informations de connexion de l'élève
     private JButton validationConnexion;
+    private JButton butAnnuler;
     private ApplicationEleve appliEleve;
     private CtrlConnEleve controleur;
     
@@ -43,9 +44,11 @@ public class MenuConnexionEleve extends JPanel{
         
         JLabel texteConnexion = new JLabel("te connecter : ");
         validationConnexion = new JButton("Je me connecte");
+        butAnnuler = new JButton("Annuler");
         
         controleur = new CtrlConnEleve(this,appliEleve);
         validationConnexion.addActionListener(controleur);
+        butAnnuler.addActionListener(controleur);
         
         this.add(textPrenom);
         this.add(champsPrenom);
@@ -53,6 +56,7 @@ public class MenuConnexionEleve extends JPanel{
         this.add(champsNom);
         this.add(texteConnexion);
         this.add(validationConnexion);
+        this.add(butAnnuler);
 
     }
     
@@ -62,6 +66,14 @@ public class MenuConnexionEleve extends JPanel{
             
     public JTextField getTextNom(){
         return champsNom;
+    }
+    
+    public JButton getButValidation(){
+        return validationConnexion;
+    }
+    
+    public JButton getButAnnuler(){
+        return butAnnuler;
     }
     
 }

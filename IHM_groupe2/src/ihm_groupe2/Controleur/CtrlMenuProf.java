@@ -53,6 +53,8 @@ public class CtrlMenuProf implements ActionListener{
             appli.afficheEleves();
         }else if (e.getSource() == menuProfesseur.getButtonClasse()){
             appli.afficheClasses();
+        }else if (e.getSource() == menuProfesseur.getButtonDeco()){
+            appli.seDeconnecter();
         }
         
     }

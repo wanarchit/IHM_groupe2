@@ -31,6 +31,7 @@ public class MenuProf extends JPanel{
     private JButton butVoirExo;         // on affichera un panel contenant la liste des exercies "PanelModifExo"
     private JButton butVoirEleve;       // on affichera un panel contenant la liste des eleves
     private JButton butVoirClasse;      // on affichera un panel contenant la liste des classes
+    private JButton butSeDeco;
     
     /**
      * constructeur de la classe MenuProf
@@ -49,12 +50,14 @@ public class MenuProf extends JPanel{
         butVoirExo = new JButton("Liste exercices");
         butVoirEleve = new JButton("Liste élèves");
         butVoirClasse = new JButton("Liste classes");
+        butSeDeco = new JButton("Se déconnecter");
         
         controleur = new CtrlMenuProf(appli,this);
         butCreerExo.addActionListener(controleur);
         butVoirExo.addActionListener(controleur);
         butVoirEleve.addActionListener(controleur);
         butVoirClasse.addActionListener(controleur);
+        butSeDeco.addActionListener(controleur);
                 
                 
         
@@ -76,14 +79,18 @@ public class MenuProf extends JPanel{
         panBut4.setLayout(new GridBagLayout());
         panBut4.add(butVoirClasse, gbc);   
         
+        JPanel panBut5 = new JPanel();
+        panBut5.setLayout(new GridBagLayout());
+        panBut5.add(butSeDeco, gbc);
                 
         panelGauche = new JPanel();
         panelGauche.setBorder(new javax.swing.border.BevelBorder(BevelBorder.RAISED));
-        panelGauche.setLayout(new GridLayout(4,1));
+        panelGauche.setLayout(new GridLayout(5,1));
         panelGauche.add(panBut1);
         panelGauche.add(panBut2);
         panelGauche.add(panBut3);
         panelGauche.add(panBut4);
+        panelGauche.add(panBut5);
         
         panelDroite = new JPanel();
         panelDroite.setBorder(new javax.swing.border.BevelBorder(BevelBorder.RAISED));
@@ -114,5 +121,9 @@ public class MenuProf extends JPanel{
     
     public JButton getButtonClasse(){
         return butVoirClasse;
+    }
+    
+    public JButton getButtonDeco(){
+        return butSeDeco;
     }
 }

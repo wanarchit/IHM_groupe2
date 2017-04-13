@@ -3,6 +3,7 @@ package Applications;
 import ihm_groupe2.Inferface.Menu.ListeEleves;
 import ihm_groupe2.Inferface.Menu.ListeExercices;
 import ihm_groupe2.Inferface.Menu.MenuConnexionProf;
+import ihm_groupe2.Inferface.Menu.MenuPrincipal;
 import ihm_groupe2.Inferface.Menu.MenuProf;
 import ihm_groupe2.Inferface.Menu.PanelCreerExo;
 import ihm_groupe2.Inferface.Menu.PanelModifExo;
@@ -14,6 +15,7 @@ import ihm_groupe2.Noyau_fonctionnel.Realisation;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -62,6 +64,7 @@ public class ApplicationProf {
         lesExercices = new ArrayList();
         ImageIcon imageExo = new ImageIcon(getClass().getResource("Exercice1_image.png"));
         Exercice exo1 = new Exercice("Exercice 1","Vous devez faire ce dessin en 10 minutes avec la tortue normale",0,imageExo);
+        //exo1.setModifiable(false);
         ImageIcon imageExo2 = new ImageIcon(getClass().getResource("Exercice2_image.png"));
         Exercice exo2 = new Exercice("Exercice 2","Vous devez faire ce dessin en 5 minutes avec la tortue rapide",2,imageExo2);
         ImageIcon imageExo3 = new ImageIcon(getClass().getResource("Exercice3_image.png"));
@@ -150,6 +153,28 @@ public class ApplicationProf {
         leMenuProf.setPanelDroite(testPanel);
         leMenuProf.revalidate();
     }
+    
+    public void seDeconnecter(){
+        int option = JOptionPane.showConfirmDialog(null, "Voulez-vous enregistrer les modifications avant de vous déconnecter ?", "Déconnexion", 
+                    JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if(option != JOptionPane.NO_OPTION && 
+            option != JOptionPane.CANCEL_OPTION && 
+            option != JOptionPane.CLOSED_OPTION){
+            // ENREGISTRER LES INFO DANS LA BDD !!!
+            MenuPrincipal leMenuP = new MenuPrincipal(fenetreMain);
+            fenetreMain.setContentPane(leMenuP);
+            fenetreMain.repaint();
+            fenetreMain.revalidate();
+        }else if (option != JOptionPane.YES_OPTION && 
+            option != JOptionPane.CANCEL_OPTION && 
+            option != JOptionPane.CLOSED_OPTION){
+            MenuPrincipal leMenuP = new MenuPrincipal(fenetreMain);
+            fenetreMain.setContentPane(leMenuP);
+            fenetreMain.repaint();
+            fenetreMain.revalidate();
+        }            
+    }
+
     
     
 }

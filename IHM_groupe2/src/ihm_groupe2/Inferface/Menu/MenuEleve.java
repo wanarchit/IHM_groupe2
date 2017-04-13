@@ -67,7 +67,6 @@ public class MenuEleve extends JPanel{
         appli = lAppli;
         exoEnCours = exo;
         numTent = num;
-        System.out.println(numTent);
         lesTents = appli.getTentativeExo(exoEnCours);
         if (lesTents.size() != 0){
             tentEnCours = lesTents.get(numTent);

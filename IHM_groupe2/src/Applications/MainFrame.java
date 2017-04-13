@@ -1,8 +1,10 @@
 package Applications;
 
+import ihm_groupe2.Controleur.CtrlWindows;
 import ihm_groupe2.Inferface.Menu.MenuPrincipal;
 import ihm_groupe2.Modele.Peuplement;
 import ihm_groupe2.Modele.SqliteJDBC;
+import java.awt.event.WindowListener;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
@@ -20,9 +22,12 @@ public class MainFrame extends JFrame{
     public MainFrame(){
         
         menuPrincipal = new MenuPrincipal(this);
+        CtrlWindows controleur = new CtrlWindows(this);
+        this.addWindowListener(controleur);
         
         this.add(menuPrincipal);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         this.setTitle("Application gestion exercices");
         this.setSize(1000, 600);
         this.setLocationRelativeTo(null);

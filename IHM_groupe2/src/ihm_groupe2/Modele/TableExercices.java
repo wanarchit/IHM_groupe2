@@ -14,7 +14,7 @@ import javax.swing.table.AbstractTableModel;
  */
 public class TableExercices extends AbstractTableModel{
     
-    private String[] columnName = {"Nom exercice", "Modifications"};
+    private String[] columnName = {"Nom exercice", "Type de tortue", "Modifications", "Image de l'exercice"};
     private ArrayList<Exercice> listeExo;
     
     public TableExercices (ArrayList <Exercice> listeExo){
@@ -48,7 +48,9 @@ public class TableExercices extends AbstractTableModel{
     public String getColumnName(int i){
         switch(i){
             case 0: return"Nom exercice";
-            case 1: return"Modifications";
+            case 1: return"Type de tortue";
+            case 2: return"Modifications";
+            case 3: return"Image de l'exercice";
             default: return "";
         }
     }
@@ -62,12 +64,21 @@ public class TableExercices extends AbstractTableModel{
         switch(columnIndex){
             case 0: return listeExo.get(rowIndex).getNom();
             case 1: 
+                if (listeExo.get(rowIndex).getMaTortue().getClass() == TortueCouleur.class){
+                    return "Tortue couleur";
+                }
+                else if (listeExo.get(rowIndex).getMaTortue().getClass() == TortueRapide.class){
+                    return "Tortue rapide";
+                }
+                else {return "Tortue classique";}
+            case 2: 
                 if (listeExo.get(rowIndex).isModifiable()){  //A CREER DANS CLASSE EXERCICE
                     return "Possible";
                 }
                 else{
                     return "Impossible";
                 }
+            case 3: return listeExo.get(rowIndex).getImage();
             default: return "";
         }
     }
