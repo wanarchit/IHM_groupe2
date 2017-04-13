@@ -1,7 +1,9 @@
 package ihm_groupe2.Modele;
 
 import ihm_groupe2.Noyau_fonctionnel.*;
+import java.awt.Image;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 import javax.swing.table.AbstractTableModel;
 
 /**
@@ -72,13 +74,15 @@ public class TableExercices extends AbstractTableModel{
                 }
                 else {return "Tortue classique";}
             case 2: 
-                if (listeExo.get(rowIndex).isModifiable()){  //A CREER DANS CLASSE EXERCICE
+                if (listeExo.get(rowIndex).isModifiable()){  
                     return "Possible";
                 }
                 else{
                     return "Impossible";
                 }
-            case 3: return listeExo.get(rowIndex).getImage();
+            case 3: 
+                ImageIcon ic = new ImageIcon((listeExo.get(rowIndex).getImage()).getImage().getScaledInstance(120, 120, Image.SCALE_DEFAULT));
+                return ic;
             default: return "";
         }
     }
@@ -98,6 +102,7 @@ public class TableExercices extends AbstractTableModel{
     @Override
     public Class getColumnClass(int columnIndex){
         switch(columnIndex){
+            case 3 : return ImageIcon.class;
             default:
                 return Object.class;
         }

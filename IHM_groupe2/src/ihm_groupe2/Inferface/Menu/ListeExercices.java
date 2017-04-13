@@ -35,7 +35,8 @@ public class ListeExercices extends JScrollPane{
         tableExercices.setRowSelectionAllowed(true);
         tableExercices.setCellSelectionEnabled(true);
         tableExercices.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-                                          
+        tableExercices.setRowHeight(120);
+        
         this.add(tableExercices);
                           
         ListSelectionModel listSelectionModel = tableExercices.getSelectionModel();        
