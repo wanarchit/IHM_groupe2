@@ -160,10 +160,12 @@ public class ApplicationProf {
     
     public void affichelaClasse(Classe laClasse){
         leMenuProf.removeAll();
-        JPanel testPanel = new JPanel();
-        JLabel monLabel = new JLabel("Nom Classe : "+laClasse.getNomClasse()+" / Prof : "+laClasse.getProfesseur().getNomPersonne()+" / Nb : "+laClasse.getListEleveClasse().size());
-        testPanel.add(monLabel);
-        leMenuProf.setPanelDroite(testPanel);
+        //JLabel monLabel1 = new JLabel("Liste des élèves");
+        listeEleve = new ListeEleves(laClasse.getListEleveClasse(),this);
+        //leMenuProf.setPanelDroite(newPanelDroite);
+        JPanel newPanelDroite = new JPanel(new BorderLayout());
+        newPanelDroite.add(listeEleve,BorderLayout.CENTER);
+        leMenuProf.setPanelDroite(newPanelDroite);
         leMenuProf.revalidate();
     }
     
