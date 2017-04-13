@@ -9,10 +9,14 @@ import ihm_groupe2.Inferface.Menu.MenuProf;
 import ihm_groupe2.Inferface.Menu.PanelCreerExo;
 import ihm_groupe2.Inferface.Menu.PanelModifExo;
 import ihm_groupe2.Noyau_fonctionnel.Classe;
+import ihm_groupe2.Noyau_fonctionnel.Commande;
 import ihm_groupe2.Noyau_fonctionnel.Eleve;
 import ihm_groupe2.Noyau_fonctionnel.Exercice;
 import ihm_groupe2.Noyau_fonctionnel.Professeur;
 import ihm_groupe2.Noyau_fonctionnel.Realisation;
+import ihm_groupe2.Noyau_fonctionnel.TortueCouleur;
+import ihm_groupe2.Noyau_fonctionnel.TortueG;
+import ihm_groupe2.Noyau_fonctionnel.TortueRapide;
 import java.awt.BorderLayout;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
@@ -40,6 +44,9 @@ public class ApplicationProf {
     private ListeExercices listeExo;
     private ListeEleves listeEleve;
     private ListeClasse listeClasse;
+    private TortueG toruteG;
+    private TortueCouleur tortueCoul;
+    private TortueRapide tortueRap;
     
     public ApplicationProf(MainFrame main){
         fenetreMain = main;
@@ -75,6 +82,15 @@ public class ApplicationProf {
         lesExercices.add(exo1);
         lesExercices.add(exo2);
         lesExercices.add(exo3);
+        
+        toruteG = new TortueG();
+        tortueRap = new TortueRapide();
+        tortueCoul = new TortueCouleur();
+        Realisation maRea = new Realisation(1,"","",exo1);
+        Commande maCommande1 = new Commande("Avance",toruteG);
+        maRea.ajouterCommande(maCommande1);
+        eleve.addRealisation(maRea);
+        
         
         MenuConnexionProf menuCoProf = new MenuConnexionProf(this);
         fenetreMain.setContentPane(menuCoProf);
