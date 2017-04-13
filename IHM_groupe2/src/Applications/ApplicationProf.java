@@ -1,5 +1,6 @@
 package Applications;
 
+import ihm_groupe2.Inferface.Menu.ListeClasse;
 import ihm_groupe2.Inferface.Menu.ListeEleves;
 import ihm_groupe2.Inferface.Menu.ListeExercices;
 import ihm_groupe2.Inferface.Menu.MenuConnexionProf;
@@ -38,6 +39,7 @@ public class ApplicationProf {
     private MenuProf leMenuProf;
     private ListeExercices listeExo;
     private ListeEleves listeEleve;
+    private ListeClasse listeClasse;
     
     public ApplicationProf(MainFrame main){
         fenetreMain = main;
@@ -135,9 +137,10 @@ public class ApplicationProf {
     
     public void afficheClasses(){
         leMenuProf.removeAll();
-        JLabel monLabel1 = new JLabel("Liste des classes");
-        JPanel newPanelDroite = new JPanel();
-        newPanelDroite.add(monLabel1);
+        listeClasse = new ListeClasse(lesClasses,this);
+        //JLabel monLabel1 = new JLabel("Liste des classes");
+        JPanel newPanelDroite = new JPanel(new BorderLayout());
+        newPanelDroite.add(listeClasse,BorderLayout.CENTER);
         leMenuProf.setPanelDroite(newPanelDroite);
         leMenuProf.revalidate();
     }
@@ -150,6 +153,15 @@ public class ApplicationProf {
         leMenuProf.removeAll();
         JPanel testPanel = new JPanel();
         JLabel monLabel = new JLabel("Prénom : "+leEleve.getPrenomPersonne()+" / Nom : "+leEleve.getNomPersonne()+" / Classe : "+leEleve.getLaClasse().getNomClasse());
+        testPanel.add(monLabel);
+        leMenuProf.setPanelDroite(testPanel);
+        leMenuProf.revalidate();
+    }
+    
+    public void affichelaClasse(Classe laClasse){
+        leMenuProf.removeAll();
+        JPanel testPanel = new JPanel();
+        JLabel monLabel = new JLabel("Nom Classe : "+laClasse.getNomClasse()+" / Prof : "+laClasse.getProfesseur().getNomPersonne()+" / Nb : "+laClasse.getListEleveClasse().size());
         testPanel.add(monLabel);
         leMenuProf.setPanelDroite(testPanel);
         leMenuProf.revalidate();
