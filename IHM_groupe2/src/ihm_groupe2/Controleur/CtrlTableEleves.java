@@ -19,12 +19,12 @@ import javax.swing.event.ListSelectionListener;
  *
  * @author Groupe_2
  */
-public class ControleurTableEleves  implements ListSelectionListener{
+public class CtrlTableEleves  implements ListSelectionListener{
     
     private ListeEleves myTable;
     private ApplicationProf appli;
             
-    public ControleurTableEleves(ListeEleves myTable, ApplicationProf lAppli){
+    public CtrlTableEleves(ListeEleves myTable, ApplicationProf lAppli){
         appli = lAppli;
         this.myTable = myTable;
 

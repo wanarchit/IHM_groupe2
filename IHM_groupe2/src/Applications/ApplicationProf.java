@@ -5,8 +5,11 @@ import ihm_groupe2.Inferface.Menu.ListeClasse;
 import ihm_groupe2.Inferface.Menu.ListeEleves;
 import ihm_groupe2.Inferface.Menu.ListeExercices;
 import ihm_groupe2.Inferface.Menu.MenuConnexionProf;
+import ihm_groupe2.Inferface.Menu.MenuEvaluation;
 import ihm_groupe2.Inferface.Menu.MenuPrincipal;
 import ihm_groupe2.Inferface.Menu.MenuProf;
+import ihm_groupe2.Inferface.Menu.PanelAffExoArbre;
+import ihm_groupe2.Inferface.Menu.PanelAffReaArbre;
 import ihm_groupe2.Inferface.Menu.PanelCreerExo;
 import ihm_groupe2.Inferface.Menu.PanelModifExo;
 import ihm_groupe2.Noyau_fonctionnel.Classe;
@@ -45,9 +48,10 @@ public class ApplicationProf {
     private ListeExercices listeExo;
     private ListeEleves listeEleve;
     private ListeClasse listeClasse;
-    private TortueG toruteG;
-    private TortueCouleur tortueCoul;
-    private TortueRapide tortueRap;
+    //private TortueG toruteG;
+    //private TortueCouleur tortueCoul;
+    //private TortueRapide tortueRap;
+    private JPanel newPanelDroite,newPanelDroite2;
     
     public ApplicationProf(MainFrame main){
         fenetreMain = main;
@@ -80,18 +84,61 @@ public class ApplicationProf {
         Exercice exo2 = new Exercice("Exercice 2","Vous devez faire ce dessin en 5 minutes avec la tortue rapide",2,imageExo2);
         ImageIcon imageExo3 = new ImageIcon(getClass().getResource("Exercice3_image.png"));
         Exercice exo3 = new Exercice("Exercice 3","Vous devez faire ce dessin en 15 minutes avec la tortue couleur",1,imageExo3);
+        ImageIcon imageExo4 = new ImageIcon(getClass().getResource("Exercice4_image.png"));
+        Exercice exo4 = new Exercice("Exercice 4","Vous devez faire ce dessin en 5 minutes avec la tortue couleur",2,imageExo4);
         lesExercices.add(exo1);
         lesExercices.add(exo2);
         lesExercices.add(exo3);
+        lesExercices.add(exo4);
         
-        toruteG = new TortueG();
-        tortueRap = new TortueRapide();
-        tortueCoul = new TortueCouleur();
+        //toruteG = new TortueG();
+       // tortueRap = new TortueRapide();
+       // tortueCoul = new TortueCouleur();
         Realisation maRea = new Realisation(1,"","",exo1);
-        Commande maCommande1 = new Commande("Avance",toruteG);
-        maRea.ajouterCommande(maCommande1);
+        Commande maCommande10 = new Commande("Avance",exo1.getMaTortue());
+        Commande maCommande11 = new Commande("Avance",exo1.getMaTortue());
+        Commande maCommande12 = new Commande("Tourne",exo1.getMaTortue());
+        Commande maCommande13 = new Commande("Avance",exo1.getMaTortue());
+        Commande maCommande14 = new Commande("Tourne",exo1.getMaTortue());
+        Commande maCommande15 = new Commande("Avance",exo1.getMaTortue());
+        Commande maCommande16 = new Commande("N'écrit plus",exo1.getMaTortue());
+        Commande maCommande17 = new Commande("Avance",exo1.getMaTortue());
+        Commande maCommande18 = new Commande("Ecrit",exo1.getMaTortue());
+        Commande maCommande19 = new Commande("Avance",exo1.getMaTortue());
+        maRea.ajouterCommande(maCommande10);
+        maRea.ajouterCommande(maCommande11);
+        maRea.ajouterCommande(maCommande12);
+        maRea.ajouterCommande(maCommande13);
+        maRea.ajouterCommande(maCommande14);
+        maRea.ajouterCommande(maCommande15);
+        maRea.ajouterCommande(maCommande16);
+        maRea.ajouterCommande(maCommande17);
+        maRea.ajouterCommande(maCommande18);
+        maRea.ajouterCommande(maCommande19);
         eleve.addRealisation(maRea);
+        exo1.setModifiable(false);
         
+        Realisation maRea2 = new Realisation(1,"","",exo2);
+        Commande maCommande2 = new Commande("Avance",exo2.getMaTortue());
+        maRea2.ajouterCommande(maCommande2);
+        eleve.addRealisation(maRea2);
+        exo2.setModifiable(false);
+        
+        Realisation maRea3 = new Realisation(1,"","",exo2);
+        Commande maCommande3 = new Commande("Avance",exo2.getMaTortue());
+        maRea3.ajouterCommande(maCommande3);
+        eleve2.addRealisation(maRea3);
+        
+        Realisation maRea4 = new Realisation(1,"","",exo3);
+        Commande maCommande4 = new Commande("Avance",exo3.getMaTortue());
+        maRea4.ajouterCommande(maCommande4);
+        eleve.addRealisation(maRea4);
+        exo3.setModifiable(false);
+        
+        Realisation maRea5 = new Realisation(2,"","",exo2);
+        Commande maCommande5 = new Commande("Avance",exo2.getMaTortue());
+        maRea5.ajouterCommande(maCommande5);
+        eleve.addRealisation(maRea5);
         
         MenuConnexionProf menuCoProf = new MenuConnexionProf(this);
         fenetreMain.setContentPane(menuCoProf);
@@ -135,7 +182,7 @@ public class ApplicationProf {
     public void afficheExercices(){
         leMenuProf.removeAll();
         listeExo = new ListeExercices(lesExercices,this);
-        JPanel newPanelDroite = new JPanel(new BorderLayout());
+        newPanelDroite = new JPanel(new BorderLayout());
         newPanelDroite.add(listeExo,BorderLayout.CENTER);
         leMenuProf.setPanelDroite(newPanelDroite);
         leMenuProf.revalidate();
@@ -146,7 +193,7 @@ public class ApplicationProf {
         //JLabel monLabel1 = new JLabel("Liste des élèves");
         listeEleve = new ListeEleves(lesEleves,this);
         //leMenuProf.setPanelDroite(newPanelDroite);
-        JPanel newPanelDroite = new JPanel(new BorderLayout());
+        newPanelDroite = new JPanel(new BorderLayout());
         newPanelDroite.add(listeEleve,BorderLayout.CENTER);
         leMenuProf.setPanelDroite(newPanelDroite);
         leMenuProf.revalidate();
@@ -156,7 +203,7 @@ public class ApplicationProf {
         leMenuProf.removeAll();
         listeClasse = new ListeClasse(lesClasses,this);
         //JLabel monLabel1 = new JLabel("Liste des classes");
-        JPanel newPanelDroite = new JPanel(new BorderLayout());
+        newPanelDroite = new JPanel(new BorderLayout());
         newPanelDroite.add(listeClasse,BorderLayout.CENTER);
         leMenuProf.setPanelDroite(newPanelDroite);
         leMenuProf.revalidate();
@@ -168,9 +215,15 @@ public class ApplicationProf {
     
     public void affichelEleve(Eleve leEleve){
         leMenuProf.removeAll();
-        AfficheEleve affEleve = new AfficheEleve(leEleve,lesExercices);
-        JPanel newPanelDroite = new JPanel(new BorderLayout());
-        newPanelDroite.add(affEleve.getArbre(),BorderLayout.CENTER);
+        AfficheEleve affEleve = new AfficheEleve(leEleve,lesExercices,this);
+        
+        JPanel newPanelDroite1 = new JPanel(new BorderLayout());
+        newPanelDroite1.add(affEleve.getArbre());
+        newPanelDroite2 = new JPanel();
+
+        newPanelDroite = new JPanel(new BorderLayout());   
+        newPanelDroite.add(newPanelDroite1,BorderLayout.WEST);
+        newPanelDroite.add(newPanelDroite2,BorderLayout.CENTER);
         leMenuProf.setPanelDroite(newPanelDroite);
         leMenuProf.revalidate();
     }
@@ -180,7 +233,7 @@ public class ApplicationProf {
         //JLabel monLabel1 = new JLabel("Liste des élèves");
         listeEleve = new ListeEleves(laClasse.getListEleveClasse(),this);
         //leMenuProf.setPanelDroite(newPanelDroite);
-        JPanel newPanelDroite = new JPanel(new BorderLayout());
+        newPanelDroite = new JPanel(new BorderLayout());
         newPanelDroite.add(listeEleve,BorderLayout.CENTER);
         leMenuProf.setPanelDroite(newPanelDroite);
         leMenuProf.revalidate();
@@ -210,6 +263,34 @@ public class ApplicationProf {
     public void annulerConnexion(){
         MenuPrincipal leMenuP = new MenuPrincipal(fenetreMain);
         fenetreMain.setContentPane(leMenuP);
+        fenetreMain.repaint();
+        fenetreMain.revalidate();
+    }
+    
+    public void afficheExoEleve(Exercice lExo){
+        newPanelDroite.remove(newPanelDroite2);
+        newPanelDroite2 = new PanelAffExoArbre(lExo);
+        newPanelDroite.add(newPanelDroite2,BorderLayout.CENTER);
+        leMenuProf.revalidate();
+    }
+    
+    public void afficheReaEleve(Realisation laRea){
+        newPanelDroite.remove(newPanelDroite2);
+        newPanelDroite2 = new PanelAffReaArbre(laRea,this);
+        newPanelDroite.add(newPanelDroite2,BorderLayout.CENTER);
+        leMenuProf.revalidate();
+    }
+    
+    public void evaluerRealisation(Realisation laRea){
+        MenuEvaluation evalReaP = new MenuEvaluation(this,laRea);
+        fenetreMain.setContentPane(evalReaP);
+        fenetreMain.repaint();
+        fenetreMain.revalidate();
+    }
+    
+    public void annuleEval(){
+        leMenuProf = new MenuProf(profCo,this);
+        fenetreMain.setContentPane(leMenuProf);
         fenetreMain.repaint();
         fenetreMain.revalidate();
     }

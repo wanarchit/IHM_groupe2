@@ -158,13 +158,7 @@ public class Dessin extends JPanel{
             ssPanelBas.add(panelActionRapide);
         }
         
-        
-        
-        
-        
-        
-        
-        
+  
         /** ssPanel gauche : liste actions */
         JPanel ssPanelGauche = new JPanel(new BorderLayout());
         ssPanelGauche.setBorder(new javax.swing.border.BevelBorder(BevelBorder.RAISED));

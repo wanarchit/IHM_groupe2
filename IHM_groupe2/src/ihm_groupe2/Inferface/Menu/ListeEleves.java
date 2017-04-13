@@ -1,7 +1,7 @@
 package ihm_groupe2.Inferface.Menu;
 
 import Applications.ApplicationProf;
-import ihm_groupe2.Controleur.ControleurTableEleves;
+import ihm_groupe2.Controleur.CtrlTableEleves;
 import ihm_groupe2.Modele.TableEleves;
 import ihm_groupe2.Noyau_fonctionnel.Eleve;
 import java.util.ArrayList;
@@ -19,13 +19,13 @@ public class ListeEleves extends JScrollPane {
     private ApplicationProf appli;
     public TableEleves modeleTable;
     private JTable tableEleves;
-    private ControleurTableEleves controleur;
+    private CtrlTableEleves controleur;
     private ArrayList<Eleve> lesEleves;
     
     public ListeEleves(ArrayList<Eleve> laListeEleve, ApplicationProf lAppli){
     lesEleves = laListeEleve;
     appli = lAppli;
-    controleur = new ControleurTableEleves(this,appli);
+    controleur = new CtrlTableEleves(this,appli);
         
     modeleTable = new TableEleves(lesEleves);
     tableEleves = new JTable (modeleTable);

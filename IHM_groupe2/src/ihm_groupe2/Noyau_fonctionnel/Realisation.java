@@ -109,4 +109,9 @@ public class Realisation {
             aCorriger = bool;
         }
     }
+    
+    public boolean isACorriger(){
+        return aCorriger;
+    }
+    
 }

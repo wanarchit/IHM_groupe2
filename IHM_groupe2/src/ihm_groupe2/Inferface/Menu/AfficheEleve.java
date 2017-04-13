@@ -1,5 +1,7 @@
 package ihm_groupe2.Inferface.Menu;
 
+import Applications.ApplicationProf;
+import ihm_groupe2.Controleur.CtrlArbreExercicesEleve;
 import ihm_groupe2.Noyau_fonctionnel.Eleve;
 import ihm_groupe2.Noyau_fonctionnel.Exercice;
 import ihm_groupe2.Noyau_fonctionnel.Realisation;
@@ -11,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreeCellRenderer;
+import javax.swing.tree.TreeSelectionModel;
 
 /**
  *
@@ -18,11 +21,13 @@ import javax.swing.tree.TreeCellRenderer;
  */
 public class AfficheEleve{
     
+    private ApplicationProf appli;
     private JTree myTree;
     private ArrayList<Realisation> lesRealisations;
+    private CtrlArbreExercicesEleve controleur;
 
-    public AfficheEleve(Eleve monEleve, ArrayList<Exercice> Exos) {
-        
+    public AfficheEleve(Eleve monEleve, ArrayList<Exercice> Exos, ApplicationProf lAppli) {
+        appli = lAppli;
         lesRealisations = monEleve.getLesRealisations();
         /* Création de l'arbre */
         DefaultMutableTreeNode root = new DefaultMutableTreeNode(monEleve);
@@ -78,7 +83,10 @@ public class AfficheEleve{
             pan.add(myLabel);
             return pan;   
         }
-        });            
+        });
+        controleur = new CtrlArbreExercicesEleve(myTree, appli);
+        myTree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
+        myTree.addTreeSelectionListener(controleur);
     }
     
     public JTree getArbre(){
