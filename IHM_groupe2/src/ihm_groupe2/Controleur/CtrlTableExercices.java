@@ -37,7 +37,7 @@ public class CtrlTableExercices implements ListSelectionListener {
             if (e.isModifiable()){
                 appli.modifExercice(e);
             }else{
-                //Boîte du message d'information
+                //Boîte du message d'information.
                JOptionPane nonModif = new JOptionPane();
                nonModif.showMessageDialog(null, "Vous ne pouvez pas modifier cet exercice. Des élèves l'ont déjà fait.", "Information", JOptionPane.INFORMATION_MESSAGE);
             }
