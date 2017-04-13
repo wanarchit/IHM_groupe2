@@ -36,7 +36,7 @@ public class AfficheEleve{
             for (Realisation rea : lesRealisations) 
             {
                 if (rea.getExercice().equals(ex)){
-                    realisation = new DefaultMutableTreeNode(rea.getExercice());
+                    realisation = new DefaultMutableTreeNode(rea);
                     exercice.add(realisation);  
                 }
             }
@@ -68,7 +68,7 @@ public class AfficheEleve{
                 else{
                     Realisation rea = (Realisation)myNode.getUserObject();          //si le noeud est une réalisation
                     myLabel = new JLabel("Réalisation " + rea.getNumeroTentative());
-                    if (selected & expanded & hasFocus){
+                    if (selected & leaf & hasFocus){
                         myLabel.setForeground(Color.BLUE);      //colorie le noeud sélectionné en bleu
                     }
                 }
