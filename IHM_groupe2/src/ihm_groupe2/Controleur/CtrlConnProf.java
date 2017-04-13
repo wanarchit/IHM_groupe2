@@ -27,19 +27,23 @@ public class CtrlConnProf implements ActionListener {
     
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (!leMenu.getTextLogin().getText().isEmpty() ){
-            if (!leMenu.getTextMdp().getText().isEmpty()){
-                Professeur leProf = appli.tryConnexion(leMenu.getTextLogin().getText(), leMenu.getTextMdp().getText());
-                if (leProf != null){
-                    appli.seConnecter(leProf);
+        if (e.getSource() == leMenu.getButValidation()){
+            if (!leMenu.getTextLogin().getText().isEmpty() ){
+                if (!leMenu.getTextMdp().getText().isEmpty()){
+                    Professeur leProf = appli.tryConnexion(leMenu.getTextLogin().getText(), leMenu.getTextMdp().getText());
+                    if (leProf != null){
+                        appli.seConnecter(leProf);
+                    }else{
+                        System.out.println("Vos identifiants ne sont pas corrects !");
+                    }
                 }else{
-                    System.out.println("Vos identifiants ne sont pas corrects !");
+                    System.out.println("Vous devez renseigner votre mot de passe");
                 }
             }else{
-                System.out.println("Vous devez renseigner votre mot de passe");
+                System.out.println("Vous devez renseigner votre login");
             }
-        }else{
-            System.out.println("Vous devez renseigner votre login");
+        }else if(e.getSource() == leMenu.getButAnnuler()){
+            appli.annulerConnexion();
         }
     }
     

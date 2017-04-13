@@ -3,6 +3,7 @@ package Applications;
 import ihm_groupe2.Inferface.Dessin.Dessin;
 import ihm_groupe2.Inferface.Menu.MenuConnexionEleve;
 import ihm_groupe2.Inferface.Menu.MenuEleve;
+import ihm_groupe2.Inferface.Menu.MenuPrincipal;
 import ihm_groupe2.Noyau_fonctionnel.Classe;
 import ihm_groupe2.Noyau_fonctionnel.Commande;
 import ihm_groupe2.Noyau_fonctionnel.Eleve;
@@ -88,6 +89,13 @@ public class ApplicationEleve {
         eleveCo = lEleve;
         MenuEleve leMenuEleve = new MenuEleve(eleveCo,this,lesExercices.get(0),0);
         fenetreMain.setContentPane(leMenuEleve);
+        fenetreMain.repaint();
+        fenetreMain.revalidate();
+    }
+    
+    public void annulerConnexion(){
+        MenuPrincipal leMenuP = new MenuPrincipal(fenetreMain);
+        fenetreMain.setContentPane(leMenuP);
         fenetreMain.repaint();
         fenetreMain.revalidate();
     }

@@ -3,6 +3,7 @@ package ihm_groupe2.Controleur;
 import Applications.ApplicationEleve;
 import ihm_groupe2.Inferface.Menu.MenuConnexionEleve;
 import ihm_groupe2.Inferface.Menu.MenuEleve;
+import ihm_groupe2.Inferface.Menu.MenuPrincipal;
 import ihm_groupe2.Noyau_fonctionnel.Eleve;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -25,8 +26,8 @@ public class CtrlConnEleve implements ActionListener {
     
     @Override
     public void actionPerformed(ActionEvent e) {
-        //Eleve leEleve = new Eleve(null,null,"Rousse","Delphine");
-        if (!leMenu.getTextPrenom().getText().isEmpty() ){
+        if (e.getSource() == leMenu.getButValidation()){
+            if (!leMenu.getTextPrenom().getText().isEmpty() ){
             if (!leMenu.getTextNom().getText().isEmpty()){
                 Eleve leEleve = appli.tryConnexion(leMenu.getTextPrenom().getText(), leMenu.getTextNom().getText());
                 if (leEleve != null){
@@ -37,9 +38,14 @@ public class CtrlConnEleve implements ActionListener {
             }else{
                 System.out.println("Vous devez renseigner le nom de l'élève");
             }
-        }else{
-            System.out.println("Vous devez renseigner le prénom de l'élève");
+            }else{
+                System.out.println("Vous devez renseigner le prénom de l'élève");
+            }
+        }else if(e.getSource() == leMenu.getButAnnuler()){
+            appli.annulerConnexion();
         }
+
+        
         
         
     }

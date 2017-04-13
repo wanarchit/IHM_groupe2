@@ -12,6 +12,7 @@ import ihm_groupe2.Noyau_fonctionnel.Eleve;
 import ihm_groupe2.Noyau_fonctionnel.Exercice;
 import ihm_groupe2.Noyau_fonctionnel.Professeur;
 import ihm_groupe2.Noyau_fonctionnel.Realisation;
+import java.awt.BorderLayout;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -115,8 +116,8 @@ public class ApplicationProf {
     public void afficheExercices(){
         leMenuProf.removeAll();
         listeExo = new ListeExercices(lesExercices,this);
-        JPanel newPanelDroite = new JPanel();
-        newPanelDroite.add(listeExo);
+        JPanel newPanelDroite = new JPanel(new BorderLayout());
+        newPanelDroite.add(listeExo,BorderLayout.CENTER);
         leMenuProf.setPanelDroite(newPanelDroite);
         leMenuProf.revalidate();
     }
@@ -126,8 +127,8 @@ public class ApplicationProf {
         //JLabel monLabel1 = new JLabel("Liste des élèves");
         listeEleve = new ListeEleves(lesEleves,this);
         //leMenuProf.setPanelDroite(newPanelDroite);
-        JPanel newPanelDroite = new JPanel();
-        newPanelDroite.add(listeEleve);
+        JPanel newPanelDroite = new JPanel(new BorderLayout());
+        newPanelDroite.add(listeEleve,BorderLayout.CENTER);
         leMenuProf.setPanelDroite(newPanelDroite);
         leMenuProf.revalidate();
     }
@@ -173,6 +174,13 @@ public class ApplicationProf {
             fenetreMain.repaint();
             fenetreMain.revalidate();
         }            
+    }
+    
+    public void annulerConnexion(){
+        MenuPrincipal leMenuP = new MenuPrincipal(fenetreMain);
+        fenetreMain.setContentPane(leMenuP);
+        fenetreMain.repaint();
+        fenetreMain.revalidate();
     }
 
     
