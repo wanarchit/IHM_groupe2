@@ -84,7 +84,7 @@ public class AfficheEleve{
             return pan;   
         }
         });
-        controleur = new CtrlArbreExercicesEleve(myTree, appli);
+        controleur = new CtrlArbreExercicesEleve(myTree, appli,monEleve);
         myTree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
         myTree.addTreeSelectionListener(controleur);
     }

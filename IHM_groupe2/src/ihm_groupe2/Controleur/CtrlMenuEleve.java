@@ -2,8 +2,6 @@ package ihm_groupe2.Controleur;
 
 import Applications.ApplicationEleve;
 import ihm_groupe2.Inferface.Menu.MenuEleve;
-import ihm_groupe2.Noyau_fonctionnel.Eleve;
-import ihm_groupe2.Noyau_fonctionnel.Exercice;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -17,9 +15,9 @@ import java.awt.event.ActionListener;
  */
 public class CtrlMenuEleve implements ActionListener{
     
-    //private Eleve eleve;
     private MenuEleve leMenu;
     private ApplicationEleve appli;
+    
     /**
      * Constructeur du controleur du MenuEleve
      * @param lEleve 
@@ -44,6 +42,8 @@ public class CtrlMenuEleve implements ActionListener{
             appli.afficheTentativeSuivante(leMenu.getExoEnCours(),leMenu.getReaEnCours());
         }else if (e.getSource() == leMenu.getButTentPrec()){
             appli.afficheTentativePrecedante(leMenu.getExoEnCours(),leMenu.getReaEnCours());
+        }else if (e.getSource() == leMenu.getButRejouerTent()){
+            appli.afficheRejouerRea(leMenu.getReaEnCours());
         }
     
         

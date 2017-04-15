@@ -4,6 +4,7 @@ import Applications.ApplicationProf;
 import ihm_groupe2.Controleur.CtrlEvaluation;
 import ihm_groupe2.Noyau_fonctionnel.Canvas;
 import ihm_groupe2.Noyau_fonctionnel.Commande;
+import ihm_groupe2.Noyau_fonctionnel.Eleve;
 import ihm_groupe2.Noyau_fonctionnel.Realisation;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
@@ -28,7 +29,8 @@ public class MenuEvaluation extends JPanel{
     private ApplicationProf appli;
     private Realisation rea;
     private CtrlEvaluation controleur;
-    private JButton butRejouer;
+    private JButton butRejouerEtape;
+    private JButton butRejouerEntier;
     private JButton butValider;
     private JButton butAnnuler;
     
@@ -39,22 +41,34 @@ public class MenuEvaluation extends JPanel{
     private JRadioButton butRadNonAcquis;
     
     
-    public MenuEvaluation(ApplicationProf lAppli, Realisation laRea){
+    public MenuEvaluation(ApplicationProf lAppli, Realisation laRea, Eleve lEleve){
         appli = lAppli;
         rea = laRea;
         
         // PANEL HAUT 
             // Les boutons
-        controleur = new CtrlEvaluation(appli,this);
-        butRejouer = new JButton("Rejouer la réalisation");
-        butRejouer.addActionListener(controleur);
+        controleur = new CtrlEvaluation(appli,this,lEleve);
+        JLabel labelRejouer = new JLabel("Rejouer le modèle :");
+        butRejouerEtape = new JButton("Par étape");
+        butRejouerEtape.addActionListener(controleur);
+        butRejouerEntier = new JButton("Entierement");
+        butRejouerEntier.addActionListener(controleur);
+        
+        JPanel ssPanelBut1 = new JPanel(new GridLayout(1,2));
+        ssPanelBut1.add(butRejouerEtape);
+        ssPanelBut1.add(butRejouerEntier);
+        JPanel ssPanelBut2 = new JPanel(new BorderLayout());
+        ssPanelBut2.add(labelRejouer,BorderLayout.NORTH);
+        ssPanelBut2.add(ssPanelBut1,BorderLayout.CENTER);
+        
+        
         butValider = new JButton("Valider cette évaluation");
         butValider.addActionListener(controleur);
         butAnnuler = new JButton("Annuler l'évaluation");
         butAnnuler.addActionListener(controleur);
         JPanel panBut1 = new JPanel();
         panBut1.setBorder(new javax.swing.border.BevelBorder(BevelBorder.RAISED));
-        panBut1.add(butRejouer);
+        panBut1.add(ssPanelBut2);
         JPanel panBut2 = new JPanel();
         panBut2.setBorder(new javax.swing.border.BevelBorder(BevelBorder.RAISED));
         panBut2.add(butValider);
@@ -70,7 +84,7 @@ public class MenuEvaluation extends JPanel{
         panLabHaut1.add(label1);
         JPanel panLabHaut2 = new JPanel();
         panLabHaut2.setBorder(new javax.swing.border.BevelBorder(BevelBorder.RAISED));
-        JLabel label2 = new JLabel("Actions élève");
+        JLabel label2 = new JLabel("Actions de "+lEleve.getPrenomPersonne());
         label2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         panLabHaut2.add(label2);
         JPanel panLabHaut3 = new JPanel();
@@ -172,8 +186,12 @@ public class MenuEvaluation extends JPanel{
         return rea;
     }
     
-    public JButton getButRejouer(){
-        return butRejouer;
+    public JButton getButRejouerEntier(){
+        return butRejouerEntier;
+    }
+    
+    public JButton getButRejouerEtape(){
+        return butRejouerEtape;
     }
     
     public JButton getButValider(){

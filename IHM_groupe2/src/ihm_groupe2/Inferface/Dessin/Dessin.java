@@ -11,9 +11,7 @@ import ihm_groupe2.Noyau_fonctionnel.Canvas;
 import ihm_groupe2.Noyau_fonctionnel.Commande;
 import ihm_groupe2.Noyau_fonctionnel.Exercice;
 import ihm_groupe2.Noyau_fonctionnel.Realisation;
-import ihm_groupe2.Noyau_fonctionnel.TortueCouleur;
 import ihm_groupe2.Noyau_fonctionnel.TortueG;
-import ihm_groupe2.Noyau_fonctionnel.TortueRapide;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -24,7 +22,6 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 import javax.swing.border.BevelBorder;
 
 /**

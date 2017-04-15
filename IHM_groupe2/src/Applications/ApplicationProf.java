@@ -274,15 +274,15 @@ public class ApplicationProf {
         leMenuProf.revalidate();
     }
     
-    public void afficheReaEleve(Realisation laRea){
+    public void afficheReaEleve(Realisation laRea, Eleve lEleve){
         newPanelDroite.remove(newPanelDroite2);
-        newPanelDroite2 = new PanelAffReaArbre(laRea,this);
+        newPanelDroite2 = new PanelAffReaArbre(laRea,this,lEleve);
         newPanelDroite.add(newPanelDroite2,BorderLayout.CENTER);
         leMenuProf.revalidate();
     }
     
-    public void evaluerRealisation(Realisation laRea){
-        MenuEvaluation evalReaP = new MenuEvaluation(this,laRea);
+    public void evaluerRealisation(Realisation laRea, Eleve lEleve){
+        MenuEvaluation evalReaP = new MenuEvaluation(this,laRea,lEleve);
         fenetreMain.setContentPane(evalReaP);
         fenetreMain.repaint();
         fenetreMain.revalidate();
@@ -294,7 +294,33 @@ public class ApplicationProf {
         fenetreMain.repaint();
         fenetreMain.revalidate();
     }
-
     
-    
+    public void doAction(Commande cmd){
+        if(cmd.getCommande().equals("Avance")){
+            cmd.getTortue().avancer();
+        }else if(cmd.getCommande().equals("Tourne")){
+            cmd.getTortue().tourner();
+        }else if(cmd.getCommande().equals("N'écrit plus")){
+            cmd.getTortue().tracer(false);
+        }else if(cmd.getCommande().equals("Ecrit")){
+            cmd.getTortue().tracer(true);
+        }else if(cmd.getCommande().equals("Ralentie")){
+            ((TortueRapide) cmd.getTortue()).ralentir();
+        }else if(cmd.getCommande().equals("Accélère")){
+            ((TortueRapide) cmd.getTortue()).accelerer();
+        }else if(cmd.getCommande().equals("Ecrit en noir")){
+            ((TortueCouleur) cmd.getTortue()).setCouleur("black");
+        }else if(cmd.getCommande().equals("Ecrit en rouge")){
+            ((TortueCouleur) cmd.getTortue()).setCouleur("red");
+        }else if(cmd.getCommande().equals("Ecrit en vert")){
+            ((TortueCouleur) cmd.getTortue()).setCouleur("green");
+        }else if(cmd.getCommande().equals("Ecrit en rose")){
+            ((TortueCouleur) cmd.getTortue()).setCouleur("magenta");
+        }else if(cmd.getCommande().equals("Ecrit en bleu")){
+            ((TortueCouleur) cmd.getTortue()).setCouleur("blue");
+        }else if(cmd.getCommande().equals("Ecrit en jaune")){
+            ((TortueCouleur) cmd.getTortue()).setCouleur("yellow");
+        }
+    }
+   
 }

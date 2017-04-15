@@ -1,6 +1,7 @@
 package ihm_groupe2.Controleur;
 
 import Applications.ApplicationProf;
+import ihm_groupe2.Noyau_fonctionnel.Eleve;
 import ihm_groupe2.Noyau_fonctionnel.Exercice;
 import ihm_groupe2.Noyau_fonctionnel.Realisation;
 import javax.swing.JTree;
@@ -19,10 +20,12 @@ public class CtrlArbreExercicesEleve implements TreeSelectionListener{
     
     private JTree myTree;
     private ApplicationProf appli;
+    private Eleve eleve;
     
-    public CtrlArbreExercicesEleve(JTree tree,ApplicationProf lAppli){
+    public CtrlArbreExercicesEleve(JTree tree,ApplicationProf lAppli,Eleve lEleve){
         myTree = tree;
         appli = lAppli;
+        eleve = lEleve;
     }
 
     @Override
@@ -34,7 +37,7 @@ public class CtrlArbreExercicesEleve implements TreeSelectionListener{
             appli.afficheExoEleve(exo);
         }else if (node.getUserObject() instanceof Realisation){
             Realisation laRea = (Realisation) node.getUserObject();
-            appli.afficheReaEleve(laRea);
+            appli.afficheReaEleve(laRea,eleve);
         }
     }
 }

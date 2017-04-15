@@ -1,18 +1,15 @@
 package ihm_groupe2.Inferface.Menu;
 
 import Applications.ApplicationEleve;
-import Applications.MainFrame;
 import ihm_groupe2.Controleur.CtrlMenuEleve;
 import ihm_groupe2.Noyau_fonctionnel.Eleve;
 import ihm_groupe2.Noyau_fonctionnel.Exercice;
 import ihm_groupe2.Noyau_fonctionnel.Realisation;
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.util.ArrayList;
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -299,6 +296,7 @@ public class MenuEleve extends JPanel{
         butSuivExo.addActionListener(controleur);
         butPrecTent.addActionListener(controleur);
         butSuivTent.addActionListener(controleur);
+        rejouerTentative.addActionListener(controleur);
                 
                 
     }
@@ -323,6 +321,10 @@ public class MenuEleve extends JPanel{
         return butPrecTent;
     }
     
+    public JButton getButRejouerTent(){
+        return rejouerTentative;
+    }
+            
     public Exercice getExoEnCours(){
         return exoEnCours;
     }

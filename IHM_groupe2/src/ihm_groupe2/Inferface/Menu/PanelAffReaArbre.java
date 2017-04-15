@@ -2,6 +2,7 @@ package ihm_groupe2.Inferface.Menu;
 
 import Applications.ApplicationProf;
 import ihm_groupe2.Controleur.CtrlAffReaArbre;
+import ihm_groupe2.Noyau_fonctionnel.Eleve;
 import ihm_groupe2.Noyau_fonctionnel.Realisation;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
@@ -20,10 +21,12 @@ public class PanelAffReaArbre extends JPanel{
     private ApplicationProf appli;
     private JButton corrigerRea;
     private CtrlAffReaArbre controleur;
+    private Eleve eleve;
     
-    public PanelAffReaArbre(Realisation laRea, ApplicationProf lAppli){
+    public PanelAffReaArbre(Realisation laRea, ApplicationProf lAppli, Eleve lEleve){
         appli = lAppli;
         rea = laRea;
+        eleve = lEleve;
         
         JLabel labelNomRea = new JLabel("Exercice : "+rea.getExercice().getNom()+" / Tentative n°"+rea.getNumeroTentative());
         labelNomRea.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -44,7 +47,7 @@ public class PanelAffReaArbre extends JPanel{
         }
         
         corrigerRea = new JButton("Evaluer la réalisation");
-        controleur = new CtrlAffReaArbre(this,rea,appli);
+        controleur = new CtrlAffReaArbre(this,rea,appli,eleve);
         corrigerRea.addActionListener(controleur);
         JPanel ssPanel = new JPanel();
         ssPanel.add(corrigerRea);

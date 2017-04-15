@@ -4,6 +4,7 @@ import ihm_groupe2.Inferface.Dessin.Dessin;
 import ihm_groupe2.Inferface.Menu.MenuConnexionEleve;
 import ihm_groupe2.Inferface.Menu.MenuEleve;
 import ihm_groupe2.Inferface.Menu.MenuPrincipal;
+import ihm_groupe2.Inferface.Menu.RejouerReaEleve;
 import ihm_groupe2.Noyau_fonctionnel.Classe;
 import ihm_groupe2.Noyau_fonctionnel.Commande;
 import ihm_groupe2.Noyau_fonctionnel.Eleve;
@@ -250,6 +251,10 @@ public class ApplicationEleve {
         fenetreMain.setContentPane(leMenuEleve);
         fenetreMain.repaint();
         fenetreMain.revalidate();
+    }
+    
+    public void afficheRejouerRea(Realisation tentEnCours){
+        new RejouerReaEleve(tentEnCours);
     }
     
 }
