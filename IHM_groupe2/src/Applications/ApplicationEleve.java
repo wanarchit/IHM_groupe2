@@ -26,7 +26,7 @@ public class ApplicationEleve {
     
     private Classe maClasse;
     private Professeur leProf;
-    private ArrayList<Eleve> LesEleves;
+    private ArrayList<Eleve> lesEleves;
     private Eleve eleve,eleve2;
     private ArrayList<Realisation> mesDessins;
     private ArrayList<Classe> lesClasses;
@@ -36,7 +36,6 @@ public class ApplicationEleve {
     
     public ApplicationEleve(MainFrame main){
         fenetreMain = main;
-        LesEleves = new ArrayList();
         leProf = new Professeur("MrProf","12345","LeGrand","Didier");
         maClasse = new Classe("CM1",leProf);
         lesClasses = new ArrayList();
@@ -44,6 +43,9 @@ public class ApplicationEleve {
         mesDessins = new ArrayList();
         eleve = new Eleve(maClasse,"Rousse","Delphine");
         eleve2 = new Eleve(maClasse,"Gand","Paul");
+        lesEleves = new ArrayList();
+        lesEleves.add(eleve);
+        lesEleves.add(eleve2);
         maClasse.ajoutEleve(eleve);
         maClasse.ajoutEleve(eleve2);
         lesExercices = new ArrayList();
@@ -66,6 +68,10 @@ public class ApplicationEleve {
     
     public void chargerDonnees(){
         
+    }
+    
+    public ArrayList<Eleve> getListeEleve(){
+        return lesEleves;
     }
     
     public Eleve tryConnexion(String prenomEleveTryCo, String nomEleveTryCo){

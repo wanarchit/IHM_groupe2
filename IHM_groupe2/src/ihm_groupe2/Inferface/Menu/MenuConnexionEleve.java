@@ -2,11 +2,17 @@ package ihm_groupe2.Inferface.Menu;
 
 import Applications.ApplicationEleve;
 import ihm_groupe2.Controleur.CtrlConnEleve;
-import Applications.MainFrame;
+import ihm_groupe2.Modele.TableEleves;
+import ihm_groupe2.Noyau_fonctionnel.Eleve;
+import java.awt.BorderLayout;
+import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 
 /**
  * Classe MenuConnexionEleve
@@ -20,60 +26,50 @@ import javax.swing.JTextField;
 public class MenuConnexionEleve extends JPanel{
     
     // Permet de valider les informations de connexion de l'élève
-    private JButton validationConnexion;
+
     private JButton butAnnuler;
     private ApplicationEleve appliEleve;
     private CtrlConnEleve controleur;
+    //public TableEleves modeleTable;
+    //private JTable tableEleves;
+    private ArrayList<Eleve> lesEleves;
+    private TableEleveVue tableEleve;
     
-    // champs pour le formulaire
-    private JTextField champsNom;
-    private JTextField champsPrenom;
-    private JLabel textPrenom,textNom;
     
     public MenuConnexionEleve(ApplicationEleve lAppli){
         appliEleve = lAppli;
-        
-        
-        
-        
-        
-        textPrenom = new JLabel("Entre ton prénom : ");
-        champsPrenom = new JTextField(20);
-        textNom = new JLabel("Entre ton nom : ");
-        champsNom = new JTextField(20);
-        
-        JLabel texteConnexion = new JLabel("te connecter : ");
-        validationConnexion = new JButton("Je me connecte");
-        butAnnuler = new JButton("Annuler");
-        
+        lesEleves = appliEleve.getListeEleve();
         controleur = new CtrlConnEleve(this,appliEleve);
-        validationConnexion.addActionListener(controleur);
-        butAnnuler.addActionListener(controleur);
         
-        this.add(textPrenom);
-        this.add(champsPrenom);
-        this.add(textNom);
-        this.add(champsNom);
-        this.add(texteConnexion);
-        this.add(validationConnexion);
-        this.add(butAnnuler);
+        tableEleve = new TableEleveVue(appliEleve);
+        
+        // Affichage :
+            // Tableau :
+        JPanel panelTable = new JPanel();
+        panelTable.add(tableEleve);
+        
+            // Consignes :
+        JLabel label1 = new JLabel("Clic sur ton prénom ou ton nom dans la liste :");
+        JPanel panelConsigne = new JPanel();
+        panelConsigne.add(label1);
+        
+            // Bouton annuler
+        JPanel panButton = new JPanel();
+        butAnnuler = new JButton("Annuler");
+        panButton.add(butAnnuler);
+        
+        this.setLayout(new BorderLayout());
+        this.add(panelConsigne,BorderLayout.NORTH);
+        this.add(panelTable, BorderLayout.CENTER);
+        this.add(panButton, BorderLayout.SOUTH);
+        
+       butAnnuler.addActionListener(controleur);
 
-    }
-    
-    public JTextField getTextPrenom(){
-        return champsPrenom;
-    }
-            
-    public JTextField getTextNom(){
-        return champsNom;
-    }
-    
-    public JButton getButValidation(){
-        return validationConnexion;
     }
     
     public JButton getButAnnuler(){
         return butAnnuler;
     }
+   
     
 }

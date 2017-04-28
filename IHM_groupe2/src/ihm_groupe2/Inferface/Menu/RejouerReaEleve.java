@@ -81,7 +81,6 @@ public class RejouerReaEleve extends JFrame {
     }
     
     public void doActions(){
-        System.out.println("tour : "+tour);
         resetDessin();
         for(Commande cmd : this.listActionActu){
             if(cmd.getCommande().equals("Avance")){
