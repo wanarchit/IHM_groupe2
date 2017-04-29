@@ -16,6 +16,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -71,8 +72,11 @@ public class Dessin extends JPanel{
         JPanel ssPanelHaut = new JPanel(new GridLayout(1,3));
         ssPanelHaut.setBorder(new javax.swing.border.BevelBorder(BevelBorder.RAISED));
         butValider = new JButton("J'ai fini");
+        butValider.setPreferredSize(new Dimension(200,75));
         butRetour = new JButton("Retour");
+        butRetour.setPreferredSize(new Dimension(200,75));
         butAnnuler = new JButton("J'annule");
+        butAnnuler.setPreferredSize(new Dimension(200,75));
         ssPanelHaut.add(butValider);
         ssPanelHaut.add(butRetour);
         ssPanelHaut.add(butAnnuler);
@@ -89,8 +93,11 @@ public class Dessin extends JPanel{
         ssPanelBas.setBorder(new javax.swing.border.BevelBorder(BevelBorder.RAISED));
         
         butEcrire = new JButton("Ecrire");
+        butEcrire.setPreferredSize(new Dimension(200,75));
         butAvancer = new JButton("Avancer");
+        butAvancer.setPreferredSize(new Dimension(200,75));
         butTourner = new JButton("Tourner");
+        butTourner.setPreferredSize(new Dimension(200,75));
         
         controleur = new CtrlDessinEleve(appli,this);
         
@@ -214,17 +221,17 @@ public class Dessin extends JPanel{
         
         JPanel panImage = new JPanel(new BorderLayout());
         panImage.setBorder(new javax.swing.border.BevelBorder(BevelBorder.RAISED));
-        panImage.setPreferredSize(new Dimension(200,200));
+        //panImage.setPreferredSize(new Dimension(500,500));
         JLabel labImageExo = new JLabel();
         labImageExo.setHorizontalAlignment(JLabel.CENTER);
         labImageExo.setVerticalAlignment(JLabel.CENTER);
-        ImageIcon iconExo = exoEnCours.getImage();
+        ImageIcon iconExo = new ImageIcon((exoEnCours.getImage()).getImage().getScaledInstance(400,400, Image.SCALE_DEFAULT));
         labImageExo.setIcon(iconExo);
         panImage.add(labImageExo, BorderLayout.CENTER);
         
         ssPanMonModel.add(labMonModel, BorderLayout.NORTH);
         ssPanMonModel.add(panImage, BorderLayout.CENTER);
-        
+        ssPanelDroite.setPreferredSize(new Dimension(400,800));
         ssPanelDroite.add(ssPanelDroite2,BorderLayout.NORTH);
         ssPanelDroite.add(ssPanMonModel,BorderLayout.CENTER);
         
