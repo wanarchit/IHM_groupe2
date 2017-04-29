@@ -14,6 +14,7 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileSystemView;
 
@@ -88,7 +89,9 @@ public class CtrlModifExo implements ActionListener {
                             choixTortue=1;
                         }else{
                             validation = false;
-                            System.out.println("Vous devez choisir une tortue");
+                            //Boîte du message d'information.
+                            JOptionPane boiteDial = new JOptionPane();
+                            boiteDial.showMessageDialog(null, "Vous devez choisir une tortue", "Modification exercice", JOptionPane.INFORMATION_MESSAGE);
                         }
                     }else{
                         comExo = "Pas de commentaire";
@@ -100,16 +103,22 @@ public class CtrlModifExo implements ActionListener {
                             choixTortue=1;
                         }else{
                             validation = false;
-                            System.out.println("Vous devez choisir une tortue");
+                            //Boîte du message d'information.
+                            JOptionPane boiteDial = new JOptionPane();
+                            boiteDial.showMessageDialog(null, "Vous devez choisir une tortue", "Modification exercice", JOptionPane.INFORMATION_MESSAGE);                            
                         }
                     }
                 }else{
                     validation = false;
-                    System.out.println("Vous devez ajouter une image pour cet exercice");
+                    //Boîte du message d'information.
+                    JOptionPane boiteDial = new JOptionPane();
+                    boiteDial.showMessageDialog(null, "Vous devez ajouter une image à cet exercice", "Modification exercice", JOptionPane.INFORMATION_MESSAGE);                    
                 }
             }else{
                 validation = false;
-                System.out.println("Vous devez renseigner le nom de l'exercice");
+                //Boîte du message d'information.
+                JOptionPane boiteDial = new JOptionPane();
+                boiteDial.showMessageDialog(null, "Vous devez renseigner le nom de l'exercice", "Modification exercice", JOptionPane.INFORMATION_MESSAGE);                
             }
             if (validation){
                 Exercice newExo = new Exercice(nomExo,comExo,choixTortue,imageExo);

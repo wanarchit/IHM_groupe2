@@ -3,7 +3,11 @@ package ihm_groupe2.Inferface.Menu;
 import Applications.ApplicationProf;
 import ihm_groupe2.Controleur.CtrlConnProf;
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -33,34 +37,55 @@ public class MenuConnexionProf extends JPanel{
     public MenuConnexionProf(ApplicationProf lAppli){
         appliProf = lAppli;
         
-        JLabel label1 = new JLabel("Merci d'entrer vos identifiants :");
-        JPanel panConsigne = new JPanel();
+        JLabel labelTitre = new JLabel("Menu de connexion - Professeur");
+        labelTitre.setFont(new java.awt.Font(Font.DIALOG,Font.ITALIC,25));
+        labelTitre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelTitre.setForeground(Color.red);
+        JLabel labV = new JLabel("");
+        JLabel label1 = new JLabel("Merci d'entrer vos identifiants");
+        label1.setFont(new java.awt.Font(Font.DIALOG,Font.BOLD,16));
+        label1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        
+        JPanel panConsigne = new JPanel(new GridLayout(4,1));
+        panConsigne.add(labelTitre);
+        panConsigne.add(labV);
         panConsigne.add(label1);
         
         JPanel panLogin = new JPanel();
-        JLabel textLogin = new JLabel("Entre votre login : ");
+        JLabel textLogin = new JLabel("Identifiant : ");
+        textLogin.setFont(new java.awt.Font(Font.DIALOG,Font.BOLD,16));
+        textLogin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         champsLogin = new JTextField(20);
         panLogin.add(textLogin);
         panLogin.add(champsLogin);
+        
         JPanel panMdp = new JPanel();
-        JLabel textMdp = new JLabel("Entre votre mot de passe : ");
+        JLabel textMdp = new JLabel("Mot de passe : ");
+        textMdp.setFont(new java.awt.Font(Font.DIALOG,Font.BOLD,16));
+        textMdp.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         champsMdp = new JPasswordField(20);
         panMdp.add(textMdp);
         panMdp.add(champsMdp);
         
         JPanel panIden = new JPanel();
+        panIden.add(new JLabel(new ImageIcon(getClass().getResource("/Images/ConnexionProf.png"))));
         panIden.add(panLogin);
         panIden.add(panMdp);
         
         JPanel panButVal = new JPanel();
-        validationConnexion = new JButton("Se connecter");
+        validationConnexion = new JButton(new ImageIcon(getClass().getResource("/Images/Connexion.jpg")));
+        validationConnexion.setPreferredSize(new Dimension(200,50));
+        validationConnexion.setBorderPainted(false);
+        
         panButVal.add(validationConnexion);
         
         JPanel panButAnn = new JPanel();
-        annulerConnexion = new JButton("Annuler");
+        annulerConnexion = new JButton(new ImageIcon(getClass().getResource("/Images/Annuler.jpg")));
+        annulerConnexion.setPreferredSize(new Dimension(200,50));
+        annulerConnexion.setBorderPainted(false);
         panButAnn.add(annulerConnexion);
         
-        JPanel panBut = new JPanel(new GridLayout(1,2));
+        JPanel panBut = new JPanel();
         panBut.add(panButVal);
         panBut.add(panButAnn);
         

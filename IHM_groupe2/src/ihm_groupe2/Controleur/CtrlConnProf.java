@@ -6,6 +6,7 @@ import ihm_groupe2.Inferface.Menu.MenuProf;
 import ihm_groupe2.Noyau_fonctionnel.Professeur;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
 
 /**
  * Classe CtrlConnEleve
@@ -34,13 +35,19 @@ public class CtrlConnProf implements ActionListener {
                     if (leProf != null){
                         appli.seConnecter(leProf);
                     }else{
-                        System.out.println("Vos identifiants ne sont pas corrects !");
+                         //Boîte du message d'information.
+                        JOptionPane boiteDial = new JOptionPane();
+                        boiteDial.showMessageDialog(null, "Vos identifiants sont incorrects", "Connexion", JOptionPane.INFORMATION_MESSAGE);
                     }
                 }else{
-                    System.out.println("Vous devez renseigner votre mot de passe");
+                    //Boîte du message d'information.
+                    JOptionPane boiteDial = new JOptionPane();
+                    boiteDial.showMessageDialog(null, "Vous devez renseigner votre mot de passe", "Connexion", JOptionPane.INFORMATION_MESSAGE);
                 }
             }else{
-                System.out.println("Vous devez renseigner votre login");
+                //Boîte du message d'information.
+                JOptionPane boiteDial = new JOptionPane();
+                boiteDial.showMessageDialog(null, "Vous devez renseigner votre login", "Connexion", JOptionPane.INFORMATION_MESSAGE);
             }
         }else if(e.getSource() == leMenu.getButAnnuler()){
             appli.annulerConnexion();
