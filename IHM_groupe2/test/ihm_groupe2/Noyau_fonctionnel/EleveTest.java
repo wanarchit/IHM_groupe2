@@ -28,7 +28,7 @@ public class EleveTest {
         exo = new Exercice("Ex1","",1,new ImageIcon());
         p = new Professeur("logProf","12345","LeGrand","Jean");
         c = new Classe("CM1",p);
-        e = new Eleve(c,"Jean","Bon");
+        e = new Eleve(c,"Jean","Bon",null);
         r1 = new Realisation(1,"Joli","Bien",exo);
         r2 = new Realisation(2,"Moins joli","Moins bien",exo);
     }

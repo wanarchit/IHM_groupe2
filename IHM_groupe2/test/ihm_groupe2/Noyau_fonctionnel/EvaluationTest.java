@@ -28,7 +28,7 @@ public class EvaluationTest {
     public void setUp() {
         p = new Professeur("logProf","12345","LeGrand","Jean");
         c = new Classe("CM1",p);
-        el = new Eleve(c,"Jean","Bon");
+        el = new Eleve(c,"Jean","Bon",null);
         exo = new Exercice("Ex1","",1,new ImageIcon());
         e = new Evaluation(el,exo,false);
     }

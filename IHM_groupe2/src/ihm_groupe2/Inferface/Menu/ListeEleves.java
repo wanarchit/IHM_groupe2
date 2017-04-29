@@ -33,6 +33,7 @@ public class ListeEleves extends JScrollPane {
     tableEleves.setRowSelectionAllowed(true);
     tableEleves.setCellSelectionEnabled(true);
     tableEleves.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+    tableEleves.setRowHeight(120);
     
     this.add(tableEleves);
     

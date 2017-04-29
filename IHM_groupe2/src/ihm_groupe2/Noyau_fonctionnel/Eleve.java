@@ -1,6 +1,8 @@
 package ihm_groupe2.Noyau_fonctionnel;
 
+import java.awt.Image;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 
 
 /**
@@ -15,6 +17,7 @@ public class Eleve extends Personne{
     
     private ArrayList<Realisation> lesRealisations;
     private Classe laClasse;
+    private ImageIcon image;
     
     /**
      * Constructeur de la classe Eleve, permet de créer un élève
@@ -23,11 +26,12 @@ public class Eleve extends Personne{
      * @param leNom : le nom de l'élève
      * @param lePrenom  : le prénom de l'élève
      */
-    public Eleve(Classe maClasse, String leNom, String lePrenom){
+    public Eleve(Classe maClasse, String leNom, String lePrenom, ImageIcon pict){
         super(leNom,lePrenom);
         laClasse = maClasse;
         lesRealisations = new ArrayList<Realisation>();
         laClasse.ajoutEleve(this);
+        image = new ImageIcon((pict).getImage().getScaledInstance(120,120, Image.SCALE_DEFAULT));
     }
     
     
@@ -47,6 +51,10 @@ public class Eleve extends Personne{
      */
     public Classe getLaClasse() {
         return laClasse;
+    }
+    
+    public ImageIcon getIconEleve(){
+        return image;
     }
     
     /**

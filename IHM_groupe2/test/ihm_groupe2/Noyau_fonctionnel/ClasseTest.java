@@ -94,14 +94,15 @@ public class ClasseTest {
     @Test
     public void testAjoutEleve() {
         System.out.println("ajoutEleve");
-        e = new Eleve(c,"Rousse","Delphine");
+        
+        e = new Eleve(c,"Rousse","Delphine",null);
         assertEquals(c.getListEleveClasse().size(),1);
     }
     
     @Test
     public void testAjoutEleveIdentique() {
         System.out.println("Eleve identique");
-        e = new Eleve(c,"Rousse","Delphine");
+        e = new Eleve(c,"Rousse","Delphine",null);
         c.ajoutEleve(e);
         assertEquals(c.getListEleveClasse().size(),1);
     }

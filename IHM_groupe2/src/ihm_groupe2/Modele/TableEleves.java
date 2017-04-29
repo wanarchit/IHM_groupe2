@@ -8,7 +8,9 @@ package ihm_groupe2.Modele;
 import ihm_groupe2.Noyau_fonctionnel.Classe;
 import ihm_groupe2.Noyau_fonctionnel.Eleve;
 import ihm_groupe2.Noyau_fonctionnel.Professeur;
+import java.awt.Image;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 import javax.swing.table.AbstractTableModel;
 
 /**
@@ -17,7 +19,7 @@ import javax.swing.table.AbstractTableModel;
  */
 public class TableEleves extends AbstractTableModel {
     
-    private String[] columnName = {"Prénom", "Nom", "Classe"};
+    private String[] columnName = {"Prénom", "Nom", "Classe", "Icone"};
     private ArrayList<Eleve> listeEleve;
     
     public TableEleves(ArrayList<Eleve> listeEleves) {   
@@ -39,6 +41,7 @@ public class TableEleves extends AbstractTableModel {
             case 0: return"Prénom";
             case 1: return"Nom";
             case 2: return"Classe";
+            case 3: return"Icone";
             default: return "";
         }
     }
@@ -50,6 +53,9 @@ public class TableEleves extends AbstractTableModel {
             case 0: return listeEleve.get(rowIndex).getPrenomPersonne();
             case 1: return listeEleve.get(rowIndex).getNomPersonne();
             case 2: return listeEleve.get(rowIndex).getLaClasse().getNomClasse();
+            case 3: 
+                ImageIcon ic = new ImageIcon((listeEleve.get(rowIndex).getIconEleve()).getImage().getScaledInstance(120, 120, Image.SCALE_DEFAULT));
+                return ic;
             default: return "";
         }
     }
@@ -64,6 +70,7 @@ public class TableEleves extends AbstractTableModel {
     
     public Class getColumnClass(int columnIndex){
         switch(columnIndex){
+            case 3 : return ImageIcon.class;
             default:
                 return Object.class;
         }

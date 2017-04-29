@@ -42,7 +42,7 @@ public class TableEleveVue extends JScrollPane{
         tableEleves.setRowSelectionAllowed(true);
         tableEleves.setCellSelectionEnabled(true);
         tableEleves.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        tableEleves.setRowHeight(50);
+        tableEleves.setRowHeight(120);
         
         
         

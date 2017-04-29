@@ -67,9 +67,12 @@ public class ApplicationProf {
         lesClasses.add(maClasse);
         lesClasses.add(maClasse2);
         mesDessins = new ArrayList();
-        eleve = new Eleve(maClasse,"Rousse","Delphine");
-        eleve2 = new Eleve(maClasse2,"Gand","Paul");
-        eleve3 = new Eleve(maClasse2,"Conrady","Marin");
+        ImageIcon imageEleve = new ImageIcon(getClass().getResource("/Applications/Images_eleves/eleve_f1.png"));
+        eleve = new Eleve(maClasse,"Rousse","Delphine",imageEleve);
+        ImageIcon imageEleve2 = new ImageIcon(getClass().getResource("/Applications/Images_eleves/eleve_g1.png"));
+        eleve2 = new Eleve(maClasse2,"Gand","Paul",imageEleve2);
+        ImageIcon imageEleve3 = new ImageIcon(getClass().getResource("/Applications/Images_eleves/eleve_g2.png"));
+        eleve3 = new Eleve(maClasse2,"Conrady","Marin",imageEleve3);
         lesEleves.add(eleve);
         lesEleves.add(eleve2);
         lesEleves.add(eleve3);

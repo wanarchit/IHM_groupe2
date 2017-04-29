@@ -41,8 +41,10 @@ public class ApplicationEleve {
         lesClasses = new ArrayList();
         lesClasses.add(maClasse);
         mesDessins = new ArrayList();
-        eleve = new Eleve(maClasse,"Rousse","Delphine");
-        eleve2 = new Eleve(maClasse,"Gand","Paul");
+        ImageIcon imageEleve = new ImageIcon(getClass().getResource("/Applications/Images_eleves/eleve_f1.png"));
+        eleve = new Eleve(maClasse,"Rousse","Delphine",imageEleve);
+        ImageIcon imageEleve2 = new ImageIcon(getClass().getResource("/Applications/Images_eleves/eleve_g1.png"));
+        eleve2 = new Eleve(maClasse,"Gand","Paul",imageEleve2);
         lesEleves = new ArrayList();
         lesEleves.add(eleve);
         lesEleves.add(eleve2);

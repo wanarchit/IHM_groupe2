@@ -48,6 +48,7 @@ public class SqliteJDBC {
       "Nom_Eleve      CHAR(50) NOT NULL," +
       "Id_Classe       INT      NOT NULL,"+
       " Prenom_Eleve   CHAR(50) NOT NULL,"+
+      " Icon_Eleve      CHAR(100) NOT NULL,"+
       "FOREIGN KEY(Id_Classe) REFERENCES CLASSE(ID_Classe))";
       stmt.executeUpdate(tableEleve);
       
