@@ -11,8 +11,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.SwingConstants;
-import javax.swing.border.BevelBorder;
+
 
 /**
  * Classe MenuPrincipal
@@ -36,51 +35,44 @@ public class MenuPrincipal extends JPanel{
     public MenuPrincipal(MainFrame main){
         fenetreMain = main;
         
-        JPanel panel1 = new JPanel(new BorderLayout());
-        //panel1.setBorder(new javax.swing.border.BevelBorder(BevelBorder.RAISED));
-        JLabel labelBonjour = new JLabel("BONJOUR");
-        labelBonjour.setFont(new java.awt.Font(Font.SERIF,Font.BOLD,40));
+        JPanel panel1 = new JPanel(new GridLayout(2,1));
+        JLabel labelBonjour = new JLabel("Bienvenue");
+        labelBonjour.setFont(new java.awt.Font(Font.DIALOG,Font.BOLD,40));
         labelBonjour.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        //labelBonjour.setVerticalAlignment(javax.swing.SwingConstants.CENTER);
-        panel1.add(labelBonjour,BorderLayout.CENTER);
         
-        JPanel panel2 = new JPanel();
         JLabel texteMenu = new JLabel("Se connecter en tant que :");
-        texteMenu.setFont(new java.awt.Font(Font.SERIF,Font.BOLD,18));
-        //texteMenu.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        panel2.add(texteMenu);
+        texteMenu.setFont(new java.awt.Font(Font.DIALOG,Font.BOLD,18));
+        texteMenu.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        
+        panel1.add(labelBonjour);
+        panel1.add(texteMenu);
         
         JPanel panel3 = new JPanel(new GridLayout(1,2));
         JPanel ssPanel1 = new JPanel();
-        butConnectEleve = new JButton("Eleve");
-        butConnectEleve.setPreferredSize(new Dimension(200,52));
-       // butConnectEleve.setIcon(new ImageIcon(getClass().getResource("boutton_game.png")));
-        //butConnectEleve.setText("Inventory");
-        butConnectEleve.setForeground(Color.black);
-        butConnectEleve.setFont(new java.awt.Font(Font.SERIF,Font.BOLD,25));
-        //butConnectEleve.setVerticalTextPosition(SwingConstants.CENTER);
-        //butConnectEleve.setHorizontalTextPosition(SwingConstants.CENTER);
+        butConnectEleve = new JButton(new ImageIcon(getClass().getResource("/Images/Enfant.jpg")));
+        butConnectEleve.setPreferredSize(new Dimension(400,400));
         ssPanel1.add(butConnectEleve);
+        
         JPanel ssPanel2 = new JPanel();
-        butConnectProf = new JButton("Professeur");
-        butConnectProf.setPreferredSize(new Dimension(200,52));
-        butConnectProf.setForeground(Color.black);
-        butConnectProf.setFont(new java.awt.Font(Font.SERIF,Font.BOLD,25));
+        butConnectProf = new JButton(new ImageIcon(getClass().getResource("/Images/Professeur.png")));
+        butConnectProf.setPreferredSize(new Dimension(400,400));
         ssPanel2.add(butConnectProf);
         panel3.add(ssPanel1);
         panel3.add(ssPanel2);
         
         JPanel panel4 = new JPanel(new BorderLayout());
-        panel4.add(panel2,BorderLayout.NORTH);
-        panel4.add(panel3,BorderLayout.CENTER);
+        //panel4.add(panel2,BorderLayout.NORTH);
+        //panel4.add(panel3,BorderLayout.CENTER);
+        panel4.add(panel1,BorderLayout.NORTH);
+        panel4.add(panel3,BorderLayout.SOUTH);
         
         controleur = new CtrlMenuPrincipal(this);
         butConnectEleve.addActionListener(controleur);
         butConnectProf.addActionListener(controleur);
         
         
-        this.setLayout(new GridLayout(2,1));
-        this.add(panel1);
+        //this.setLayout(new GridLayout(1,1));
+        //this.add(panel1);
         this.add(panel4);
         this.setBackground(Color.WHITE);
         
