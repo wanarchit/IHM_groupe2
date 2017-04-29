@@ -29,7 +29,7 @@ public class MainFrame extends JFrame{
         
         this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         this.setTitle("Application gestion exercices");
-        this.setSize(1300, 800);
+        this.setSize(1200, 700);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
         //SqliteJDBC db = new SqliteJDBC();
