@@ -1,13 +1,13 @@
 package ihm_groupe2.Controleur;
 
 import Applications.ApplicationEleve;
-import ihm_groupe2.Inferface.Dessin.Dessin;
+import ihm_groupe2.Inferface.Menu.Dessin;
 import ihm_groupe2.Noyau_fonctionnel.Commande;
 import ihm_groupe2.Noyau_fonctionnel.TortueCouleur;
-import ihm_groupe2.Noyau_fonctionnel.TortueG;
 import ihm_groupe2.Noyau_fonctionnel.TortueRapide;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -29,6 +29,7 @@ public class CtrlDessinEleve implements ActionListener{
             appli.annulerDessin(leDessin.getExoEnCours());
             
         }else if(e.getSource() == leDessin.getButAnnuler()){
+
             if (leDessin.getNewRealisation().getListeCommande().size() != 0){
                 leDessin.getNewRealisation().supprimeDerniereCommande();
                 leDessin.getLaTortue().reset();
@@ -40,7 +41,23 @@ public class CtrlDessinEleve implements ActionListener{
                 
                 appli.rejouerListeActions(leDessin.getNewRealisation().getListeCommande());
                 leDessin.RefreshListAction();
+                if (leDessin.getLaTortue().getDirection() == 0){        // vers la droite
+                    leDessin.getButAvancer().setIcon(new ImageIcon(getClass().getResource("/Applications/images_boutons/droite.png")));
+                }else if (leDessin.getLaTortue().getDirection() == 1){  // vers le bas
+                    leDessin.getButAvancer().setIcon(new ImageIcon(getClass().getResource("/Applications/images_boutons/reculer.png")));
+                }else if (leDessin.getLaTortue().getDirection() == 2){      // vers la gauche
+                    leDessin.getButAvancer().setIcon(new ImageIcon(getClass().getResource("/Applications/images_boutons/gauche.png")));
+                }else{      // vers le haut
+                    leDessin.getButAvancer().setIcon(new ImageIcon(getClass().getResource("/Applications/images_boutons/avancer.png")));
+                }
+                if (!leDessin.getLaTortue().enTrace()){
+                    leDessin.getButEcrire().setIcon(new ImageIcon(getClass().getResource("/Applications/images_boutons/ecrit.png")));
+                }else{
+                    leDessin.getButEcrire().setIcon(new ImageIcon(getClass().getResource("/Applications/images_boutons/ecrit_pas.png")));
+                }
             }
+
+            
         }else if(e.getSource() == leDessin.getButValidation()){
             appli.enregistrerDessin(leDessin.getNewRealisation());
             
@@ -54,15 +71,28 @@ public class CtrlDessinEleve implements ActionListener{
             Commande tourne = new Commande("Tourne",leDessin.getLaTortue());
             leDessin.getNewRealisation().ajouterCommande(tourne);
             leDessin.RefreshListAction();
+
+            if (leDessin.getLaTortue().getDirection() == 0){        // vers la droite
+                leDessin.getButAvancer().setIcon(new ImageIcon(getClass().getResource("/Applications/images_boutons/droite.png")));
+            }else if (leDessin.getLaTortue().getDirection() == 1){  // vers le bas
+                leDessin.getButAvancer().setIcon(new ImageIcon(getClass().getResource("/Applications/images_boutons/reculer.png")));
+            }else if (leDessin.getLaTortue().getDirection() == 2){      // vers la gauche
+                leDessin.getButAvancer().setIcon(new ImageIcon(getClass().getResource("/Applications/images_boutons/gauche.png")));
+            }else{      // vers le haut
+                leDessin.getButAvancer().setIcon(new ImageIcon(getClass().getResource("/Applications/images_boutons/avancer.png")));
+            }
+
         }else if (e.getSource() == leDessin.getButEcrire()){
             leDessin.getLaTortue().tracer(!leDessin.getLaTortue().enTrace());
             
             if (!leDessin.getLaTortue().enTrace()){
                 Commande ecritPas = new Commande("N'écrit plus",leDessin.getLaTortue());
                 leDessin.getNewRealisation().ajouterCommande(ecritPas);
+                leDessin.getButEcrire().setIcon(new ImageIcon(getClass().getResource("/Applications/images_boutons/ecrit.png")));
             }else{
                 Commande ecrit = new Commande("Ecrit",leDessin.getLaTortue());
                 leDessin.getNewRealisation().ajouterCommande(ecrit);
+                leDessin.getButEcrire().setIcon(new ImageIcon(getClass().getResource("/Applications/images_boutons/ecrit_pas.png")));
             }
 
             leDessin.RefreshListAction();

@@ -1,6 +1,7 @@
 package ihm_groupe2.Controleur;
 
 import Applications.MainFrame;
+import ihm_groupe2.Inferface.Menu.Dessin;
 import ihm_groupe2.Inferface.Menu.MenuEleve;
 import ihm_groupe2.Inferface.Menu.MenuPrincipal;
 import ihm_groupe2.Inferface.Menu.MenuProf;
@@ -48,7 +49,7 @@ public class CtrlWindows implements WindowListener{
             fenetre.revalidate();
         }else{
             int reponse = JOptionPane.showConfirmDialog(fenetre,
-                             "Voulez-vous quitter l'application",
+                             "Voulez-vous quitter l'application ?",
                              "Confirmation",
                              JOptionPane.YES_NO_OPTION,
                              JOptionPane.QUESTION_MESSAGE);

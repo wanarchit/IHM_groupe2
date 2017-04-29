@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ihm_groupe2.Inferface.Dessin;
+package ihm_groupe2.Inferface.Menu;
 
 import Applications.ApplicationEleve;
 import ihm_groupe2.Controleur.CtrlDessinEleve;
@@ -11,10 +11,13 @@ import ihm_groupe2.Noyau_fonctionnel.Canvas;
 import ihm_groupe2.Noyau_fonctionnel.Commande;
 import ihm_groupe2.Noyau_fonctionnel.Exercice;
 import ihm_groupe2.Noyau_fonctionnel.Realisation;
+import ihm_groupe2.Noyau_fonctionnel.TortueCouleur;
 import ihm_groupe2.Noyau_fonctionnel.TortueG;
+import ihm_groupe2.Noyau_fonctionnel.TortueRapide;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.util.ArrayList;
@@ -62,6 +65,11 @@ public class Dessin extends JPanel{
         appli=lAppli;
         exoEnCours = exo;
         exoEnCours.getMaTortue().reset();
+        if (exoEnCours.getMaTortue().getClass() == TortueCouleur.class){
+            ((TortueCouleur)exoEnCours.getMaTortue()).setCouleur("black");
+        }else if(exoEnCours.getMaTortue().getClass() == TortueRapide.class){
+            ((TortueRapide)exoEnCours.getMaTortue()).setVitesse(1);
+        }
         
         laRealisation = new Realisation(appli.getNumTentativeSuiv(exoEnCours),"","",exoEnCours);
         
@@ -71,11 +79,17 @@ public class Dessin extends JPanel{
         
         JPanel ssPanelHaut = new JPanel(new GridLayout(1,3));
         ssPanelHaut.setBorder(new javax.swing.border.BevelBorder(BevelBorder.RAISED));
-        butValider = new JButton("J'ai fini");
+        //butValider = new JButton("J'ai fini");
+        butValider = new JButton(new ImageIcon(getClass().getResource("/Applications/images_boutons/valider.png")));
+        butValider.setBackground(Color.white);
         butValider.setPreferredSize(new Dimension(200,75));
-        butRetour = new JButton("Retour");
+        //butRetour = new JButton("Retour");
+        butRetour = new JButton(new ImageIcon(getClass().getResource("/Applications/images_boutons/but_quitter.png")));
+        butRetour.setBackground(Color.white);
         butRetour.setPreferredSize(new Dimension(200,75));
-        butAnnuler = new JButton("J'annule");
+        //butAnnuler = new JButton("J'annule");
+        butAnnuler = new JButton(new ImageIcon(getClass().getResource("/Applications/images_boutons/annuler.png")));
+        butAnnuler.setBackground(Color.white);
         butAnnuler.setPreferredSize(new Dimension(200,75));
         ssPanelHaut.add(butValider);
         ssPanelHaut.add(butRetour);
@@ -84,19 +98,26 @@ public class Dessin extends JPanel{
         
         /** ssPanel Milieu : canvas */
         JPanel ssPanelMilieu = new JPanel();
-        ssPanelMilieu.setBorder(new javax.swing.border.BevelBorder(BevelBorder.RAISED));
+        //ssPanelMilieu.setBorder(new javax.swing.border.BevelBorder(BevelBorder.RAISED));
         ssPanelMilieu.add (Canvas.getCanvasPanel(), BorderLayout.CENTER);
+        ssPanelMilieu.setBackground(Color.white);
 
         
         /** ssPanel bas : boutons actions : écrire / avancer / tourner */
         JPanel ssPanelBas = new JPanel(new GridLayout(1,3));
         ssPanelBas.setBorder(new javax.swing.border.BevelBorder(BevelBorder.RAISED));
         
-        butEcrire = new JButton("Ecrire");
+        //butEcrire = new JButton("Ecrire");
+        butEcrire = new JButton(new ImageIcon(getClass().getResource("/Applications/images_boutons/ecrit_pas.png")));
+        butEcrire.setBackground(Color.white);
         butEcrire.setPreferredSize(new Dimension(200,75));
-        butAvancer = new JButton("Avancer");
+        //butAvancer = new JButton("Avancer");
+        butAvancer = new JButton(new ImageIcon(getClass().getResource("/Applications/images_boutons/avancer.png")));
+        butAvancer.setBackground(Color.white);
         butAvancer.setPreferredSize(new Dimension(200,75));
-        butTourner = new JButton("Tourner");
+        //butTourner = new JButton("Tourner");
+        butTourner = new JButton(new ImageIcon(getClass().getResource("/Applications/images_boutons/tourne.png")));
+        butTourner.setBackground(Color.white);
         butTourner.setPreferredSize(new Dimension(200,75));
         
         controleur = new CtrlDessinEleve(appli,this);
@@ -149,9 +170,15 @@ public class Dessin extends JPanel{
             
         }else{
             // Tortue rapide
-            butPlusVite = new JButton("Vite");
-            butMoinsVite = new JButton("Lent");
-             butPlusVite.addActionListener(controleur);
+            //butPlusVite = new JButton("Vite");
+            butPlusVite = new JButton(new ImageIcon(getClass().getResource("/Applications/images_boutons/rapide.png")));
+            butPlusVite.setPreferredSize(new Dimension(200,35));
+            butPlusVite.setBackground(Color.white);
+            //butMoinsVite = new JButton("Lent");
+            butMoinsVite = new JButton(new ImageIcon(getClass().getResource("/Applications/images_boutons/lent.png")));
+            butMoinsVite.setPreferredSize(new Dimension(200,35));
+            butMoinsVite.setBackground(Color.white);
+            butPlusVite.addActionListener(controleur);
             butMoinsVite.addActionListener(controleur);
             
             JPanel panelActionRapide = new JPanel(new GridLayout(2,1));
@@ -166,7 +193,8 @@ public class Dessin extends JPanel{
         /** ssPanel gauche : liste actions */
         JPanel ssPanelGauche = new JPanel(new BorderLayout());
         ssPanelGauche.setBorder(new javax.swing.border.BevelBorder(BevelBorder.RAISED));
-        JLabel labelJai = new JLabel("J'ai ...                   ");
+        JLabel labelJai = new JLabel("Ma tortue ...                   ");
+        labelJai.setFont(new java.awt.Font(Font.DIALOG,Font.BOLD,18));
         
         String lesCmd = "";
         
@@ -203,25 +231,28 @@ public class Dessin extends JPanel{
         }else{
             labTypeTortue.setText("Tortue Rapide");
         }
-        
+        labTypeTortue.setFont(new java.awt.Font(Font.DIALOG,Font.BOLD,24));
         JLabel labNomExo = new JLabel(exoEnCours.getNom());
         labNomExo.setHorizontalAlignment(JLabel.CENTER);
         labNomExo.setVerticalAlignment(JLabel.CENTER);
-        JLabel lab13 = new JLabel("tentative 1");
+        labNomExo.setFont(new java.awt.Font(Font.DIALOG,Font.BOLD,22));
+        JLabel lab13 = new JLabel("Nouvelle tentative");
+        lab13.setFont(new java.awt.Font(Font.DIALOG,Font.BOLD,18));
         lab13.setHorizontalAlignment(JLabel.CENTER);
         lab13.setVerticalAlignment(JLabel.CENTER);
         
         JPanel ssPanelDroite2 = new JPanel(new GridLayout(3,1));
+        ssPanelDroite2.setBorder(new javax.swing.border.BevelBorder(BevelBorder.RAISED));
         ssPanelDroite2.add(labTypeTortue);
         ssPanelDroite2.add(labNomExo);
         ssPanelDroite2.add(lab13);
         
         JPanel ssPanMonModel = new JPanel(new BorderLayout());
-        JLabel labMonModel = new JLabel("Mon model :");
-        
+        JLabel labMonModel = new JLabel("Mon modèle :");
+        labMonModel.setFont(new java.awt.Font(Font.DIALOG,Font.BOLD,18));
+        labMonModel.setHorizontalAlignment(JLabel.CENTER);
+
         JPanel panImage = new JPanel(new BorderLayout());
-        panImage.setBorder(new javax.swing.border.BevelBorder(BevelBorder.RAISED));
-        //panImage.setPreferredSize(new Dimension(500,500));
         JLabel labImageExo = new JLabel();
         labImageExo.setHorizontalAlignment(JLabel.CENTER);
         labImageExo.setVerticalAlignment(JLabel.CENTER);
@@ -229,8 +260,8 @@ public class Dessin extends JPanel{
         labImageExo.setIcon(iconExo);
         panImage.add(labImageExo, BorderLayout.CENTER);
         
-        ssPanMonModel.add(labMonModel, BorderLayout.NORTH);
-        ssPanMonModel.add(panImage, BorderLayout.CENTER);
+        ssPanMonModel.add(labMonModel, BorderLayout.CENTER);
+        ssPanMonModel.add(panImage, BorderLayout.SOUTH);
         ssPanelDroite.setPreferredSize(new Dimension(400,800));
         ssPanelDroite.add(ssPanelDroite2,BorderLayout.NORTH);
         ssPanelDroite.add(ssPanMonModel,BorderLayout.CENTER);
@@ -341,6 +372,7 @@ public class Dessin extends JPanel{
         }
         lesCmd+="</html>";
         labelAction.setText(lesCmd);
+        labelAction.setFont(new java.awt.Font(Font.DIALOG,Font.BOLD,18));
     }
 
 }

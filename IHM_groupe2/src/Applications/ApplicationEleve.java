@@ -1,6 +1,6 @@
 package Applications;
 
-import ihm_groupe2.Inferface.Dessin.Dessin;
+import ihm_groupe2.Inferface.Menu.Dessin;
 import ihm_groupe2.Inferface.Menu.MenuConnexionEleve;
 import ihm_groupe2.Inferface.Menu.MenuEleve;
 import ihm_groupe2.Inferface.Menu.MenuPrincipal;

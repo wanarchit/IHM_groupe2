@@ -95,7 +95,9 @@ public class MenuEleve extends JPanel{
         
         /** Boutons **/
         JPanel ssPanButPrec = new JPanel();
-        butPrecExo = new JButton("Précédent");
+        butPrecExo = new JButton(new ImageIcon(getClass().getResource("/Applications/images_boutons/precedent.png")));
+        butPrecExo.setPreferredSize(new Dimension(150,75));
+        
         if (appli.exercicePrecExist(exoEnCours)){
             butPrecExo.setEnabled(true);
         }else{
@@ -106,7 +108,8 @@ public class MenuEleve extends JPanel{
         panButPrec.add(ssPanButPrec);
         
         JPanel ssPanButSuiv = new JPanel();
-        butSuivExo = new JButton("Suivant");
+        butSuivExo = new JButton(new ImageIcon(getClass().getResource("/Applications/images_boutons/suivant.png")));
+        butSuivExo.setPreferredSize(new Dimension(150,75));
         if (appli.exerciceSuivExist(exoEnCours)){
             butSuivExo.setEnabled(true);
         }else{
@@ -204,7 +207,8 @@ public class MenuEleve extends JPanel{
         
         /** Boutons **/
         JPanel ssPanButPrecT = new JPanel();
-        butPrecTent = new JButton("Précédent");
+        butPrecTent = new JButton(new ImageIcon(getClass().getResource("/Applications/images_boutons/precedent.png")));
+        butPrecTent.setPreferredSize(new Dimension(150,75));
         ssPanButPrecT.add(butPrecTent);
         if (lesTents.size() != 0){
             if (appli.tentativePrecExist(exoEnCours,tentEnCours)){
@@ -219,7 +223,8 @@ public class MenuEleve extends JPanel{
         panButPrecT.add(ssPanButPrecT);
         
         JPanel ssPanButSuivT = new JPanel();
-        butSuivTent = new JButton("Suivant");
+        butSuivTent = new JButton(new ImageIcon(getClass().getResource("/Applications/images_boutons/suivant.png")));
+        butSuivTent.setPreferredSize(new Dimension(150,75));
         ssPanButSuivT.add(butSuivTent);
         if (lesTents.size() != 0){
             if (appli.tentativeSuivExist(exoEnCours,tentEnCours)){

@@ -2,17 +2,15 @@ package ihm_groupe2.Inferface.Menu;
 
 import Applications.ApplicationEleve;
 import ihm_groupe2.Controleur.CtrlConnEleve;
-import ihm_groupe2.Modele.TableEleves;
 import ihm_groupe2.Noyau_fonctionnel.Eleve;
 import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.JTextField;
-import javax.swing.ListSelectionModel;
 
 /**
  * Classe MenuConnexionEleve
@@ -50,12 +48,15 @@ public class MenuConnexionEleve extends JPanel{
         
             // Consignes :
         JLabel label1 = new JLabel("Clic sur ton prénom ou ton nom dans la liste :");
+        label1.setFont(new java.awt.Font(Font.DIALOG,Font.BOLD,18));
         JPanel panelConsigne = new JPanel();
         panelConsigne.add(label1);
         
             // Bouton annuler
         JPanel panButton = new JPanel();
-        butAnnuler = new JButton("Annuler");
+        //butAnnuler = new JButton("Annuler");
+        butAnnuler = new JButton(new ImageIcon(getClass().getResource("/Applications/images_boutons/but_exit.png")));
+        butAnnuler.setPreferredSize(new Dimension(100,100));
         panButton.add(butAnnuler);
         
         this.setLayout(new BorderLayout());
