@@ -3,6 +3,9 @@ package ihm_groupe2.Inferface.Menu;
 import Applications.ApplicationProf;
 import ihm_groupe2.Controleur.CtrlFormExo;
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
 import javax.swing.ButtonGroup;
@@ -35,19 +38,22 @@ public class PanelCreerExo extends JPanel{
     private JRadioButton butRadTortueRap;
     private JRadioButton butRadTortueCoul;
     private JButton butAddImage;
-     private ImageIcon imageExo; // Permet de charger l'image de l'exercice
-     private JLabel affImageExo;
+    private ImageIcon imageExo; // Permet de charger l'image de l'exercice
+    private JLabel affImageExo;
     
     public PanelCreerExo(ApplicationProf lAppli){
         appli = lAppli;
-        JLabel textEntete = new JLabel("CREATION D'UN EXERCICE : ");
-        textEntete.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        JLabel textEntete = new JLabel(new ImageIcon(getClass().getResource("/Images/CreerExo.png")));
+        textEntete.setPreferredSize(new Dimension(250,51));
         
         JPanel panel0 = new JPanel(new BorderLayout());
         panel0.setBorder(new javax.swing.border.BevelBorder(BevelBorder.RAISED));
         panel0.add(textEntete,BorderLayout.CENTER);
+        panel0.setBackground(Color.white);
         
-        JLabel textChampsNomExo = new JLabel("Entrer le nom de l'exercice :");
+        JLabel textChampsNomExo = new JLabel("Saisir le nom de l'exercice :");
+        textChampsNomExo.setFont(new java.awt.Font(Font.DIALOG,Font.ITALIC,16));
+        textChampsNomExo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         textFieldNomExo = new JTextField(20);
         
         JPanel panel1 = new JPanel();
@@ -55,8 +61,10 @@ public class PanelCreerExo extends JPanel{
         panel1.add(textFieldNomExo);
         
         
-        JLabel textChampsCommExo = new JLabel("Entrer un commentaire pour cet exercice :");
-        textFieldCommExo = new JTextField(20);
+        JLabel textChampsCommExo = new JLabel("Saisir un commentaire pour cet exercice :");
+        textChampsCommExo.setFont(new java.awt.Font(Font.DIALOG,Font.ITALIC,16));
+        textChampsCommExo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        textFieldCommExo = new JTextField(50);
         
         JPanel panel2 = new JPanel();
         panel2.add(textChampsCommExo);
@@ -64,58 +72,64 @@ public class PanelCreerExo extends JPanel{
         
         
         JLabel textChoixTortue = new JLabel("Choissisez votre tortue :");
+        textChoixTortue.setFont(new java.awt.Font(Font.DIALOG,Font.ITALIC,16));
+        textChoixTortue.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         
         
         groupe =  new ButtonGroup();
         butRadTortueNorm = new JRadioButton("Tortue Normale");
+        butRadTortueNorm.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        butRadTortueNorm.setFont(new java.awt.Font(Font.DIALOG,Font.ITALIC,16));
         butRadTortueRap = new JRadioButton("Tortue Rapide");
+        butRadTortueRap.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        butRadTortueRap.setFont(new java.awt.Font(Font.DIALOG,Font.ITALIC,16));
         butRadTortueCoul = new JRadioButton("Tortue Couleur");
+        butRadTortueCoul.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        butRadTortueCoul.setFont(new java.awt.Font(Font.DIALOG,Font.ITALIC,16));
     // ajout des boutons radio dans le groupe bg
         groupe.add(butRadTortueNorm);
         groupe.add(butRadTortueRap);
         groupe.add(butRadTortueCoul);
         
-        JPanel panel3 = new JPanel();
-        panel3.add(textChoixTortue);
+        JPanel panel3 = new JPanel(new GridLayout(2,3));
+        //panel3.add(textChoixTortue);
         panel3.add(butRadTortueNorm);
         panel3.add(butRadTortueRap);
         panel3.add(butRadTortueCoul);
+        panel3.add(new JLabel(new ImageIcon(getClass().getResource("/Images/TortueSimple.png"))));
+        panel3.add(new JLabel(new ImageIcon(getClass().getResource("/Images/TortueRapide.png"))));
+        panel3.add(new JLabel(new ImageIcon(getClass().getResource("/Images/TortueCouleur.png"))));
         
-        
-        
-        
-        
-               
+       
         imageExo = new ImageIcon();
         JLabel textAffImage = new JLabel("Aperçu de votre image :   ");
         textAffImage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        textAffImage.setFont(new java.awt.Font(Font.DIALOG,Font.ITALIC,16));
+
         affImageExo = new JLabel();
         affImageExo.setIcon(imageExo);
 
-        JPanel ssPanel41 = new JPanel(new GridLayout(1,2));
-        ssPanel41.add(textAffImage);
-        ssPanel41.add(affImageExo);
+        JPanel panel4 = new JPanel();
+        panel4.add(textAffImage);
+        panel4.add(affImageExo);
         
-        butAddImage = new JButton("Chercher une image");
+        butAddImage = new JButton(new ImageIcon(getClass().getResource("/Images/Recherche.png")));
+        butAddImage.setPreferredSize(new Dimension(222,50));
         controleur = new CtrlFormExo(this,appli);
         butAddImage.addActionListener(controleur);
-        JPanel ssPanel42 = new JPanel();
-        ssPanel42.add(butAddImage);
-        
-        JPanel panel4 = new JPanel(new BorderLayout());
-        panel4.add(ssPanel41,BorderLayout.CENTER);
-        panel4.add(ssPanel42,BorderLayout.SOUTH);
         
         
         JPanel panel5 = new JPanel();
-        butValidForm = new JButton("Valider la création de l'exercice");
+        butValidForm = new JButton(new ImageIcon(getClass().getResource("/Images/Valider.png")));
+        butValidForm.setPreferredSize(new Dimension(222,50));
         butValidForm.addActionListener(controleur);
+        panel5.add(butAddImage);
         panel5.add(butValidForm);
         
-        JPanel globalPan1 = new JPanel(new GridLayout(3,1));
-        globalPan1.add(panel1);
-        globalPan1.add(panel2);
-        globalPan1.add(panel3);
+        JPanel globalPan1 = new JPanel(new BorderLayout());
+        globalPan1.add(panel1, BorderLayout.NORTH);
+        globalPan1.add(panel2, BorderLayout.CENTER);
+        globalPan1.add(panel3, BorderLayout.SOUTH);
         
         JPanel globalPan = new JPanel(new BorderLayout());
         globalPan.add(globalPan1,BorderLayout.NORTH);

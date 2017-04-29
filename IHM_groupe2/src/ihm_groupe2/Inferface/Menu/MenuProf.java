@@ -4,9 +4,13 @@ import Applications.ApplicationProf;
 import ihm_groupe2.Controleur.CtrlMenuProf;
 import ihm_groupe2.Noyau_fonctionnel.Professeur;
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -42,14 +46,32 @@ public class MenuProf extends JPanel{
         appli = lAppli;
         //fenetreMain = main;
         
-        JLabel monLabel = new JLabel("Prénom : " + profConnecte.getPrenomPersonne());
-        JLabel monLabel2 = new JLabel("Nom : " + profConnecte.getNomPersonne());
+        JLabel labTitre = new JLabel ("Accueil - Bienvenue");
+        labTitre.setFont(new java.awt.Font(Font.DIALOG,Font.ITALIC,25));
+        labTitre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labTitre.setForeground(Color.red);
         
-        butCreerExo = new JButton("Créer exercice");
-        butVoirExo = new JButton("Liste exercices");
-        butVoirEleve = new JButton("Liste élèves");
-        butVoirClasse = new JButton("Liste classes");
-        butSeDeco = new JButton("Se déconnecter");
+        JLabel monLabel = new JLabel(profConnecte.getPrenomPersonne() + " " + profConnecte.getNomPersonne());
+        monLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        
+        JPanel panelSousDroite = new JPanel();
+        panelSousDroite.add(new JLabel(new ImageIcon(getClass().getResource("/Images/Utilisateur.png"))));
+        panelSousDroite.add(monLabel);
+        
+        butCreerExo = new JButton(new ImageIcon(getClass().getResource("/Images/CreerExo.png")));
+        butCreerExo.setPreferredSize(new Dimension(250,51));
+        
+        butVoirExo = new JButton(new ImageIcon(getClass().getResource("/Images/ListeExos.png")));
+        butVoirExo.setPreferredSize(new Dimension(250,51));
+        
+        butVoirEleve = new JButton(new ImageIcon(getClass().getResource("/Images/ListeEleves.png")));
+        butVoirEleve.setPreferredSize(new Dimension(250,51));
+        
+        butVoirClasse = new JButton(new ImageIcon(getClass().getResource("/Images/ListeClasses.png")));
+        butVoirClasse.setPreferredSize(new Dimension(250,51));     
+        
+        butSeDeco = new JButton(new ImageIcon(getClass().getResource("/Images/Deconnexion.png")));
+        butSeDeco.setPreferredSize(new Dimension(250,51));
         
         controleur = new CtrlMenuProf(appli,this);
         butCreerExo.addActionListener(controleur);
@@ -91,10 +113,10 @@ public class MenuProf extends JPanel{
         panelGauche.add(panBut4);
         panelGauche.add(panBut5);
         
-        panelDroite = new JPanel();
+        panelDroite = new JPanel(new GridLayout(2,1));
         panelDroite.setBorder(new javax.swing.border.BevelBorder(BevelBorder.RAISED));
-        panelDroite.add(monLabel);
-        panelDroite.add(monLabel2);
+        panelDroite.add(labTitre);
+        panelDroite.add(panelSousDroite);
         
         this.setLayout(new BorderLayout());
         this.add(panelGauche, BorderLayout.WEST);

@@ -74,7 +74,7 @@ public class MenuPrincipal extends JPanel{
         //this.setLayout(new GridLayout(1,1));
         //this.add(panel1);
         this.add(panel4);
-        this.setBackground(Color.WHITE);
+        //this.setBackground(Color.WHITE);
         
     }
     
