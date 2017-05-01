@@ -6,7 +6,9 @@ import ihm_groupe2.Noyau_fonctionnel.Eleve;
 import ihm_groupe2.Noyau_fonctionnel.Exercice;
 import ihm_groupe2.Noyau_fonctionnel.Realisation;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.util.ArrayList;
@@ -73,7 +75,10 @@ public class MenuEleve extends JPanel{
         
         JPanel panelTitre = new JPanel();
         panelTitre.setBorder(new javax.swing.border.BevelBorder(BevelBorder.RAISED));
-        JLabel texteTitre = new JLabel("Bonjour "+ eleveConnecte.getPrenomPersonne() + " "+  eleveConnecte.getNomPersonne());
+        panelTitre.setBackground(Color.white);
+        //JLabel texteTitre = new JLabel("Bonjour "+ eleveConnecte.getPrenomPersonne() + " "+  eleveConnecte.getNomPersonne());
+        JLabel texteTitre = new JLabel(new ImageIcon(getClass().getResource("/Images/BienvenueEleve.png")));
+        texteTitre.setPreferredSize(new Dimension(800,90));
         panelTitre.add(texteTitre);
         
         
@@ -83,6 +88,8 @@ public class MenuEleve extends JPanel{
                
         JPanel panNomExo = new JPanel();
         labNomExo = new JLabel(exoEnCours.getNom());
+        labNomExo.setFont(new java.awt.Font(Font.DIALOG,Font.BOLD,20));
+        labNomExo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         panNomExo.add(labNomExo);
         
         JPanel panComExo = new JPanel(new BorderLayout());
@@ -163,13 +170,11 @@ public class MenuEleve extends JPanel{
         
         /** Partie gauche : */
         
-        
-        
-        
-        
-        
         if (lesTents.size() != 0){
             labNumTent = new JLabel("Tentative n°"+tentEnCours.getNumeroTentative());
+            labNumTent.setFont(new java.awt.Font(Font.DIALOG,Font.BOLD,20));
+            labNumTent.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+            
             if (tentEnCours.getNote().equals("")){
                 textNote = "Non évalué";
             }else{
@@ -190,11 +195,12 @@ public class MenuEleve extends JPanel{
             
         }else{
             labNumTent = new JLabel("Pas de tentative pour cet exercice");
+            labNumTent.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+            labNumTent.setFont(new java.awt.Font(Font.DIALOG,Font.BOLD,20));
+            
             labCommTent = new JTextArea("Exercice a réaliser");
             iconTent = new ImageIcon(getClass().getResource("IconTriste.jpg"));
         }
-        
-        
         
         JPanel panNomTent = new JPanel();
         panNomTent.add(labNumTent);

@@ -47,8 +47,8 @@ public class MenuConnexionEleve extends JPanel{
         panelTable.add(tableEleve);
         
             // Consignes :
-        JLabel label1 = new JLabel("Clic sur ton prénom ou ton nom dans la liste :");
-        label1.setFont(new java.awt.Font(Font.DIALOG,Font.BOLD,18));
+        JLabel label1 = new JLabel("Choisis ton prénom ou ta photo dans la liste :");
+        label1.setFont(new java.awt.Font(Font.DIALOG,Font.BOLD,20));
         JPanel panelConsigne = new JPanel();
         panelConsigne.add(label1);
         
