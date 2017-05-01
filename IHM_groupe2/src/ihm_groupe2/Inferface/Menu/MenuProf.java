@@ -44,15 +44,16 @@ public class MenuProf extends JPanel{
     public MenuProf(Professeur leProf, ApplicationProf lAppli){
         profConnecte = leProf;
         appli = lAppli;
-        //fenetreMain = main;
-        
-        JLabel labTitre = new JLabel ("Accueil - Bienvenue");
-        labTitre.setFont(new java.awt.Font(Font.DIALOG,Font.ITALIC,25));
-        labTitre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labTitre.setForeground(Color.red);
+
+        JPanel labTitre = new JPanel();
+        JLabel bienvenue = new JLabel(new ImageIcon(getClass().getResource("/Images/AccueilProf.png")));
+        bienvenue.setPreferredSize(new Dimension(900,300));
+        labTitre.add(bienvenue);
+        labTitre.setBackground(Color.white);
         
         JLabel monLabel = new JLabel(profConnecte.getPrenomPersonne() + " " + profConnecte.getNomPersonne());
         monLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        monLabel.setFont(new java.awt.Font(Font.DIALOG,Font.BOLD,20));
         
         JPanel panelSousDroite = new JPanel();
         panelSousDroite.add(new JLabel(new ImageIcon(getClass().getResource("/Images/Utilisateur.png"))));

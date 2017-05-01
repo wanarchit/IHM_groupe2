@@ -36,20 +36,13 @@ public class MenuConnexionProf extends JPanel{
     
     public MenuConnexionProf(ApplicationProf lAppli){
         appliProf = lAppli;
+
+        JPanel panConsigne = new JPanel();
+        JLabel bienvenue = new JLabel(new ImageIcon(getClass().getResource("/Images/BienvenueProf.png")));
+        bienvenue.setPreferredSize(new Dimension(900,217));
+        panConsigne.add(bienvenue);
+        panConsigne.setBackground(Color.white);
         
-        JLabel labelTitre = new JLabel("Menu de connexion - Professeur");
-        labelTitre.setFont(new java.awt.Font(Font.DIALOG,Font.ITALIC,25));
-        labelTitre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelTitre.setForeground(Color.red);
-        JLabel labV = new JLabel("");
-        JLabel label1 = new JLabel("Merci d'entrer vos identifiants");
-        label1.setFont(new java.awt.Font(Font.DIALOG,Font.BOLD,16));
-        label1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        
-        JPanel panConsigne = new JPanel(new GridLayout(4,1));
-        panConsigne.add(labelTitre);
-        panConsigne.add(labV);
-        panConsigne.add(label1);
         
         JPanel panLogin = new JPanel();
         JLabel textLogin = new JLabel("Identifiant : ");
