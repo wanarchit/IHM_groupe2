@@ -15,7 +15,6 @@ public class Peuplement {
             c = DriverManager.getConnection("jdbc:sqlite:IHM_G2.db");
             System.out.println("Opened database successfully");
             stmt = c.createStatement();
-            System.out.println("Ouais5555");
             //Peuplement de la table Professeur
             int check = stmt.executeUpdate("INSERT INTO PROFESSEUR (ID_Professeur,Nom_Professeur,Prenom_Professeur,Login,Mot_De_Passe) VALUES (1,'Conrady','Marin','marinPoitiers','mdpMarin');");
             stmt.executeUpdate("INSERT INTO PROFESSEUR (ID_Professeur,Nom_Professeur,Prenom_Professeur,Login,Mot_De_Passe) VALUES (2,'Gand','Paul','paulPoitiers','mdpPaul') ;");
