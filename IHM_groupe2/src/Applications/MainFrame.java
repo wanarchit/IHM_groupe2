@@ -33,9 +33,9 @@ public class MainFrame extends JFrame{
         this.setLocationRelativeTo(null);
         this.setVisible(true);
         //SqliteJDBC db = new SqliteJDBC();
-       // db.dbConnection();
-       // Peuplement remplissage= new Peuplement();
-      //  remplissage.Peuplement();
+        //db.dbConnection();
+        //Peuplement remplissage= new Peuplement();
+        //remplissage.Peuplement();
     }
     
     public static void main(String[] args)

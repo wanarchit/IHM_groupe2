@@ -15,7 +15,7 @@ import ihm_groupe2.Noyau_fonctionnel.TortueCouleur;
 import ihm_groupe2.Noyau_fonctionnel.TortueRapide;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
-
+import java.sql.*;
 /**
  * Classe ApplicationEleve : permet de gérer tous les éléments liés aux élèves
  * @author Paul
@@ -36,6 +36,47 @@ public class ApplicationEleve {
     
     public ApplicationEleve(MainFrame main){
         fenetreMain = main;
+        
+        //----------------------------------
+        //----------------------------------
+        Connection c = null;
+        Statement stmt = null;
+        try {
+            Class.forName("org.sqlite.JDBC");
+            c = DriverManager.getConnection("jdbc:sqlite:IHM_G2.db");
+            System.out.println("Opened database successfully");
+            stmt = c.createStatement();
+            ResultSet resProf=stmt.executeQuery("SELECT * FROM PROFESSEUR");
+            //stmt.executeUpdate("INSERT INTO CLASSE (ID_Classe,Id_Professeur,Nom_Classe) VALUES (1,1,'CM2');");
+            int i=1;
+            while(resProf.next()){
+                int idProf=resProf.getInt("ID_Professeur");
+                String nomProf=resProf.getString("Nom_Professeur");
+                String prenomProf=resProf.getString("Prenom_Professeur");
+                String loginProf=resProf.getString("Login");
+                String mdpProf=resProf.getString("Mot_De_Passe");
+                ResultSet resClasses=stmt.executeQuery("SELECT * FROM CLASSE WHERE Id_Professeur="+idProf);
+                System.out.println(i);
+                i++;
+            }
+
+
+            
+            
+            
+            
+            
+            
+        }catch ( Exception e ) {
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+            System.exit(0);
+        }
+        
+        
+        //----------------------------------
+        //----------------------------------
+        
+        
         leProf = new Professeur("MrProf","12345","LeGrand","Didier");
         maClasse = new Classe("CM1",leProf);
         lesClasses = new ArrayList();
