@@ -22,6 +22,10 @@ import ihm_groupe2.Noyau_fonctionnel.TortueCouleur;
 import ihm_groupe2.Noyau_fonctionnel.TortueG;
 import ihm_groupe2.Noyau_fonctionnel.TortueRapide;
 import java.awt.BorderLayout;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -43,11 +47,15 @@ public class ApplicationProf {
     private ArrayList<Realisation> mesDessins;
     private ArrayList<Classe> lesClasses;
     private ArrayList<Exercice> lesExercices;
+    private Professeur leProf;
     private Professeur profCo;
     private MenuProf leMenuProf;
     private ListeExercices listeExo;
     private ListeEleves listeEleve;
     private ListeClasse listeClasse;
+    private Exercice exo;
+    private Realisation maRea; 
+    private Commande maCmd;
     //private TortueG toruteG;
     //private TortueCouleur tortueCoul;
     //private TortueRapide tortueRap;
@@ -55,93 +63,182 @@ public class ApplicationProf {
     
     public ApplicationProf(MainFrame main){
         fenetreMain = main;
-        lesEleves = new ArrayList();
-        lesProfs = new ArrayList();
-        prof = new Professeur("Prof","12345","LeGrand","Didier");
-        prof2 = new Professeur("Prof2","12345","LePetit","Bernard");
-        lesProfs.add(prof);
-        lesProfs.add(prof2);
-        maClasse = new Classe("CM1",prof);
-        maClasse2 = new Classe("CM2",prof2);
-        lesClasses = new ArrayList();
-        lesClasses.add(maClasse);
-        lesClasses.add(maClasse2);
-        mesDessins = new ArrayList();
-        ImageIcon imageEleve = new ImageIcon(getClass().getResource("/Applications/Images_eleves/eleve_f1.png"));
-        eleve = new Eleve(maClasse,"Rousse","Delphine",imageEleve);
-        ImageIcon imageEleve2 = new ImageIcon(getClass().getResource("/Applications/Images_eleves/eleve_g1.png"));
-        eleve2 = new Eleve(maClasse2,"Gand","Paul",imageEleve2);
-        ImageIcon imageEleve3 = new ImageIcon(getClass().getResource("/Applications/Images_eleves/eleve_g2.png"));
-        eleve3 = new Eleve(maClasse2,"Conrady","Marin",imageEleve3);
-        lesEleves.add(eleve);
-        lesEleves.add(eleve2);
-        lesEleves.add(eleve3);
-        maClasse.ajoutEleve(eleve);
-        maClasse2.ajoutEleve(eleve2);
-        maClasse2.ajoutEleve(eleve3);
-        lesExercices = new ArrayList();
-        ImageIcon imageExo = new ImageIcon(getClass().getResource("Exercice1_image.png"));
-        Exercice exo1 = new Exercice("Exercice 1","Vous devez faire ce dessin en 10 minutes avec la tortue normale",0,imageExo);
-        //exo1.setModifiable(false);
-        ImageIcon imageExo2 = new ImageIcon(getClass().getResource("Exercice2_image.png"));
-        Exercice exo2 = new Exercice("Exercice 2","Vous devez faire ce dessin en 5 minutes avec la tortue rapide",2,imageExo2);
-        ImageIcon imageExo3 = new ImageIcon(getClass().getResource("Exercice3_image.png"));
-        Exercice exo3 = new Exercice("Exercice 3","Vous devez faire ce dessin en 15 minutes avec la tortue couleur",1,imageExo3);
-        ImageIcon imageExo4 = new ImageIcon(getClass().getResource("Exercice4_image.png"));
-        Exercice exo4 = new Exercice("Exercice 4","Vous devez faire ce dessin en 5 minutes avec la tortue couleur",2,imageExo4);
-        lesExercices.add(exo1);
-        lesExercices.add(exo2);
-        lesExercices.add(exo3);
-        lesExercices.add(exo4);
-        
-        //toruteG = new TortueG();
-       // tortueRap = new TortueRapide();
-       // tortueCoul = new TortueCouleur();
-        Realisation maRea = new Realisation(1,"","",exo1);
-        Commande maCommande10 = new Commande("Avance",exo1.getMaTortue());
-        Commande maCommande11 = new Commande("Avance",exo1.getMaTortue());
-        Commande maCommande12 = new Commande("Tourne",exo1.getMaTortue());
-        Commande maCommande13 = new Commande("Avance",exo1.getMaTortue());
-        Commande maCommande14 = new Commande("Tourne",exo1.getMaTortue());
-        Commande maCommande15 = new Commande("Avance",exo1.getMaTortue());
-        Commande maCommande16 = new Commande("N'écrit plus",exo1.getMaTortue());
-        Commande maCommande17 = new Commande("Avance",exo1.getMaTortue());
-        Commande maCommande18 = new Commande("Ecrit",exo1.getMaTortue());
-        Commande maCommande19 = new Commande("Avance",exo1.getMaTortue());
-        maRea.ajouterCommande(maCommande10);
-        maRea.ajouterCommande(maCommande11);
-        maRea.ajouterCommande(maCommande12);
-        maRea.ajouterCommande(maCommande13);
-        maRea.ajouterCommande(maCommande14);
-        maRea.ajouterCommande(maCommande15);
-        maRea.ajouterCommande(maCommande16);
-        maRea.ajouterCommande(maCommande17);
-        maRea.ajouterCommande(maCommande18);
-        maRea.ajouterCommande(maCommande19);
-        eleve.addRealisation(maRea);
-        exo1.setModifiable(false);
-        
-        Realisation maRea2 = new Realisation(1,"","",exo2);
-        Commande maCommande2 = new Commande("Avance",exo2.getMaTortue());
-        maRea2.ajouterCommande(maCommande2);
-        eleve.addRealisation(maRea2);
-        exo2.setModifiable(false);
-        
-        Realisation maRea3 = new Realisation(1,"","",exo2);
-        Commande maCommande3 = new Commande("Avance",exo2.getMaTortue());
-        maRea3.ajouterCommande(maCommande3);
-        eleve2.addRealisation(maRea3);
-        
-        Realisation maRea4 = new Realisation(1,"","",exo3);
-        Commande maCommande4 = new Commande("Avance",exo3.getMaTortue());
-        maRea4.ajouterCommande(maCommande4);
-        eleve.addRealisation(maRea4);
-        exo3.setModifiable(false);
-        
-        Realisation maRea5 = new Realisation(2,"","",exo2);
-        Commande maCommande5 = new Commande("Avance",exo2.getMaTortue());
-        maRea5.ajouterCommande(maCommande5);
-        eleve.addRealisation(maRea5);
+
+        Connection c = null;
+        Statement stmt = null;
+        Statement stmt2=null;
+        Statement stmt3=null;
+        Statement stmt4 = null;
+        Statement stmt5 = null;
+        Statement stmt6 = null;
+        try {
+            Class.forName("org.sqlite.JDBC");
+            c = DriverManager.getConnection("jdbc:sqlite:IHM_G2.db");
+            System.out.println("Opened database successfully");
+            stmt = c.createStatement();
+            stmt2 = c.createStatement();
+            stmt3 = c.createStatement();
+            stmt4 = c.createStatement();
+            stmt5 = c.createStatement();
+            stmt6 = c.createStatement();
+            ResultSet resProf=stmt.executeQuery("SELECT * FROM PROFESSEUR");
+            lesProfs=new ArrayList();
+            lesClasses=new ArrayList();
+            lesEleves=new ArrayList();
+            lesExercices=new ArrayList();
+            
+            ResultSet resExercices=stmt4.executeQuery("SELECT * FROM EXERCICE");
+            while(resExercices.next()){
+                int idExo = resExercices.getInt("ID_Exo");
+                String imageExercice=resExercices.getString("Image_Exo");
+                ImageIcon imageExo = new ImageIcon(getClass().getResource(imageExercice));
+                String nomExo=resExercices.getString("Nom_Exo");
+                String comExo=resExercices.getString("Commentaire_Exo");
+                int tortueExo=resExercices.getInt("Tortue_Exo");
+                exo = new Exercice(nomExo,comExo,tortueExo,imageExo);
+                lesExercices.add(exo);
+            }
+            
+            while(resProf.next()){
+                int idProf=resProf.getInt("ID_Professeur");
+                String nomProf=resProf.getString("Nom_Professeur");
+                String prenomProf=resProf.getString("Prenom_Professeur");
+                String loginProf=resProf.getString("Login");
+                String mdpProf=resProf.getString("Mot_De_Passe");
+                ResultSet resClasses=stmt2.executeQuery("SELECT * FROM CLASSE WHERE Id_Professeur="+idProf);
+                leProf=new Professeur(loginProf,mdpProf,nomProf,prenomProf);
+                lesProfs.add(leProf);
+                while(resClasses.next()){
+                    int idClasse=resClasses.getInt("ID_Classe");
+                    String nomClasse=resClasses.getString("Nom_Classe");
+                    maClasse = new Classe(nomClasse,leProf);
+                    lesClasses.add(maClasse);
+                    ResultSet resEleves=stmt3.executeQuery("SELECT * FROM ELEVE WHERE Id_Classe="+idClasse);
+                    while(resEleves.next()){
+                        String nomEleve=resEleves.getString("Nom_Eleve");
+                        String prenomEleve=resEleves.getString("Prenom_Eleve");
+                        String iconeEleve=resEleves.getString("Icon_Eleve");
+                        int idEleve=resEleves.getInt("ID_Eleve");
+                        ImageIcon imageEleve = new ImageIcon(getClass().getResource(iconeEleve));
+                        eleve=new Eleve(maClasse,nomEleve,prenomEleve,imageEleve);
+                        lesEleves.add(eleve);
+                        maClasse.ajoutEleve(eleve);
+                        mesDessins = new ArrayList();
+                        ResultSet resRealisation=stmt5.executeQuery("SELECT * FROM REALISATION WHERE Id_Eleve="+idEleve);
+                        while(resRealisation.next()){
+                            int idRea=resRealisation.getInt("ID_Realisation");
+                            int idExo=resRealisation.getInt("Id_Exo");
+                            int numRea=resRealisation.getInt("Numero_Tentative");
+                            String comRea=resRealisation.getString("Commentaire_Realisation");
+                            String noteRea=resRealisation.getString("Note_Realisation");
+                            maRea = new Realisation(numRea,comRea,noteRea,lesExercices.get(idExo-1));
+                            ResultSet resCmd=stmt6.executeQuery("SELECT * FROM UTILISE JOIN COMMANDES ON UTILISE.Id_Commande=COMMANDES.ID_Commande WHERE Id_Realisation="+idRea);
+                            while(resCmd.next()){
+                                String nomCmd = resCmd.getString("Nom_Commande");
+                                maCmd = new Commande(nomCmd,lesExercices.get(idExo-1).getMaTortue());
+                                maRea.ajouterCommande(maCmd);
+                            }  
+                            eleve.addRealisation(maRea);
+                            lesExercices.get(idExo-1).setModifiable(false);
+                            
+
+                        }
+                    }
+                }
+            }
+            //stmt.executeUpdate("INSERT INTO REALISATION (ID_Realisation,Note_Realisation,Id_Eleve,Id_Exo,Numero_Tentative,Commentaire_Realisation)            
+        }catch ( Exception e ) {
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+            System.exit(0);
+        }
+
+//        lesEleves = new ArrayList();
+//        lesProfs = new ArrayList();
+//        prof = new Professeur("Prof","12345","LeGrand","Didier");
+//        prof2 = new Professeur("Prof2","12345","LePetit","Bernard");
+//        lesProfs.add(prof);
+//        lesProfs.add(prof2);
+//        maClasse = new Classe("CM1",prof);
+//        maClasse2 = new Classe("CM2",prof2);
+//        lesClasses = new ArrayList();
+//        lesClasses.add(maClasse);
+//        lesClasses.add(maClasse2);
+//        mesDessins = new ArrayList();
+//        ImageIcon imageEleve = new ImageIcon(getClass().getResource("/Applications/Images_eleves/eleve_f1.png"));
+//        eleve = new Eleve(maClasse,"Rousse","Delphine",imageEleve);
+//        ImageIcon imageEleve2 = new ImageIcon(getClass().getResource("/Applications/Images_eleves/eleve_g1.png"));
+//        eleve2 = new Eleve(maClasse2,"Gand","Paul",imageEleve2);
+//        ImageIcon imageEleve3 = new ImageIcon(getClass().getResource("/Applications/Images_eleves/eleve_g2.png"));
+//        eleve3 = new Eleve(maClasse2,"Conrady","Marin",imageEleve3);
+//        lesEleves.add(eleve);
+//        lesEleves.add(eleve2);
+//        lesEleves.add(eleve3);
+//        maClasse.ajoutEleve(eleve);
+//        maClasse2.ajoutEleve(eleve2);
+//        maClasse2.ajoutEleve(eleve3);
+//        lesExercices = new ArrayList();
+//        ImageIcon imageExo = new ImageIcon(getClass().getResource("Exercice1_image.png"));
+//        Exercice exo1 = new Exercice("Exercice 1","Vous devez faire ce dessin en 10 minutes avec la tortue normale",0,imageExo);
+//        //exo1.setModifiable(false);
+//        ImageIcon imageExo2 = new ImageIcon(getClass().getResource("Exercice2_image.png"));
+//        Exercice exo2 = new Exercice("Exercice 2","Vous devez faire ce dessin en 5 minutes avec la tortue rapide",2,imageExo2);
+//        ImageIcon imageExo3 = new ImageIcon(getClass().getResource("Exercice3_image.png"));
+//        Exercice exo3 = new Exercice("Exercice 3","Vous devez faire ce dessin en 15 minutes avec la tortue couleur",1,imageExo3);
+//        ImageIcon imageExo4 = new ImageIcon(getClass().getResource("Exercice4_image.png"));
+//        Exercice exo4 = new Exercice("Exercice 4","Vous devez faire ce dessin en 5 minutes avec la tortue couleur",2,imageExo4);
+//        lesExercices.add(exo1);
+//        lesExercices.add(exo2);
+//        lesExercices.add(exo3);
+//        lesExercices.add(exo4);
+//        
+//        //toruteG = new TortueG();
+//       // tortueRap = new TortueRapide();
+//       // tortueCoul = new TortueCouleur();
+//        Realisation maRea = new Realisation(1,"","",exo1);
+//        Commande maCommande10 = new Commande("Avance",exo1.getMaTortue());
+//        Commande maCommande11 = new Commande("Avance",exo1.getMaTortue());
+//        Commande maCommande12 = new Commande("Tourne",exo1.getMaTortue());
+//        Commande maCommande13 = new Commande("Avance",exo1.getMaTortue());
+//        Commande maCommande14 = new Commande("Tourne",exo1.getMaTortue());
+//        Commande maCommande15 = new Commande("Avance",exo1.getMaTortue());
+//        Commande maCommande16 = new Commande("N'écrit plus",exo1.getMaTortue());
+//        Commande maCommande17 = new Commande("Avance",exo1.getMaTortue());
+//        Commande maCommande18 = new Commande("Ecrit",exo1.getMaTortue());
+//        Commande maCommande19 = new Commande("Avance",exo1.getMaTortue());
+//        maRea.ajouterCommande(maCommande10);
+//        maRea.ajouterCommande(maCommande11);
+//        maRea.ajouterCommande(maCommande12);
+//        maRea.ajouterCommande(maCommande13);
+//        maRea.ajouterCommande(maCommande14);
+//        maRea.ajouterCommande(maCommande15);
+//        maRea.ajouterCommande(maCommande16);
+//        maRea.ajouterCommande(maCommande17);
+//        maRea.ajouterCommande(maCommande18);
+//        maRea.ajouterCommande(maCommande19);
+//        eleve.addRealisation(maRea);
+//        exo1.setModifiable(false);
+//        
+//        Realisation maRea2 = new Realisation(1,"","",exo2);
+//        Commande maCommande2 = new Commande("Avance",exo2.getMaTortue());
+//        maRea2.ajouterCommande(maCommande2);
+//        eleve.addRealisation(maRea2);
+//        exo2.setModifiable(false);
+//        
+//        Realisation maRea3 = new Realisation(1,"","",exo2);
+//        Commande maCommande3 = new Commande("Avance",exo2.getMaTortue());
+//        maRea3.ajouterCommande(maCommande3);
+//        eleve2.addRealisation(maRea3);
+//        
+//        Realisation maRea4 = new Realisation(1,"","",exo3);
+//        Commande maCommande4 = new Commande("Avance",exo3.getMaTortue());
+//        maRea4.ajouterCommande(maCommande4);
+//        eleve.addRealisation(maRea4);
+//        exo3.setModifiable(false);
+//        
+//        Realisation maRea5 = new Realisation(2,"","",exo2);
+//        Commande maCommande5 = new Commande("Avance",exo2.getMaTortue());
+//        maRea5.ajouterCommande(maCommande5);
+//        eleve.addRealisation(maRea5);
         
         MenuConnexionProf menuCoProf = new MenuConnexionProf(this);
         fenetreMain.setContentPane(menuCoProf);

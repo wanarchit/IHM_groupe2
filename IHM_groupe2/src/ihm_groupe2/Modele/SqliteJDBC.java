@@ -30,7 +30,7 @@ public class SqliteJDBC {
       "(ID_Exo INT PRIMARY KEY      NOT NULL," +
       " Nom_Exo           CHAR(50)  NOT NULL," + 
       " Commentaire_Exo   CHAR(250) NOT NULL," + 
-      " Tortue_Exo        CHAR(50)  NOT NULL," + 
+      " Tortue_Exo        INT       NOT NULL," + 
       "Id_Professeur      INT       NOT NULL,"+
       "Image_Exo         CHAR(250) NOT NULL,"+
       "FOREIGN KEY(Id_Professeur) REFERENCES PROFESSEUR(ID_Professeur))";

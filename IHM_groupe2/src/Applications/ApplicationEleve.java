@@ -32,7 +32,11 @@ public class ApplicationEleve {
     private ArrayList<Classe> lesClasses;
     private ArrayList<Exercice> lesExercices;
     private Eleve eleveCo;
-    
+    private Exercice exo;
+    //-----------------
+    private ArrayList<Professeur> lesProfs;
+    private Realisation maRea; 
+    private Commande maCmd;
     
     public ApplicationEleve(MainFrame main){
         fenetreMain = main;
@@ -41,66 +45,125 @@ public class ApplicationEleve {
         //----------------------------------
         Connection c = null;
         Statement stmt = null;
+        Statement stmt2=null;
+        Statement stmt3=null;
+        Statement stmt4 = null;
+        Statement stmt5 = null;
+        Statement stmt6 = null;
         try {
             Class.forName("org.sqlite.JDBC");
             c = DriverManager.getConnection("jdbc:sqlite:IHM_G2.db");
             System.out.println("Opened database successfully");
             stmt = c.createStatement();
+            stmt2 = c.createStatement();
+            stmt3 = c.createStatement();
+            stmt4 = c.createStatement();
+            stmt5 = c.createStatement();
+            stmt6 = c.createStatement();
             ResultSet resProf=stmt.executeQuery("SELECT * FROM PROFESSEUR");
-            //stmt.executeUpdate("INSERT INTO CLASSE (ID_Classe,Id_Professeur,Nom_Classe) VALUES (1,1,'CM2');");
-            int i=1;
+            lesProfs=new ArrayList();
+            lesClasses=new ArrayList();
+            lesEleves=new ArrayList();
+            lesExercices=new ArrayList();
+            
+            ResultSet resExercices=stmt4.executeQuery("SELECT * FROM EXERCICE");
+            while(resExercices.next()){
+                int idExo = resExercices.getInt("ID_Exo");
+                String imageExercice=resExercices.getString("Image_Exo");
+                ImageIcon imageExo = new ImageIcon(getClass().getResource(imageExercice));
+                String nomExo=resExercices.getString("Nom_Exo");
+                String comExo=resExercices.getString("Commentaire_Exo");
+                int tortueExo=resExercices.getInt("Tortue_Exo");
+                exo = new Exercice(nomExo,comExo,tortueExo,imageExo);
+                lesExercices.add(exo);
+            }
+            
             while(resProf.next()){
                 int idProf=resProf.getInt("ID_Professeur");
                 String nomProf=resProf.getString("Nom_Professeur");
                 String prenomProf=resProf.getString("Prenom_Professeur");
                 String loginProf=resProf.getString("Login");
                 String mdpProf=resProf.getString("Mot_De_Passe");
-                ResultSet resClasses=stmt.executeQuery("SELECT * FROM CLASSE WHERE Id_Professeur="+idProf);
-                System.out.println(i);
-                i++;
+                ResultSet resClasses=stmt2.executeQuery("SELECT * FROM CLASSE WHERE Id_Professeur="+idProf);
+                leProf=new Professeur(loginProf,mdpProf,nomProf,prenomProf);
+                lesProfs.add(leProf);
+                while(resClasses.next()){
+                    int idClasse=resClasses.getInt("ID_Classe");
+                    String nomClasse=resClasses.getString("Nom_Classe");
+                    maClasse = new Classe(nomClasse,leProf);
+                    lesClasses.add(maClasse);
+                    ResultSet resEleves=stmt3.executeQuery("SELECT * FROM ELEVE WHERE Id_Classe="+idClasse);
+                    while(resEleves.next()){
+                        String nomEleve=resEleves.getString("Nom_Eleve");
+                        String prenomEleve=resEleves.getString("Prenom_Eleve");
+                        String iconeEleve=resEleves.getString("Icon_Eleve");
+                        int idEleve=resEleves.getInt("ID_Eleve");
+                        ImageIcon imageEleve = new ImageIcon(getClass().getResource(iconeEleve));
+                        eleve=new Eleve(maClasse,nomEleve,prenomEleve,imageEleve);
+                        lesEleves.add(eleve);
+                        maClasse.ajoutEleve(eleve);
+                        mesDessins = new ArrayList();
+                        ResultSet resRealisation=stmt5.executeQuery("SELECT * FROM REALISATION WHERE Id_Eleve="+idEleve);
+                        while(resRealisation.next()){
+                            int idRea=resRealisation.getInt("ID_Realisation");
+                            int idExo=resRealisation.getInt("Id_Exo");
+                            int numRea=resRealisation.getInt("Numero_Tentative");
+                            String comRea=resRealisation.getString("Commentaire_Realisation");
+                            String noteRea=resRealisation.getString("Note_Realisation");
+                            maRea = new Realisation(numRea,comRea,noteRea,lesExercices.get(idExo-1));
+                            ResultSet resCmd=stmt6.executeQuery("SELECT * FROM UTILISE JOIN COMMANDES ON UTILISE.Id_Commande=COMMANDES.ID_Commande WHERE Id_Realisation="+idRea);
+                            while(resCmd.next()){
+                                String nomCmd = resCmd.getString("Nom_Commande");
+                                maCmd = new Commande(nomCmd,lesExercices.get(idExo-1).getMaTortue());
+                                maRea.ajouterCommande(maCmd);
+                            }  
+                            eleve.addRealisation(maRea);
+                            lesExercices.get(idExo-1).setModifiable(false);
+                            
+
+                        }
+                    }
+                }
             }
-
-
+                   
             
-            
-            
-            
-            
-            
+//stmt.executeUpdate("INSERT INTO REALISATION (ID_Realisation,Note_Realisation,Id_Eleve,Id_Exo,Numero_Tentative,Commentaire_Realisation)            
         }catch ( Exception e ) {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
             System.exit(0);
         }
+
+        
         
         
         //----------------------------------
         //----------------------------------
         
         
-        leProf = new Professeur("MrProf","12345","LeGrand","Didier");
-        maClasse = new Classe("CM1",leProf);
-        lesClasses = new ArrayList();
-        lesClasses.add(maClasse);
-        mesDessins = new ArrayList();
-        ImageIcon imageEleve = new ImageIcon(getClass().getResource("/Applications/Images_eleves/eleve_f1.png"));
-        eleve = new Eleve(maClasse,"Rousse","Delphine",imageEleve);
-        ImageIcon imageEleve2 = new ImageIcon(getClass().getResource("/Applications/Images_eleves/eleve_g1.png"));
-        eleve2 = new Eleve(maClasse,"Gand","Paul",imageEleve2);
-        lesEleves = new ArrayList();
-        lesEleves.add(eleve);
-        lesEleves.add(eleve2);
-        maClasse.ajoutEleve(eleve);
-        maClasse.ajoutEleve(eleve2);
-        lesExercices = new ArrayList();
-        ImageIcon imageExo = new ImageIcon(getClass().getResource("Exercice1_image.png"));
-        Exercice exo1 = new Exercice("Exercice 1","Vous devez faire ce dessin en 10 minutes avec la tortue normale",0,imageExo);
-        ImageIcon imageExo2 = new ImageIcon(getClass().getResource("Exercice2_image.png"));
-        Exercice exo2 = new Exercice("Exercice 2","Vous devez faire ce dessin en 5 minutes avec la tortue rapide",2,imageExo2);
-        ImageIcon imageExo3 = new ImageIcon(getClass().getResource("Exercice3_image.png"));
-        Exercice exo3 = new Exercice("Exercice 3","Vous devez faire ce dessin en 15 minutes avec la tortue couleur",1,imageExo3);
-        lesExercices.add(exo1);
-        lesExercices.add(exo2);
-        lesExercices.add(exo3);
+//        leProf = new Professeur("MrProf","12345","LeGrand","Didier");
+//        maClasse = new Classe("CM1",leProf);
+//        lesClasses = new ArrayList();
+//        lesClasses.add(maClasse);
+//        mesDessins = new ArrayList();
+//        ImageIcon imageEleve = new ImageIcon(getClass().getResource("/Applications/Images_eleves/eleve_f1.png"));
+//        eleve = new Eleve(maClasse,"Rousse","Delphine",imageEleve);
+//        ImageIcon imageEleve2 = new ImageIcon(getClass().getResource("/Applications/Images_eleves/eleve_g1.png"));
+//        eleve2 = new Eleve(maClasse,"Gand","Paul",imageEleve2);
+//        lesEleves = new ArrayList();
+//        lesEleves.add(eleve);
+//        lesEleves.add(eleve2);
+//        maClasse.ajoutEleve(eleve);
+//        maClasse.ajoutEleve(eleve2);
+//        lesExercices = new ArrayList();
+//        ImageIcon imageExo = new ImageIcon(getClass().getResource("Exercice1_image.png"));
+//        Exercice exo1 = new Exercice("Exercice 1","Vous devez faire ce dessin en 10 minutes avec la tortue normale",0,imageExo);
+//        ImageIcon imageExo2 = new ImageIcon(getClass().getResource("Exercice2_image.png"));
+//        Exercice exo2 = new Exercice("Exercice 2","Vous devez faire ce dessin en 5 minutes avec la tortue rapide",2,imageExo2);
+//        ImageIcon imageExo3 = new ImageIcon(getClass().getResource("Exercice3_image.png"));
+//        Exercice exo3 = new Exercice("Exercice 3","Vous devez faire ce dessin en 15 minutes avec la tortue couleur",1,imageExo3);
+//        lesExercices.add(exo1);
+//        lesExercices.add(exo2);
+//        lesExercices.add(exo3);
         
         MenuConnexionEleve menuCoEleve = new MenuConnexionEleve(this);
         fenetreMain.setContentPane(menuCoEleve);

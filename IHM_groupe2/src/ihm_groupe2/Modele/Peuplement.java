@@ -21,9 +21,7 @@ public class Peuplement {
             stmt.executeUpdate("INSERT INTO PROFESSEUR (ID_Professeur,Nom_Professeur,Prenom_Professeur,Login,Mot_De_Passe) VALUES (3,'Rousse','Delphine','delphinePoitiers','mdpDelphine') ;");
             stmt.executeUpdate("INSERT INTO PROFESSEUR (ID_Professeur,Nom_Professeur,Prenom_Professeur,Login,Mot_De_Passe) VALUES (4,'Rivault','Joe','joePoitiers','mdpJoe');");
             stmt.executeUpdate("INSERT INTO PROFESSEUR (ID_Professeur,Nom_Professeur,Prenom_Professeur,Login,Mot_De_Passe) VALUES (5,'Tanguy','Maxime','maxPoitiers','mdpMax');");   
-            if (check ==1){
-                            System.out.println("ouais");
-                    }
+
             //Peuplement de la table Classe
            stmt.executeUpdate("INSERT INTO CLASSE (ID_Classe,Id_Professeur,Nom_Classe) VALUES (1,1,'CM2');");
            stmt.executeUpdate("INSERT INTO CLASSE (ID_Classe,Id_Professeur,Nom_Classe) VALUES (2,2,'CM1');");
@@ -54,11 +52,11 @@ public class Peuplement {
            stmt.executeUpdate("INSERT INTO ELEVE (ID_Eleve,Nom_Eleve,Id_Classe,Prenom_Eleve,Icon_Eleve) VALUES (20,'Blackburn',2,'Vernon','/Applications/Images_eleves/eleve_g10.png');");  
            
             //Peuplement de la table Exercice
-           stmt.executeUpdate("INSERT INTO EXERCICE (ID_Exo,Nom_Exo,Commentaire_Exo,Tortue_Exo,Id_Professeur,Image_Exo) VALUES (1,'Exercice_CP','Faites un simple carré','General',3,'Exercice1_image.PNG');");
-           stmt.executeUpdate("INSERT INTO EXERCICE (ID_Exo,Nom_Exo,Commentaire_Exo,Tortue_Exo,Id_Professeur,Image_Exo) VALUES (2,'Exercice_CE1','Faites un simple rectangle','General',4,'Exercice5_image.PNG');");
-           stmt.executeUpdate("INSERT INTO EXERCICE (ID_Exo,Nom_Exo,Commentaire_Exo,Tortue_Exo,Id_Professeur,Image_Exo) VALUES (3,'Exercice_CE2','Faites un carré rouge entouré dun autre carré rouge','Couleur',5,'Exercice3_image.PNG');");
-           stmt.executeUpdate("INSERT INTO EXERCICE (ID_Exo,Nom_Exo,Commentaire_Exo,Tortue_Exo,Id_Professeur,Image_Exo) VALUES (4,'Exercice_CM1','Faites une télécommande en rouge','Couleur',2,'Exercice4_image.PNG');");
-           stmt.executeUpdate("INSERT INTO EXERCICE (ID_Exo,Nom_Exo,Commentaire_Exo,Tortue_Exo,Id_Professeur,Image_Exo) VALUES (5,'Exercice_CM2','Faites une croix en utilisant différentes vitesses','Rapide',1,'Exercice2_image.PNG');");
+           stmt.executeUpdate("INSERT INTO EXERCICE (ID_Exo,Nom_Exo,Commentaire_Exo,Tortue_Exo,Id_Professeur,Image_Exo) VALUES (1,'Exercice_CP','Faites un simple carré',0,3,'/Images/Exercice1_image.PNG');");
+           stmt.executeUpdate("INSERT INTO EXERCICE (ID_Exo,Nom_Exo,Commentaire_Exo,Tortue_Exo,Id_Professeur,Image_Exo) VALUES (2,'Exercice_CE1','Faites un simple rectangle',0,4,'/Images/Exercice5_image.PNG');");
+           stmt.executeUpdate("INSERT INTO EXERCICE (ID_Exo,Nom_Exo,Commentaire_Exo,Tortue_Exo,Id_Professeur,Image_Exo) VALUES (3,'Exercice_CE2','Faites un carré rouge entouré dun autre carré rouge',1,5,'/Images/Exercice3_image.PNG');");
+           stmt.executeUpdate("INSERT INTO EXERCICE (ID_Exo,Nom_Exo,Commentaire_Exo,Tortue_Exo,Id_Professeur,Image_Exo) VALUES (4,'Exercice_CM1','Faites une télécommande en rouge',1,2,'/Images/Exercice4_image.PNG');");
+           stmt.executeUpdate("INSERT INTO EXERCICE (ID_Exo,Nom_Exo,Commentaire_Exo,Tortue_Exo,Id_Professeur,Image_Exo) VALUES (5,'Exercice_CM2','Faites une croix en utilisant différentes vitesses',2,1,'/Images/Exercice2_image.PNG');");
            
             //Peuplement de la table Realisation
            //Eleve 1 (en CP) travaillant sur lexercice 1
@@ -334,6 +332,6 @@ public class Peuplement {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
             System.exit(0);
         }
-        System.out.println("Tables peuplées avec succès");
+        System.out.println("Tables are successfully filled");
     }
 }
