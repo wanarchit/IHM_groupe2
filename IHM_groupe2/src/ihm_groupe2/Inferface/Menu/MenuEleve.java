@@ -90,6 +90,7 @@ public class MenuEleve extends JPanel{
         labNomExo = new JLabel(exoEnCours.getNom());
         labNomExo.setFont(new java.awt.Font(Font.DIALOG,Font.BOLD,20));
         labNomExo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labNomExo.setForeground(Color.red);
         panNomExo.add(labNomExo);
         
         JPanel panComExo = new JPanel(new BorderLayout());
@@ -97,6 +98,7 @@ public class MenuEleve extends JPanel{
         labCommExo.setLineWrap(true);
         labCommExo.setWrapStyleWord(true);
         labCommExo.getCaret().deinstall(labCommExo);
+        labCommExo.setFont(new java.awt.Font(Font.DIALOG,Font.PLAIN,20));
         panComExo.add(labCommExo,BorderLayout.CENTER);
         
         
@@ -174,6 +176,7 @@ public class MenuEleve extends JPanel{
             labNumTent = new JLabel("Tentative n°"+tentEnCours.getNumeroTentative());
             labNumTent.setFont(new java.awt.Font(Font.DIALOG,Font.BOLD,20));
             labNumTent.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+            labNumTent.setForeground(Color.red);
             
             if (tentEnCours.getNote().equals("")){
                 textNote = "Non évalué";
@@ -197,6 +200,7 @@ public class MenuEleve extends JPanel{
             labNumTent = new JLabel("Pas de tentative pour cet exercice");
             labNumTent.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
             labNumTent.setFont(new java.awt.Font(Font.DIALOG,Font.BOLD,20));
+            labNumTent.setForeground(Color.red);
             
             labCommTent = new JTextArea("Exercice a réaliser");
             iconTent = new ImageIcon(getClass().getResource("IconTriste.jpg"));
@@ -209,6 +213,7 @@ public class MenuEleve extends JPanel{
         labCommTent.setLineWrap(true);
         labCommTent.setWrapStyleWord(true);
         labCommTent.getCaret().deinstall(labCommTent);
+        labCommTent.setFont(new java.awt.Font(Font.DIALOG,Font.PLAIN,20));
         panComTent.add(labCommTent,BorderLayout.CENTER);
         
         /** Boutons **/
