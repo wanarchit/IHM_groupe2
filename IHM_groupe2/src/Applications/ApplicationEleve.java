@@ -120,15 +120,11 @@ public class ApplicationEleve {
                             eleve.addRealisation(maRea);
                             lesExercices.get(idExo-1).setModifiable(false);
                             
-
                         }
                     }
                 }
             }
-                   
-            
-//stmt.executeUpdate("INSERT INTO REALISATION (ID_Realisation,Note_Realisation,Id_Eleve,Id_Exo,Numero_Tentative,Commentaire_Realisation)            
-        }catch ( Exception e ) {
+        }catch (Exception e) {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
             System.exit(0);
         }
