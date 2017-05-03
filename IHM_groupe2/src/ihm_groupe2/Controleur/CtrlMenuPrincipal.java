@@ -27,12 +27,14 @@ public class CtrlMenuPrincipal implements ActionListener{
         if (e.getSource() == leMenu.getButtonEleve()){
             // On affiche le menu de connexion d'un élève
             //new MenuConnexionEleve(leMenu.getMainFrame());
-            new ApplicationEleve(leMenu.getMainFrame());
+            ApplicationEleve appliEleve = new ApplicationEleve(leMenu.getMainFrame());
+            leMenu.getMainFrame().setAppEleve(appliEleve);
             
         }else{      // bouton Professeur
             // On affiche le menu de connexion d'un professeur
             //new MenuConnexionProf(leMenu.getMainFrame());
-            new ApplicationProf(leMenu.getMainFrame());
+            ApplicationProf appliProf = new ApplicationProf(leMenu.getMainFrame());
+            leMenu.getMainFrame().setAppProf(appliProf);
         }
         
     }

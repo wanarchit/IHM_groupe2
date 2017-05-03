@@ -32,7 +32,7 @@ public class SqliteJDBC {
       " Commentaire_Exo   CHAR(250) NOT NULL," + 
       " Tortue_Exo        INT       NOT NULL," + 
       "Id_Professeur      INT       NOT NULL,"+
-      "Image_Exo         CHAR(250) NOT NULL,"+
+      "Image_Exo         CHAR(500) NOT NULL,"+
       "FOREIGN KEY(Id_Professeur) REFERENCES PROFESSEUR(ID_Professeur))";
       stmt.executeUpdate(tableExercice);
       

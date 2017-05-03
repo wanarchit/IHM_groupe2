@@ -27,7 +27,7 @@ public class CtrlWindows implements WindowListener{
             if(option != JOptionPane.NO_OPTION && 
                 option != JOptionPane.CANCEL_OPTION && 
                 option != JOptionPane.CLOSED_OPTION){
-                // ENREGISTRER LES INFO DANS LA BDD !!!
+                fenetre.getAppProf().enregistrementBDD();
                 fenetre.dispose();
                 System.exit(0);
              }else if (option != JOptionPane.YES_OPTION && 
@@ -37,12 +37,10 @@ public class CtrlWindows implements WindowListener{
                 System.exit(0);
              }
             
-            
-            
         }else if(fenetre.getContentPane().getClass() == MenuEleve.class){     
             JOptionPane jop1 = new JOptionPane();
             jop1.showMessageDialog(null, "Déconnexion ...", "Déconnexion", JOptionPane.INFORMATION_MESSAGE);      
-            // ENREGISTRER LES INFO DANS LA BDD !!!
+            fenetre.getAppEleve().enregistrementBDD();
             MenuPrincipal leMenuP = new MenuPrincipal(fenetre);
             fenetre.setContentPane(leMenuP);
             fenetre.repaint();
