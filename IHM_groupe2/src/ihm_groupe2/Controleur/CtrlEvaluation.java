@@ -79,7 +79,7 @@ public class CtrlEvaluation implements ActionListener {
             if (menuEval.getRadAcquis().isSelected()){
                 noteExo = "Acquis";
             }else if (menuEval.getRadEnCours().isSelected()){
-                noteExo = "En cours d'acquisition";
+                noteExo = "En cours acquisition";
             }else if (menuEval.getRadNonAcquis().isSelected()){
                 noteExo = "Non acquis";
             }else{

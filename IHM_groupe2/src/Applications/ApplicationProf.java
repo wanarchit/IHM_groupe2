@@ -12,6 +12,7 @@ import ihm_groupe2.Inferface.Menu.PanelAffExoArbre;
 import ihm_groupe2.Inferface.Menu.PanelAffReaArbre;
 import ihm_groupe2.Inferface.Menu.PanelCreerExo;
 import ihm_groupe2.Inferface.Menu.PanelModifExo;
+import ihm_groupe2.Modele.ResetBDD;
 import ihm_groupe2.Modele.SqliteJDBC;
 import ihm_groupe2.Noyau_fonctionnel.Classe;
 import ihm_groupe2.Noyau_fonctionnel.Commande;
@@ -24,6 +25,8 @@ import ihm_groupe2.Noyau_fonctionnel.TortueCouleur;
 import ihm_groupe2.Noyau_fonctionnel.TortueG;
 import ihm_groupe2.Noyau_fonctionnel.TortueRapide;
 import java.awt.BorderLayout;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -93,18 +96,27 @@ public class ApplicationProf {
             lesExercices=new ArrayList();
             lesEvals=new ArrayList();
             ResultSet resExercices=stmt4.executeQuery("SELECT * FROM EXERCICE");
-            System.out.println("Chargement exo ");
             while(resExercices.next()){
                 int idExo = resExercices.getInt("ID_Exo");
                 String imageExercice=resExercices.getString("Image_Exo");
-                ImageIcon imageExo = new ImageIcon(getClass().getResource(imageExercice));
-                String nomExo=resExercices.getString("Nom_Exo");
-                String comExo=resExercices.getString("Commentaire_Exo");
-                int tortueExo=resExercices.getInt("Tortue_Exo");
-                exo = new Exercice(nomExo,comExo,tortueExo,imageExo);
-                lesExercices.add(exo);
+                try{
+                    ImageIcon imageExo = new ImageIcon(getClass().getResource(imageExercice));
+                    String nomExo=resExercices.getString("Nom_Exo");
+                    String comExo=resExercices.getString("Commentaire_Exo");
+                    int tortueExo=resExercices.getInt("Tortue_Exo");
+                    exo = new Exercice(nomExo,comExo,tortueExo,imageExo);
+                    lesExercices.add(exo);
+                }catch ( Exception exp ) {
+                    ImageIcon imageExo = new ImageIcon(getClass().getResource("/Images/Exercice_erreur.PNG"));
+                    String nomExo=resExercices.getString("Nom_Exo");
+                    String comExo=resExercices.getString("Commentaire_Exo");
+                    int tortueExo=resExercices.getInt("Tortue_Exo");
+                    exo = new Exercice(nomExo,comExo,tortueExo,imageExo);
+                    lesExercices.add(exo);
+                }
+                
+                
             }
-            System.out.println("Chargement exo ok");
             while(resProf.next()){
                 int idProf=resProf.getInt("ID_Professeur");
                 String nomProf=resProf.getString("Nom_Professeur");
@@ -440,46 +452,50 @@ public class ApplicationProf {
     public void enregistrementBDD(){
         System.out.println("Fonction BDD supp");
         Connection c = null;
-        Statement stmtDel = null;
+        //Statement stmtDel = null;
         try {
             Class.forName("org.sqlite.JDBC");
             c = DriverManager.getConnection("jdbc:sqlite:IHM_G2.db");
-            System.out.println("Deleting of database...");
+            System.out.println("Recreated of database...");
             
-            stmtDel = c.createStatement();
-            stmtDel.executeUpdate("DROP TABLE PROFESSEUR");
-            stmtDel.executeUpdate("DROP TABLE EXERCICE");
-            stmtDel.executeUpdate("DROP TABLE CLASSE");
-            stmtDel.executeUpdate("DROP TABLE ELEVE");
-            stmtDel.executeUpdate("DROP TABLE REALISATION");
-            stmtDel.executeUpdate("DROP TABLE COMMANDES");
-            stmtDel.executeUpdate("DROP TABLE A_valide");
-            stmtDel.executeUpdate("DROP TABLE UTILISE");
-            stmtDel.close();
+            //stmtDel = c.createStatement();
+            //stmtDel.executeUpdate("DROP TABLE PROFESSEUR");
+            //stmtDel.executeUpdate("DROP TABLE EXERCICE");
+            //stmtDel.executeUpdate("DROP TABLE CLASSE");
+            //stmtDel.executeUpdate("DROP TABLE ELEVE");
+            //stmtDel.executeUpdate("DROP TABLE REALISATION");
+            //stmtDel.executeUpdate("DROP TABLE COMMANDES");
+            //stmtDel.executeUpdate("DROP TABLE A_valide");
+            //stmtDel.executeUpdate("DROP TABLE UTILISE");
+            //stmtDel.close();
+            ResetBDD resetdb = new ResetBDD();
+            resetdb.dbReset();
             System.out.println("Deleted database successfully");
-            System.out.println("Create of new data");
-            SqliteJDBC db = new SqliteJDBC();
-            db.dbConnection(); // Création de toutes les tables et les contraintes
+            System.out.println("Update of database ...");
+            //SqliteJDBC db = new SqliteJDBC();
+            //db.dbConnection(); // Création de toutes les tables et les contraintes
+            
+            
             
             Statement stmtAdd = null;
             stmtAdd = c.createStatement();
-            for (Professeur p : lesProfs){
-                int idP = lesProfs.indexOf(p)+1;
-                stmtAdd.executeUpdate("INSERT INTO PROFESSEUR (ID_Professeur,Nom_Professeur,Prenom_Professeur,Login,Mot_De_Passe) VALUES ("+
-                        idP+",'"+p.getNomPersonne()+"','"+p.getPrenomPersonne()+"','"+p.getLogin()+"','"+p.getMotdePasse()+"');");
-            }
-            for (Classe cl : lesClasses){
-                int idCl = lesClasses.indexOf(cl)+1;
-                int idP2 = lesProfs.indexOf(cl.getProfesseur())+1;
-                stmtAdd.executeUpdate("INSERT INTO CLASSE (ID_Classe,Id_Professeur,Nom_Classe) VALUES ("+
-                        idCl+","+idP2+",'"+cl.getNomClasse()+"');");
-            }
+            //for (Professeur p : lesProfs){
+               // int idP = lesProfs.indexOf(p)+1;
+                //stmtAdd.executeUpdate("INSERT INTO PROFESSEUR (ID_Professeur,Nom_Professeur,Prenom_Professeur,Login,Mot_De_Passe) VALUES ("+
+                   //     idP+",'"+p.getNomPersonne()+"','"+p.getPrenomPersonne()+"','"+p.getLogin()+"','"+p.getMotdePasse()+"');");
+            //}
+           // for (Classe cl : lesClasses){
+             //   int idCl = lesClasses.indexOf(cl)+1;
+              //  int idP2 = lesProfs.indexOf(cl.getProfesseur())+1;
+              //  stmtAdd.executeUpdate("INSERT INTO CLASSE (ID_Classe,Id_Professeur,Nom_Classe) VALUES ("+
+                 //       idCl+","+idP2+",'"+cl.getNomClasse()+"');");
+           // }
             int idRea = 0;
             for (Eleve el : lesEleves){
                 int idEl = lesEleves.indexOf(el)+1;
                 int idCl = lesClasses.indexOf(el.getLaClasse())+1;
-                stmtAdd.executeUpdate("INSERT INTO ELEVE (ID_Eleve,Nom_Eleve,Id_Classe,Prenom_Eleve,Icon_Eleve) VALUES ("+
-                        idEl+",'"+el.getNomPersonne()+"',"+idCl+",'"+el.getNomPersonne()+"','"+el.getIconEleve().toString()+"');");
+                //stmtAdd.executeUpdate("INSERT INTO ELEVE (ID_Eleve,Nom_Eleve,Id_Classe,Prenom_Eleve,Icon_Eleve) VALUES ("+
+                    //    idEl+",'"+el.getNomPersonne()+"',"+idCl+",'"+el.getNomPersonne()+"','"+el.getIconEleve().toString()+"');");
                 for (Realisation rea : el.getLesRealisations()){
                     idRea++;
                     //int idRea = el.getLesRealisations().indexOf(rea)+1;
@@ -514,23 +530,27 @@ public class ApplicationProf {
             }
             for (Exercice ex : lesExercices){
                 int idExo = lesExercices.indexOf(ex)+1;
+                System.out.println(ex.getImage().toString());
+                String[] parts = ex.getImage().toString().split("/");
+                String nomImg = parts[parts.length-1];
+                System.out.println(nomImg);
                 stmtAdd.executeUpdate("INSERT INTO EXERCICE (ID_Exo,Nom_Exo,Commentaire_Exo,Tortue_Exo,Id_Professeur,Image_Exo) VALUES ("+
-                        idExo+",'"+ex.getNom()+"','"+ex.getCommentaire()+"',"+ex.getTortueChoisie()+",1,'"+ex.getImage().toString()+"');");
+                        idExo+",'"+ex.getNom()+"','"+ex.getCommentaire()+"',"+ex.getTortueChoisie()+",1,'/Images/"+nomImg+"');");
             }
             
             // Voir pour ne pas supprimer cette table
-            stmtAdd.executeUpdate("INSERT INTO COMMANDES (ID_Commande,Nom_Commande) VALUES (1,'Avance');");
-            stmtAdd.executeUpdate("INSERT INTO COMMANDES (ID_Commande,Nom_Commande) VALUES (2,'Tourne');");
-            stmtAdd.executeUpdate("INSERT INTO COMMANDES (ID_Commande,Nom_Commande) VALUES (3,'N''ecrit plus');");
-            stmtAdd.executeUpdate("INSERT INTO COMMANDES (ID_Commande,Nom_Commande) VALUES (4,'Ecrit');");
-            stmtAdd.executeUpdate("INSERT INTO COMMANDES (ID_Commande,Nom_Commande) VALUES (5,'Ralentie');");
-            stmtAdd.executeUpdate("INSERT INTO COMMANDES (ID_Commande,Nom_Commande) VALUES (6,'Accélère');");
-            stmtAdd.executeUpdate("INSERT INTO COMMANDES (ID_Commande,Nom_Commande) VALUES (7,'Ecrit en noir');");
-            stmtAdd.executeUpdate("INSERT INTO COMMANDES (ID_Commande,Nom_Commande) VALUES (8,'Ecrit en rouge');");
-            stmtAdd.executeUpdate("INSERT INTO COMMANDES (ID_Commande,Nom_Commande) VALUES (9,'Ecrit en rose');");
-            stmtAdd.executeUpdate("INSERT INTO COMMANDES (ID_Commande,Nom_Commande) VALUES (10,'Ecrit en jaune');");
-            stmtAdd.executeUpdate("INSERT INTO COMMANDES (ID_Commande,Nom_Commande) VALUES (11,'Ecrit en vert');");
-            stmtAdd.executeUpdate("INSERT INTO COMMANDES (ID_Commande,Nom_Commande) VALUES (12,'Ecrit en bleu');"); 
+//            stmtAdd.executeUpdate("INSERT INTO COMMANDES (ID_Commande,Nom_Commande) VALUES (1,'Avance');");
+//            stmtAdd.executeUpdate("INSERT INTO COMMANDES (ID_Commande,Nom_Commande) VALUES (2,'Tourne');");
+//            stmtAdd.executeUpdate("INSERT INTO COMMANDES (ID_Commande,Nom_Commande) VALUES (3,'N''ecrit plus');");
+//            stmtAdd.executeUpdate("INSERT INTO COMMANDES (ID_Commande,Nom_Commande) VALUES (4,'Ecrit');");
+//            stmtAdd.executeUpdate("INSERT INTO COMMANDES (ID_Commande,Nom_Commande) VALUES (5,'Ralentie');");
+//            stmtAdd.executeUpdate("INSERT INTO COMMANDES (ID_Commande,Nom_Commande) VALUES (6,'Accélère');");
+//            stmtAdd.executeUpdate("INSERT INTO COMMANDES (ID_Commande,Nom_Commande) VALUES (7,'Ecrit en noir');");
+//            stmtAdd.executeUpdate("INSERT INTO COMMANDES (ID_Commande,Nom_Commande) VALUES (8,'Ecrit en rouge');");
+//            stmtAdd.executeUpdate("INSERT INTO COMMANDES (ID_Commande,Nom_Commande) VALUES (9,'Ecrit en rose');");
+//            stmtAdd.executeUpdate("INSERT INTO COMMANDES (ID_Commande,Nom_Commande) VALUES (10,'Ecrit en jaune');");
+//            stmtAdd.executeUpdate("INSERT INTO COMMANDES (ID_Commande,Nom_Commande) VALUES (11,'Ecrit en vert');");
+//            stmtAdd.executeUpdate("INSERT INTO COMMANDES (ID_Commande,Nom_Commande) VALUES (12,'Ecrit en bleu');"); 
 
             System.out.println("Update database successfully");
             c.close();

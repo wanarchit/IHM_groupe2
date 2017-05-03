@@ -43,6 +43,7 @@ public class MainFrame extends JFrame{
         db.dbConnection();
         Peuplement remplissage= new Peuplement();
         remplissage.Peuplement();
+        
     }
     
     public static void main(String[] args)
