@@ -11,7 +11,7 @@ import javax.swing.ImageIcon;
  * Permet de créer un élève, d'avoir accès à la classe à laquelle l'élève appartient, avoir accès aux réalisations
  * de l'élève
  * 
- * @author Paul
+ * @author Groupe 2
  */
 public class Eleve extends Personne{
     

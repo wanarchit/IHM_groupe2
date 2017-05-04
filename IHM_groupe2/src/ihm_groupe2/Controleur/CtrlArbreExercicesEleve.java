@@ -14,7 +14,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
  * Permet de controler les actions effectuées sur l'arbre des exercices d'un élève
  * Le fait de cliquer sur une feuille permettra de renvoyer vers la tentative de l'élève et de l'évaluer
  * 
- * @author Paul
+ * @author Groupe 2
  */
 public class CtrlArbreExercicesEleve implements TreeSelectionListener{
     

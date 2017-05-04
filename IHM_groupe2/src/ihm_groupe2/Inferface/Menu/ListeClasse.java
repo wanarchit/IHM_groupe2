@@ -15,7 +15,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 
 /**
  *
- * @author Groupe_2
+ * @author Groupe 2
  */
 public class ListeClasse extends JScrollPane {
     

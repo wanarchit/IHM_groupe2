@@ -19,7 +19,7 @@ import javax.swing.border.BevelBorder;
 /**
  * Classe MenuProf
  * Peremt de créer le panel du menu du professeur (avec ses exercices, les classes et les élèves
- * @author Paul
+ * @author Groupe 2
  */
 public class MenuProf extends JPanel{
     

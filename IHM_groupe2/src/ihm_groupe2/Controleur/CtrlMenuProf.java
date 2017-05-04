@@ -6,25 +6,16 @@
 package ihm_groupe2.Controleur;
 
 import Applications.ApplicationProf;
-import ihm_groupe2.Inferface.Menu.ListeEleves;
 import ihm_groupe2.Inferface.Menu.MenuProf;
-import ihm_groupe2.Inferface.Menu.PanelCreerExo;
-import ihm_groupe2.Inferface.Menu.PanelModifExo;
-import ihm_groupe2.Noyau_fonctionnel.Exercice;
-import ihm_groupe2.Noyau_fonctionnel.Professeur;
-import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 
 /**
  * Classe CtrlMenuProf
  * Permet de gérer les choix du professeur dans le menuProf
  * Il affichera les panels en fonction des choix que l'utilisateur fait
  * 
- * @author Paul
+ * @author Groupe 2
  */
 public class CtrlMenuProf implements ActionListener{
     

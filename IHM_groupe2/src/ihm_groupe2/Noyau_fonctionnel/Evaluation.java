@@ -3,7 +3,7 @@ package ihm_groupe2.Noyau_fonctionnel;
 /**
  * Classe Evaluation
  * Permet de relier un exercice et un elève et donne une validation (true/false) dès que l'élève tente un exercice
- * @author Paul
+ * @author Groupe 2
  */
 public class Evaluation {
     

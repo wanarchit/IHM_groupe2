@@ -6,7 +6,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.GridLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -20,7 +19,7 @@ import javax.swing.JTextField;
  * Ce panel contient un bouton de validation des informations, il permettra de vérifier les informations
  * et de rediriger le professeur vers le menu du professeur "MenuProf" via le controleur "CtrlConnProf"
  * 
- * @author Paul
+ * @author Groupe 2
  */
 public class MenuConnexionProf extends JPanel{
     

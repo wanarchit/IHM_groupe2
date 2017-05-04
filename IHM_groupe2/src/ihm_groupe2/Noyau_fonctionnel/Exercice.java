@@ -4,7 +4,7 @@ import javax.swing.ImageIcon;
 
 /**
  * Classe exercice, permet au professeur de créer et modfier des exercices afin de les attribuer aux élèves
- * @author Marin
+ * @author Groupe 2
  */
 public class Exercice {
     private String nom;

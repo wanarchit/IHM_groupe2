@@ -13,7 +13,6 @@ import ihm_groupe2.Inferface.Menu.PanelAffReaArbre;
 import ihm_groupe2.Inferface.Menu.PanelCreerExo;
 import ihm_groupe2.Inferface.Menu.PanelModifExo;
 import ihm_groupe2.Modele.ResetBDD;
-import ihm_groupe2.Modele.SqliteJDBC;
 import ihm_groupe2.Noyau_fonctionnel.Classe;
 import ihm_groupe2.Noyau_fonctionnel.Commande;
 import ihm_groupe2.Noyau_fonctionnel.Eleve;
@@ -22,24 +21,20 @@ import ihm_groupe2.Noyau_fonctionnel.Exercice;
 import ihm_groupe2.Noyau_fonctionnel.Professeur;
 import ihm_groupe2.Noyau_fonctionnel.Realisation;
 import ihm_groupe2.Noyau_fonctionnel.TortueCouleur;
-import ihm_groupe2.Noyau_fonctionnel.TortueG;
 import ihm_groupe2.Noyau_fonctionnel.TortueRapide;
 import java.awt.BorderLayout;
-import java.net.URLDecoder;
-import java.net.URLEncoder;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
  * Classe ApplicationProf : permet de gérer tous les éléments liés aux professeurs
- * @author Paul
+ * @author Groupe 2
  */
 public class ApplicationProf {
     

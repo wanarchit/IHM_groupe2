@@ -6,7 +6,7 @@ import javax.swing.table.AbstractTableModel;
 
 /**
  *
- * @author Paul
+ * @author Groupe 2
  */
 public class TableClasses extends AbstractTableModel{
     private String[] columnName = {"Nom classe", "Nom professeur", "Nombre d'élève"};

@@ -15,7 +15,7 @@ import javax.swing.event.ListSelectionListener;
 
 /**
  *
- * @author Groupe_2
+ * @author Groupe 2
  */
 public class CtrlTableEleves  implements ListSelectionListener{
     

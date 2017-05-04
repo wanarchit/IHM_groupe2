@@ -5,7 +5,6 @@ import Applications.MainFrame;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.GridLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -17,7 +16,7 @@ import javax.swing.JPanel;
  * Classe MenuPrincipal
  * Permet de créer le menu principal qui proposera deux boutons
  * L'un pour renvoyer vers la page de connexion d'un élève et l'autre pour la connexion d'un professeur
- * @author Groupe2
+ * @author Groupe 2
  */
 public class MenuPrincipal extends JPanel{
     

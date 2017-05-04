@@ -28,7 +28,7 @@ import javax.swing.border.BevelBorder;
  * Il y aura un bouton de validation du formulaire qui renverra vers le controleur de validation du formulaire d'exercices
  * S'il n'y a aucune modification alors l'utilisateur sera simplement renvoyé vers la page de la liste des exercices
  * Sinon il y aura un controle des champs via le controleur "ControlFormExo"
- * @author Paul
+ * @author Groupe 2
  */
 public class PanelModifExo extends JPanel{
     

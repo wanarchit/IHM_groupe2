@@ -3,7 +3,7 @@ import java.sql.*;
 
 /**
  *
- * @author Marin
+ * @author Groupe 2
  */
 public class SqliteJDBC {
  

@@ -2,8 +2,6 @@ package ihm_groupe2.Controleur;
 
 import Applications.ApplicationEleve;
 import Applications.ApplicationProf;
-import ihm_groupe2.Inferface.Menu.MenuConnexionEleve;
-import ihm_groupe2.Inferface.Menu.MenuConnexionProf;
 import ihm_groupe2.Inferface.Menu.MenuPrincipal;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,7 +10,7 @@ import java.awt.event.ActionListener;
  * Classe CtrlMenuPrincipal
  * Permet de choisir le type d'utilisateur : élève ou professeur
  * Selon le choix, l'utilisateur sera renvoyé vers la page de connexion appropriée
- * @author Paul
+ * @author Groupe 2
  */
 public class CtrlMenuPrincipal implements ActionListener{
     

@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 
 /**
  *
- * @author Paul
+ * @author Groupe 2
  */
 public class CtrlAffReaArbre implements ActionListener{
 

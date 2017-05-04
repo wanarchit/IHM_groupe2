@@ -2,7 +2,6 @@ package ihm_groupe2.Controleur;
 
 import Applications.ApplicationProf;
 import ihm_groupe2.Inferface.Menu.MenuEvaluation;
-import ihm_groupe2.Noyau_fonctionnel.Canvas;
 import ihm_groupe2.Noyau_fonctionnel.Commande;
 import ihm_groupe2.Noyau_fonctionnel.Eleve;
 import ihm_groupe2.Noyau_fonctionnel.TortueCouleur;
@@ -17,7 +16,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Delphine
+ * @author Groupe 2
  */
 public class CtrlEvaluation implements ActionListener {
     

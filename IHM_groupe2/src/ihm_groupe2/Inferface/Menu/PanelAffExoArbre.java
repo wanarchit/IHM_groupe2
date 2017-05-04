@@ -14,7 +14,7 @@ import javax.swing.border.BevelBorder;
 
 /**
  *
- * @author Paul
+ * @author Groupe 2
  */
 public class PanelAffExoArbre extends JPanel{
     

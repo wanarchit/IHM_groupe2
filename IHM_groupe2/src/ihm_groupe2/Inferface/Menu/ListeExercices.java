@@ -5,7 +5,6 @@ import ihm_groupe2.Controleur.CtrlTableExercices;
 import ihm_groupe2.Modele.TableExercices;
 import ihm_groupe2.Noyau_fonctionnel.*;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Font;
 import java.util.ArrayList;
 import javax.swing.JLabel;
@@ -13,11 +12,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.TableCellRenderer;
 
 /**
  * Classe permettant d'afficher les exercices existants
- * @author Delphine
+ * @author Groupe 2
  */
 public class ListeExercices extends JScrollPane{
     private ApplicationProf appli;

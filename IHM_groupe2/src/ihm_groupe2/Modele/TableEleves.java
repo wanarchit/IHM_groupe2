@@ -5,9 +5,7 @@
  */
 package ihm_groupe2.Modele;
 
-import ihm_groupe2.Noyau_fonctionnel.Classe;
 import ihm_groupe2.Noyau_fonctionnel.Eleve;
-import ihm_groupe2.Noyau_fonctionnel.Professeur;
 import java.awt.Image;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
@@ -15,7 +13,7 @@ import javax.swing.table.AbstractTableModel;
 
 /**
  *
- * @author Groupe_2
+ * @author Groupe 2
  */
 public class TableEleves extends AbstractTableModel {
     

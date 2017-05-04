@@ -1,13 +1,12 @@
 package ihm_groupe2.Controleur;
 
 import ihm_groupe2.Inferface.Menu.RejouerReaEleve;
-import ihm_groupe2.Noyau_fonctionnel.Commande;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
  *
- * @author Paul
+ * @author Groupe 2
  */
 public class CtrlRejouerReaEleve implements ActionListener{
     

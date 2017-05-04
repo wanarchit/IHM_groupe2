@@ -2,7 +2,7 @@ package ihm_groupe2.Noyau_fonctionnel;
 
 /**
  *
- * @author Paul
+ * @author Groupe 2
  */
 public class Commande {
     
