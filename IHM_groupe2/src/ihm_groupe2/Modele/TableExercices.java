@@ -12,7 +12,7 @@ import javax.swing.table.AbstractTableModel;
  * Notre JTable n'est pas modifiable mais clickable
  * Il renvoie vers la page de modification d'un exercice
  * 
- * @author Delphine
+ * @author Groupe 2
  */
 public class TableExercices extends AbstractTableModel{
     

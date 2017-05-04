@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author Paul
+ * @author Groupe 2
  */
 public class RejouerReaEleve extends JFrame {
     

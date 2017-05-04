@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * Classe Classe
  * Permet de créer l'objet Classe qui contient des élèves et qui est géré par un Professeur
  * Des exercices pourront être ajouter aux classes
- * @author Marin
+ * @author Groupe 2
  */
 public class Classe {
 

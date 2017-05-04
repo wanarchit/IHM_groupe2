@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Paul
+ * @author Groupe 2
  */
 public class Realisation {
     

@@ -2,20 +2,15 @@ package ihm_groupe2.Controleur;
 
 import Applications.ApplicationEleve;
 import ihm_groupe2.Inferface.Menu.MenuConnexionEleve;
-import ihm_groupe2.Modele.TableEleves;
-import ihm_groupe2.Noyau_fonctionnel.Eleve;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JTable;
-import javax.swing.ListSelectionModel;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
+
 /**
  * Classe CtrlConnEleve
  Permet de controler la connexion d'un élève ou d'un professeur en validant le formulaire
  et en récupérant les données dans la base de données
  Permet de rediriger vers la page des exercices de l'élève pour un élève ou du menu d'un professeur
- * @author Paul
+ * @author Groupe 2
  */
 public class CtrlConnEleve implements ActionListener {
     
@@ -32,8 +27,5 @@ public class CtrlConnEleve implements ActionListener {
         if(e.getSource() == leMenu.getButAnnuler()){
             appli.annulerConnexion();
         }
-        
     }
-
-    
 }

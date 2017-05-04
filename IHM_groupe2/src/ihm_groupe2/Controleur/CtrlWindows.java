@@ -1,7 +1,6 @@
 package ihm_groupe2.Controleur;
 
 import Applications.MainFrame;
-import ihm_groupe2.Inferface.Menu.Dessin;
 import ihm_groupe2.Inferface.Menu.MenuEleve;
 import ihm_groupe2.Inferface.Menu.MenuPrincipal;
 import ihm_groupe2.Inferface.Menu.MenuProf;
@@ -11,7 +10,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Paul
+ * @author Groupe 2
  */
 public class CtrlWindows implements WindowListener{
     

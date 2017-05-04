@@ -10,7 +10,7 @@ import javax.swing.event.ListSelectionListener;
 
 /**
  *
- * @author Paul
+ * @author Groupe 2
  */
 public class CtrlTableClasses implements ListSelectionListener{
     

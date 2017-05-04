@@ -19,7 +19,7 @@ import javax.swing.JPanel;
  Un bouton de validation permettra de récupérer le nom de l'élève dans la base de données
  et ainsi l'élève sera redirigé vers son menu avec ses exercices grâce au controleur "CtrlConnEleve"
  * 
- * @author Paul
+ * @author Groupe 2
  */
 public class MenuConnexionEleve extends JPanel{
     

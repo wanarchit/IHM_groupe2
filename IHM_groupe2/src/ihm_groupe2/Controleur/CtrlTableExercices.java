@@ -11,7 +11,7 @@ import javax.swing.event.ListSelectionListener;
 
 /**
  *
- * @author Delphine
+ * @author Groupe 2
  */
 public class CtrlTableExercices implements ListSelectionListener {
     

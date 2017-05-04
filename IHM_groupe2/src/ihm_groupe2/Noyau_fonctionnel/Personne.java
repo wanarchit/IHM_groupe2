@@ -3,7 +3,7 @@ package ihm_groupe2.Noyau_fonctionnel;
 /**
  * Classe Personne
  * Classe mère pour les héritiés Professeur et Eleve
- * @author Paul
+ * @author Groupe 2
  */
 public class Personne {
     protected String nomPersonne;

@@ -11,7 +11,7 @@ import javax.swing.ImageIcon;
 
 /**
  *
- * @author Paul
+ * @author Groupe 2
  */
 public class CtrlDessinEleve implements ActionListener{
     

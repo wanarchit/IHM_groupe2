@@ -17,7 +17,7 @@ import javax.swing.tree.TreeSelectionModel;
 
 /**
  *
- * @author Delphine
+ * @author Groupe 2
  */
 public class AfficheEleve{
     

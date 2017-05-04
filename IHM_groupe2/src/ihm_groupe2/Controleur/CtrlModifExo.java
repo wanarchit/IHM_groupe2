@@ -20,7 +20,7 @@ import javax.swing.filechooser.FileSystemView;
 
 /**
  *
- * @author Jonathan
+ * @author Groupe 2
  */
 public class CtrlModifExo implements ActionListener {
     private ApplicationProf appli;

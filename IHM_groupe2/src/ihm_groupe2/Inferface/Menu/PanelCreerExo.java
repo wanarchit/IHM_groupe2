@@ -22,7 +22,7 @@ import javax.swing.border.BevelBorder;
  * Panel qui contient le formulaire pour pouvoir créer un exercice
  * Il y aura plusieurs champs : Nom exercice, Tortue choisi, Commentaire exercice, ajouter Image exercice
  * Il y aura un boutton de validation du formulaire qui renverra vers le controleur de validation du formulaire d'exercices "ControlFormExo"
- * @author Paul
+ * @author Groupe 2
  */
 public class PanelCreerExo extends JPanel{
     

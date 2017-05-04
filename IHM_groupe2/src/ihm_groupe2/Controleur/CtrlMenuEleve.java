@@ -11,7 +11,7 @@ import java.awt.event.ActionListener;
  * Les 4 bontons permettent de changer les exercices ou les tentatives de l'élève
  * Une action sur l'un des boutons va permettre de modifier les labels et les images des exercices/tentatives
  * 
- * @author Paul
+ * @author Groupe 2
  */
 public class CtrlMenuEleve implements ActionListener{
     

@@ -4,7 +4,6 @@ import ihm_groupe2.Controleur.CtrlWindows;
 import ihm_groupe2.Inferface.Menu.MenuPrincipal;
 import ihm_groupe2.Modele.Peuplement;
 import ihm_groupe2.Modele.SqliteJDBC;
-import java.awt.event.WindowListener;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
@@ -12,7 +11,7 @@ import javax.swing.SwingUtilities;
  * Classe MainFrame
  * Créer la fenêtre principale
  * Permet de lancer le programme en chargeant le menu principal
- * @author Paul
+ * @author Groupe 2
  */
 public class MainFrame extends JFrame{
 

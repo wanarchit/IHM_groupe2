@@ -23,7 +23,7 @@ import javax.swing.border.BevelBorder;
  * Classe MenuEleve
  * Permet de créer le menu d'un eleve
  * Dans ce menu on affichera les exercices à faires, les exercices réalisés, les tentatives et les évaluations
- * @author Paul
+ * @author Groupe 2
  */
 public class MenuEleve extends JPanel{
     

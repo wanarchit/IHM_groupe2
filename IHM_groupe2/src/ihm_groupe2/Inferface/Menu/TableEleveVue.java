@@ -15,7 +15,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 
 /**
  * Classe TableEleveVue
- * @author Groupe2
+ * @author Groupe 2
  */
 public class TableEleveVue extends JScrollPane{
     

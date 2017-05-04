@@ -1,12 +1,10 @@
 package Applications;
 
-import ihm_groupe2.Inferface.Menu.Dessin;
 import ihm_groupe2.Inferface.Menu.MenuConnexionEleve;
 import ihm_groupe2.Inferface.Menu.MenuEleve;
 import ihm_groupe2.Inferface.Menu.MenuPrincipal;
 import ihm_groupe2.Inferface.Menu.RejouerReaEleve;
 import ihm_groupe2.Modele.ResetBDD;
-import ihm_groupe2.Modele.SqliteJDBC;
 import ihm_groupe2.Noyau_fonctionnel.Classe;
 import ihm_groupe2.Noyau_fonctionnel.Commande;
 import ihm_groupe2.Noyau_fonctionnel.Eleve;
@@ -19,10 +17,9 @@ import ihm_groupe2.Noyau_fonctionnel.TortueRapide;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import java.sql.*;
-import java.util.regex.*;
 /**
  * Classe ApplicationEleve : permet de gérer tous les éléments liés aux élèves
- * @author Paul
+ * @author Groupe 2
  */
 public class ApplicationEleve {
     

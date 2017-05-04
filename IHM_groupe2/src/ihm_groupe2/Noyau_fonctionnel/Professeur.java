@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * Classe Professeur
  * Permet de créer un professeur qui pourra être le référent d'une classe, créer des exercices
  * corriger des exercices et les évaluer
- * @author Jonathan
+ * @author Groupe 2
  */
 public class Professeur extends Personne{
     
