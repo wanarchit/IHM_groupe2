@@ -66,13 +66,10 @@ public class CtrlFormExo implements ActionListener{
             int retour=homeChooser.showOpenDialog(null);
             if (retour == JFileChooser.APPROVE_OPTION)
             {
-                System.out.println("selected file = "+homeChooser.getSelectedFile());
                 File monFichier = homeChooser.getSelectedFile();
-                System.out.println("monfichier = "+monFichier);
                 BufferedImage image;
                 try {
                     image = ImageIO.read(monFichier);
-                    System.out.println("image = "+image);
                     panelFormExo.setImageExo(new ImageIcon(image));
                     //panelFormExo.getLabAffImage().setIcon(new ImageIcon(image));
                 } catch (IOException ex) {

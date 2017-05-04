@@ -26,9 +26,6 @@ public class MainFrame extends JFrame{
         menuPrincipal = new MenuPrincipal(this);
         appliEleve = null;
         appliProf = null;
-        System.out.println("main");
-        System.out.println(appliEleve);
-        System.out.println(appliProf);
         CtrlWindows controleur = new CtrlWindows(this);
         this.addWindowListener(controleur);
         
@@ -65,16 +62,10 @@ public class MainFrame extends JFrame{
     }
     
     public void setAppEleve(ApplicationEleve lAppEl){
-        System.out.println("setAppEleve");
-        System.out.println(appliEleve);
-        System.out.println(appliProf);
         this.appliEleve = lAppEl;
     }
     
     public void setAppProf(ApplicationProf lAppPr){
-        System.out.println("setAppProf");
-        System.out.println(appliEleve);
-        System.out.println(appliProf);
         this.appliProf = lAppPr;
     }
 }

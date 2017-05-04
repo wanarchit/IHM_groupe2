@@ -456,10 +456,8 @@ public class ApplicationEleve {
             }
             for (Exercice ex : lesExercices){
                 int idExo = lesExercices.indexOf(ex)+1;
-                System.out.println(ex.getImage().toString());
                 String[] parts = ex.getImage().toString().split("/");
                 String nomImg = parts[parts.length-1];
-                System.out.println(nomImg);
                 stmtAdd.executeUpdate("INSERT INTO EXERCICE (ID_Exo,Nom_Exo,Commentaire_Exo,Tortue_Exo,Id_Professeur,Image_Exo) VALUES ("+
                         idExo+",'"+ex.getNom()+"','"+ex.getCommentaire()+"',"+ex.getTortueChoisie()+",1,'/Images/"+nomImg+"');");
             }
