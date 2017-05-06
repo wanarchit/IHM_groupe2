@@ -43,6 +43,9 @@ public class ApplicationProf {
     private Professeur prof,prof2;
     private ArrayList<Professeur> lesProfs;
     private ArrayList<Eleve> lesEleves;
+    
+    private Eleve[] lesEleves2;
+    
     private Eleve eleve,eleve2,eleve3;
     private ArrayList<Realisation> mesDessins;
     private ArrayList<Classe> lesClasses;
@@ -57,6 +60,7 @@ public class ApplicationProf {
     private Realisation maRea; 
     private Commande maCmd;
     private ArrayList<Evaluation> lesEvals;
+    
     //private TortueG toruteG;
     //private TortueCouleur tortueCoul;
     //private TortueRapide tortueRap;
@@ -73,6 +77,7 @@ public class ApplicationProf {
         Statement stmt5 = null;
         Statement stmt6 = null;
         Statement stmt7 = null;
+        Statement stmt8 = null;
         try {
             Class.forName("org.sqlite.JDBC");
             c = DriverManager.getConnection("jdbc:sqlite:IHM_G2.db");
@@ -84,10 +89,17 @@ public class ApplicationProf {
             stmt5 = c.createStatement();
             stmt6 = c.createStatement();
             stmt7 = c.createStatement();
+            stmt8 = c.createStatement();
             ResultSet resProf=stmt.executeQuery("SELECT * FROM PROFESSEUR");
             lesProfs=new ArrayList();
             lesClasses=new ArrayList();
-            lesEleves=new ArrayList();
+            //lesEleves=new ArrayList();
+            ResultSet resNbEleve=stmt8.executeQuery("SELECT COUNT(*) AS nbEleve FROM ELEVE");
+            int nbEleves = 0;
+            while(resNbEleve.next()){
+                nbEleves = resNbEleve.getInt("nbEleve");
+            }
+            lesEleves2= new Eleve[nbEleves];
             lesExercices=new ArrayList();
             lesEvals=new ArrayList();
             ResultSet resExercices=stmt4.executeQuery("SELECT * FROM EXERCICE");
@@ -134,7 +146,8 @@ public class ApplicationProf {
                         int idEleve=resEleves.getInt("ID_Eleve");
                         ImageIcon imageEleve = new ImageIcon(getClass().getResource(iconeEleve));
                         eleve=new Eleve(maClasse,nomEleve,prenomEleve,imageEleve);
-                        lesEleves.add(eleve);
+                        //lesEleves.add(eleve);
+                        lesEleves2[idEleve-1]=eleve;
                         maClasse.ajoutEleve(eleve);
                         mesDessins = new ArrayList();
                         ResultSet resRealisation=stmt5.executeQuery("SELECT * FROM REALISATION WHERE Id_Eleve="+idEleve);
@@ -166,6 +179,10 @@ public class ApplicationProf {
                         }
                     }
                 }
+            }
+            lesEleves=new ArrayList();
+            for (Eleve ele : lesEleves2){
+                lesEleves.add(ele);
             }
             //stmt.executeUpdate("INSERT INTO REALISATION (ID_Realisation,Note_Realisation,Id_Eleve,Id_Exo,Numero_Tentative,Commentaire_Realisation)            
         }catch ( Exception e ) {
@@ -495,7 +512,6 @@ public class ApplicationProf {
                     idRea++;
                     //int idRea = el.getLesRealisations().indexOf(rea)+1;
                     int idExRea = lesExercices.indexOf(rea.getExercice())+1;
-                    
                     stmtAdd.executeUpdate("INSERT INTO REALISATION (ID_Realisation,Note_Realisation,Id_Eleve,Id_Exo,Numero_Tentative,Commentaire_Realisation) VALUES ("+
                     idRea+",'"+rea.getNote()+"',"+idEl+","+idExRea+","+rea.getNumeroTentative()+",'"+rea.getCommentaire()+"');");
                     

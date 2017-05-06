@@ -30,26 +30,26 @@ public class Peuplement {
            stmt.executeUpdate("INSERT INTO CLASSE (ID_Classe,Id_Professeur,Nom_Classe) VALUES (5,5,'CE2');");
            
             //Peuplement de la table Eleve
-           stmt.executeUpdate("INSERT INTO ELEVE (ID_Eleve,Nom_Eleve,Id_Classe,Prenom_Eleve,Icon_Eleve) VALUES (1,'Hopper',3,'Jaden','/Applications/Images_eleves/eleve_g1.png');");
-           stmt.executeUpdate("INSERT INTO ELEVE (ID_Eleve,Nom_Eleve,Id_Classe,Prenom_Eleve,Icon_Eleve) VALUES (2,'Young',2,'Wang','/Applications/Images_eleves/eleve_g2.png');");
-           stmt.executeUpdate("INSERT INTO ELEVE (ID_Eleve,Nom_Eleve,Id_Classe,Prenom_Eleve,Icon_Eleve) VALUES (3,'Shields',3,'Whitney','/Applications/Images_eleves/eleve_f1.png');");
-           stmt.executeUpdate("INSERT INTO ELEVE (ID_Eleve,Nom_Eleve,Id_Classe,Prenom_Eleve,Icon_Eleve) VALUES (4,'Porter',5,'Julie','/Applications/Images_eleves/eleve_f2.png');");
-           stmt.executeUpdate("INSERT INTO ELEVE (ID_Eleve,Nom_Eleve,Id_Classe,Prenom_Eleve,Icon_Eleve) VALUES (5,'Thomas',4,'Tamara','/Applications/Images_eleves/eleve_f3.png');");
-           stmt.executeUpdate("INSERT INTO ELEVE (ID_Eleve,Nom_Eleve,Id_Classe,Prenom_Eleve,Icon_Eleve) VALUES (6,'Combs',5,'Thane','/Applications/Images_eleves/eleve_g3.png');");
-           stmt.executeUpdate("INSERT INTO ELEVE (ID_Eleve,Nom_Eleve,Id_Classe,Prenom_Eleve,Icon_Eleve) VALUES (7,'Kelly',3,'Elijah','/Applications/Images_eleves/eleve_g4.png');");
-           stmt.executeUpdate("INSERT INTO ELEVE (ID_Eleve,Nom_Eleve,Id_Classe,Prenom_Eleve,Icon_Eleve) VALUES (8,'Meyers',4,'Wynne','/Applications/Images_eleves/eleve_g5.png');");
-           stmt.executeUpdate("INSERT INTO ELEVE (ID_Eleve,Nom_Eleve,Id_Classe,Prenom_Eleve,Icon_Eleve) VALUES (9,'Wilkinson',1,'Sean','/Applications/Images_eleves/eleve_g6.png');");
-           stmt.executeUpdate("INSERT INTO ELEVE (ID_Eleve,Nom_Eleve,Id_Classe,Prenom_Eleve,Icon_Eleve) VALUES (10,'Chase',3,'Shana','/Applications/Images_eleves/eleve_f4.png');");
-           stmt.executeUpdate("INSERT INTO ELEVE (ID_Eleve,Nom_Eleve,Id_Classe,Prenom_Eleve,Icon_Eleve) VALUES (11,'Gould',3,'Quinlan','/Applications/Images_eleves/eleve_g7.png');");
-           stmt.executeUpdate("INSERT INTO ELEVE (ID_Eleve,Nom_Eleve,Id_Classe,Prenom_Eleve,Icon_Eleve) VALUES (12,'Simmons',5,'Katell','/Applications/Images_eleves/eleve_f5.png');");
-           stmt.executeUpdate("INSERT INTO ELEVE (ID_Eleve,Nom_Eleve,Id_Classe,Prenom_Eleve,Icon_Eleve) VALUES (13,'Reese',1,'Lewis','/Applications/Images_eleves/eleve_g8.png');");
-           stmt.executeUpdate("INSERT INTO ELEVE (ID_Eleve,Nom_Eleve,Id_Classe,Prenom_Eleve,Icon_Eleve) VALUES (14,'Martinez',2,'Ocean','/Applications/Images_eleves/eleve_f6.png');");
-           stmt.executeUpdate("INSERT INTO ELEVE (ID_Eleve,Nom_Eleve,Id_Classe,Prenom_Eleve,Icon_Eleve) VALUES (15,'Sims',2,'Aretha','/Applications/Images_eleves/eleve_f7.png');");
-           stmt.executeUpdate("INSERT INTO ELEVE (ID_Eleve,Nom_Eleve,Id_Classe,Prenom_Eleve,Icon_Eleve) VALUES (16,'Davenport',2,'Palmer','/Applications/Images_eleves/eleve_f8.png');");
-           stmt.executeUpdate("INSERT INTO ELEVE (ID_Eleve,Nom_Eleve,Id_Classe,Prenom_Eleve,Icon_Eleve) VALUES (17,'Macdonald',5,'Ginger','/Applications/Images_eleves/eleve_f9.png');");
-           stmt.executeUpdate("INSERT INTO ELEVE (ID_Eleve,Nom_Eleve,Id_Classe,Prenom_Eleve,Icon_Eleve) VALUES (18,'Keller',4,'Brendan','/Applications/Images_eleves/eleve_g9.png');");
-           stmt.executeUpdate("INSERT INTO ELEVE (ID_Eleve,Nom_Eleve,Id_Classe,Prenom_Eleve,Icon_Eleve) VALUES (19,'Maddox',1,'Angelica','/Applications/Images_eleves/eleve_f10.png');");
-           stmt.executeUpdate("INSERT INTO ELEVE (ID_Eleve,Nom_Eleve,Id_Classe,Prenom_Eleve,Icon_Eleve) VALUES (20,'Blackburn',2,'Vernon','/Applications/Images_eleves/eleve_g10.png');");  
+           stmt.executeUpdate("INSERT INTO ELEVE (ID_Eleve,Nom_Eleve,Id_Classe,Prenom_Eleve,Icon_Eleve) VALUES (1,'Hopper',3,'Jaden','/Images/eleve_g1.png');");
+           stmt.executeUpdate("INSERT INTO ELEVE (ID_Eleve,Nom_Eleve,Id_Classe,Prenom_Eleve,Icon_Eleve) VALUES (2,'Young',2,'Wang','/Images/eleve_g2.png');");
+           stmt.executeUpdate("INSERT INTO ELEVE (ID_Eleve,Nom_Eleve,Id_Classe,Prenom_Eleve,Icon_Eleve) VALUES (3,'Shields',3,'Whitney','/Images/eleve_f1.png');");
+           stmt.executeUpdate("INSERT INTO ELEVE (ID_Eleve,Nom_Eleve,Id_Classe,Prenom_Eleve,Icon_Eleve) VALUES (4,'Porter',5,'Julie','/Images/eleve_f2.png');");
+           stmt.executeUpdate("INSERT INTO ELEVE (ID_Eleve,Nom_Eleve,Id_Classe,Prenom_Eleve,Icon_Eleve) VALUES (5,'Thomas',4,'Tamara','/Images/eleve_f3.png');");
+           stmt.executeUpdate("INSERT INTO ELEVE (ID_Eleve,Nom_Eleve,Id_Classe,Prenom_Eleve,Icon_Eleve) VALUES (6,'Combs',5,'Thane','/Images/eleve_g3.png');");
+           stmt.executeUpdate("INSERT INTO ELEVE (ID_Eleve,Nom_Eleve,Id_Classe,Prenom_Eleve,Icon_Eleve) VALUES (7,'Kelly',3,'Elijah','/Images/eleve_g4.png');");
+           stmt.executeUpdate("INSERT INTO ELEVE (ID_Eleve,Nom_Eleve,Id_Classe,Prenom_Eleve,Icon_Eleve) VALUES (8,'Meyers',4,'Wynne','/Images/eleve_g5.png');");
+           stmt.executeUpdate("INSERT INTO ELEVE (ID_Eleve,Nom_Eleve,Id_Classe,Prenom_Eleve,Icon_Eleve) VALUES (9,'Wilkinson',1,'Sean','/Images/eleve_g6.png');");
+           stmt.executeUpdate("INSERT INTO ELEVE (ID_Eleve,Nom_Eleve,Id_Classe,Prenom_Eleve,Icon_Eleve) VALUES (10,'Chase',3,'Shana','/Images/eleve_f4.png');");
+           stmt.executeUpdate("INSERT INTO ELEVE (ID_Eleve,Nom_Eleve,Id_Classe,Prenom_Eleve,Icon_Eleve) VALUES (11,'Gould',3,'Quinlan','/Images/eleve_g7.png');");
+           stmt.executeUpdate("INSERT INTO ELEVE (ID_Eleve,Nom_Eleve,Id_Classe,Prenom_Eleve,Icon_Eleve) VALUES (12,'Simmons',5,'Katell','/Images/eleve_f5.png');");
+           stmt.executeUpdate("INSERT INTO ELEVE (ID_Eleve,Nom_Eleve,Id_Classe,Prenom_Eleve,Icon_Eleve) VALUES (13,'Reese',1,'Lewis','/Images/eleve_g8.png');");
+           stmt.executeUpdate("INSERT INTO ELEVE (ID_Eleve,Nom_Eleve,Id_Classe,Prenom_Eleve,Icon_Eleve) VALUES (14,'Martinez',2,'Ocean','/Images/eleve_f6.png');");
+           stmt.executeUpdate("INSERT INTO ELEVE (ID_Eleve,Nom_Eleve,Id_Classe,Prenom_Eleve,Icon_Eleve) VALUES (15,'Sims',2,'Aretha','/Images/eleve_f7.png');");
+           stmt.executeUpdate("INSERT INTO ELEVE (ID_Eleve,Nom_Eleve,Id_Classe,Prenom_Eleve,Icon_Eleve) VALUES (16,'Davenport',2,'Palmer','/Images/eleve_f8.png');");
+           stmt.executeUpdate("INSERT INTO ELEVE (ID_Eleve,Nom_Eleve,Id_Classe,Prenom_Eleve,Icon_Eleve) VALUES (17,'Macdonald',5,'Ginger','/Images/eleve_f9.png');");
+           stmt.executeUpdate("INSERT INTO ELEVE (ID_Eleve,Nom_Eleve,Id_Classe,Prenom_Eleve,Icon_Eleve) VALUES (18,'Keller',4,'Brendan','/Images/eleve_g9.png');");
+           stmt.executeUpdate("INSERT INTO ELEVE (ID_Eleve,Nom_Eleve,Id_Classe,Prenom_Eleve,Icon_Eleve) VALUES (19,'Maddox',1,'Angelica','/Images/eleve_f10.png');");
+           stmt.executeUpdate("INSERT INTO ELEVE (ID_Eleve,Nom_Eleve,Id_Classe,Prenom_Eleve,Icon_Eleve) VALUES (20,'Blackburn',2,'Vernon','/Images/eleve_g10.png');");  
            
             //Peuplement de la table Exercice
            stmt.executeUpdate("INSERT INTO EXERCICE (ID_Exo,Nom_Exo,Commentaire_Exo,Tortue_Exo,Id_Professeur,Image_Exo) VALUES (1,'Exercice_CP','Faites un simple carré',0,3,'/Images/Exercice1_image.PNG');");
@@ -121,9 +121,9 @@ public class Peuplement {
             stmt.executeUpdate("INSERT INTO UTILISE (Id_Commande,Id_Realisation,Iteration) VALUES (2,1,4);");
             //Realisation 2
             stmt.executeUpdate("INSERT INTO UTILISE (Id_Commande,Id_Realisation,Iteration) VALUES (1,2,1);");
-            stmt.executeUpdate("INSERT INTO UTILISE (Id_Commande,Id_Realisation,Iteration) VALUES (11,2,2);");
+            stmt.executeUpdate("INSERT INTO UTILISE (Id_Commande,Id_Realisation,Iteration) VALUES (3,2,2);");
             stmt.executeUpdate("INSERT INTO UTILISE (Id_Commande,Id_Realisation,Iteration) VALUES (1,2,3);");
-            stmt.executeUpdate("INSERT INTO UTILISE (Id_Commande,Id_Realisation,Iteration) VALUES (12,2,4);");
+            stmt.executeUpdate("INSERT INTO UTILISE (Id_Commande,Id_Realisation,Iteration) VALUES (4,2,4);");
             stmt.executeUpdate("INSERT INTO UTILISE (Id_Commande,Id_Realisation,Iteration) VALUES (2,2,5);");
             stmt.executeUpdate("INSERT INTO UTILISE (Id_Commande,Id_Realisation,Iteration) VALUES (1,2,6);");
             stmt.executeUpdate("INSERT INTO UTILISE (Id_Commande,Id_Realisation,Iteration) VALUES (1,2,7);");
@@ -159,10 +159,10 @@ public class Peuplement {
             stmt.executeUpdate("INSERT INTO UTILISE (Id_Commande,Id_Realisation,Iteration) VALUES (1,5,11);");
             //Realisation 6
             stmt.executeUpdate("INSERT INTO UTILISE (Id_Commande,Id_Realisation,Iteration) VALUES (1,6,1);");
-            stmt.executeUpdate("INSERT INTO UTILISE (Id_Commande,Id_Realisation,Iteration) VALUES (9,6,2);");
+            stmt.executeUpdate("INSERT INTO UTILISE (Id_Commande,Id_Realisation,Iteration) VALUES (3,6,2);");
             stmt.executeUpdate("INSERT INTO UTILISE (Id_Commande,Id_Realisation,Iteration) VALUES (1,6,3);");
             stmt.executeUpdate("INSERT INTO UTILISE (Id_Commande,Id_Realisation,Iteration) VALUES (2,6,4);");
-            stmt.executeUpdate("INSERT INTO UTILISE (Id_Commande,Id_Realisation,Iteration) VALUES (10,6,5);");
+            stmt.executeUpdate("INSERT INTO UTILISE (Id_Commande,Id_Realisation,Iteration) VALUES (4,6,5);");
             stmt.executeUpdate("INSERT INTO UTILISE (Id_Commande,Id_Realisation,Iteration) VALUES (1,6,6);");
             stmt.executeUpdate("INSERT INTO UTILISE (Id_Commande,Id_Realisation,Iteration) VALUES (1,6,7);");
             //Realisation 7 done

@@ -18,7 +18,7 @@ public class SqliteJDBC {
 
       stmt = c.createStatement();
       
-      String tableProfesseur = "CREATE TABLE PROFESSEUR " +
+      String tableProfesseur = "CREATE TABLE IF NOT EXISTS PROFESSEUR " +
       "(ID_Professeur INT PRIMARY KEY     NOT NULL," +
       " Nom_Professeur     CHAR(50) NOT NULL," + 
       " Prenom_Professeur  CHAR(50) NOT NULL," + 
@@ -26,7 +26,7 @@ public class SqliteJDBC {
       " Mot_De_Passe       CHAR(50) NOT NULL)";
       stmt.executeUpdate(tableProfesseur);
       
-      String tableExercice = "CREATE TABLE EXERCICE " +
+      String tableExercice = "CREATE TABLE IF NOT EXISTS EXERCICE " +
       "(ID_Exo INT PRIMARY KEY      NOT NULL," +
       " Nom_Exo           CHAR(50)  NOT NULL," + 
       " Commentaire_Exo   CHAR(250) NOT NULL," + 
@@ -36,14 +36,14 @@ public class SqliteJDBC {
       "FOREIGN KEY(Id_Professeur) REFERENCES PROFESSEUR(ID_Professeur))";
       stmt.executeUpdate(tableExercice);
       
-      String tableClasse = "CREATE TABLE CLASSE " +
+      String tableClasse = "CREATE TABLE IF NOT EXISTS CLASSE " +
       "(ID_Classe INT PRIMARY KEY     NOT NULL," +
       "Id_Professeur      INT         NOT NULL,"+
       " Nom_Classe        CHAR(50)    NOT NULL,"+
       "FOREIGN KEY(Id_Professeur) REFERENCES PROFESSEUR(ID_Professeur))"; 
       stmt.executeUpdate(tableClasse);
       
-      String tableEleve = "CREATE TABLE ELEVE " +
+      String tableEleve = "CREATE TABLE IF NOT EXISTS ELEVE " +
       "(ID_Eleve INT PRIMARY KEY      NOT NULL," +
       "Nom_Eleve      CHAR(50) NOT NULL," +
       "Id_Classe       INT      NOT NULL,"+
@@ -52,7 +52,7 @@ public class SqliteJDBC {
       "FOREIGN KEY(Id_Classe) REFERENCES CLASSE(ID_Classe))";
       stmt.executeUpdate(tableEleve);
       
-      String tableRealisation = "CREATE TABLE REALISATION " +
+      String tableRealisation = "CREATE TABLE IF NOT EXISTS REALISATION " +
       "(ID_Realisation INT PRIMARY KEY       NOT NULL," +
       "Note_Realisation           CHAR(50)  NOT NULL," +
       "Id_Eleve                    INT       NOT NULL,"+
@@ -64,12 +64,12 @@ public class SqliteJDBC {
        
       stmt.executeUpdate(tableRealisation);
       
-      String tableCommandes = "CREATE TABLE COMMANDES " +
+      String tableCommandes = "CREATE TABLE IF NOT EXISTS COMMANDES " +
       "(ID_Commande INT PRIMARY KEY      NOT NULL," +
       " Nom_Commande            CHAR(30) NOT NULL)"; 
       stmt.executeUpdate(tableCommandes);
       
-      String tableA_valide = "CREATE TABLE A_valide " +//mettre foreign key
+      String tableA_valide = "CREATE TABLE IF NOT EXISTS A_valide " +//mettre foreign key
       "(Validation_Exo INT NOT NULL,"+
       "Id_Eleve        INT NOT NULL,"+
       "Id_Exo          INT NOT NULL,"+
@@ -78,7 +78,7 @@ public class SqliteJDBC {
       "PRIMARY KEY(Id_Eleve,Id_Exo))";
       stmt.executeUpdate(tableA_valide);
       
-      String tableUtilise = "CREATE TABLE UTILISE " +
+      String tableUtilise = "CREATE TABLE IF NOT EXISTS UTILISE " +
       "(Id_Commande     INT NOT NULL,"+
       "Id_Realisation  INT NOT NULL,"+
       "Iteration       INT NOT NULL,"+
