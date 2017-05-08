@@ -2,7 +2,8 @@ package ihm_groupe2.Modele;
 import java.sql.*;
 
 /**
- *
+ * Classe permettant de réinitialiser la base de données
+ * 
  * @author Groupe 2
  */
 public class ResetBDD {

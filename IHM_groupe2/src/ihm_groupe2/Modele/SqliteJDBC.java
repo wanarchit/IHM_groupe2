@@ -2,7 +2,8 @@ package ihm_groupe2.Modele;
 import java.sql.*;
 
 /**
- *
+ * Classe permettant la création de la base de données SQLite LDBC
+ * 
  * @author Groupe 2
  */
 public class SqliteJDBC {

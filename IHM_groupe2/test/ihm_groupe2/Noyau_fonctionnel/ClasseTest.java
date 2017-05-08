@@ -57,17 +57,6 @@ public class ClasseTest {
     }
 
     /**
-     * Test of setNomClasse method, of class Classe.
-     */
-    @Test
-    public void testSetNomClasse() {
-        System.out.println("setNomClasse");
-        String nomClasse = "CM2";
-        c.setNomClasse(nomClasse);
-        assertEquals(nomClasse,"CM2");
-    }
-
-    /**
      * Test of getProfesseur method, of class Classe.
      */
     @Test
