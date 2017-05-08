@@ -40,7 +40,6 @@ public class ListeExercices extends JScrollPane{
         tableExercices.setCellSelectionEnabled(true);
         tableExercices.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         tableExercices.setRowHeight(120);
-        tableExercices.setAutoCreateRowSorter(true);
         personnalisationTable(tableExercices);
         
         this.add(tableExercices);

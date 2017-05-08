@@ -159,6 +159,9 @@ public class ApplicationProf {
                             String comRea=resRealisation.getString("Commentaire_Realisation");
                             String noteRea=resRealisation.getString("Note_Realisation");
                             maRea = new Realisation(numRea,comRea,noteRea,lesExercices.get(idExo-1));
+                            if (noteRea.equals("Non acquis") || noteRea.equals("Acquis") || noteRea.equals("En cours acquisition")){
+                                maRea.setACorriger(false);
+                            }
                             ResultSet resCmd=stmt6.executeQuery("SELECT * FROM UTILISE JOIN COMMANDES ON UTILISE.Id_Commande=COMMANDES.ID_Commande WHERE Id_Realisation="+idRea);
                             while(resCmd.next()){
                                 String nomCmd = resCmd.getString("Nom_Commande");
@@ -464,14 +467,19 @@ public class ApplicationProf {
     }
     
     public void enregistrementBDD(){
+        System.out.println("totototot");
         FenetreLoad progress = new FenetreLoad("Mise à jour de la BDD en cours ...");
         
         try {
+            System.out.println("deb try 1");
         SwingUtilities.invokeLater(new Runnable() {
+          @Override
           public void run() {
         Connection c = null;
+        System.out.println("fin try 1");
         //Statement stmtDel = null;
         try {
+            System.out.println("deb try 2");
             Class.forName("org.sqlite.JDBC");
             c = DriverManager.getConnection("jdbc:sqlite:IHM_G2.db");
             
@@ -596,18 +604,23 @@ public class ApplicationProf {
             System.out.println("Update database successfully");
             c.close();
             progress.closeFrameLoad();
+            System.out.println("fin try 2");
         }catch (Exception e) {
+            System.out.println("deb catch 1");
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
             System.exit(0);
+            System.out.println("fin catch 1");
         }
         }
         });
+        System.out.println("sleep");
         java.lang.Thread.sleep(100);
         }
-        
          catch (InterruptedException exp) {
+             System.out.println("deb catch 2");
             System.err.println( exp.getClass().getName() + ": " + exp.getMessage() );
             System.exit(0);
+            System.out.println("fin catch 2");
       }
     }
    

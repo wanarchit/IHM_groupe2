@@ -22,22 +22,28 @@ public class CtrlWindows implements WindowListener{
     
     public void windowClosing(WindowEvent e){
         if (fenetre.getContentPane().getClass() == MenuProf.class){
+            System.out.println("menuProf.class");
             int option = JOptionPane.showConfirmDialog(null, "Voulez-vous enregistrer les modifications avant de quitter ?", "Quitter", 
                     JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
             if(option != JOptionPane.NO_OPTION && 
                 option != JOptionPane.CANCEL_OPTION && 
                 option != JOptionPane.CLOSED_OPTION){
-                fenetre.getAppProf().enregistrementBDD();
+                System.out.println("enregistrement ok");
+                fenetre.getAppProf().seDeconnecter();
                 fenetre.dispose();
                 System.exit(0);
              }else if (option != JOptionPane.YES_OPTION && 
                 option != JOptionPane.CANCEL_OPTION && 
                 option != JOptionPane.CLOSED_OPTION){
+                System.out.println("enregistrement non");
                 fenetre.dispose();
                 System.exit(0);
+             }else{
+                System.out.println("enregistrement else");
              }
             
-        }else if(fenetre.getContentPane().getClass() == MenuEleve.class){     
+        }else if(fenetre.getContentPane().getClass() == MenuEleve.class){
+            System.out.println("menuEleve.class");
             JOptionPane jop1 = new JOptionPane();
             jop1.showMessageDialog(null, "Déconnexion ...", "Déconnexion", JOptionPane.INFORMATION_MESSAGE);
             fenetre.getAppEleve().enregistrementBDD();
@@ -46,6 +52,7 @@ public class CtrlWindows implements WindowListener{
             fenetre.repaint();
             fenetre.revalidate();
         }else{
+            System.out.println("menu else");
             int reponse = JOptionPane.showConfirmDialog(fenetre,
                              "Voulez-vous quitter l'application ?",
                              "Confirmation",

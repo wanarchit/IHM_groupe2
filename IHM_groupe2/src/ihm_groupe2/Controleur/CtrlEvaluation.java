@@ -72,7 +72,9 @@ public class CtrlEvaluation implements ActionListener {
             String noteExo = "";
             Boolean validation = true;
             if (menuEval.getCommentaire().getText().isEmpty()){
-                commExo = "Pas de commentaire de la par du professeur";
+                validation = false;
+                JOptionPane boiteDial = new JOptionPane();
+                boiteDial.showMessageDialog(null, "Vous devez saisir un commentaire", "Evaluation exercice", JOptionPane.INFORMATION_MESSAGE);
             }else{
                 commExo = menuEval.getCommentaire().getText();
             }
