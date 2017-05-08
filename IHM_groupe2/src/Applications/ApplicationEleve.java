@@ -1,5 +1,6 @@
 package Applications;
 
+import ihm_groupe2.Inferface.Menu.Dessin;
 import ihm_groupe2.Inferface.Menu.MenuConnexionEleve;
 import ihm_groupe2.Inferface.Menu.MenuEleve;
 import ihm_groupe2.Inferface.Menu.MenuPrincipal;
@@ -17,6 +18,7 @@ import ihm_groupe2.Noyau_fonctionnel.TortueRapide;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import java.sql.*;
+import javax.swing.SwingUtilities;
 /**
  * Classe ApplicationEleve : permet de gérer tous les éléments liés aux élèves
  * @author Groupe 2
@@ -34,6 +36,7 @@ public class ApplicationEleve {
     private ArrayList<Exercice> lesExercices;
     private Eleve eleveCo;
     private Exercice exo;
+    private Eleve[] lesEleves2;
     //-----------------
     private ArrayList<Professeur> lesProfs;
     private Realisation maRea; 
@@ -45,6 +48,7 @@ public class ApplicationEleve {
         
         //----------------------------------
         //----------------------------------
+
         Connection c = null;
         Statement stmt = null;
         Statement stmt2=null;
@@ -53,6 +57,7 @@ public class ApplicationEleve {
         Statement stmt5 = null;
         Statement stmt6 = null;
         Statement stmt7 = null;
+        Statement stmt8 = null;
         try {
             Class.forName("org.sqlite.JDBC");
             c = DriverManager.getConnection("jdbc:sqlite:IHM_G2.db");
@@ -64,10 +69,17 @@ public class ApplicationEleve {
             stmt5 = c.createStatement();
             stmt6 = c.createStatement();
             stmt7 = c.createStatement();
+            stmt8 = c.createStatement();
             ResultSet resProf=stmt.executeQuery("SELECT * FROM PROFESSEUR");
             lesProfs=new ArrayList();
             lesClasses=new ArrayList();
-            lesEleves=new ArrayList();
+            //lesEleves=new ArrayList();
+            ResultSet resNbEleve=stmt8.executeQuery("SELECT COUNT(*) AS nbEleve FROM ELEVE");
+            int nbEleves = 0;
+            while(resNbEleve.next()){
+                nbEleves = resNbEleve.getInt("nbEleve");
+            }
+            lesEleves2= new Eleve[nbEleves];
             lesExercices=new ArrayList();
             lesEvals=new ArrayList();
             ResultSet resExercices=stmt4.executeQuery("SELECT * FROM EXERCICE");
@@ -89,8 +101,9 @@ public class ApplicationEleve {
                     exo = new Exercice(nomExo,comExo,tortueExo,imageExo);
                     lesExercices.add(exo);
                 }
+                
+                
             }
-            
             while(resProf.next()){
                 int idProf=resProf.getInt("ID_Professeur");
                 String nomProf=resProf.getString("Nom_Professeur");
@@ -113,7 +126,8 @@ public class ApplicationEleve {
                         int idEleve=resEleves.getInt("ID_Eleve");
                         ImageIcon imageEleve = new ImageIcon(getClass().getResource(iconeEleve));
                         eleve=new Eleve(maClasse,nomEleve,prenomEleve,imageEleve);
-                        lesEleves.add(eleve);
+                        //lesEleves.add(eleve);
+                        lesEleves2[idEleve-1]=eleve;
                         maClasse.ajoutEleve(eleve);
                         mesDessins = new ArrayList();
                         ResultSet resRealisation=stmt5.executeQuery("SELECT * FROM REALISATION WHERE Id_Eleve="+idEleve);
@@ -121,12 +135,14 @@ public class ApplicationEleve {
                             int idRea=resRealisation.getInt("ID_Realisation");
                             int idExo=resRealisation.getInt("Id_Exo");
                             int numRea=resRealisation.getInt("Numero_Tentative");
+                            
                             String comRea=resRealisation.getString("Commentaire_Realisation");
                             String noteRea=resRealisation.getString("Note_Realisation");
                             maRea = new Realisation(numRea,comRea,noteRea,lesExercices.get(idExo-1));
                             ResultSet resCmd=stmt6.executeQuery("SELECT * FROM UTILISE JOIN COMMANDES ON UTILISE.Id_Commande=COMMANDES.ID_Commande WHERE Id_Realisation="+idRea);
                             while(resCmd.next()){
                                 String nomCmd = resCmd.getString("Nom_Commande");
+                                int idCmd = resCmd.getInt("ID_Commande");
                                 maCmd = new Commande(nomCmd,lesExercices.get(idExo-1).getMaTortue());
                                 maRea.ajouterCommande(maCmd);
                             }  
@@ -146,7 +162,14 @@ public class ApplicationEleve {
                     }
                 }
             }
-        }catch (Exception e) {
+
+            lesEleves=new ArrayList();
+            for (Eleve ele : lesEleves2){
+                lesEleves.add(ele);
+            }
+            
+            //stmt.executeUpdate("INSERT INTO REALISATION (ID_Realisation,Note_Realisation,Id_Eleve,Id_Exo,Numero_Tentative,Commentaire_Realisation)            
+        }catch ( Exception e ) {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
             System.exit(0);
         }
@@ -236,9 +259,8 @@ public class ApplicationEleve {
     }
     
     public void faireExercice(Exercice exerciceActu){
-        enregistrementBDD();
-        //Dessin leDessin = new Dessin(this,exerciceActu);
-        //fenetreMain.setContentPane(leDessin);
+        Dessin leDessin = new Dessin(this,exerciceActu);
+        fenetreMain.setContentPane(leDessin);
         fenetreMain.repaint();
         fenetreMain.revalidate();
     }
@@ -388,17 +410,35 @@ public class ApplicationEleve {
     }
     
     public void enregistrementBDD(){
-        System.out.println("Fonction BDD supp");
+        FenetreLoad progress = new FenetreLoad("Mise à jour de la BDD en cours ...");
+        
+        try {
+        SwingUtilities.invokeLater(new Runnable() {
+          public void run() {
+
         Connection c = null;
-        Statement stmtDel = null;
+        //Statement stmtDel = null;
         try {
             Class.forName("org.sqlite.JDBC");
             c = DriverManager.getConnection("jdbc:sqlite:IHM_G2.db");
-            System.out.println("Recreated of database...");
+            
+            //stmtDel = c.createStatement();
+            //stmtDel.executeUpdate("DROP TABLE PROFESSEUR");
+            //stmtDel.executeUpdate("DROP TABLE EXERCICE");
+            //stmtDel.executeUpdate("DROP TABLE CLASSE");
+            //stmtDel.executeUpdate("DROP TABLE ELEVE");
+            //stmtDel.executeUpdate("DROP TABLE REALISATION");
+            //stmtDel.executeUpdate("DROP TABLE COMMANDES");
+            //stmtDel.executeUpdate("DROP TABLE A_valide");
+            //stmtDel.executeUpdate("DROP TABLE UTILISE");
+            //stmtDel.close();
             ResetBDD resetdb = new ResetBDD();
             resetdb.dbReset();
-            System.out.println("Deleted database successfully");
             System.out.println("Update of database ...");
+            //SqliteJDBC db = new SqliteJDBC();
+            //db.dbConnection(); // Création de toutes les tables et les contraintes
+            
+            
             
             Statement stmtAdd = null;
             stmtAdd = c.createStatement();
@@ -414,7 +454,9 @@ public class ApplicationEleve {
                  //       idCl+","+idP2+",'"+cl.getNomClasse()+"');");
            // }
             int idRea = 0;
+            int cptTemps = 0;
             for (Eleve el : lesEleves){
+                cptTemps+=5;
                 int idEl = lesEleves.indexOf(el)+1;
                 int idCl = lesClasses.indexOf(el.getLaClasse())+1;
                 //stmtAdd.executeUpdate("INSERT INTO ELEVE (ID_Eleve,Nom_Eleve,Id_Classe,Prenom_Eleve,Icon_Eleve) VALUES ("+
@@ -423,14 +465,38 @@ public class ApplicationEleve {
                     idRea++;
                     //int idRea = el.getLesRealisations().indexOf(rea)+1;
                     int idExRea = lesExercices.indexOf(rea.getExercice())+1;
-                    
                     stmtAdd.executeUpdate("INSERT INTO REALISATION (ID_Realisation,Note_Realisation,Id_Eleve,Id_Exo,Numero_Tentative,Commentaire_Realisation) VALUES ("+
                     idRea+",'"+rea.getNote()+"',"+idEl+","+idExRea+","+rea.getNumeroTentative()+",'"+rea.getCommentaire()+"');");
                     
                     int i=0;
                     for (Commande cmd : rea.getListeCommande()){
                         i++;
-                        int idCmd = rea.getListeCommande().indexOf(cmd);
+                        int idCmd = 0;
+                        if (cmd.getCommande().equals("Avance")){
+                            idCmd = 1;
+                        }else if (cmd.getCommande().equals("Tourne")){
+                            idCmd = 2;
+                        }else if (cmd.getCommande().equals("N'ecrit plus")){
+                            idCmd = 3;
+                        }else if (cmd.getCommande().equals("Ecrit")){
+                            idCmd = 4;
+                        }else if (cmd.getCommande().equals("Ralentie")){
+                            idCmd = 5;
+                        }else if (cmd.getCommande().equals("Accélère")){
+                            idCmd = 6;
+                        }else if (cmd.getCommande().equals("Ecrit en noir")){
+                            idCmd = 7;
+                        }else if (cmd.getCommande().equals("Ecrit en rouge")){
+                            idCmd = 8;
+                        }else if (cmd.getCommande().equals("Ecrit en rose")){
+                            idCmd = 9;
+                        }else if (cmd.getCommande().equals("Ecrit en jaune")){
+                            idCmd = 10;
+                        }else if (cmd.getCommande().equals("Ecrit en vert")){
+                            idCmd = 11;
+                        }else if (cmd.getCommande().equals("Ecrit en bleu")){
+                            idCmd = 12;
+                        }
                         stmtAdd.executeUpdate("INSERT INTO UTILISE (Id_Commande,Id_Realisation,Iteration) VALUES ("+
                                 idCmd+","+idRea+","+i+");");
                     }
@@ -450,6 +516,7 @@ public class ApplicationEleve {
                     stmtAdd.executeUpdate("INSERT INTO A_valide (Validation_Exo,Id_Eleve,Id_Exo) VALUES ("+
                         valExo+","+idEl+","+idExoVal+");");           
                 }
+                System.out.println("Load = "+cptTemps+"%");
             }
             for (Exercice ex : lesExercices){
                 int idExo = lesExercices.indexOf(ex)+1;
@@ -475,10 +542,21 @@ public class ApplicationEleve {
 
             System.out.println("Update database successfully");
             c.close();
+            progress.closeFrameLoad();
         }catch (Exception e) {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
             System.exit(0);
         }
+        }
+        });
+        java.lang.Thread.sleep(100);
+        }
+        
+         catch (InterruptedException exp) {
+            System.err.println( exp.getClass().getName() + ": " + exp.getMessage() );
+            System.exit(0);
+      }
+        
     }
     
 }

@@ -55,7 +55,7 @@ public class MenuConnexionEleve extends JPanel{
             // Bouton annuler
         JPanel panButton = new JPanel();
         //butAnnuler = new JButton("Annuler");
-        butAnnuler = new JButton(new ImageIcon(getClass().getResource("/Applications/images_boutons/but_exit.png")));
+        butAnnuler = new JButton(new ImageIcon(getClass().getResource("/Images/but_exit.png")));
         butAnnuler.setPreferredSize(new Dimension(100,100));
         panButton.add(butAnnuler);
         

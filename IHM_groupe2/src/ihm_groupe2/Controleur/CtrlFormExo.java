@@ -7,8 +7,17 @@ import ihm_groupe2.Noyau_fonctionnel.FiltreSimple;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -61,13 +70,19 @@ public class CtrlFormExo implements ActionListener{
             // On récupère l'image
             int retour=homeChooser.showOpenDialog(null);
             if (retour == JFileChooser.APPROVE_OPTION)
-            {
-                File monFichier = homeChooser.getSelectedFile();
+            {         
+                File monFichier = homeChooser.getSelectedFile();             
                 BufferedImage image;
                 try {
-                    image = ImageIO.read(monFichier);
-                    panelFormExo.setImageExo(new ImageIcon(image));
-                    //panelFormExo.getLabAffImage().setIcon(new ImageIcon(image));
+                    String repCourant = new java.io.File("").getAbsolutePath();
+                    repCourant+="\\src\\Images\\";
+                    String[] nomImage = monFichier.toString().split("\\\\");
+                    String destination = repCourant+nomImage[nomImage.length-1];
+                    File maDest = new File(destination);
+                    copier(monFichier,maDest);
+                    image = ImageIO.read(maDest);
+                    ImageIcon imageExo = new ImageIcon(getClass().getResource("/Images/"+nomImage[nomImage.length-1]));
+                    panelFormExo.setImageExo(imageExo);
                 } catch (IOException ex) {
                     Logger.getLogger(CtrlFormExo.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -128,10 +143,29 @@ public class CtrlFormExo implements ActionListener{
                 boiteDial.showMessageDialog(null, "Vous devez renseigner le nom de l'exercice", "Création exercice", JOptionPane.INFORMATION_MESSAGE);
             }
             if (validation){
+                System.out.println("img rec : "+imageExo);
                 Exercice newExo = new Exercice(nomExo,comExo,choixTortue,imageExo);
                 appli.getListeExo().add(newExo);
                 appli.afficheExercices();
             }
         }
     }
+
+    
+    public static boolean copier(File source, File dest) { 
+    try (InputStream sourceFile = new java.io.FileInputStream(source);  
+            OutputStream destinationFile = new FileOutputStream(dest)) { 
+        // Lecture par segment de 0.5Mo  
+        byte buffer[] = new byte[512 * 1024]; 
+        int nbLecture; 
+        while ((nbLecture = sourceFile.read(buffer)) != -1){ 
+            destinationFile.write(buffer, 0, nbLecture); 
+        } 
+    } catch (IOException e){ 
+        e.printStackTrace(); 
+        return false; // Erreur 
+    } 
+    return true; // Résultat OK   
+}
+    
 }

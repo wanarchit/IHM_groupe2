@@ -42,18 +42,18 @@ public class CtrlDessinEleve implements ActionListener{
                 appli.rejouerListeActions(leDessin.getNewRealisation().getListeCommande());
                 leDessin.RefreshListAction();
                 if (leDessin.getLaTortue().getDirection() == 0){        // vers la droite
-                    leDessin.getButAvancer().setIcon(new ImageIcon(getClass().getResource("/Applications/images_boutons/droite.png")));
+                    leDessin.getButAvancer().setIcon(new ImageIcon(getClass().getResource("/Images/droite.png")));
                 }else if (leDessin.getLaTortue().getDirection() == 1){  // vers le bas
-                    leDessin.getButAvancer().setIcon(new ImageIcon(getClass().getResource("/Applications/images_boutons/reculer.png")));
+                    leDessin.getButAvancer().setIcon(new ImageIcon(getClass().getResource("/Images/reculer.png")));
                 }else if (leDessin.getLaTortue().getDirection() == 2){      // vers la gauche
-                    leDessin.getButAvancer().setIcon(new ImageIcon(getClass().getResource("/Applications/images_boutons/gauche.png")));
+                    leDessin.getButAvancer().setIcon(new ImageIcon(getClass().getResource("/Images/gauche.png")));
                 }else{      // vers le haut
-                    leDessin.getButAvancer().setIcon(new ImageIcon(getClass().getResource("/Applications/images_boutons/avancer.png")));
+                    leDessin.getButAvancer().setIcon(new ImageIcon(getClass().getResource("/Images/avancer.png")));
                 }
                 if (!leDessin.getLaTortue().enTrace()){
-                    leDessin.getButEcrire().setIcon(new ImageIcon(getClass().getResource("/Applications/images_boutons/ecrit.png")));
+                    leDessin.getButEcrire().setIcon(new ImageIcon(getClass().getResource("/Images/ecrit.png")));
                 }else{
-                    leDessin.getButEcrire().setIcon(new ImageIcon(getClass().getResource("/Applications/images_boutons/ecrit_pas.png")));
+                    leDessin.getButEcrire().setIcon(new ImageIcon(getClass().getResource("/Images/ecrit_pas.png")));
                 }
             }
 
@@ -73,13 +73,13 @@ public class CtrlDessinEleve implements ActionListener{
             leDessin.RefreshListAction();
 
             if (leDessin.getLaTortue().getDirection() == 0){        // vers la droite
-                leDessin.getButAvancer().setIcon(new ImageIcon(getClass().getResource("/Applications/images_boutons/droite.png")));
+                leDessin.getButAvancer().setIcon(new ImageIcon(getClass().getResource("/Images/droite.png")));
             }else if (leDessin.getLaTortue().getDirection() == 1){  // vers le bas
-                leDessin.getButAvancer().setIcon(new ImageIcon(getClass().getResource("/Applications/images_boutons/reculer.png")));
+                leDessin.getButAvancer().setIcon(new ImageIcon(getClass().getResource("/Images/reculer.png")));
             }else if (leDessin.getLaTortue().getDirection() == 2){      // vers la gauche
-                leDessin.getButAvancer().setIcon(new ImageIcon(getClass().getResource("/Applications/images_boutons/gauche.png")));
+                leDessin.getButAvancer().setIcon(new ImageIcon(getClass().getResource("/Images/gauche.png")));
             }else{      // vers le haut
-                leDessin.getButAvancer().setIcon(new ImageIcon(getClass().getResource("/Applications/images_boutons/avancer.png")));
+                leDessin.getButAvancer().setIcon(new ImageIcon(getClass().getResource("/Images/avancer.png")));
             }
 
         }else if (e.getSource() == leDessin.getButEcrire()){
@@ -88,11 +88,11 @@ public class CtrlDessinEleve implements ActionListener{
             if (!leDessin.getLaTortue().enTrace()){
                 Commande ecritPas = new Commande("N'écrit plus",leDessin.getLaTortue());
                 leDessin.getNewRealisation().ajouterCommande(ecritPas);
-                leDessin.getButEcrire().setIcon(new ImageIcon(getClass().getResource("/Applications/images_boutons/ecrit.png")));
+                leDessin.getButEcrire().setIcon(new ImageIcon(getClass().getResource("/Images/ecrit.png")));
             }else{
                 Commande ecrit = new Commande("Ecrit",leDessin.getLaTortue());
                 leDessin.getNewRealisation().ajouterCommande(ecrit);
-                leDessin.getButEcrire().setIcon(new ImageIcon(getClass().getResource("/Applications/images_boutons/ecrit_pas.png")));
+                leDessin.getButEcrire().setIcon(new ImageIcon(getClass().getResource("/Images/ecrit_pas.png")));
             }
 
             leDessin.RefreshListAction();

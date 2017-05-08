@@ -35,11 +35,26 @@ public class MainFrame extends JFrame{
         this.setSize(1200, 700);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
-        SqliteJDBC db = new SqliteJDBC();
-        db.dbConnection();
-        Peuplement remplissage= new Peuplement();
-        remplissage.Peuplement();
         
+        
+        ///**** PARTIE A COMMENTER / DECOMMENTER POUR LE PEUPLEMENT DE BASE DE LA BDD ****\\\
+//        FenetreLoad progress = new FenetreLoad("Chargement de la base de données ...");
+//        try {
+//            SwingUtilities.invokeLater(new Runnable() {
+//                public void run() {
+//                    SqliteJDBC db = new SqliteJDBC();
+//                    db.dbConnection();
+//                    Peuplement remplissage= new Peuplement();
+//                    remplissage.Peuplement();
+//                    progress.closeFrameLoad();
+//                }
+//            });
+//            java.lang.Thread.sleep(100);
+//        }catch (InterruptedException exp) {
+//            System.err.println( exp.getClass().getName() + ": " + exp.getMessage() );
+//            System.exit(0);
+//      } 
+        ///**** PARTIE A COMMENTER / DECOMMENTER POUR LE PEUPLEMENT DE BASE DE LA BDD ****///
     }
     
     public static void main(String[] args)

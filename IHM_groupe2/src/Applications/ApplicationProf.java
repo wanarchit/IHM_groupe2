@@ -31,6 +31,7 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
 /**
  * Classe ApplicationProf : permet de gérer tous les éléments liés aux professeurs
@@ -161,6 +162,7 @@ public class ApplicationProf {
                             ResultSet resCmd=stmt6.executeQuery("SELECT * FROM UTILISE JOIN COMMANDES ON UTILISE.Id_Commande=COMMANDES.ID_Commande WHERE Id_Realisation="+idRea);
                             while(resCmd.next()){
                                 String nomCmd = resCmd.getString("Nom_Commande");
+                                int idCmd = resCmd.getInt("ID_Commande");
                                 maCmd = new Commande(nomCmd,lesExercices.get(idExo-1).getMaTortue());
                                 maRea.ajouterCommande(maCmd);
                             }  
@@ -462,13 +464,16 @@ public class ApplicationProf {
     }
     
     public void enregistrementBDD(){
-        System.out.println("Fonction BDD supp");
+        FenetreLoad progress = new FenetreLoad("Mise à jour de la BDD en cours ...");
+        
+        try {
+        SwingUtilities.invokeLater(new Runnable() {
+          public void run() {
         Connection c = null;
         //Statement stmtDel = null;
         try {
             Class.forName("org.sqlite.JDBC");
             c = DriverManager.getConnection("jdbc:sqlite:IHM_G2.db");
-            System.out.println("Recreated of database...");
             
             //stmtDel = c.createStatement();
             //stmtDel.executeUpdate("DROP TABLE PROFESSEUR");
@@ -482,7 +487,6 @@ public class ApplicationProf {
             //stmtDel.close();
             ResetBDD resetdb = new ResetBDD();
             resetdb.dbReset();
-            System.out.println("Deleted database successfully");
             System.out.println("Update of database ...");
             //SqliteJDBC db = new SqliteJDBC();
             //db.dbConnection(); // Création de toutes les tables et les contraintes
@@ -503,7 +507,9 @@ public class ApplicationProf {
                  //       idCl+","+idP2+",'"+cl.getNomClasse()+"');");
            // }
             int idRea = 0;
+            int cptTemps = 0;
             for (Eleve el : lesEleves){
+                cptTemps+=5;
                 int idEl = lesEleves.indexOf(el)+1;
                 int idCl = lesClasses.indexOf(el.getLaClasse())+1;
                 //stmtAdd.executeUpdate("INSERT INTO ELEVE (ID_Eleve,Nom_Eleve,Id_Classe,Prenom_Eleve,Icon_Eleve) VALUES ("+
@@ -518,7 +524,32 @@ public class ApplicationProf {
                     int i=0;
                     for (Commande cmd : rea.getListeCommande()){
                         i++;
-                        int idCmd = rea.getListeCommande().indexOf(cmd);
+                        int idCmd = 0;
+                        if (cmd.getCommande().equals("Avance")){
+                            idCmd = 1;
+                        }else if (cmd.getCommande().equals("Tourne")){
+                            idCmd = 2;
+                        }else if (cmd.getCommande().equals("N'ecrit plus")){
+                            idCmd = 3;
+                        }else if (cmd.getCommande().equals("Ecrit")){
+                            idCmd = 4;
+                        }else if (cmd.getCommande().equals("Ralentie")){
+                            idCmd = 5;
+                        }else if (cmd.getCommande().equals("Accélère")){
+                            idCmd = 6;
+                        }else if (cmd.getCommande().equals("Ecrit en noir")){
+                            idCmd = 7;
+                        }else if (cmd.getCommande().equals("Ecrit en rouge")){
+                            idCmd = 8;
+                        }else if (cmd.getCommande().equals("Ecrit en rose")){
+                            idCmd = 9;
+                        }else if (cmd.getCommande().equals("Ecrit en jaune")){
+                            idCmd = 10;
+                        }else if (cmd.getCommande().equals("Ecrit en vert")){
+                            idCmd = 11;
+                        }else if (cmd.getCommande().equals("Ecrit en bleu")){
+                            idCmd = 12;
+                        }
                         stmtAdd.executeUpdate("INSERT INTO UTILISE (Id_Commande,Id_Realisation,Iteration) VALUES ("+
                                 idCmd+","+idRea+","+i+");");
                     }
@@ -538,6 +569,7 @@ public class ApplicationProf {
                     stmtAdd.executeUpdate("INSERT INTO A_valide (Validation_Exo,Id_Eleve,Id_Exo) VALUES ("+
                         valExo+","+idEl+","+idExoVal+");");           
                 }
+                System.out.println("Load = "+cptTemps+"%");
             }
             for (Exercice ex : lesExercices){
                 int idExo = lesExercices.indexOf(ex)+1;
@@ -563,10 +595,20 @@ public class ApplicationProf {
 
             System.out.println("Update database successfully");
             c.close();
+            progress.closeFrameLoad();
         }catch (Exception e) {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
             System.exit(0);
         }
+        }
+        });
+        java.lang.Thread.sleep(100);
+        }
+        
+         catch (InterruptedException exp) {
+            System.err.println( exp.getClass().getName() + ": " + exp.getMessage() );
+            System.exit(0);
+      }
     }
    
 }

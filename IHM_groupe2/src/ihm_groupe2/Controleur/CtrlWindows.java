@@ -1,5 +1,6 @@
 package ihm_groupe2.Controleur;
 
+import Applications.FenetreLoad;
 import Applications.MainFrame;
 import ihm_groupe2.Inferface.Menu.MenuEleve;
 import ihm_groupe2.Inferface.Menu.MenuPrincipal;
@@ -38,7 +39,7 @@ public class CtrlWindows implements WindowListener{
             
         }else if(fenetre.getContentPane().getClass() == MenuEleve.class){     
             JOptionPane jop1 = new JOptionPane();
-            jop1.showMessageDialog(null, "Déconnexion ...", "Déconnexion", JOptionPane.INFORMATION_MESSAGE);      
+            jop1.showMessageDialog(null, "Déconnexion ...", "Déconnexion", JOptionPane.INFORMATION_MESSAGE);
             fenetre.getAppEleve().enregistrementBDD();
             MenuPrincipal leMenuP = new MenuPrincipal(fenetre);
             fenetre.setContentPane(leMenuP);

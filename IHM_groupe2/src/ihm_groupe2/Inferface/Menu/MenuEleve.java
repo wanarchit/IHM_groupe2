@@ -104,7 +104,7 @@ public class MenuEleve extends JPanel{
         
         /** Boutons **/
         JPanel ssPanButPrec = new JPanel();
-        butPrecExo = new JButton(new ImageIcon(getClass().getResource("/Applications/images_boutons/precedent.png")));
+        butPrecExo = new JButton(new ImageIcon(getClass().getResource("/Images/precedent.png")));
         butPrecExo.setPreferredSize(new Dimension(150,75));
         
         if (appli.exercicePrecExist(exoEnCours)){
@@ -117,7 +117,7 @@ public class MenuEleve extends JPanel{
         panButPrec.add(ssPanButPrec);
         
         JPanel ssPanButSuiv = new JPanel();
-        butSuivExo = new JButton(new ImageIcon(getClass().getResource("/Applications/images_boutons/suivant.png")));
+        butSuivExo = new JButton(new ImageIcon(getClass().getResource("/Images/suivant.png")));
         butSuivExo.setPreferredSize(new Dimension(150,75));
         if (appli.exerciceSuivExist(exoEnCours)){
             butSuivExo.setEnabled(true);
@@ -194,7 +194,7 @@ public class MenuEleve extends JPanel{
             
             
             
-            iconTent = new ImageIcon(getClass().getResource("IconContent.jpg"));
+            iconTent = new ImageIcon(getClass().getResource("/Images/IconContent.jpg"));
             
         }else{
             labNumTent = new JLabel("Pas de tentative pour cet exercice");
@@ -203,7 +203,7 @@ public class MenuEleve extends JPanel{
             labNumTent.setForeground(Color.red);
             
             labCommTent = new JTextArea("Exercice a réaliser");
-            iconTent = new ImageIcon(getClass().getResource("IconTriste.jpg"));
+            iconTent = new ImageIcon(getClass().getResource("/Images/IconTriste.jpg"));
         }
         
         JPanel panNomTent = new JPanel();
@@ -218,7 +218,7 @@ public class MenuEleve extends JPanel{
         
         /** Boutons **/
         JPanel ssPanButPrecT = new JPanel();
-        butPrecTent = new JButton(new ImageIcon(getClass().getResource("/Applications/images_boutons/precedent.png")));
+        butPrecTent = new JButton(new ImageIcon(getClass().getResource("/Images/precedent.png")));
         butPrecTent.setPreferredSize(new Dimension(150,75));
         ssPanButPrecT.add(butPrecTent);
         if (lesTents.size() != 0){
@@ -234,7 +234,7 @@ public class MenuEleve extends JPanel{
         panButPrecT.add(ssPanButPrecT);
         
         JPanel ssPanButSuivT = new JPanel();
-        butSuivTent = new JButton(new ImageIcon(getClass().getResource("/Applications/images_boutons/suivant.png")));
+        butSuivTent = new JButton(new ImageIcon(getClass().getResource("/Images/suivant.png")));
         butSuivTent.setPreferredSize(new Dimension(150,75));
         ssPanButSuivT.add(butSuivTent);
         if (lesTents.size() != 0){

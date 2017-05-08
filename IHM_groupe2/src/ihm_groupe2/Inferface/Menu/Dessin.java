@@ -80,15 +80,15 @@ public class Dessin extends JPanel{
         JPanel ssPanelHaut = new JPanel(new GridLayout(1,3));
         ssPanelHaut.setBorder(new javax.swing.border.BevelBorder(BevelBorder.RAISED));
         //butValider = new JButton("J'ai fini");
-        butValider = new JButton(new ImageIcon(getClass().getResource("/Applications/images_boutons/valider.png")));
+        butValider = new JButton(new ImageIcon(getClass().getResource("/Images/valider_1.png")));
         butValider.setBackground(Color.white);
         butValider.setPreferredSize(new Dimension(200,75));
         //butRetour = new JButton("Retour");
-        butRetour = new JButton(new ImageIcon(getClass().getResource("/Applications/images_boutons/but_quitter.png")));
+        butRetour = new JButton(new ImageIcon(getClass().getResource("/Images/but_quitter.png")));
         butRetour.setBackground(Color.white);
         butRetour.setPreferredSize(new Dimension(200,75));
         //butAnnuler = new JButton("J'annule");
-        butAnnuler = new JButton(new ImageIcon(getClass().getResource("/Applications/images_boutons/annuler.png")));
+        butAnnuler = new JButton(new ImageIcon(getClass().getResource("/Images/annuler.png")));
         butAnnuler.setBackground(Color.white);
         butAnnuler.setPreferredSize(new Dimension(200,75));
         ssPanelHaut.add(butValider);
@@ -108,15 +108,15 @@ public class Dessin extends JPanel{
         ssPanelBas.setBorder(new javax.swing.border.BevelBorder(BevelBorder.RAISED));
         
         //butEcrire = new JButton("Ecrire");
-        butEcrire = new JButton(new ImageIcon(getClass().getResource("/Applications/images_boutons/ecrit_pas.png")));
+        butEcrire = new JButton(new ImageIcon(getClass().getResource("/Images/ecrit_pas.png")));
         butEcrire.setBackground(Color.white);
         butEcrire.setPreferredSize(new Dimension(200,75));
         //butAvancer = new JButton("Avancer");
-        butAvancer = new JButton(new ImageIcon(getClass().getResource("/Applications/images_boutons/avancer.png")));
+        butAvancer = new JButton(new ImageIcon(getClass().getResource("/Images/avancer.png")));
         butAvancer.setBackground(Color.white);
         butAvancer.setPreferredSize(new Dimension(200,75));
         //butTourner = new JButton("Tourner");
-        butTourner = new JButton(new ImageIcon(getClass().getResource("/Applications/images_boutons/tourne.png")));
+        butTourner = new JButton(new ImageIcon(getClass().getResource("/Images/tourne.png")));
         butTourner.setBackground(Color.white);
         butTourner.setPreferredSize(new Dimension(200,75));
         
@@ -171,11 +171,11 @@ public class Dessin extends JPanel{
         }else{
             // Tortue rapide
             //butPlusVite = new JButton("Vite");
-            butPlusVite = new JButton(new ImageIcon(getClass().getResource("/Applications/images_boutons/rapide.png")));
+            butPlusVite = new JButton(new ImageIcon(getClass().getResource("/Images/rapide.png")));
             butPlusVite.setPreferredSize(new Dimension(200,35));
             butPlusVite.setBackground(Color.white);
             //butMoinsVite = new JButton("Lent");
-            butMoinsVite = new JButton(new ImageIcon(getClass().getResource("/Applications/images_boutons/lent.png")));
+            butMoinsVite = new JButton(new ImageIcon(getClass().getResource("/Images/lent.png")));
             butMoinsVite.setPreferredSize(new Dimension(200,35));
             butMoinsVite.setBackground(Color.white);
             butPlusVite.addActionListener(controleur);

@@ -31,7 +31,6 @@ public class CtrlMenuEleve implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        //Eleve leEleve = new Eleve(null,null,"Rousse","Delphine");
         if (e.getSource() == leMenu.getButFaireExo() ){
             appli.faireExercice(leMenu.getExoEnCours());
         }else if(e.getSource() == leMenu.getButExoSuiv()){
