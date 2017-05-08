@@ -19,13 +19,19 @@ public class TableExercices extends AbstractTableModel{
     private String[] columnName = {"Nom exercice", "Type de tortue", "Modifications", "Image de l'exercice"};
     private ArrayList<Exercice> listeExo;
     
+    /**
+     * Constructeur de la classe TableExercices
+     * Permet la création d'un TableExercices
+     * @param listeExo : liste des exercices à afficher dans le JTable
+     */
     public TableExercices (ArrayList <Exercice> listeExo){
         this.listeExo = listeExo;
     }
     
     /**
+     * Méthode getColumnCount
      * Permet de renvoier le nombre de colonne du tableau
-     * @return lenght
+     * @return lenght : integer
      */
     @Override
     public int getColumnCount(){
@@ -33,20 +39,22 @@ public class TableExercices extends AbstractTableModel{
     }
     
     /**
+     * Méthode getRowCount
      * Permet de renvoyer le nombre de ligne du tableau
      * Cela correspond au nombre d'exercice dans la classe
-     * @return nb lignes
+     * @return nb lignes : integer
      */
     @Override
     public int getRowCount(){
         return (listeExo.size());
     }
     
-     /**
-     * Retourne le nom de la colone en fonction de la colonne sélectionnée
-     * @param i : numéro de la colonne
-     * @return le nom de la colonne (String)
-     */
+    /**
+    * Méthode getColumnName
+    * Retourne le nom de la colone en fonction de la colonne sélectionnée
+    * @param i : numéro de la colonne
+    * @return le nom de la colonne (String)
+    */
     public String getColumnName(int i){
         switch(i){
             case 0: return"Nom exercice";
@@ -59,7 +67,10 @@ public class TableExercices extends AbstractTableModel{
     
     @Override
     /**
-     * Récupère la valeur de la cellule correspondante selon chaque colone
+     * Méthode getValueAt
+     * Récupère la valeur de la cellule correspondante selon chaque colonne
+     * @param rowIndex : numéro de la ligne
+     * @param columnIndex : numéro de la colonne
      */
     public Object getValueAt(int rowIndex, int columnIndex){
 
@@ -87,19 +98,32 @@ public class TableExercices extends AbstractTableModel{
         }
     }
     
+    /**
+     * Méthode setData
+     * Permet d'actualiser les données
+     * @param listeExo : liste des exercices pour le JTable
+     */
     public void setData(ArrayList <Exercice> listeExo){
         this.listeExo = listeExo;
     } 
     
     @Override
     /**
+     * Méthode isCellEditable
      * Permet de définir si les cellules sont modifiables ou non
+     * @param rowIndex : numéro de la ligne
+     * @param columnIndex : numéro de la colonne
      */
     public boolean isCellEditable(int rowIndex, int columnIndex) {
         return false; //Toutes les cellules sont non éditables
     }
     
     @Override
+    /**
+     * Méthode getColumnClass
+     * Définit les types d'objet selon la colonne
+     * @param columnIndex : numéro de la colonne
+     */
     public Class getColumnClass(int columnIndex){
         switch(columnIndex){
             case 3 : return ImageIcon.class;
@@ -109,9 +133,10 @@ public class TableExercices extends AbstractTableModel{
     }
     
     /**
+     * Méthode getExoRow
      * Permet de récupérer l'objet d'une ligne
-     * @param rowIndex
-     * @return
+     * @param rowIndex : numéro de la ligne
+     * @return listeExo : l'exercice
      */
     public Exercice getExoRow(int rowIndex){
 	return listeExo.get(rowIndex);

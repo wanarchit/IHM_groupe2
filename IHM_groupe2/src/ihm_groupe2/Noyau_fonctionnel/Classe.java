@@ -4,8 +4,9 @@ import java.util.ArrayList;
 
 /**
  * Classe Classe
- * Permet de créer l'objet Classe qui contient des élèves et qui est géré par un Professeur
- * Des exercices pourront être ajouter aux classes
+ * Permet de créer l'objet Classe qui contient des élèves et qui est géré par un Professeur.
+ * Elle est composée d'un nom de classe, d'une liste d'élèves et d'un professeur référent
+ * Le nom de la classe n'est pas modifiable
  * @author Groupe 2
  */
 public class Classe {
@@ -19,7 +20,6 @@ public class Classe {
      * Permet d'initialiser une classe
      * @param nomCl : nom de la classe (niveau)
      * @param leProf : professeur qui gère la classe
-     * @param lesEleves : liste des élèves de la classe
      */
     public Classe(String nomCl,Professeur leProf){
         nomClasse=nomCl;
@@ -29,7 +29,7 @@ public class Classe {
     }
     
     /**
-     * Function getNomClasse
+     * Méthode getNomClasse
      * Permet de récupérer le nom de la classe
      * @return nomClasse: Objet de type string
      */
@@ -38,25 +38,25 @@ public class Classe {
     }
     
     /**
-     * Function setNomClasse
-     * Permet de modifier le nom de la classe
-     * @param nomClasse : Objet de type string
-     */
-    public void setNomClasse(String nomClasse) {
-        this.nomClasse = nomClasse;
-    }
-    
-    /**
-     * Function getProfesseur
+     * Méthode getProfesseur
      * Permet de récupérer le professeur référent de la classe
      * @return professeur : Objet de type professeur
      */
     public Professeur getProfesseur() {
         return professeur;
     }
+    
+    /**
+     * Méthode getListEleveClasse
+     * Permet de récupérer la liste d'élèves de cette classe
+     * @return listeEleve : objet de type Array List contenant des élèves
+     */
+    public ArrayList<Eleve> getListEleveClasse(){
+        return listeEleve;
+    } 
 
     /**
-     * Function setProfesseur
+     * Méthode setProfesseur
      * Permet de modifier le professeur référent de la classe
      * @param professeur
      */
@@ -65,7 +65,7 @@ public class Classe {
     }
         
     /**
-     * Function ajoutEleve
+     * Méthode ajoutEleve
      * Permet d'ajouter un élève dans la liste d'élève (donc dans la classe), si il n'est pas déjà dedans
      * @param monEleve : Objet de type eleve
      */
@@ -81,11 +81,4 @@ public class Classe {
             listeEleve.add(monEleve);
         }
     }
-
-    
-    public ArrayList<Eleve> getListEleveClasse(){
-        return listeEleve;
-    }
-    
-    
 }

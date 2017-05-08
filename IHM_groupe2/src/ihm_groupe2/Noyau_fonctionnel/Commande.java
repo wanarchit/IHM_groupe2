@@ -1,7 +1,10 @@
 package ihm_groupe2.Noyau_fonctionnel;
 
 /**
- *
+ * Cette classe représente les objets "commande".
+ * Elle regroupe l'ensemble des commandes utilisables par l'ensemble des tortues
+ * Une commande est caractérisée par un nom et un type de tortue (rapide, couleur ou G)
+ * 
  * @author Groupe 2
  */
 public class Commande {
@@ -9,9 +12,9 @@ public class Commande {
     private String nomCommande;
     private TortueG maTortue;
 
-    
     /**
      * Constructeur de commande
+     * Permet la création d'une commande
      * @param nomCom le nom de la commande
      * @param t la tortue utilisée
      */
@@ -21,24 +24,27 @@ public class Commande {
     }
     
     /**
-     * Getter de nomCommande
-     * @return Le nom de la commande
+     * Méthode getCommande
+     * Permet de retourner le nom de la commande
+     * @return nomCommande : de type String
      */ 
     public String getCommande(){
         return nomCommande;
     }
     
     /**
-     * Getter de tortue
-     * @return Le type de tortue utilisée
-     */
+     * Méthode getTortue
+     * Permet de retourner la tortue utilisée
+     * @return maTortue : de type TortueG
+     */ 
     public TortueG getTortue() {
         return maTortue;
     }
     
     /**
-     * Rejoue une commande, pour une tortue
-     * @param c la commande à rejouer
+     * Méthode doAction
+     * Permet de rejouer une commande en fonction de la tortue
+     * @param c : la commande à rejouer de type Commande
      */
     public void doAction(Commande c) {
         switch(c.getCommande()){

@@ -2,7 +2,10 @@ package ihm_groupe2.Noyau_fonctionnel;
 
 /**
  * Classe Personne
- * Classe mère pour les héritiés Professeur et Eleve
+ * Il s'agit d'une classe mère pour les classes Professeur et Elève
+ * Une personne est composée d'un nom et d'un prénom
+ * Le nom et le prénom d'une personne ne sont pas modifiables
+ * 
  * @author Groupe 2
  */
 public class Personne {
@@ -11,6 +14,7 @@ public class Personne {
     
     /**
      * Constructeur de la classe mère Personne
+     * Permet la création d'une personne
      * @param leNom : nom de la personne à créer
      * @param lePrenom : prénom de la personne à créer
      */
@@ -20,41 +24,20 @@ public class Personne {
     }
     
     /**
-     * Function getNomPersonne
+     * Méthode getNomPersonne
      * Permet de récupérer le nom de la personne
-     * @return nomPersonne : le nom de la personne
+     * @return nomPersonne : de type String
      */
     public String getNomPersonne() {
         return nomPersonne;
     }
     
     /**
-     * Function setNomPersonne
-     * Permet de modifier le nom de la personne
-     * @param newNnom : le nom de la personne
-     */
-    public void setNomPersonne(String newNnom) {
-        this.nomPersonne = newNnom;
-    }
-    
-    /**
-     * Function getPrenomPersonne
+     * Méthode getPrenomPersonne
      * Permet de récupérer le prénom de la personne
-     * @return prenomPersonne : le prénom de la personne
+     * @return prenomPersonne : de type String
      */
     public String getPrenomPersonne() {
         return prenomPersonne;
-    }
-    
-    /**
-     * Function setPrenomPersonne
-     * Permet de modifier le prénom de la personne
-     * @param newPrenom : le prénom de la personne
-     */
-    public void setPrenomPersonne(String newPrenom) {
-        this.prenomPersonne = newPrenom;
-    }
-    
-    
-         
+    }     
 }

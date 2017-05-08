@@ -2,7 +2,9 @@ package ihm_groupe2.Noyau_fonctionnel;
 
 /**
  * Classe Evaluation
- * Permet de relier un exercice et un elève et donne une validation (true/false) dès que l'élève tente un exercice
+ * Permet de relier un exercice et un élève et donne une validation (true/false) dès que l'élève tente un exercice
+ * Elle est composée d'un élève, d'un exercice et d'un booléen validation
+ * 
  * @author Groupe 2
  */
 public class Evaluation {
@@ -12,7 +14,7 @@ public class Evaluation {
     private Boolean validation;
     
     /**
-     *  Constructeur de la classe Evaluation
+     * Constructeur de la classe Evaluation
      * @param lEleve : l'élève concerné par l'évaluation
      * @param lExo : l'exercice concerné par l'exercice
      * @param valide : boolean pour la validation de l'exercice pour cet élève
@@ -24,43 +26,41 @@ public class Evaluation {
     }
 
     /**
-     * function getMonEleve
+     * Méthode getMonEleve
      * Permet de récupérer l'élève
-     * @return monEleve
+     * @return monEleve : objet de type Eleve
      */
     public Eleve getMonEleve() {
         return monEleve;
     }
 
     /**
-     * function getMonExercice
+     * Méthode getMonExercice
      * Permet de récupérer l'exercice
-     * @return monExercice
+     * @return monExercice : objet de type Exercice
      */
     public Exercice getMonExercice() {
         return monExercice;
     }
 
     /**
-     * function getValidation
+     * Méthode getValidation
      * Permet de récupérer le statut de l'évaluation : exercice validé ou non par l'élève
-     * @return validation
+     * @return validation : de type booléen
      */
     public Boolean getValidation() {
         return validation;
     }
 
     /**
-     * function setValidation
+     * Méthode setValidation
      * Permet de modifier l'évaluation de l'élève pour l'exercice
-     * On controlera que le passage pour se faire uniquement de False -> True et pas l'inverse
-     * @param validation 
+     * Le passage peut se faire uniquement de False -> True et non l'inverse
+     * @param validation : booléen --> vrai ou faux
      */
     public void setValidation(Boolean validation) {
         if (!this.validation){  // on ne pourra pas passer "false" un exercice validé
             this.validation = validation;
         }        
     }
-    
-    
 }
