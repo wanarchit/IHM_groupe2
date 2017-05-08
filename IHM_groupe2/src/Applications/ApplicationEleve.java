@@ -151,25 +151,30 @@ public class ApplicationEleve {
                             }  
                             eleve.addRealisation(maRea);
                             lesExercices.get(idExo-1).setModifiable(false);
-                            ResultSet resEval=stmt7.executeQuery("SELECT * FROM A_valide");
-                            while(resEval.next()){
-                                int intVal = resEval.getInt("Validation_Exo");
-                                Boolean isVal = false;
-                                if (intVal == 1){
-                                    isVal = true;
-                                }
-                                Evaluation monEval = new Evaluation(eleve,lesExercices.get(idExo-1),isVal);
-                                lesEvals.add(monEval);
-                            }
                         }
+                        
                     }
                 }
             }
-
+            
             lesEleves=new ArrayList();
             for (Eleve ele : lesEleves2){
                 lesEleves.add(ele);
             }
+            
+            ResultSet resEval=stmt7.executeQuery("SELECT * FROM A_valide");
+            while(resEval.next()){
+                int intVal = resEval.getInt("Validation_Exo");
+                int idExo2 = resEval.getInt("Id_Exo");
+                int idEl2 = resEval.getInt("Id_Eleve");
+                Boolean isVal = false;
+                if (intVal == 1){
+                    isVal = true;
+                }
+                Evaluation monEval = new Evaluation(lesEleves.get(idEl2-1),lesExercices.get(idExo2-1),isVal);
+                lesEvals.add(monEval);
+            }
+            
             
             //stmt.executeUpdate("INSERT INTO REALISATION (ID_Realisation,Note_Realisation,Id_Eleve,Id_Exo,Numero_Tentative,Commentaire_Realisation)            
         }catch ( Exception e ) {
@@ -437,51 +442,19 @@ public class ApplicationEleve {
         try {
             Class.forName("org.sqlite.JDBC");
             c = DriverManager.getConnection("jdbc:sqlite:IHM_G2.db");
-            
-            //stmtDel = c.createStatement();
-            //stmtDel.executeUpdate("DROP TABLE PROFESSEUR");
-            //stmtDel.executeUpdate("DROP TABLE EXERCICE");
-            //stmtDel.executeUpdate("DROP TABLE CLASSE");
-            //stmtDel.executeUpdate("DROP TABLE ELEVE");
-            //stmtDel.executeUpdate("DROP TABLE REALISATION");
-            //stmtDel.executeUpdate("DROP TABLE COMMANDES");
-            //stmtDel.executeUpdate("DROP TABLE A_valide");
-            //stmtDel.executeUpdate("DROP TABLE UTILISE");
-            //stmtDel.close();
             ResetBDD resetdb = new ResetBDD();
             resetdb.dbReset();
             System.out.println("Update of database ...");
-            //SqliteJDBC db = new SqliteJDBC();
-            //db.dbConnection(); // Création de toutes les tables et les contraintes
-            
-            
             
             Statement stmtAdd = null;
             stmtAdd = c.createStatement();
-            //for (Professeur p : lesProfs){
-               // int idP = lesProfs.indexOf(p)+1;
-                //stmtAdd.executeUpdate("INSERT INTO PROFESSEUR (ID_Professeur,Nom_Professeur,Prenom_Professeur,Login,Mot_De_Passe) VALUES ("+
-                   //     idP+",'"+p.getNomPersonne()+"','"+p.getPrenomPersonne()+"','"+p.getLogin()+"','"+p.getMotdePasse()+"');");
-            //}
-           // for (Classe cl : lesClasses){
-             //   int idCl = lesClasses.indexOf(cl)+1;
-              //  int idP2 = lesProfs.indexOf(cl.getProfesseur())+1;
-              //  stmtAdd.executeUpdate("INSERT INTO CLASSE (ID_Classe,Id_Professeur,Nom_Classe) VALUES ("+
-                 //       idCl+","+idP2+",'"+cl.getNomClasse()+"');");
-           // }
             int idRea = 0;
             int cptTemps = 0;
-            int nbEleve = 0;
             for (Eleve el : lesEleves){
-                nbEleve +=1;
                 cptTemps+=5;
                 int idEl = lesEleves.indexOf(el)+1;
-                int idCl = lesClasses.indexOf(el.getLaClasse())+1;
-                //stmtAdd.executeUpdate("INSERT INTO ELEVE (ID_Eleve,Nom_Eleve,Id_Classe,Prenom_Eleve,Icon_Eleve) VALUES ("+
-                    //    idEl+",'"+el.getNomPersonne()+"',"+idCl+",'"+el.getNomPersonne()+"','"+el.getIconEleve().toString()+"');");
                 for (Realisation rea : el.getLesRealisations()){
                     idRea++;
-                    //int idRea = el.getLesRealisations().indexOf(rea)+1;
                     int idExRea = lesExercices.indexOf(rea.getExercice())+1;
                     stmtAdd.executeUpdate("INSERT INTO REALISATION (ID_Realisation,Note_Realisation,Id_Eleve,Id_Exo,Numero_Tentative,Commentaire_Realisation) VALUES ("+
                     idRea+",'"+rea.getNote()+"',"+idEl+","+idExRea+","+rea.getNumeroTentative()+",'"+rea.getCommentaire()+"');");
@@ -521,29 +494,21 @@ public class ApplicationEleve {
                 }
                                     
                 int valExo;
-                int nbExo = 0;
                 for(Exercice evalExo:lesExercices){
-                    nbExo +=1;
                      valExo = 0;
-                     int nbEval = 0;
                     for (Evaluation lEval : lesEvals){
-                        nbEval+=1;
                         if (lEval.getMonEleve().equals(el) && lEval.getMonExercice().equals(evalExo)){
-                            //System.out.println("mon Exo : "+lEval.getMonExercice().getNom()+" - evalExo : "+evalExo.getNom()+" / mon Eleve : "+lEval.getMonEleve().getPrenomPersonne()+" - el : "+el.getPrenomPersonne()+" / validation : "+lEval.getValidation());
                             if (lEval.getValidation()){
                                 valExo = 1;
                             }
                         }
                     }
-                    System.out.println("Nombre éval = "+nbEval);
                     int idExoVal = lesExercices.indexOf(evalExo)+1;
                     stmtAdd.executeUpdate("INSERT INTO A_valide (Validation_Exo,Id_Eleve,Id_Exo) VALUES ("+
                         valExo+","+idEl+","+idExoVal+");");           
                 }
-                System.out.println("nb Exo = "+nbExo);
                 System.out.println("Load = "+cptTemps+"%");
             }
-            System.out.println("nbEleve = "+nbEleve);
             for (Exercice ex : lesExercices){
                 int idExo = lesExercices.indexOf(ex)+1;
                 String[] parts = ex.getImage().toString().split("/");
@@ -551,20 +516,6 @@ public class ApplicationEleve {
                 stmtAdd.executeUpdate("INSERT INTO EXERCICE (ID_Exo,Nom_Exo,Commentaire_Exo,Tortue_Exo,Id_Professeur,Image_Exo) VALUES ("+
                         idExo+",'"+ex.getNom()+"','"+ex.getCommentaire()+"',"+ex.getTortueChoisie()+",1,'/Images/"+nomImg+"');");
             }
-            
-            // Voir pour ne pas supprimer cette table
-//            stmtAdd.executeUpdate("INSERT INTO COMMANDES (ID_Commande,Nom_Commande) VALUES (1,'Avance');");
-//            stmtAdd.executeUpdate("INSERT INTO COMMANDES (ID_Commande,Nom_Commande) VALUES (2,'Tourne');");
-//            stmtAdd.executeUpdate("INSERT INTO COMMANDES (ID_Commande,Nom_Commande) VALUES (3,'N''ecrit plus');");
-//            stmtAdd.executeUpdate("INSERT INTO COMMANDES (ID_Commande,Nom_Commande) VALUES (4,'Ecrit');");
-//            stmtAdd.executeUpdate("INSERT INTO COMMANDES (ID_Commande,Nom_Commande) VALUES (5,'Ralentie');");
-//            stmtAdd.executeUpdate("INSERT INTO COMMANDES (ID_Commande,Nom_Commande) VALUES (6,'Accélère');");
-//            stmtAdd.executeUpdate("INSERT INTO COMMANDES (ID_Commande,Nom_Commande) VALUES (7,'Ecrit en noir');");
-//            stmtAdd.executeUpdate("INSERT INTO COMMANDES (ID_Commande,Nom_Commande) VALUES (8,'Ecrit en rouge');");
-//            stmtAdd.executeUpdate("INSERT INTO COMMANDES (ID_Commande,Nom_Commande) VALUES (9,'Ecrit en rose');");
-//            stmtAdd.executeUpdate("INSERT INTO COMMANDES (ID_Commande,Nom_Commande) VALUES (10,'Ecrit en jaune');");
-//            stmtAdd.executeUpdate("INSERT INTO COMMANDES (ID_Commande,Nom_Commande) VALUES (11,'Ecrit en vert');");
-//            stmtAdd.executeUpdate("INSERT INTO COMMANDES (ID_Commande,Nom_Commande) VALUES (12,'Ecrit en bleu');"); 
 
             System.out.println("Update database successfully");
             c.close();

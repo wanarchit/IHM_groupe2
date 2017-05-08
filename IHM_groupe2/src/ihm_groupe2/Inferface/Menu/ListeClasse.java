@@ -38,7 +38,6 @@ public class ListeClasse extends JScrollPane {
         listeClasses.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         
         listeClasses.setRowHeight(60);
-        listeClasses.setAutoCreateRowSorter(true);
         personnalisationTable(listeClasses);
 
         this.add(listeClasses);

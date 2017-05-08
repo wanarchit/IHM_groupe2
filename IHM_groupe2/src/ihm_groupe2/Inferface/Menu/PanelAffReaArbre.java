@@ -124,6 +124,9 @@ public class PanelAffReaArbre extends JPanel{
         corrigerRea.addActionListener(controleur);
         JPanel ssPanel = new JPanel();
         ssPanel.add(corrigerRea);
+        if (!rea.isACorriger()){
+            corrigerRea.setEnabled(false);
+        }
 
         
         this.setLayout(new GridLayout(7,1));

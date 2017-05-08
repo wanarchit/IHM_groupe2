@@ -74,7 +74,6 @@ public class MainFrame extends JFrame{
     }
     
     public ApplicationProf getAppProf(){
-        System.out.println("GetappProf "+appliProf);
         return appliProf;
     }
     

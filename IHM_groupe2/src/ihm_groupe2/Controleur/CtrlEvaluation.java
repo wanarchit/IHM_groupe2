@@ -90,10 +90,12 @@ public class CtrlEvaluation implements ActionListener {
                 boiteDial.showMessageDialog(null, "Vous devez choisir une note", "Evaluation exercice", JOptionPane.INFORMATION_MESSAGE);
             }
             if(validation){
+                if (noteExo.equals("Acquis")){
+                    appli.majListEval(eleve,menuEval.getLaRea().getExercice());
+                }
                 eleve.getLesRealisations().get(eleve.getLesRealisations().indexOf(menuEval.getLaRea())).setACorriger(false);
                 eleve.getLesRealisations().get(eleve.getLesRealisations().indexOf(menuEval.getLaRea())).setNote(noteExo);
                 eleve.getLesRealisations().get(eleve.getLesRealisations().indexOf(menuEval.getLaRea())).setCommentaire(commExo);
-                //System.out.println("L'évaluation de la réalisation à bien été effectuée");
                 appli.annuleEval(); // Même action : pour retourner au menuProf
                 
             }

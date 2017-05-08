@@ -83,10 +83,7 @@ public class CtrlFormExo implements ActionListener{
                     String[] nomImage = monFichier.toString().split("\\\\");
                     String destination = repCourant+nomImage[nomImage.length-1];
                     File maDest = new File(destination);
-
                     copier(monFichier,maDest);
-                    
-                    System.out.println("deb");
                     Thread currentThread = Thread.currentThread();
                     
                     int n =  0 ; 
@@ -97,14 +94,8 @@ public class CtrlFormExo implements ActionListener{
                           // gestion de l'erreur
                       }
                     }
-                    System.out.println("ok");
 
                     image = ImageIO.read(maDest);
-                    System.out.println("Mon fichier : "+monFichier);
-                    System.out.println("Ma destination : "+maDest);
-                    System.out.println("Nom image : "+nomImage[nomImage.length-1]);
-                    System.out.println("Final name : "+"/Images/"+nomImage[nomImage.length-1]);
-                    
                     ImageIcon imageExo = new ImageIcon(getClass().getResource("/Images/"+nomImage[nomImage.length-1]));
                     panelFormExo.setImageExo(imageExo);
                     panelFormExo.getLabApercuImg().setText("Apreçu de votre image :");
@@ -116,8 +107,6 @@ public class CtrlFormExo implements ActionListener{
             
         } else if (e.getSource() == panelFormExo.getButValidForm()){
             // Validation des informations
-
-
             Boolean validation = true;
             int choixTortue = -1;
             String comExo = "";
@@ -169,8 +158,8 @@ public class CtrlFormExo implements ActionListener{
                 boiteDial.showMessageDialog(null, "Vous devez renseigner le nom de l'exercice", "Création exercice", JOptionPane.INFORMATION_MESSAGE);
             }
             if (validation){
-                System.out.println("img rec : "+imageExo);
                 Exercice newExo = new Exercice(nomExo,comExo,choixTortue,imageExo);
+                appli.creaNewEval(newExo);
                 appli.getListeExo().add(newExo);
                 appli.afficheExercices();
             }

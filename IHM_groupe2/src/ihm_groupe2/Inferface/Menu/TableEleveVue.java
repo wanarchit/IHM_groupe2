@@ -42,7 +42,6 @@ public class TableEleveVue extends JScrollPane{
         tableEleves.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         tableEleves.setRowHeight(120);
 
-        tableEleves.setAutoCreateRowSorter(true);
         personnalisationTable(tableEleves);
         
         
