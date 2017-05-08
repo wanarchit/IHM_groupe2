@@ -23,7 +23,11 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileSystemView;
 
@@ -79,13 +83,35 @@ public class CtrlFormExo implements ActionListener{
                     String[] nomImage = monFichier.toString().split("\\\\");
                     String destination = repCourant+nomImage[nomImage.length-1];
                     File maDest = new File(destination);
+
                     copier(monFichier,maDest);
+                    
+                    System.out.println("deb");
+                    Thread currentThread = Thread.currentThread();
+                    
+                    int n =  0 ; 
+                    while (n++ <  20) {
+                       try {
+                         currentThread.sleep(400) ;
+                      }  catch (InterruptedException exp) {
+                          // gestion de l'erreur
+                      }
+                    }
+                    System.out.println("ok");
+
                     image = ImageIO.read(maDest);
+                    System.out.println("Mon fichier : "+monFichier);
+                    System.out.println("Ma destination : "+maDest);
+                    System.out.println("Nom image : "+nomImage[nomImage.length-1]);
+                    System.out.println("Final name : "+"/Images/"+nomImage[nomImage.length-1]);
+                    
                     ImageIcon imageExo = new ImageIcon(getClass().getResource("/Images/"+nomImage[nomImage.length-1]));
                     panelFormExo.setImageExo(imageExo);
+                    panelFormExo.getLabApercuImg().setText("Apreçu de votre image :");
                 } catch (IOException ex) {
                     Logger.getLogger(CtrlFormExo.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                
              }
             
         } else if (e.getSource() == panelFormExo.getButValidForm()){

@@ -139,6 +139,9 @@ public class ApplicationEleve {
                             String comRea=resRealisation.getString("Commentaire_Realisation");
                             String noteRea=resRealisation.getString("Note_Realisation");
                             maRea = new Realisation(numRea,comRea,noteRea,lesExercices.get(idExo-1));
+                            if (noteRea.equals("Non acquis") || noteRea.equals("Acquis") || noteRea.equals("En cours acquisition")){
+                                maRea.setACorriger(false);
+                            }
                             ResultSet resCmd=stmt6.executeQuery("SELECT * FROM UTILISE JOIN COMMANDES ON UTILISE.Id_Commande=COMMANDES.ID_Commande WHERE Id_Realisation="+idRea);
                             while(resCmd.next()){
                                 String nomCmd = resCmd.getString("Nom_Commande");
@@ -358,6 +361,19 @@ public class ApplicationEleve {
         }
     }
     
+    public boolean ExoIsValidate(Exercice exoEnCours, Eleve monEleve){
+        for (Evaluation eval :lesEvals){
+            if (eval.getMonEleve().equals(monEleve) && eval.getMonExercice().equals(exoEnCours)){
+                if (eval.getValidation()){
+                    return true;
+                }else{
+                    return false;
+                }
+            }
+        }
+        return false;
+    }
+    
     /**
      * Permet de renoyer la liste de toute les tentatives de l'élève pour un exercice
      * @param exoEnCours : exercice en cours d'affichage
@@ -391,7 +407,7 @@ public class ApplicationEleve {
     
     public void afficheTentativeSuivante(Exercice exoEnCours,Realisation tentEnCours){
         int numReaSuiv = tentEnCours.getNumeroTentative();
-        MenuEleve leMenuEleve = new MenuEleve(eleve,this,exoEnCours,numReaSuiv);
+        MenuEleve leMenuEleve = new MenuEleve(eleveCo,this,exoEnCours,numReaSuiv);
         fenetreMain.setContentPane(leMenuEleve);
         fenetreMain.repaint();
         fenetreMain.revalidate();
@@ -399,7 +415,7 @@ public class ApplicationEleve {
     
     public void afficheTentativePrecedante(Exercice exoEnCours, Realisation tentEnCours){
         int numReaSuiv = tentEnCours.getNumeroTentative()-2;
-        MenuEleve leMenuEleve = new MenuEleve(eleve,this,exoEnCours,numReaSuiv);
+        MenuEleve leMenuEleve = new MenuEleve(eleveCo,this,exoEnCours,numReaSuiv);
         fenetreMain.setContentPane(leMenuEleve);
         fenetreMain.repaint();
         fenetreMain.revalidate();
@@ -455,7 +471,9 @@ public class ApplicationEleve {
            // }
             int idRea = 0;
             int cptTemps = 0;
+            int nbEleve = 0;
             for (Eleve el : lesEleves){
+                nbEleve +=1;
                 cptTemps+=5;
                 int idEl = lesEleves.indexOf(el)+1;
                 int idCl = lesClasses.indexOf(el.getLaClasse())+1;
@@ -503,21 +521,29 @@ public class ApplicationEleve {
                 }
                                     
                 int valExo;
+                int nbExo = 0;
                 for(Exercice evalExo:lesExercices){
+                    nbExo +=1;
                      valExo = 0;
+                     int nbEval = 0;
                     for (Evaluation lEval : lesEvals){
+                        nbEval+=1;
                         if (lEval.getMonEleve().equals(el) && lEval.getMonExercice().equals(evalExo)){
+                            //System.out.println("mon Exo : "+lEval.getMonExercice().getNom()+" - evalExo : "+evalExo.getNom()+" / mon Eleve : "+lEval.getMonEleve().getPrenomPersonne()+" - el : "+el.getPrenomPersonne()+" / validation : "+lEval.getValidation());
                             if (lEval.getValidation()){
                                 valExo = 1;
                             }
                         }
                     }
+                    System.out.println("Nombre éval = "+nbEval);
                     int idExoVal = lesExercices.indexOf(evalExo)+1;
                     stmtAdd.executeUpdate("INSERT INTO A_valide (Validation_Exo,Id_Eleve,Id_Exo) VALUES ("+
                         valExo+","+idEl+","+idExoVal+");");           
                 }
+                System.out.println("nb Exo = "+nbExo);
                 System.out.println("Load = "+cptTemps+"%");
             }
+            System.out.println("nbEleve = "+nbEleve);
             for (Exercice ex : lesExercices){
                 int idExo = lesExercices.indexOf(ex)+1;
                 String[] parts = ex.getImage().toString().split("/");

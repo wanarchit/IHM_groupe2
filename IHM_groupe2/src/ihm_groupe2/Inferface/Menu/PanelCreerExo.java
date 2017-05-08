@@ -40,6 +40,7 @@ public class PanelCreerExo extends JPanel{
     private JButton butAddImage;
     private ImageIcon imageExo; // Permet de charger l'image de l'exercice
     private JLabel affImageExo;
+    private JLabel textAffImage;
     
     public PanelCreerExo(ApplicationProf lAppli){
         appli = lAppli;
@@ -102,7 +103,7 @@ public class PanelCreerExo extends JPanel{
         
        
         imageExo = new ImageIcon();
-        JLabel textAffImage = new JLabel("Aperçu de votre image :   ");
+        textAffImage = new JLabel("<html>Choisisez votre image <br> Le temps de chargement de l'image est d'environ 8 secondes </html>");
         textAffImage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         textAffImage.setFont(new java.awt.Font(Font.DIALOG,Font.ITALIC,16));
 
@@ -162,6 +163,10 @@ public class PanelCreerExo extends JPanel{
     
     public JLabel getLabAffImage(){
         return affImageExo;
+    }
+    
+    public JLabel getLabApercuImg(){
+        return textAffImage;
     }
     
     public JTextField getTextNomExo(){

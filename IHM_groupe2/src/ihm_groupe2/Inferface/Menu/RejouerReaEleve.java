@@ -7,7 +7,10 @@ import ihm_groupe2.Noyau_fonctionnel.Realisation;
 import ihm_groupe2.Noyau_fonctionnel.TortueCouleur;
 import ihm_groupe2.Noyau_fonctionnel.TortueRapide;
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -31,25 +34,43 @@ public class RejouerReaEleve extends JFrame {
         resetDessin();
         
         controleur = new CtrlRejouerReaEleve(this);
-        butAvance = new JButton("Avancer");
+        butAvance = new JButton(new ImageIcon(getClass().getResource("/Images/avancer.png")));
+        butAvance.setBackground(Color.white);
+        butAvance.setBorderPainted(false);
+        butAvance.setPreferredSize(new Dimension(200,75));
         butAvance.addActionListener(controleur);
-        butRecule = new JButton("Reculer");
+        JPanel panelBut1 = new JPanel(new BorderLayout());
+        panelBut1.setBackground(Color.white);
+        panelBut1.add(butAvance,BorderLayout.CENTER);
+        butRecule = new JButton(new ImageIcon(getClass().getResource("/Images/reculer.png")));
+        butRecule.setBackground(Color.white);
+        butRecule.setBorderPainted(false);
+        butRecule.setPreferredSize(new Dimension(200,75));
         butRecule.addActionListener(controleur);
-        butRetour = new JButton("Retour");
+        JPanel panelBut2 = new JPanel(new BorderLayout());
+        panelBut2.setBackground(Color.white);
+        panelBut2.add(butRecule,BorderLayout.CENTER);
+        butRetour = new JButton(new ImageIcon(getClass().getResource("/Images/but_quitter.png")));
+        butRetour.setBackground(Color.white);
+        butRetour.setBorderPainted(false);
+        butRetour.setPreferredSize(new Dimension(200,75));
         butRetour.addActionListener(controleur);
+        JPanel panelBut3 = new JPanel(new BorderLayout());
+        panelBut3.setBackground(Color.white);
+        panelBut3.add(butRetour,BorderLayout.CENTER);
         
         JPanel globalPanel = new JPanel(new BorderLayout());
-        globalPanel.add(butAvance,BorderLayout.EAST);
-        globalPanel.add(butRecule,BorderLayout.WEST);
-        globalPanel.add(butRetour,BorderLayout.SOUTH);
+        globalPanel.setBackground(Color.white);
+        globalPanel.add(panelBut1,BorderLayout.EAST);
+        globalPanel.add(panelBut2,BorderLayout.WEST);
+        globalPanel.add(panelBut3,BorderLayout.SOUTH);
         globalPanel.add(Canvas.getCanvasPanel(),BorderLayout.CENTER);
         
         
         
         
         this.add(globalPanel);
-        //this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setTitle("Affichage réalisation");
         this.setSize(1000, 600);
         this.setLocationRelativeTo(null);

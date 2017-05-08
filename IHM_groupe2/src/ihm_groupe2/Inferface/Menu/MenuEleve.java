@@ -88,6 +88,9 @@ public class MenuEleve extends JPanel{
                
         JPanel panNomExo = new JPanel();
         labNomExo = new JLabel(exoEnCours.getNom());
+        if (appli.ExoIsValidate(exoEnCours, eleveConnecte)){
+            labNomExo.setText(labNomExo.getText()+" - Exercice validé !");
+        }
         labNomExo.setFont(new java.awt.Font(Font.DIALOG,Font.BOLD,20));
         labNomExo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labNomExo.setForeground(Color.red);
@@ -157,6 +160,10 @@ public class MenuEleve extends JPanel{
         butFaireExo.setBorderPainted(false);
         butFaireExo.add(labImage);
         panImage.add(butFaireExo, BorderLayout.CENTER);
+        
+        if (appli.ExoIsValidate(exoEnCours, eleveConnecte)){
+            butFaireExo.setEnabled(false);
+        }
         
         
         
