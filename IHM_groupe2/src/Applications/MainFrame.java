@@ -4,6 +4,7 @@ import ihm_groupe2.Controleur.CtrlWindows;
 import ihm_groupe2.Inferface.Menu.MenuPrincipal;
 import ihm_groupe2.Modele.Peuplement;
 import ihm_groupe2.Modele.SqliteJDBC;
+import java.nio.file.Path;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
@@ -29,7 +30,8 @@ public class MainFrame extends JFrame{
         this.addWindowListener(controleur);
         
         this.add(menuPrincipal);
-        
+        String path = System.getProperty("user.dir" );
+        System.out.println(" répertoire courant : "+path);
         this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         this.setTitle("Application gestion exercices");
         this.setSize(1200, 700);

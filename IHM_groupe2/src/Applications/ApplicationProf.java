@@ -105,6 +105,7 @@ public class ApplicationProf {
             ResultSet resExercices=stmt4.executeQuery("SELECT * FROM EXERCICE");
             while(resExercices.next()){
                 String imageExercice=resExercices.getString("Image_Exo");
+                System.out.println(imageExercice);
                 try{
                     ImageIcon imageExo = new ImageIcon(getClass().getResource(imageExercice));
                     String nomExo=resExercices.getString("Nom_Exo");

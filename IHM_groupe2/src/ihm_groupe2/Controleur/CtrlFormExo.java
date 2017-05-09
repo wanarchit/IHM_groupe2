@@ -79,7 +79,7 @@ public class CtrlFormExo implements ActionListener{
                 BufferedImage image;
                 try {
                     String repCourant = new java.io.File("").getAbsolutePath();
-                    repCourant+="\\src\\Images\\";
+                    repCourant+=".\\img\\";
                     String[] nomImage = monFichier.toString().split("\\\\");
                     String destination = repCourant+nomImage[nomImage.length-1];
                     File maDest = new File(destination);
@@ -94,11 +94,12 @@ public class CtrlFormExo implements ActionListener{
                           // gestion de l'erreur
                       }
                     }
-
+           
                     image = ImageIO.read(maDest);
-                    ImageIcon imageExo = new ImageIcon(getClass().getResource("/Images/"+nomImage[nomImage.length-1]));
+                    BufferedImage buttonIcon = ImageIO.read(new File(repCourant+nomImage[nomImage.length-1]));
+                    ImageIcon imageExo = new ImageIcon(buttonIcon);
                     panelFormExo.setImageExo(imageExo);
-                    panelFormExo.getLabApercuImg().setText("Apreçu de votre image :");
+                    panelFormExo.getLabApercuImg().setText("Aperçu de votre image :");
                 } catch (IOException ex) {
                     Logger.getLogger(CtrlFormExo.class.getName()).log(Level.SEVERE, null, ex);
                 }
