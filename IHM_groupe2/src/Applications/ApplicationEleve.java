@@ -19,35 +19,37 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import java.sql.*;
 import javax.swing.SwingUtilities;
+
 /**
  * Classe ApplicationEleve : permet de gérer tous les éléments liés aux élèves
  * @author Groupe 2
  */
 public class ApplicationEleve {
     
-    private MainFrame fenetreMain;
+    private MainFrame fenetreMain;      // Fenetre principale
     
-    private Classe maClasse;
-    private Professeur leProf;
-    private ArrayList<Eleve> lesEleves;
-    private Eleve eleve,eleve2;
-    private ArrayList<Realisation> mesDessins;
-    private ArrayList<Classe> lesClasses;
-    private ArrayList<Exercice> lesExercices;
-    private Eleve eleveCo;
-    private Exercice exo;
-    private Eleve[] lesEleves2;
-    //-----------------
-    private ArrayList<Professeur> lesProfs;
-    private Realisation maRea; 
-    private Commande maCmd;
-    private ArrayList<Evaluation> lesEvals;
+    private Classe maClasse;            // la classe concernée (chargement des données) -> modifié à chaque tour de boucle
+    private Professeur leProf;          // la classe concernée (chargement des données) -> modifié à chaque tour de boucle
+    private Eleve eleve;                // la classe concernée (chargement des données) -> modifié à chaque tour de boucle
+    private Exercice exo;               // la classe concernée (chargement des données) -> modifié à chaque tour de boucle
+    private Realisation maRea;          // la classe concernée (chargement des données) -> modifié à chaque tour de boucle
+    private Commande maCmd;             // la classe concernée (chargement des données) -> modifié à chaque tour de boucle
     
+    private ArrayList<Eleve> lesEleves;         // Liste de tous les élèves
+    private Eleve[] lesEleves2;                 // Tableau de taille "nombre d'élève" : permet de charger les élèves dans l'ordre des id
+    private ArrayList<Classe> lesClasses;       // Liste de toutes les classes
+    private ArrayList<Exercice> lesExercices;   // Liste de tous les exercices
+    private ArrayList<Professeur> lesProfs;     // Liste de tous les profs
+    private ArrayList<Evaluation> lesEvals;     // Liste de toutes les évaluations
+    private Eleve eleveCo;                      // Eleve qui est connecté à l'application
+    
+    /**
+     * Constructeur de la classe ApplicationEleve
+     * Permet de charger toutes les données nécessaires au fonctionnement de l'application élève
+     * @param main : fenêtre principale
+     */
     public ApplicationEleve(MainFrame main){
         fenetreMain = main;
-        
-        //----------------------------------
-        //----------------------------------
 
         Connection c = null;
         Statement stmt = null;
@@ -100,8 +102,7 @@ public class ApplicationEleve {
                     int tortueExo=resExercices.getInt("Tortue_Exo");
                     exo = new Exercice(nomExo,comExo,tortueExo,imageExercice);
                     lesExercices.add(exo);
-                }
-                
+                }            
                 
             }
             while(resProf.next()){
@@ -129,7 +130,6 @@ public class ApplicationEleve {
                         //lesEleves.add(eleve);
                         lesEleves2[idEleve-1]=eleve;
                         maClasse.ajoutEleve(eleve);
-                        mesDessins = new ArrayList();
                         ResultSet resRealisation=stmt5.executeQuery("SELECT * FROM REALISATION WHERE Id_Eleve="+idEleve);
                         while(resRealisation.next()){
                             int idRea=resRealisation.getInt("ID_Realisation");
@@ -152,7 +152,6 @@ public class ApplicationEleve {
                             eleve.addRealisation(maRea);
                             lesExercices.get(idExo-1).setModifiable(false);
                         }
-                        
                     }
                 }
             }
@@ -174,45 +173,11 @@ public class ApplicationEleve {
                 Evaluation monEval = new Evaluation(lesEleves.get(idEl2-1),lesExercices.get(idExo2-1),isVal);
                 lesEvals.add(monEval);
             }
-            
-            
-            //stmt.executeUpdate("INSERT INTO REALISATION (ID_Realisation,Note_Realisation,Id_Eleve,Id_Exo,Numero_Tentative,Commentaire_Realisation)            
+          
         }catch ( Exception e ) {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
             System.exit(0);
         }
-
-        
-        
-        
-        //----------------------------------
-        //----------------------------------
-        
-        
-//        leProf = new Professeur("MrProf","12345","LeGrand","Didier");
-//        maClasse = new Classe("CM1",leProf);
-//        lesClasses = new ArrayList();
-//        lesClasses.add(maClasse);
-//        mesDessins = new ArrayList();
-//        ImageIcon imageEleve = new ImageIcon(getClass().getResource("/Applications/Images_eleves/eleve_f1.png"));
-//        eleve = new Eleve(maClasse,"Rousse","Delphine",imageEleve);
-//        ImageIcon imageEleve2 = new ImageIcon(getClass().getResource("/Applications/Images_eleves/eleve_g1.png"));
-//        eleve2 = new Eleve(maClasse,"Gand","Paul",imageEleve2);
-//        lesEleves = new ArrayList();
-//        lesEleves.add(eleve);
-//        lesEleves.add(eleve2);
-//        maClasse.ajoutEleve(eleve);
-//        maClasse.ajoutEleve(eleve2);
-//        lesExercices = new ArrayList();
-//        ImageIcon imageExo = new ImageIcon(getClass().getResource("Exercice1_image.png"));
-//        Exercice exo1 = new Exercice("Exercice 1","Vous devez faire ce dessin en 10 minutes avec la tortue normale",0,imageExo);
-//        ImageIcon imageExo2 = new ImageIcon(getClass().getResource("Exercice2_image.png"));
-//        Exercice exo2 = new Exercice("Exercice 2","Vous devez faire ce dessin en 5 minutes avec la tortue rapide",2,imageExo2);
-//        ImageIcon imageExo3 = new ImageIcon(getClass().getResource("Exercice3_image.png"));
-//        Exercice exo3 = new Exercice("Exercice 3","Vous devez faire ce dessin en 15 minutes avec la tortue couleur",1,imageExo3);
-//        lesExercices.add(exo1);
-//        lesExercices.add(exo2);
-//        lesExercices.add(exo3);
         
         MenuConnexionEleve menuCoEleve = new MenuConnexionEleve(this);
         fenetreMain.setContentPane(menuCoEleve);
@@ -220,15 +185,21 @@ public class ApplicationEleve {
         fenetreMain.revalidate();
     }
     
-    
-    public void chargerDonnees(){
-        
-    }
-    
+    /**
+     * fonction getListeEleve : permet de récupérer la liste de tous les élèves
+     * @return lesEleves
+     */
     public ArrayList<Eleve> getListeEleve(){
         return lesEleves;
     }
     
+    /**
+     * Fonction tryConnexion : Permet de vérifier les identifiants d'un élève lors de sa connexion
+     * Vérifie si l'élève existe ou pas
+     * @param prenomEleveTryCo : Prénom entré par l'élève
+     * @param nomEleveTryCo : nom entré par l'élève
+     * @return el ou null : élève si les identifiants sont corrects et null si les identifiants sont faux.
+     */
     public Eleve tryConnexion(String prenomEleveTryCo, String nomEleveTryCo){
         if (lesClasses.size()!=0){
             for(Classe cl:lesClasses){
@@ -246,7 +217,11 @@ public class ApplicationEleve {
         return null;
     }
     
-    
+    /**
+     * Fonction seConnecter : afficher le nouveau panel de l'élève, met à jour la fenetre
+     * Met a jour l'élève qui est connecté
+     * @param lEleve : l'élève qui tente de se connecter
+     */
     public void seConnecter(Eleve lEleve){
         eleveCo = lEleve;
         MenuEleve leMenuEleve = new MenuEleve(eleveCo,this,lesExercices.get(0),0);
@@ -255,6 +230,10 @@ public class ApplicationEleve {
         fenetreMain.revalidate();
     }
     
+    /**
+     * Fonction annulerConnexion : Permet de revenir au menu principal à partir du menu de connexion d'un élève
+     * Aucun élève ne s'est connecté
+     */
     public void annulerConnexion(){
         MenuPrincipal leMenuP = new MenuPrincipal(fenetreMain);
         fenetreMain.setContentPane(leMenuP);
@@ -262,10 +241,18 @@ public class ApplicationEleve {
         fenetreMain.revalidate();
     }
     
+    /**
+     * Fonction getEleveConnecte
+     * @return eleveCo : renvoie l'élève qui utilise actuellement l'application
+     */
     public Eleve getEleveConnecte(){
         return eleveCo;
     }
     
+    /**
+     * Fonction faireExercice : permet de lancer le panel de dessin de l'exercice voulu
+     * @param exerciceActu : Exercice sur lequel l'élève à cliqué
+     */
     public void faireExercice(Exercice exerciceActu){
         Dessin leDessin = new Dessin(this,exerciceActu);
         fenetreMain.setContentPane(leDessin);
@@ -273,6 +260,11 @@ public class ApplicationEleve {
         fenetreMain.revalidate();
     }
     
+    /**
+     * Fonction exerciceSuivExist : permet de contrôlé s'il y a un autre exercice après l'exercice actuellement affiché pour l'élève
+     * @param exerciceActu : l'exercice qui est actuellement affiché
+     * @return true ou false selon le cas
+     */
     public boolean exerciceSuivExist(Exercice exerciceActu){
         if (lesExercices.indexOf(exerciceActu) < lesExercices.size()-1){
             return true;
@@ -281,6 +273,11 @@ public class ApplicationEleve {
         }
     }
     
+    /**
+     * Fonction exercicePrecExist : permet de contrôlé s'il y a un autre exercice avant l'exercice actuellement affiché pour l'élève
+     * @param exerciceActu : l'exercice qui est actuellement affiché
+     * @return true ou false selon le cas
+     */
     public boolean exercicePrecExist(Exercice exerciceActu){
         if (lesExercices.indexOf(exerciceActu) != 0){
             return true;
@@ -289,6 +286,10 @@ public class ApplicationEleve {
         }
     }
     
+    /**
+     * Fonction afficheExerciceSuivant : permet de mettre a jour le panel en affichant l'exerice suivant
+     * @param exoEnCours : l'exercice qui est actuellement affiché
+     */
     public void afficheExerciceSuivant(Exercice exoEnCours){
         Exercice exoSuiv = lesExercices.get(lesExercices.indexOf(exoEnCours)+1);
         MenuEleve leMenuEleve = new MenuEleve(eleveCo,this,exoSuiv,0);
@@ -297,6 +298,10 @@ public class ApplicationEleve {
         fenetreMain.revalidate();
     }
     
+    /**
+     * Fonction afficheExercicePrecedant : permet de mettre a jour le panel en affichant l'exerice précédent
+     * @param exoEnCours : l'exercice qui est actuellement affiché
+     */
     public void afficheExercicePrecedant(Exercice exoEnCours){
         Exercice exoPrec = lesExercices.get(lesExercices.indexOf(exoEnCours)-1);
         MenuEleve leMenuEleve = new MenuEleve(eleveCo,this,exoPrec,0);
@@ -305,6 +310,11 @@ public class ApplicationEleve {
         fenetreMain.revalidate();
     }
     
+    /**
+     * Fonction annulerDessin : Permet de revenir au menu principal de l'élève a partir du menu de dessin
+     * Va afficher l'exercice en cours de réalisation
+     * @param exoEnCours : exercice pour lequel l'élève réalisait un dessin
+     */
     public void annulerDessin(Exercice exoEnCours){
         MenuEleve leMenuEleve = new MenuEleve(eleveCo,this,exoEnCours,0);
         fenetreMain.setContentPane(leMenuEleve);
@@ -312,6 +322,10 @@ public class ApplicationEleve {
         fenetreMain.revalidate();
     }
     
+    /**
+     * Fonction enregistrerDessin : Permet d'ajouter une réalisation à l'élève
+     * @param laRealisation : qui vient d'être faite par l'élève connecté
+     */
     public void enregistrerDessin(Realisation laRealisation){
         eleveCo.addRealisation(laRealisation);
         MenuEleve leMenuEleve = new MenuEleve(eleveCo,this,laRealisation.getExercice(),0);
@@ -335,6 +349,10 @@ public class ApplicationEleve {
         return numTentative;
     }
     
+    /**
+     * Fonction rejouerListeActions : Permet de rééxécuter l'ensemble des commandes faites par l'élève
+     * @param lesCommandes : liste de toutes les commandes faites par l'élève pour la réalisation en cours
+     */
     public void rejouerListeActions(ArrayList<Commande> lesCommandes){
         for (Commande cmd:lesCommandes){
             if(cmd.getCommande().equals("Avance")){
@@ -366,6 +384,12 @@ public class ApplicationEleve {
         }
     }
     
+    /**
+     * Fonction ExoIsValidate : Permet de vérifier si l'exerice affiché à l'élève est déjà validé ou non
+     * @param exoEnCours : l'exerice actuellement affiché
+     * @param monEleve : l'élève qui souhaite effectué l'exerice
+     * @return true ou false selon le cas
+     */
     public boolean ExoIsValidate(Exercice exoEnCours, Eleve monEleve){
         for (Evaluation eval :lesEvals){
             if (eval.getMonEleve().equals(monEleve) && eval.getMonExercice().equals(exoEnCours)){
@@ -394,6 +418,12 @@ public class ApplicationEleve {
         return listeTentExo;
     }
     
+    /**
+     * Fonction tentativeSuivExist : Permet de controlé si la réalisation suivante existe pour un exercice
+     * @param exerciceActu : exercice qui est actuellement affiché à l'élève
+     * @param tentEnCours : réalisation qui est actuellement affiché à l'élève
+     * @return ture ou false selon le cas
+     */
     public boolean tentativeSuivExist(Exercice exerciceActu, Realisation tentEnCours){
         if (tentEnCours.getNumeroTentative() < getTentativeExo(exerciceActu).size()){
             return true;
@@ -402,6 +432,12 @@ public class ApplicationEleve {
         }
     }
     
+    /**
+     * Fonction tentativePrecExist : Permet de controlé si la réalisation précédente existe pour un exercice
+     * @param exerciceActu : exercice qui est actuellement affiché à l'élève
+     * @param tentEnCours : réalisation qui est actuellement affiché à l'élève
+     * @return ture ou false selon le cas
+     */
     public boolean tentativePrecExist(Exercice exerciceActu, Realisation tentEnCours){
         if (tentEnCours.getNumeroTentative() != 1){
             return true;
@@ -410,6 +446,11 @@ public class ApplicationEleve {
         }
     }
     
+    /**
+     * Fonction afficheTentativeSuivante : permet d'afficher la réalisation suivante d'un élève pour un exercice donné
+     * @param exoEnCours : exercice actuellement affiché à l'élève
+     * @param tentEnCours : réalisation qui est actuellement affiché à l'élève
+     */
     public void afficheTentativeSuivante(Exercice exoEnCours,Realisation tentEnCours){
         int numReaSuiv = tentEnCours.getNumeroTentative();
         MenuEleve leMenuEleve = new MenuEleve(eleveCo,this,exoEnCours,numReaSuiv);
@@ -418,6 +459,11 @@ public class ApplicationEleve {
         fenetreMain.revalidate();
     }
     
+    /**
+     * Fonction afficheTentativePrecedante : permet d'afficher la réalisation précédente d'un élève pour un exercice donné
+     * @param exoEnCours : exercice actuellement affiché à l'élève
+     * @param tentEnCours : réalisation qui est actuellement affiché à l'élève
+     */
     public void afficheTentativePrecedante(Exercice exoEnCours, Realisation tentEnCours){
         int numReaSuiv = tentEnCours.getNumeroTentative()-2;
         MenuEleve leMenuEleve = new MenuEleve(eleveCo,this,exoEnCours,numReaSuiv);
@@ -426,114 +472,123 @@ public class ApplicationEleve {
         fenetreMain.revalidate();
     }
     
+    /**
+     * Fonction afficheRejouerRea : Permet d'exécuter la fonction qui rejoue la réalisation de l'élève
+     * @param tentEnCours 
+     */
     public void afficheRejouerRea(Realisation tentEnCours){
         new RejouerReaEleve(tentEnCours);
     }
     
+    /**
+     * Fonction enregistrementBDD : Permet de mettre a jour la base de donnée avec les nouvelles informations
+     * La mise a jour se fait en cas de déconnexion de l'élève (clic sur la croix rouge)
+     */
     public void enregistrementBDD(){
         FenetreLoad progress = new FenetreLoad("Mise à jour de la BDD en cours ...");
-        
+        // On affiche la fenetre de mise à jour des données
         try {
-        SwingUtilities.invokeLater(new Runnable() {
-          public void run() {
+            SwingUtilities.invokeLater(new Runnable() {
+                public void run() {
+                    Connection c = null;
+                    try {
+                        Class.forName("org.sqlite.JDBC");
+                        c = DriverManager.getConnection("jdbc:sqlite:IHM_G2.db");
+                        // On supprime les tables qui seront modifiées (toutes sauf : prof, élève, commandes et classe : ne seront jamais modifiées)
+                        ResetBDD resetdb = new ResetBDD();
+                        resetdb.dbReset();
+                        System.out.println("Update of database ...");
 
-        Connection c = null;
-        //Statement stmtDel = null;
-        try {
-            Class.forName("org.sqlite.JDBC");
-            c = DriverManager.getConnection("jdbc:sqlite:IHM_G2.db");
-            ResetBDD resetdb = new ResetBDD();
-            resetdb.dbReset();
-            System.out.println("Update of database ...");
-            
-            Statement stmtAdd = null;
-            stmtAdd = c.createStatement();
-            int idRea = 0;
-            int cptTemps = 0;
-            for (Eleve el : lesEleves){
-                cptTemps+=5;
-                int idEl = lesEleves.indexOf(el)+1;
-                for (Realisation rea : el.getLesRealisations()){
-                    idRea++;
-                    int idExRea = lesExercices.indexOf(rea.getExercice())+1;
-                    stmtAdd.executeUpdate("INSERT INTO REALISATION (ID_Realisation,Note_Realisation,Id_Eleve,Id_Exo,Numero_Tentative,Commentaire_Realisation) VALUES ("+
-                    idRea+",'"+rea.getNote()+"',"+idEl+","+idExRea+","+rea.getNumeroTentative()+",'"+rea.getCommentaire()+"');");
-                    
-                    int i=0;
-                    for (Commande cmd : rea.getListeCommande()){
-                        i++;
-                        int idCmd = 0;
-                        if (cmd.getCommande().equals("Avance")){
-                            idCmd = 1;
-                        }else if (cmd.getCommande().equals("Tourne")){
-                            idCmd = 2;
-                        }else if (cmd.getCommande().equals("N'ecrit plus")){
-                            idCmd = 3;
-                        }else if (cmd.getCommande().equals("Ecrit")){
-                            idCmd = 4;
-                        }else if (cmd.getCommande().equals("Ralentie")){
-                            idCmd = 5;
-                        }else if (cmd.getCommande().equals("Accélère")){
-                            idCmd = 6;
-                        }else if (cmd.getCommande().equals("Ecrit en noir")){
-                            idCmd = 7;
-                        }else if (cmd.getCommande().equals("Ecrit en rouge")){
-                            idCmd = 8;
-                        }else if (cmd.getCommande().equals("Ecrit en rose")){
-                            idCmd = 9;
-                        }else if (cmd.getCommande().equals("Ecrit en jaune")){
-                            idCmd = 10;
-                        }else if (cmd.getCommande().equals("Ecrit en vert")){
-                            idCmd = 11;
-                        }else if (cmd.getCommande().equals("Ecrit en bleu")){
-                            idCmd = 12;
-                        }
-                        stmtAdd.executeUpdate("INSERT INTO UTILISE (Id_Commande,Id_Realisation,Iteration) VALUES ("+
-                                idCmd+","+idRea+","+i+");");
-                    }
-                }
-                                    
-                int valExo;
-                for(Exercice evalExo:lesExercices){
-                     valExo = 0;
-                    for (Evaluation lEval : lesEvals){
-                        if (lEval.getMonEleve().equals(el) && lEval.getMonExercice().equals(evalExo)){
-                            if (lEval.getValidation()){
-                                valExo = 1;
+                        Statement stmtAdd = null;
+                        stmtAdd = c.createStatement();
+                        int idRea = 0;
+                        int cptTemps = 0;
+                        // Pour tous les élèves :
+                        for (Eleve el : lesEleves){
+                            cptTemps+=5;
+                            int idEl = lesEleves.indexOf(el)+1;
+                            // Pour toutes les réalisations de l'élève : 
+                            for (Realisation rea : el.getLesRealisations()){
+                                idRea++;
+                                int idExRea = lesExercices.indexOf(rea.getExercice())+1;
+                                stmtAdd.executeUpdate("INSERT INTO REALISATION (ID_Realisation,Note_Realisation,Id_Eleve,Id_Exo,Numero_Tentative,Commentaire_Realisation) VALUES ("+
+                                idRea+",'"+rea.getNote()+"',"+idEl+","+idExRea+","+rea.getNumeroTentative()+",'"+rea.getCommentaire()+"');");
+                                int i=0;
+                                // Pour toutes les commandes de la réalisation de l'élève : 
+                                for (Commande cmd : rea.getListeCommande()){
+                                    i++;
+                                    int idCmd = 0;
+                                    if (cmd.getCommande().equals("Avance")){
+                                        idCmd = 1;
+                                    }else if (cmd.getCommande().equals("Tourne")){
+                                        idCmd = 2;
+                                    }else if (cmd.getCommande().equals("N'ecrit plus")){
+                                        idCmd = 3;
+                                    }else if (cmd.getCommande().equals("Ecrit")){
+                                        idCmd = 4;
+                                    }else if (cmd.getCommande().equals("Ralentie")){
+                                        idCmd = 5;
+                                    }else if (cmd.getCommande().equals("Accélère")){
+                                        idCmd = 6;
+                                    }else if (cmd.getCommande().equals("Ecrit en noir")){
+                                        idCmd = 7;
+                                    }else if (cmd.getCommande().equals("Ecrit en rouge")){
+                                        idCmd = 8;
+                                    }else if (cmd.getCommande().equals("Ecrit en rose")){
+                                        idCmd = 9;
+                                    }else if (cmd.getCommande().equals("Ecrit en jaune")){
+                                        idCmd = 10;
+                                    }else if (cmd.getCommande().equals("Ecrit en vert")){
+                                        idCmd = 11;
+                                    }else if (cmd.getCommande().equals("Ecrit en bleu")){
+                                        idCmd = 12;
+                                    }
+                                    stmtAdd.executeUpdate("INSERT INTO UTILISE (Id_Commande,Id_Realisation,Iteration) VALUES ("+
+                                            idCmd+","+idRea+","+i+");");
+                                }
                             }
-                        }
-                    }
-                    int idExoVal = lesExercices.indexOf(evalExo)+1;
-                    stmtAdd.executeUpdate("INSERT INTO A_valide (Validation_Exo,Id_Eleve,Id_Exo) VALUES ("+
-                        valExo+","+idEl+","+idExoVal+");");           
-                }
-                System.out.println("Load = "+cptTemps+"%");
-            }
-            for (Exercice ex : lesExercices){
-                int idExo = lesExercices.indexOf(ex)+1;
-                //String[] parts = ex.getImage().toString().split("/");
-                //String nomImg = parts[parts.length-1];
-                stmtAdd.executeUpdate("INSERT INTO EXERCICE (ID_Exo,Nom_Exo,Commentaire_Exo,Tortue_Exo,Id_Professeur,Image_Exo) VALUES ("+
-                        idExo+",'"+ex.getNom()+"','"+ex.getCommentaire()+"',"+ex.getTortueChoisie()+",1,'"+ex.getNomImage()+"');");
-            }
 
-            System.out.println("Update database successfully");
-            c.close();
-            progress.closeFrameLoad();
-        }catch (Exception e) {
-            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-            System.exit(0);
-        }
-        }
-        });
-        java.lang.Thread.sleep(100);
-        }
-        
-         catch (InterruptedException exp) {
+                            int valExo;
+                            // Pour tous les exerices : 
+                            for(Exercice evalExo:lesExercices){
+                                 valExo = 0;
+                                 // Pour toutes les évaluations de cet exercice : 
+                                for (Evaluation lEval : lesEvals){
+                                    if (lEval.getMonEleve().equals(el) && lEval.getMonExercice().equals(evalExo)){
+                                        if (lEval.getValidation()){
+                                            valExo = 1;
+                                        }
+                                    }
+                                }
+                                int idExoVal = lesExercices.indexOf(evalExo)+1;
+                                stmtAdd.executeUpdate("INSERT INTO A_valide (Validation_Exo,Id_Eleve,Id_Exo) VALUES ("+
+                                    valExo+","+idEl+","+idExoVal+");");           
+                            }
+                            // On affiche dans la console le temps de chargement des données
+                            System.out.println("Load = "+cptTemps+"%");
+                        }
+                        // Pour tous les exerices :
+                        for (Exercice ex : lesExercices){
+                            int idExo = lesExercices.indexOf(ex)+1;
+                            //String[] parts = ex.getImage().toString().split("/");
+                            //String nomImg = parts[parts.length-1];
+                            stmtAdd.executeUpdate("INSERT INTO EXERCICE (ID_Exo,Nom_Exo,Commentaire_Exo,Tortue_Exo,Id_Professeur,Image_Exo) VALUES ("+
+                                    idExo+",'"+ex.getNom()+"','"+ex.getCommentaire()+"',"+ex.getTortueChoisie()+",1,'"+ex.getNomImage()+"');");
+                        }
+
+                        System.out.println("Update database successfully");
+                        c.close();
+                        progress.closeFrameLoad();
+                    }catch (Exception e) {
+                        System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+                        System.exit(0);
+                    }
+                }
+            });
+            java.lang.Thread.sleep(100);
+        }catch (InterruptedException exp) {
             System.err.println( exp.getClass().getName() + ": " + exp.getMessage() );
             System.exit(0);
-      }
-        
+        }
     }
-    
 }
