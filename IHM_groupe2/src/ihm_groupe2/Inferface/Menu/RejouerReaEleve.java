@@ -16,7 +16,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 /**
- *
+ * Classe RejouerReaEleve
+ * Permet au professeur de visualiser la réalisation d'un exercice
+ * Dans une JFrame générée par cette classe
  * @author Groupe 2
  */
 public class RejouerReaEleve extends JFrame {
@@ -26,7 +28,10 @@ public class RejouerReaEleve extends JFrame {
     private JButton butAvance,butRecule,butRetour;
     private CtrlRejouerReaEleve controleur;
     private ArrayList<Commande> listActionActu;     // permet de savoir qu'elle action a a déjà fait
-    
+    /**
+     * Constructeur de la classe RejouerReaEleve
+     * @param laRea Réalisation concernée par la correction
+     */
     public RejouerReaEleve(Realisation laRea){
         rea = laRea;
         tour = 0;
@@ -66,9 +71,7 @@ public class RejouerReaEleve extends JFrame {
         globalPanel.add(panelBut3,BorderLayout.SOUTH);
         globalPanel.add(Canvas.getCanvasPanel(),BorderLayout.CENTER);
         
-        
-        
-        
+
         this.add(globalPanel);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setTitle("Affichage réalisation");
@@ -76,31 +79,52 @@ public class RejouerReaEleve extends JFrame {
         this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
-    
+    /**
+     * Méthode getTour
+     * @return tour:int
+     */
     public int getTour(){
         return tour;
     }
-    
+    /**
+     * Méthode getButAvance
+     * @return butAvance:JButton
+     */
     public JButton getButAvance(){
         return butAvance;
     }
-    
+    /**
+     * Méthode getButRecule
+     * @return butRecule:JButton
+     */
     public JButton getButRecule(){
         return butRecule;
     }
-    
+    /**
+     * Méthode getButRetour
+     * @return butRetour:JButton
+     */
     public JButton getButRetour(){
         return butRetour;
     }
-    
+    /**
+     * Méthode getLaReaActu
+     * @return listActionActu:ArrayList<Commande>
+     */
     public ArrayList<Commande> getLaReaActu(){
         return listActionActu;
     }
-    
+    /**
+     * Méthode getLaRea
+     * @return rea:Realisation
+     */
     public Realisation getLaRea(){
         return rea;
     }
-    
+    /**
+     * Méthode doActions
+     * Permet d'affecter l'action de la réalisation dans la JFrame lors de la relecture 
+     */
     public void doActions(){
         resetDessin();
         for(Commande cmd : this.listActionActu){
@@ -131,7 +155,10 @@ public class RejouerReaEleve extends JFrame {
             }
         }
     }
-    
+    /**
+     * Méthode resetDessin
+     * Permet de reset la visualisation dans la JFrame
+     */
     public void resetDessin(){
         rea.getExercice().getMaTortue().reset();
         if (rea.getExercice().getMaTortue().getClass() == TortueCouleur.class){
@@ -140,7 +167,11 @@ public class RejouerReaEleve extends JFrame {
             ((TortueRapide)rea.getExercice().getMaTortue()).setVitesse(1);
         }
     }
-    
+    /**
+     * Méthode annuler
+     * Permet d'annuler toutes les actions et également de réinisialiser le dessin
+     * Dans la JFrame
+     */
     public void annuler(){
         if (listActionActu.size() != 0){
                 listActionActu.remove(listActionActu.size()-1);
@@ -150,7 +181,10 @@ public class RejouerReaEleve extends JFrame {
             }
     }
     
-    
+    /**
+     * Méthode avancer
+     * Permet d'effectuer l'action enregistrée suivante
+     */
     public void avancer(){
         if (this.rea.getListeCommande().size() != tour){
             listActionActu.add(this.rea.getCommandeInListe(this.tour));

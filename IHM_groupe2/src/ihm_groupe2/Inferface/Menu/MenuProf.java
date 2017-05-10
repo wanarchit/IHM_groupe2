@@ -18,7 +18,7 @@ import javax.swing.border.BevelBorder;
 
 /**
  * Classe MenuProf
- * Peremt de créer le panel du menu du professeur (avec ses exercices, les classes et les élèves
+ * Permet de créer le panel du menu du professeur (avec ses exercices, les classes et les élèves
  * @author Groupe 2
  */
 public class MenuProf extends JPanel{
@@ -40,6 +40,7 @@ public class MenuProf extends JPanel{
      * constructeur de la classe MenuProf
      * Il sera initialisé avec un panel contenant les 4 boutons et un panel vide à droite.
      * @param leProf qui s'est connecté
+     * @param lAppli application en cours
      */
     public MenuProf(Professeur leProf, ApplicationProf lAppli){
         profConnecte = leProf;
@@ -123,28 +124,46 @@ public class MenuProf extends JPanel{
         this.add(panelGauche, BorderLayout.WEST);
         this.add(panelDroite, BorderLayout.CENTER);
     }
-    
+    /**
+     * Méthode setPanelDroite
+     * @param newPanel Panel a affecté à droite
+     */
     public void setPanelDroite(JPanel newPanel){
         this.add(panelGauche, BorderLayout.WEST);
         this.add(newPanel, BorderLayout.CENTER);
     }
-    
+    /**
+     * Méthode getButtonCreerExo
+     * @return butCreerExo: JButton
+     */
     public JButton getButtonCreerExo(){
         return butCreerExo;
     }
-    
+    /**
+     * Méthode getButtonExo
+     * @return butVoirExo: JButton
+     */
     public JButton getButtonExo(){
         return butVoirExo;
     }
-    
+    /**
+     * Méthode getButtonEleve
+     * @return butVoirEleve: JButton
+     */
     public JButton getButtonEleve(){
         return butVoirEleve;
     }
-    
+    /**
+     * Méthode getButtonClasse
+     * @return butVoirClasse: JButton
+     */
     public JButton getButtonClasse(){
         return butVoirClasse;
     }
-    
+    /**
+     * Méthode getButtonDeco
+     * @return butSeDeco: JButton
+     */
     public JButton getButtonDeco(){
         return butSeDeco;
     }

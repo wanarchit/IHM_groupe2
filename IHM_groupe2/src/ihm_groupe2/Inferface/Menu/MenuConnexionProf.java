@@ -32,7 +32,11 @@ public class MenuConnexionProf extends JPanel{
     // Champs pour le formulaire de connexion
     private JTextField champsLogin;
     private JPasswordField champsMdp;
-    
+    /**
+     * Constructeur de la classe MenuConnexionProf
+     * Permet de créer le menu pour un professeur
+     * @param lAppli : Application en cours
+     */
     public MenuConnexionProf(ApplicationProf lAppli){
         appliProf = lAppli;
 
@@ -96,19 +100,31 @@ public class MenuConnexionProf extends JPanel{
         
          
     }
-    
+    /**
+     * Méthode getTextLogin
+     * @return champsLogin: JTextField
+     */
     public JTextField getTextLogin(){
         return champsLogin;
     }
-            
+    /**
+     * Méthode getTextMdp
+     * @return champsMdp: JTextField
+     */  
     public JTextField getTextMdp(){
         return champsMdp;
     }
-    
+    /**
+     * Méthode getButValidation
+     * @return validationConnexion: JButton
+     */
     public JButton getButValidation(){
         return validationConnexion;
     }
-    
+    /**
+     * Méthode getButAnnuler
+     * @return annulerConnexion: JButton
+     */
     public JButton getButAnnuler(){
         return annulerConnexion;
     }

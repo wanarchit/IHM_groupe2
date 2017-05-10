@@ -33,7 +33,10 @@ public class MenuConnexionEleve extends JPanel{
     private ArrayList<Eleve> lesEleves;
     private TableEleveVue tableEleve;
     
-    
+    /**
+     * Constructeur de la classe MenuConnexionEleve
+     * @param lAppli : Application en cours
+     */
     public MenuConnexionEleve(ApplicationEleve lAppli){
         appliEleve = lAppli;
         lesEleves = appliEleve.getListeEleve();
@@ -67,7 +70,10 @@ public class MenuConnexionEleve extends JPanel{
        butAnnuler.addActionListener(controleur);
 
     }
-    
+    /**
+     * Méthode getButAnnuler
+     * @return butAnnuler: JButton
+     */
     public JButton getButAnnuler(){
         return butAnnuler;
     }

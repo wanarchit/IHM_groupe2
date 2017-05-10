@@ -15,6 +15,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 
 /**
  * Classe TableEleveVue
+ * Permet d'afficher la liste des élèves dans une liste déroulante
  * @author Groupe 2
  */
 public class TableEleveVue extends JScrollPane{
@@ -28,7 +29,10 @@ public class TableEleveVue extends JScrollPane{
     private ArrayList<Eleve> lesEleves;
     
     
-    
+    /**
+     * Constructeur de la classe TableEleveVue
+     * @param lAppli : Application en cours
+     */
     public TableEleveVue(ApplicationEleve lAppli){
         appliEleve = lAppli;
         lesEleves = appliEleve.getListeEleve();
@@ -51,20 +55,32 @@ public class TableEleveVue extends JScrollPane{
         this.setViewportView(tableEleves);
 
     }
-
+    /**
+     * Méthode setData
+     * @param maListe : Liste des élève que l'on souhaite charger
+     */
     public void setData (ArrayList<Eleve> maListe){
         modeleTable.setData(maListe);
         modeleTable.fireTableDataChanged();
     } 
-    
+    /**
+     * Méthode getJTable
+     * @return tableEleves: JTable
+     */
     public JTable getJTable(){
         return tableEleves;
     }
-    
+    /**
+     * Méthode getModele
+     * @return modeleTable: TableEleves
+     */
     public TableEleves getModele(){
         return modeleTable;
     }
-    
+    /**
+     * Méthode personnalisationTable
+     * @param tableau Tableau dont l'on modifie la disposition et l'affichage graphique
+     */
     private void personnalisationTable(JTable tableau) {
         tableau.setFont(new java.awt.Font(Font.DIALOG,Font.PLAIN,16)); // choix police du tableau
         tableau.getTableHeader().setBackground(Color.GRAY);

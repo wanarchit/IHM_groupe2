@@ -14,6 +14,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableCellRenderer;
 
 /**
+ * Classe ListeExercices
  * Classe permettant d'afficher les exercices existants
  * @author Groupe 2
  */
@@ -26,6 +27,8 @@ public class ListeExercices extends JScrollPane{
 
     /**
      * Constructeur de listeExercices
+     * @param maListeExo: liste des exercices sous forme de tableau
+     * @param lAppli : Application en cours
      */
     public ListeExercices(ArrayList<Exercice> maListeExo, ApplicationProf lAppli){
         appli = lAppli;
@@ -48,20 +51,36 @@ public class ListeExercices extends JScrollPane{
         listSelectionModel.addListSelectionListener(controleur);
         this.setViewportView(tableExercices);
     }
-    
+    /**
+     * Méthode setData
+     * Permet de modifier le tableau de classes
+     * @param maListe  : ArrayListe modifiée
+     */
     public void setData (ArrayList<Exercice> maListe){
         modeleTable.setData(maListe);
         modeleTable.fireTableDataChanged();
     } 
-    
+    /**
+     * Méthode getJTable
+     * Permet de renvoyer la JTable créée dans la classe
+     * @return tableExercices: JTable
+     */
     public JTable getJTable(){
         return tableExercices;
     }
-    
+    /**
+     * Méthode getModele
+     * Permet de renvoyer le modèle utilisé
+     * @return modeleTable: TableExercices
+     */
     public TableExercices getModele(){
         return modeleTable;
     }
-    
+    /**
+     * Méthode personnalisationTable
+     * Permet de changer la disposition et l'aspect graphique de la Jtable générée
+     * @param tableau : JTable à modfier
+     */
     private void personnalisationTable(JTable tableau) {
         tableau.setFont(new java.awt.Font(Font.DIALOG,Font.PLAIN,16)); // choix police du tableau
         tableau.getTableHeader().setBackground(Color.GRAY);

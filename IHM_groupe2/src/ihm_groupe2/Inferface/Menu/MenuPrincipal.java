@@ -30,6 +30,7 @@ public class MenuPrincipal extends JPanel{
     
     /**
      * Constructeur de la classe MenuPrincipal
+     * @param main : Renvoie la mainframe de l'application
      */
     public MenuPrincipal(MainFrame main){
         fenetreMain = main;
@@ -55,31 +56,27 @@ public class MenuPrincipal extends JPanel{
         ssPanel2.setBackground(Color.white);
         panel3.add(ssPanel1);
         panel3.add(ssPanel2);
-        panel3.setBackground(Color.white);
-        
+        panel3.setBackground(Color.white);      
         JPanel panel4 = new JPanel(new BorderLayout());
-        //panel4.add(panel2,BorderLayout.NORTH);
-        //panel4.add(panel3,BorderLayout.CENTER);
         panel4.add(panel1,BorderLayout.NORTH);
         panel4.add(panel3,BorderLayout.SOUTH);
-        panel4.setBackground(Color.white);
-        
+        panel4.setBackground(Color.white);       
         controleur = new CtrlMenuPrincipal(this);
         butConnectEleve.addActionListener(controleur);
         butConnectProf.addActionListener(controleur);
-        
-        
-        //this.setLayout(new GridLayout(1,1));
-        //this.add(panel1);
-        this.add(panel4);
-        //this.setBackground(Color.WHITE);
-        
+        this.add(panel4);     
     }
-    
+    /**
+     * Méthode getButtonEleve
+     * @return butConnectEleve: JButton
+     */
     public JButton getButtonEleve(){
         return butConnectEleve;
     }
-    
+    /**
+     * Méthode getMainFrame
+     * @return fenetreMain: MainFrame
+     */
     public MainFrame getMainFrame(){
         return fenetreMain;
     }

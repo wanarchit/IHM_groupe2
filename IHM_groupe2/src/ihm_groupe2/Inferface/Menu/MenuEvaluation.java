@@ -21,7 +21,8 @@ import javax.swing.JTextField;
 import javax.swing.border.BevelBorder;
 
 /**
- *
+ * Classe MenuEvaluation
+ * Permet de créer le menu d'une évaluation
  * @author Groupe 2
  */
 public class MenuEvaluation extends JPanel{
@@ -40,7 +41,13 @@ public class MenuEvaluation extends JPanel{
     private JRadioButton butRadEnCours;
     private JRadioButton butRadNonAcquis;
     
-    
+    /**
+     * Constructeur de la classe MenuEvaluation
+     * Permet la création du menu pour un élève
+     * @param lAppli: Application en cours
+     * @param laRea: Réalisation en cours
+     * @param lEleve : Eleve connecté
+     */
     public MenuEvaluation(ApplicationProf lAppli, Realisation laRea, Eleve lEleve){
         appli = lAppli;
         rea = laRea;
@@ -181,39 +188,66 @@ public class MenuEvaluation extends JPanel{
         this.add(panelBas,BorderLayout.SOUTH);
         
     }
-    
+    /**
+     * Méthode getLaRea
+     * @return rea:Realisation 
+     */
     public Realisation getLaRea(){
         return rea;
     }
-    
+    /**
+     * Méthode getButRejouerEntier
+     * @return butRejouerEntier: JButton
+     */
     public JButton getButRejouerEntier(){
         return butRejouerEntier;
     }
-    
+    /**
+     * Méthode getButRejouerEtape
+     * @return butRejouerEtape:JButton 
+     */
     public JButton getButRejouerEtape(){
         return butRejouerEtape;
     }
-    
+    /**
+     * Méthode getButValider
+     * @return butValider: JButton
+     */
     public JButton getButValider(){
         return butValider;
     }
-    
+    /**
+     * Méthode getButAnnuler
+     * @return butAnnuler: JButton
+     */
     public JButton getButAnnuler(){
         return butAnnuler;
     }
-    
+    /**
+     * Méthode getCommentaire
+     * @return commExo: JTextField
+     */
     public JTextField getCommentaire(){
         return commExo;
     }
-
+    /**
+     * Méthode getRadAcquis
+     * @return butRadAcquis: JRadioButton
+     */
     public JRadioButton getRadAcquis(){
         return butRadAcquis;
     }
-    
+    /**
+     * Méthode getRadEnCours
+     * @return butRadEnCours: JRadioButton
+     */
     public JRadioButton getRadEnCours(){
         return butRadEnCours;
     }
-    
+    /**
+     * Méthode getRadNonAcquis
+     * @return butRadNonAcquis: JRadioButton
+     */
     public JRadioButton getRadNonAcquis(){
         return butRadNonAcquis;
     }

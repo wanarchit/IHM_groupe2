@@ -1,10 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ihm_groupe2.Inferface.Menu;
-
 import Applications.ApplicationEleve;
 import ihm_groupe2.Controleur.CtrlDessinEleve;
 import ihm_groupe2.Noyau_fonctionnel.Canvas;
@@ -29,7 +23,9 @@ import javax.swing.JScrollPane;
 import javax.swing.border.BevelBorder;
 
 /**
- *
+ * Classe Dessin
+ * Permet de gérer la réalisation d'exercices via des dessins
+ * Modulable en fonction de l'exercice
  * @author Groupe 2
  */
 public class Dessin extends JPanel{
@@ -60,7 +56,11 @@ public class Dessin extends JPanel{
     private JLabel labelAction;
     
     
-    
+    /**
+     * Constructeur de la classe Dessin
+     * @param lAppli : Application en cours
+     * @param exo : Exercice concerné par la réalisation en cours
+     */
     public Dessin(ApplicationEleve lAppli, Exercice exo){
         appli=lAppli;
         exoEnCours = exo;
@@ -79,15 +79,12 @@ public class Dessin extends JPanel{
         
         JPanel ssPanelHaut = new JPanel(new GridLayout(1,3));
         ssPanelHaut.setBorder(new javax.swing.border.BevelBorder(BevelBorder.RAISED));
-        //butValider = new JButton("J'ai fini");
         butValider = new JButton(new ImageIcon(getClass().getResource("/Images/valider_1.png")));
         butValider.setBackground(Color.white);
         butValider.setPreferredSize(new Dimension(200,75));
-        //butRetour = new JButton("Retour");
         butRetour = new JButton(new ImageIcon(getClass().getResource("/Images/but_quitter.png")));
         butRetour.setBackground(Color.white);
         butRetour.setPreferredSize(new Dimension(200,75));
-        //butAnnuler = new JButton("J'annule");
         butAnnuler = new JButton(new ImageIcon(getClass().getResource("/Images/annuler.png")));
         butAnnuler.setBackground(Color.white);
         butAnnuler.setPreferredSize(new Dimension(200,75));
@@ -98,28 +95,22 @@ public class Dessin extends JPanel{
         
         /** ssPanel Milieu : canvas */
         JPanel ssPanelMilieu = new JPanel();
-        //ssPanelMilieu.setBorder(new javax.swing.border.BevelBorder(BevelBorder.RAISED));
         ssPanelMilieu.add (Canvas.getCanvasPanel(), BorderLayout.CENTER);
         ssPanelMilieu.setBackground(Color.white);
 
         
         /** ssPanel bas : boutons actions : écrire / avancer / tourner */
         JPanel ssPanelBas = new JPanel(new GridLayout(1,3));
-        ssPanelBas.setBorder(new javax.swing.border.BevelBorder(BevelBorder.RAISED));
-        
-        //butEcrire = new JButton("Ecrire");
+        ssPanelBas.setBorder(new javax.swing.border.BevelBorder(BevelBorder.RAISED));       
         butEcrire = new JButton(new ImageIcon(getClass().getResource("/Images/ecrit_pas.png")));
         butEcrire.setBackground(Color.white);
         butEcrire.setPreferredSize(new Dimension(200,75));
-        //butAvancer = new JButton("Avancer");
         butAvancer = new JButton(new ImageIcon(getClass().getResource("/Images/avancer.png")));
         butAvancer.setBackground(Color.white);
         butAvancer.setPreferredSize(new Dimension(200,75));
-        //butTourner = new JButton("Tourner");
         butTourner = new JButton(new ImageIcon(getClass().getResource("/Images/tourne.png")));
         butTourner.setBackground(Color.white);
         butTourner.setPreferredSize(new Dimension(200,75));
-        
         controleur = new CtrlDessinEleve(appli,this);
         
         ssPanelBas.add(butEcrire);
@@ -170,11 +161,9 @@ public class Dessin extends JPanel{
             
         }else{
             // Tortue rapide
-            //butPlusVite = new JButton("Vite");
             butPlusVite = new JButton(new ImageIcon(getClass().getResource("/Images/rapide.png")));
             butPlusVite.setPreferredSize(new Dimension(200,35));
             butPlusVite.setBackground(Color.white);
-            //butMoinsVite = new JButton("Lent");
             butMoinsVite = new JButton(new ImageIcon(getClass().getResource("/Images/lent.png")));
             butMoinsVite.setPreferredSize(new Dimension(200,35));
             butMoinsVite.setBackground(Color.white);
@@ -289,80 +278,150 @@ public class Dessin extends JPanel{
         this.add(ssPanelGauche, BorderLayout.WEST);
         this.add(ssPanelCentre, BorderLayout.CENTER);
         this.add(ssPanelDroite, BorderLayout.EAST);
-        //this.add(butRetour);
         
         
     }
-    
+    /**
+     * Méthode getButValidation
+     * Permet de renvoyer le bouton de Validation du dessin
+     * @return butValider: JButton
+     */
     public JButton getButValidation(){
         return butValider;
     }
-    
+    /**
+     * Méthode getButRetour
+     * Permet de renvoyer le bouton de retour
+     * @return butRetour: JButton
+     */
     public JButton getButRetour(){
         return butRetour;
     }
-    
+    /**
+     * Méthode getButAnnuler
+     * Permet de renvoyer le bouton de annuler
+     * @return butAnnuler: JButton
+     */
     public JButton getButAnnuler(){
         return butAnnuler;
     }
-    
+    /**
+     * Méthode getButEcrire
+     * Permet de renvoyer le bouton de écrir
+     * @return butEcrire: JButton
+     */
     public JButton getButEcrire(){
         return butEcrire;
     }
-    
+    /**
+     * Méthode getButAvancer
+     * Permet de renvoyer le bouton de Avancer
+     * @return butAvancer: JButton
+     */
     public JButton getButAvancer(){
         return butAvancer;
     }
-    
+    /**
+     * Méthode getButTourner
+     * Permet de renvoyer le bouton de tourner
+     * @return butTourner: JButton
+     */
     public JButton getButTourner(){
         return butTourner;
     }
-    
+    /**
+     * Méthode getButMoinsVite
+     * Permet de renvoyer le bouton de moins vite
+     * @return butMoinsVite: JButton
+     */
     public JButton getButMoinsVite(){
         return butMoinsVite;
     }
-    
+    /**
+     * Méthode getButPlusVite
+     * Permet de renvoyer le bouton de plus vite
+     * @return butPlusVite: JButton
+     */
     public JButton getButPlusVite(){
         return butPlusVite;
     }
-    
+    /**
+     * Méthode getButNoir
+     * Permet de renvoyer le bouton de couleur noir
+     * @return butCoulNoir: JButton
+     */
     public JButton getButNoir(){
         return butCoulNoir;
     }
-    
+    /**
+     * Méthode getButRouge
+     * Permet de renvoyer le bouton de couleur rouge
+     * @return butCoulRouge: JButton
+     */
     public JButton getButRouge(){
         return butCoulRouge;
     }
-    
+    /**
+     * Méthode getButVert
+     * Permet de renvoyer le bouton de couleur vert
+     * @return butCoulVert: JButton
+     */
     public JButton getButVert(){
         return butCoulVert;
     }
-    
+    /**
+     * Méthode getButRose
+     * Permet de renvoyer le bouton de couleur rose
+     * @return butCoulRose: JButton
+     */
     public JButton getButRose(){
         return butCoulRose;
     }
-    
+    /**
+     * Méthode getButBleu
+     * Permet de renvoyer le bouton de couleur bleu
+     * @return butCoulBleu: JButton
+     */
     public JButton getButBleu(){
         return butCoulBleu;
     }
-    
+    /**
+     * Méthode getButJaune
+     * Permet de renvoyer le bouton de couleur jaune
+     * @return butCoulJaune: JButton
+     */
     public JButton getButJaune(){
         return butCoulJaune;
     }
     
-    
+    /**
+     * Méthode getExoEnCours
+     * Renvoie l'exercice en cours
+     * @return exoEnCours: Exercice
+     */
     public Exercice getExoEnCours(){
         return exoEnCours;
     }
-    
+    /**
+     * Méthode getLaTortue
+     * Renvoie la tortue de la réalisation en cours
+     * @return exoEnCours.getMaTortue() : TortueG
+     */
     public TortueG getLaTortue(){
         return exoEnCours.getMaTortue();
     }
-    
+    /**
+     * Méthode getNewRealisation
+     * Renvoie la réalisation faites
+     * @return laRealisation: Realisation
+     */
     public Realisation getNewRealisation(){
         return laRealisation;
     }
-    
+    /**
+     * Méthode RefreshListAction
+     * Permet de rafraîchir la liste d'action afficher pendant le dessin
+     */
     public void RefreshListAction(){
         String lesCmd = "<html>";
         ArrayList<Commande> lesCommandes = laRealisation.getListeCommande();
