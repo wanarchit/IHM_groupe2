@@ -22,7 +22,7 @@ public class ExerciceTest {
     
     @Before
     public void setUp() {
-        e = new Exercice("Ex1","",1,new ImageIcon());
+        e = new Exercice("Ex1","",1,"");
     }
     
     @After

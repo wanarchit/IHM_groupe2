@@ -29,8 +29,8 @@ public class RealisationTest {
     
     @Before
     public void setUp() {
-        exo1 = new Exercice("Ex1","",1,new ImageIcon());
-        exo2 = new Exercice("Ex2","",2,new ImageIcon());
+        exo1 = new Exercice("Ex1","",1,"");
+        exo2 = new Exercice("Ex2","",2,"");
         r1 = new Realisation(1,"","",exo1);
         r2 = new Realisation(1,"","",exo2);
         t = new TortueG();

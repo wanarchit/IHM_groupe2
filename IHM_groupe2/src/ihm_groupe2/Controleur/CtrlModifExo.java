@@ -28,6 +28,7 @@ import javax.swing.filechooser.FileSystemView;
 public class CtrlModifExo implements ActionListener {
     private ApplicationProf appli;
     private PanelModifExo panelFormExo;
+    private String nomImg;
     
     public CtrlModifExo(PanelModifExo lePanel, ApplicationProf lAppli){
         appli = lAppli;
@@ -66,8 +67,9 @@ public class CtrlModifExo implements ActionListener {
                 BufferedImage image;
                 try {
                     String repCourant = new java.io.File("").getAbsolutePath();
-                    repCourant+="\\src\\Images\\";
+                    repCourant+=".\\img\\";
                     String[] nomImage = monFichier.toString().split("\\\\");
+                    nomImg = nomImage[nomImage.length-1];
                     String destination = repCourant+nomImage[nomImage.length-1];
                     File maDest = new File(destination);
                     copier(monFichier,maDest);
@@ -82,7 +84,8 @@ public class CtrlModifExo implements ActionListener {
                       }
                     }
                     image = ImageIO.read(maDest);
-                    ImageIcon imageExo = new ImageIcon(getClass().getResource("/Images/"+nomImage[nomImage.length-1]));
+                    BufferedImage buttonIcon = ImageIO.read(new File(repCourant+nomImage[nomImage.length-1]));
+                    ImageIcon imageExo = new ImageIcon(buttonIcon);
                     panelFormExo.setImageExo(imageExo);
                 } catch (IOException ex) {
                     Logger.getLogger(CtrlFormExo.class.getName()).log(Level.SEVERE, null, ex);
@@ -141,7 +144,7 @@ public class CtrlModifExo implements ActionListener {
                 boiteDial.showMessageDialog(null, "Vous devez renseigner le nom de l'exercice", "Modification exercice", JOptionPane.INFORMATION_MESSAGE);                
             }
             if (validation){
-                Exercice newExo = new Exercice(nomExo,comExo,choixTortue,imageExo);
+                Exercice newExo = new Exercice(nomExo,comExo,choixTortue,nomImg);
                 appli.getListeExo().remove(panelFormExo.getExoModif());
                 appli.getListeExo().add(newExo);
                 appli.afficheExercices();

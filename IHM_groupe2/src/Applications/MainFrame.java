@@ -31,7 +31,6 @@ public class MainFrame extends JFrame{
         
         this.add(menuPrincipal);
         String path = System.getProperty("user.dir" );
-        System.out.println(" répertoire courant : "+path);
         this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         this.setTitle("Application gestion exercices");
         this.setSize(1200, 700);

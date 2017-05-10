@@ -22,17 +22,12 @@ public class CtrlWindows implements WindowListener{
     
     public void windowClosing(WindowEvent e){
         if (fenetre.getContentPane().getClass() == MenuProf.class){
-            int option = JOptionPane.showConfirmDialog(null, "Voulez-vous enregistrer les modifications avant de quitter ?", "Quitter", 
-                    JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
-            if(option != JOptionPane.NO_OPTION && 
-                option != JOptionPane.CANCEL_OPTION && 
-                option != JOptionPane.CLOSED_OPTION){
-                fenetre.getAppProf().seDeconnecter();
-                fenetre.dispose();
-                System.exit(0);
-             }else if (option != JOptionPane.YES_OPTION && 
-                option != JOptionPane.CANCEL_OPTION && 
-                option != JOptionPane.CLOSED_OPTION){
+           int reponse = JOptionPane.showConfirmDialog(fenetre,
+                             "Si vous quittez sans vous DECONNECTER, les données ne seront pas enregistrées.Voulez-vous vraiement quitter l'application ?",
+                             "Confirmation",
+                             JOptionPane.YES_NO_OPTION,
+                             JOptionPane.QUESTION_MESSAGE);
+            if (reponse==JOptionPane.YES_OPTION){
                 fenetre.dispose();
                 System.exit(0);
              }

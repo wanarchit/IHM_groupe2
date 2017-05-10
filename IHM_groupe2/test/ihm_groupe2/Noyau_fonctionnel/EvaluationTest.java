@@ -29,7 +29,7 @@ public class EvaluationTest {
         p = new Professeur("logProf","12345","LeGrand","Jean");
         c = new Classe("CM1",p);
         el = new Eleve(c,"Jean","Bon",null);
-        exo = new Exercice("Ex1","",1,new ImageIcon());
+        exo = new Exercice("Ex1","",1,"");
         e = new Evaluation(el,exo,false);
     }
     

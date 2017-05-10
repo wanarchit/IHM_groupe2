@@ -25,7 +25,7 @@ public class EleveTest {
     private Exercice exo;
     
     public EleveTest() {
-        exo = new Exercice("Ex1","",1,new ImageIcon());
+        exo = new Exercice("Ex1","",1,"");
         p = new Professeur("logProf","12345","LeGrand","Jean");
         c = new Classe("CM1",p);
         e = new Eleve(c,"Jean","Bon",null);

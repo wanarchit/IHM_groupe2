@@ -87,18 +87,18 @@ public class ApplicationEleve {
                 int idExo = resExercices.getInt("ID_Exo");
                 String imageExercice=resExercices.getString("Image_Exo");
                 try{
-                    ImageIcon imageExo = new ImageIcon(getClass().getResource(imageExercice));
+                    //ImageIcon imageExo = new ImageIcon(getClass().getResource(imageExercice));
                     String nomExo=resExercices.getString("Nom_Exo");
                     String comExo=resExercices.getString("Commentaire_Exo");
                     int tortueExo=resExercices.getInt("Tortue_Exo");
-                    exo = new Exercice(nomExo,comExo,tortueExo,imageExo);
+                    exo = new Exercice(nomExo,comExo,tortueExo,imageExercice);
                     lesExercices.add(exo);
                 }catch ( Exception exp ) {
                     ImageIcon imageExo = new ImageIcon(getClass().getResource("/Images/Exercice_erreur.PNG"));
                     String nomExo=resExercices.getString("Nom_Exo");
                     String comExo=resExercices.getString("Commentaire_Exo");
                     int tortueExo=resExercices.getInt("Tortue_Exo");
-                    exo = new Exercice(nomExo,comExo,tortueExo,imageExo);
+                    exo = new Exercice(nomExo,comExo,tortueExo,imageExercice);
                     lesExercices.add(exo);
                 }
                 
@@ -511,10 +511,10 @@ public class ApplicationEleve {
             }
             for (Exercice ex : lesExercices){
                 int idExo = lesExercices.indexOf(ex)+1;
-                String[] parts = ex.getImage().toString().split("/");
-                String nomImg = parts[parts.length-1];
+                //String[] parts = ex.getImage().toString().split("/");
+                //String nomImg = parts[parts.length-1];
                 stmtAdd.executeUpdate("INSERT INTO EXERCICE (ID_Exo,Nom_Exo,Commentaire_Exo,Tortue_Exo,Id_Professeur,Image_Exo) VALUES ("+
-                        idExo+",'"+ex.getNom()+"','"+ex.getCommentaire()+"',"+ex.getTortueChoisie()+",1,'/Images/"+nomImg+"');");
+                        idExo+",'"+ex.getNom()+"','"+ex.getCommentaire()+"',"+ex.getTortueChoisie()+",1,'"+ex.getNomImage()+"');");
             }
 
             System.out.println("Update database successfully");

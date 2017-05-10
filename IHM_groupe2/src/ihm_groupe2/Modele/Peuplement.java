@@ -53,11 +53,11 @@ public class Peuplement {
            stmt.executeUpdate("INSERT INTO ELEVE (ID_Eleve,Nom_Eleve,Id_Classe,Prenom_Eleve,Icon_Eleve) VALUES (20,'Blackburn',2,'Vernon','/Images/eleve_g10.png');");  
            
             //Peuplement de la table Exercice
-           stmt.executeUpdate("INSERT INTO EXERCICE (ID_Exo,Nom_Exo,Commentaire_Exo,Tortue_Exo,Id_Professeur,Image_Exo) VALUES (1,'Exercice_Carré','Faites un simple carré',0,3,'/Images/Exercice1_image.PNG');");
-           stmt.executeUpdate("INSERT INTO EXERCICE (ID_Exo,Nom_Exo,Commentaire_Exo,Tortue_Exo,Id_Professeur,Image_Exo) VALUES (2,'Exercice_Rectangle','Faites un simple rectangle',0,4,'/Images/Exercice5_image.PNG');");
-           stmt.executeUpdate("INSERT INTO EXERCICE (ID_Exo,Nom_Exo,Commentaire_Exo,Tortue_Exo,Id_Professeur,Image_Exo) VALUES (3,'Exercice_Carré_Rouge','Faites un carré rouge entouré dun autre carré rouge',1,5,'/Images/Exercice3_image.PNG');");
-           stmt.executeUpdate("INSERT INTO EXERCICE (ID_Exo,Nom_Exo,Commentaire_Exo,Tortue_Exo,Id_Professeur,Image_Exo) VALUES (4,'Exercice_Télécommande','Faites une télécommande en rouge',1,2,'/Images/Exercice4_image.PNG');");
-           stmt.executeUpdate("INSERT INTO EXERCICE (ID_Exo,Nom_Exo,Commentaire_Exo,Tortue_Exo,Id_Professeur,Image_Exo) VALUES (5,'Exercice_Vitesse','Faites une croix en utilisant différentes vitesses',2,1,'/Images/Exercice2_image.PNG');");
+           stmt.executeUpdate("INSERT INTO EXERCICE (ID_Exo,Nom_Exo,Commentaire_Exo,Tortue_Exo,Id_Professeur,Image_Exo) VALUES (1,'Exercice_Carré','Faites un simple carré',0,3,'Exercice1_image.PNG');");
+           stmt.executeUpdate("INSERT INTO EXERCICE (ID_Exo,Nom_Exo,Commentaire_Exo,Tortue_Exo,Id_Professeur,Image_Exo) VALUES (2,'Exercice_Rectangle','Faites un simple rectangle',0,4,'Exercice5_image.PNG');");
+           stmt.executeUpdate("INSERT INTO EXERCICE (ID_Exo,Nom_Exo,Commentaire_Exo,Tortue_Exo,Id_Professeur,Image_Exo) VALUES (3,'Exercice_Carré_Rouge','Faites un carré rouge entouré dun autre carré rouge',1,5,'Exercice3_image.PNG');");
+           stmt.executeUpdate("INSERT INTO EXERCICE (ID_Exo,Nom_Exo,Commentaire_Exo,Tortue_Exo,Id_Professeur,Image_Exo) VALUES (4,'Exercice_Télécommande','Faites une télécommande en rouge',1,2,'Exercice4_image.PNG');");
+           stmt.executeUpdate("INSERT INTO EXERCICE (ID_Exo,Nom_Exo,Commentaire_Exo,Tortue_Exo,Id_Professeur,Image_Exo) VALUES (5,'Exercice_Vitesse','Faites une croix en utilisant différentes vitesses',2,1,'Exercice2_image.PNG');");
            
             //Peuplement de la table Realisation
            //Eleve 1 (en CP) travaillant sur lexercice 1

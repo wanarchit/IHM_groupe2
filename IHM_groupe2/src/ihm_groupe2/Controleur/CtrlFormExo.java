@@ -42,6 +42,7 @@ public class CtrlFormExo implements ActionListener{
     
     private PanelCreerExo panelFormExo;
     private ApplicationProf appli;
+    private String nomImg;
     
     public CtrlFormExo(PanelCreerExo lePanel, ApplicationProf lAppli){
         panelFormExo = lePanel;
@@ -82,6 +83,7 @@ public class CtrlFormExo implements ActionListener{
                     repCourant+=".\\img\\";
                     String[] nomImage = monFichier.toString().split("\\\\");
                     String destination = repCourant+nomImage[nomImage.length-1];
+                    nomImg = nomImage[nomImage.length-1];
                     File maDest = new File(destination);
                     copier(monFichier,maDest);
                     Thread currentThread = Thread.currentThread();
@@ -159,7 +161,7 @@ public class CtrlFormExo implements ActionListener{
                 boiteDial.showMessageDialog(null, "Vous devez renseigner le nom de l'exercice", "Création exercice", JOptionPane.INFORMATION_MESSAGE);
             }
             if (validation){
-                Exercice newExo = new Exercice(nomExo,comExo,choixTortue,imageExo);
+                Exercice newExo = new Exercice(nomExo,comExo,choixTortue,nomImg);
                 appli.creaNewEval(newExo);
                 appli.getListeExo().add(newExo);
                 appli.afficheExercices();
@@ -169,19 +171,19 @@ public class CtrlFormExo implements ActionListener{
 
     
     public static boolean copier(File source, File dest) { 
-    try (InputStream sourceFile = new java.io.FileInputStream(source);  
-            OutputStream destinationFile = new FileOutputStream(dest)) { 
-        // Lecture par segment de 0.5Mo  
-        byte buffer[] = new byte[512 * 1024]; 
-        int nbLecture; 
-        while ((nbLecture = sourceFile.read(buffer)) != -1){ 
-            destinationFile.write(buffer, 0, nbLecture); 
+        try (InputStream sourceFile = new java.io.FileInputStream(source);  
+                OutputStream destinationFile = new FileOutputStream(dest)) { 
+            // Lecture par segment de 0.5Mo  
+            byte buffer[] = new byte[512 * 1024]; 
+            int nbLecture; 
+            while ((nbLecture = sourceFile.read(buffer)) != -1){ 
+                destinationFile.write(buffer, 0, nbLecture); 
+            } 
+        } catch (IOException e){ 
+            e.printStackTrace(); 
+            return false; // Erreur 
         } 
-    } catch (IOException e){ 
-        e.printStackTrace(); 
-        return false; // Erreur 
-    } 
-    return true; // Résultat OK   
+        return true; // Résultat OK   
 }
     
 }

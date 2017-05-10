@@ -1,5 +1,11 @@
 package ihm_groupe2.Noyau_fonctionnel;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
 /**
@@ -17,6 +23,7 @@ public class Exercice {
     private ImageIcon image;
     private boolean modifiable;
     private TortueG maTortue;
+    private String nomImage;
 
     /**
      * Constructeur de la classe exercice
@@ -27,7 +34,7 @@ public class Exercice {
      * @param choixTortue : tortue imposée pour l'exercice 0 : Tortue classique / 1 : Tortue couleur / 2 : Tortue rapide
      * @param image : image représentant l'exercice à faire
      */
-    public Exercice(String nomEx, String commEx, int choixTortue, ImageIcon image){
+    public Exercice(String nomEx, String commEx, int choixTortue, String nomImg){
         this.nom=nomEx;
         this.commentaire=commEx;
         tortue = choixTortue;
@@ -38,7 +45,21 @@ public class Exercice {
         }else{
             maTortue = new TortueG();
         }
-        this.image=image;
+        nomImage = nomImg;
+
+        try{
+            image = new ImageIcon(getClass().getResource("/Images/"+nomImage));
+        }catch (NullPointerException nullExp){
+            try {
+                BufferedImage buttonIcon = ImageIO.read(new File("img/"+nomImage));
+                image = new ImageIcon(buttonIcon);
+            } catch (IOException ex) {
+                Logger.getLogger(Exercice.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+        
+        
         this.modifiable = true;
     }
     
@@ -67,6 +88,15 @@ public class Exercice {
      */
     public ImageIcon getImage(){
         return this.image;
+    }
+    
+    public String getNomImage(){
+        return nomImage;
+    }
+    
+    public void setNomImage(String nomImg){
+        nomImage = nomImg;
+        image = new ImageIcon(getClass().getResource(nomImage));
     }
     
     /**
