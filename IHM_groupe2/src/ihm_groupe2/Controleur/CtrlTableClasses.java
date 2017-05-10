@@ -9,7 +9,9 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 /**
- *
+ * Classe CtrlTableClasses
+ * Controleur permettant la gestion du tableau affichant les classes
+ * 
  * @author Groupe 2
  */
 public class CtrlTableClasses implements ListSelectionListener{
@@ -17,26 +19,33 @@ public class CtrlTableClasses implements ListSelectionListener{
     private ListeClasse myTable;
     private ApplicationProf appli;
     
+    /**
+     * Constructeur du controleur CtrlTableClasses
+     * @param myTable : table utilisée
+     * @param lAppli : application utilisée
+     */
     public CtrlTableClasses(ListeClasse myTable, ApplicationProf lAppli){
         appli = lAppli;
         this.myTable = myTable;
-
     }
     
     @Override
+    /**
+     * Méthode valueChanged
+     * Permet de renvoyer vers la liste des élèves de cette classe
+     * lorsque l'utilisateur sélectionne une classe.
+     * Vérifie qu'il a bien sélectionné une ligne
+     * @param act : list selection event
+     */
     public void valueChanged(ListSelectionEvent act) {
-
         TableClasses modelTable = (TableClasses) myTable.getModele();
         if (act.getValueIsAdjusting())
-                return;
+           return;
         ListSelectionModel lsm = (ListSelectionModel)act.getSource();
         if (!lsm.isSelectionEmpty()) {
-
             int selectedRow = lsm.getMinSelectionIndex();
-            Classe cl = modelTable.getClasseRow(selectedRow);
-            
+            Classe cl = modelTable.getClasseRow(selectedRow);  
             appli.affichelaClasse(cl);
         }
     }
-    
 }

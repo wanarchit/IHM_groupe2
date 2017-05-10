@@ -9,9 +9,10 @@ import javax.swing.JOptionPane;
 
 /**
  * Classe CtrlConnEleve
- Permet de controler la connexion d'un élève ou d'un professeur en validant le formulaire
- et en récupérant les données dans la base de données
- Permet de rediriger vers la page des exercices de l'élève pour un élève ou du menu d'un professeur
+ * Permet de controler la connexion d'un professeur en validant le formulaire
+ * et en récupérant les données dans la base de données
+ * Permet de rediriger vers le menu d'un professeur
+ * 
  * @author Groupe 2
  */
 public class CtrlConnProf implements ActionListener {
@@ -19,13 +20,25 @@ public class CtrlConnProf implements ActionListener {
     private MenuConnexionProf leMenu;
     private ApplicationProf appli;
     
+    /**
+     * Constructeur du controleur CtrlConnProf
+     * @param menuCo : menu de connexion du professeur
+     * @param lAppli  : application utilisée
+     */
     public CtrlConnProf(MenuConnexionProf menuCo,ApplicationProf lAppli){
         leMenu = menuCo;
-        appli = lAppli;
-        
+        appli = lAppli;      
     }
     
     @Override
+    /**
+     * Méthode actionPerformed
+     * Permet d'effectuer une action en fonction de l'événement qui arrive
+     * Lorsque l'on choisit le bouton valider : il vérifie que les champs ne
+     * sont pas vides, qu'ils correspondent à un professeur notamment
+     * Sinon cela affiche des boites de dialogue pour avertir l'utilisateur
+     * @param e : Action event
+     */
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == leMenu.getButValidation()){
             if (!leMenu.getTextLogin().getText().isEmpty() ){
@@ -51,6 +64,5 @@ public class CtrlConnProf implements ActionListener {
         }else if(e.getSource() == leMenu.getButAnnuler()){
             appli.annulerConnexion();
         }
-    }
-    
+    }    
 }

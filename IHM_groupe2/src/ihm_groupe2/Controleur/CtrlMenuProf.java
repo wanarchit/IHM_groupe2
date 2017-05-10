@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ihm_groupe2.Controleur;
 
 import Applications.ApplicationProf;
@@ -19,14 +14,13 @@ import java.awt.event.ActionListener;
  */
 public class CtrlMenuProf implements ActionListener{
     
-    
     private ApplicationProf appli;
     private MenuProf menuProfesseur;
     
     /**
      * Constructeur de la classe CtrlMenuProf
-     * @param leProf qui est connecté au menu
-     * @param leMenu du professeur qu'on va modifier
+     * @param lAppli : application utilisée
+     * @param leMenu : menu du professeur
      */
     public CtrlMenuProf(ApplicationProf lAppli, MenuProf leMenu){
         appli = lAppli;
@@ -34,19 +28,26 @@ public class CtrlMenuProf implements ActionListener{
     }
     
     @Override
+    /**
+     * Méthode actionPerformed
+     * Permet l'appel de la fonction souhaitée selon le bouton choisi
+     * Les actions possibles sont ici : créér un exercie -
+     * afficher les exercices - afficher les élèves ou afficher les classes 
+     * ou se déconnecter
+     * @param e : action event
+     */
     public void actionPerformed(ActionEvent e) {
         //menuProfesseur.getPanelDroite(); (maj du panel de droite)
-        if (e.getSource() == menuProfesseur.getButtonCreerExo()){
+        if (e.getSource() == menuProfesseur.getButtonCreerExo()){ //CREER EXERCICE
             appli.creerExercice();
-        }else if (e.getSource() == menuProfesseur.getButtonExo()){           
+        }else if (e.getSource() == menuProfesseur.getButtonExo()){ //AFFICHER EXERCICES
             appli.afficheExercices();
-        }else if (e.getSource() == menuProfesseur.getButtonEleve()){
+        }else if (e.getSource() == menuProfesseur.getButtonEleve()){ //AFFICHER LES ELEVES
             appli.afficheEleves();
-        }else if (e.getSource() == menuProfesseur.getButtonClasse()){
+        }else if (e.getSource() == menuProfesseur.getButtonClasse()){ //AFFICHER LES CLASSES
             appli.afficheClasses();
-        }else if (e.getSource() == menuProfesseur.getButtonDeco()){
+        }else if (e.getSource() == menuProfesseur.getButtonDeco()){ // SE DECONNECTER
             appli.seDeconnecter();
-        }
-        
+        }     
     }
 }
