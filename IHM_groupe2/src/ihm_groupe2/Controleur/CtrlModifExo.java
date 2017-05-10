@@ -22,7 +22,10 @@ import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileSystemView;
 
 /**
- *
+ * Classe CtrlModifExo
+ * Controleur permettant de gérer les actions liés au menu 
+ * de modification d'un exercice
+ * 
  * @author Groupe 2
  */
 public class CtrlModifExo implements ActionListener {
@@ -30,15 +33,27 @@ public class CtrlModifExo implements ActionListener {
     private PanelModifExo panelFormExo;
     private String nomImg;
     
+    /**
+     * Constructeur du controleur CtrlModifExo
+     * @param lePanel : panel de modification d'exercice
+     * @param lAppli : application utilisée
+     */
     public CtrlModifExo(PanelModifExo lePanel, ApplicationProf lAppli){
         appli = lAppli;
         panelFormExo = lePanel;
-        
     }
     
     @Override
+    /**
+     * Méthode actionPerformed
+     * Permet d'appeler la fonction voulue ou de faire les actions souhaitées 
+     * en fonction du bouton sélectionné par l'utilisateur
+     * Les choix possibles sont ici : changer l'image de l'exercice -
+     * valider les changements apportés
+     * @param e : action event
+     */
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == panelFormExo.getButAddImage()){
+        if (e.getSource() == panelFormExo.getButAddImage()){ //AJOUTER UNE IMAGE
             // Permet de chercher un fichier à partir du Bureau
             FileSystemView vueSysteme = FileSystemView.getFileSystemView(); 
             File home = vueSysteme.getHomeDirectory();
@@ -92,12 +107,13 @@ public class CtrlModifExo implements ActionListener {
                 }
              }
             
-        } else if (e.getSource() == panelFormExo.getButValidForm()){
+        } else if (e.getSource() == panelFormExo.getButValidForm()){ //VALIDER EXERCICE
             Boolean validation = true;
             int choixTortue = -1;
             String comExo = "";
             String nomExo = "";
             ImageIcon imageExo = null;
+            // VERIFIE QUE TOUTE LES CONDITIONS SONT REMPLIES
             if (!panelFormExo.getTextNomExo().getText().isEmpty()){
                 nomExo = panelFormExo.getTextNomExo().getText();
                 if (panelFormExo.getLabAffImage().getIcon().getIconHeight()!=-1){
@@ -124,20 +140,20 @@ public class CtrlModifExo implements ActionListener {
                             choixTortue=2;
                         }else if (panelFormExo.getRadTortCoul().isSelected()){
                             choixTortue=1;
-                        }else{
+                        }else{ // SI PAS DE TORTUE CHOISIE
                             validation = false;
                             //Boîte du message d'information.
                             JOptionPane boiteDial = new JOptionPane();
                             boiteDial.showMessageDialog(null, "Vous devez choisir une tortue", "Modification exercice", JOptionPane.INFORMATION_MESSAGE);                            
                         }
                     }
-                }else{
+                }else{ // SI PAS IMAGE
                     validation = false;
                     //Boîte du message d'information.
                     JOptionPane boiteDial = new JOptionPane();
                     boiteDial.showMessageDialog(null, "Vous devez ajouter une image à cet exercice", "Modification exercice", JOptionPane.INFORMATION_MESSAGE);                    
                 }
-            }else{
+            }else{ //SI PAS DE NOM 
                 validation = false;
                 //Boîte du message d'information.
                 JOptionPane boiteDial = new JOptionPane();
