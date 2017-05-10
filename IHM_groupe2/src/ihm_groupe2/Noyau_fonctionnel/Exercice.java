@@ -32,7 +32,7 @@ public class Exercice {
      * @param nomEx: nom donné à l'exercice
      * @param commEx: commentaire du professeur à propos de l'exercice
      * @param choixTortue : tortue imposée pour l'exercice 0 : Tortue classique / 1 : Tortue couleur / 2 : Tortue rapide
-     * @param image : image représentant l'exercice à faire
+     * @param nomImg : nom de l'image représentant l'exercice à faire
      */
     public Exercice(String nomEx, String commEx, int choixTortue, String nomImg){
         this.nom=nomEx;

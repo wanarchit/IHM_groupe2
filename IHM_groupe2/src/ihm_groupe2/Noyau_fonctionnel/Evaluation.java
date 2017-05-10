@@ -55,8 +55,8 @@ public class Evaluation {
     /**
      * Méthode setValidation
      * Permet de modifier l'évaluation de l'élève pour l'exercice
-     * Le passage peut se faire uniquement de False -> True et non l'inverse
-     * @param validation : booléen --> vrai ou faux
+     * Le passage peut se faire uniquement de False : True et non l'inverse
+     * @param validation : booléen : vrai ou faux
      */
     public void setValidation(Boolean validation) {
         if (!this.validation){  // on ne pourra pas passer "false" un exercice validé

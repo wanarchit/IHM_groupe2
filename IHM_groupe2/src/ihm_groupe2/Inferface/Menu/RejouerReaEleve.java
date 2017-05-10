@@ -109,7 +109,7 @@ public class RejouerReaEleve extends JFrame {
     }
     /**
      * Méthode getLaReaActu
-     * @return listActionActu:ArrayList<Commande>
+     * @return listActionActu
      */
     public ArrayList<Commande> getLaReaActu(){
         return listActionActu;
