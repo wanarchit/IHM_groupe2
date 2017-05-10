@@ -16,7 +16,8 @@ import javax.swing.JPanel;
 import javax.swing.border.BevelBorder;
 
 /**
- *
+ * Classe PanelAffReaArbre
+ * Permet de gérer l'affichage de l'évalutation des exercices
  * @author Groupe 2
  */
 public class PanelAffReaArbre extends JPanel{
@@ -26,7 +27,12 @@ public class PanelAffReaArbre extends JPanel{
     private JButton corrigerRea;
     private CtrlAffReaArbre controleur;
     private Eleve eleve;
-    
+    /**
+     * Constructeur de la classe PanelAffReaArbre
+     * @param laRea: Réalisation évaluée
+     * @param lAppli:  Application en cours
+     * @param lEleve : Eleve évalué
+     */
     public PanelAffReaArbre(Realisation laRea, ApplicationProf lAppli, Eleve lEleve){
         appli = lAppli;
         rea = laRea;
@@ -140,7 +146,10 @@ public class PanelAffReaArbre extends JPanel{
         
         this.setBorder(new javax.swing.border.BevelBorder(BevelBorder.RAISED));
     }
-    
+    /**
+     * Méthode getButEvaluer
+     * @return corrigerRea: JButton
+     */
     public JButton getButEvaluer(){
         return corrigerRea;
     }

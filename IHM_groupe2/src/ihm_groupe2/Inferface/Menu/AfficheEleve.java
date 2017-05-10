@@ -16,7 +16,8 @@ import javax.swing.tree.TreeCellRenderer;
 import javax.swing.tree.TreeSelectionModel;
 
 /**
- *
+ * Classe AfficheEleve
+ * Créer d'afficher un élève dans un arbre
  * @author Groupe 2
  */
 public class AfficheEleve{
@@ -25,7 +26,12 @@ public class AfficheEleve{
     private JTree myTree;
     private ArrayList<Realisation> lesRealisations;
     private CtrlArbreExercicesEleve controleur;
-
+    /**
+     * Constructeur de la classe TableClasses
+     * @param monEleve : élève qu'on souhaite afficher
+     * @param Exos : Liste des exercices
+     * @param lAppli : Application tournant
+     */
     public AfficheEleve(Eleve monEleve, ArrayList<Exercice> Exos, ApplicationProf lAppli) {
         appli = lAppli;
         lesRealisations = monEleve.getLesRealisations();
@@ -88,7 +94,11 @@ public class AfficheEleve{
         myTree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
         myTree.addTreeSelectionListener(controleur);
     }
-    
+    /**
+     * Méthode getArbre
+     * Permet de renvoyer l'arbre où l'élève est chargé
+     * @return myTree: JTree
+     */
     public JTree getArbre(){
         return myTree;
     }

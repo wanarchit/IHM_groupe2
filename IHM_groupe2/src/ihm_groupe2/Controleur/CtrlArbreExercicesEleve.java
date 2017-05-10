@@ -22,6 +22,12 @@ public class CtrlArbreExercicesEleve implements TreeSelectionListener{
     private ApplicationProf appli;
     private Eleve eleve;
     
+    /**
+     * Constructeur du controleur CtrlArbreExercicesEleve
+     * @param tree : arbre utilisée
+     * @param lAppli : application utilisée
+     * @param lEleve  : élève choisi
+     */
     public CtrlArbreExercicesEleve(JTree tree,ApplicationProf lAppli,Eleve lEleve){
         myTree = tree;
         appli = lAppli;
@@ -29,13 +35,20 @@ public class CtrlArbreExercicesEleve implements TreeSelectionListener{
     }
 
     @Override
+    /**
+     * Méthode valueChanged
+     * Permet d'effectuer une action en fonction du noeud clické
+     * Soit un exercice : affiche l'exercice de l'élève
+     * Soit une réalisation : affiche la réalisation de l'élève
+     * @param e : tree selection event
+     */
     public void valueChanged(TreeSelectionEvent e) {
         DefaultMutableTreeNode node = (DefaultMutableTreeNode) myTree.getLastSelectedPathComponent();
         
-        if (node.getUserObject() instanceof Exercice){
+        if (node.getUserObject() instanceof Exercice){ //EXERCICE
             Exercice exo = (Exercice) node.getUserObject();
             appli.afficheExoEleve(exo);
-        }else if (node.getUserObject() instanceof Realisation){
+        }else if (node.getUserObject() instanceof Realisation){  //REALISATION
             Realisation laRea = (Realisation) node.getUserObject();
             appli.afficheReaEleve(laRea,eleve);
         }

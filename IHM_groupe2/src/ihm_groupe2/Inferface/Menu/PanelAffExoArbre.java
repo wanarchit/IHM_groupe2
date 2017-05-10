@@ -13,13 +13,17 @@ import javax.swing.JPanel;
 import javax.swing.border.BevelBorder;
 
 /**
- *
+ * Classe PanelAffExoArbre
+ * Permet de gérer l'affichage de la création d'exercice
  * @author Groupe 2
  */
 public class PanelAffExoArbre extends JPanel{
     
     private Exercice exercice;
-    
+    /**
+     * Constructeur de la classe PanelAffExoArbre
+     * @param lExo Exercice en cours
+     */
     public PanelAffExoArbre(Exercice lExo){
         exercice = lExo;
         

@@ -41,7 +41,10 @@ public class PanelCreerExo extends JPanel{
     private ImageIcon imageExo; // Permet de charger l'image de l'exercice
     private JLabel affImageExo;
     private JLabel textAffImage;
-    
+    /**
+     * Constructeur de la classe PanelCreerExo
+     * @param lAppli : Application en cours
+     */
     public PanelCreerExo(ApplicationProf lAppli){
         appli = lAppli;
         JLabel textEntete = new JLabel(new ImageIcon(getClass().getResource("/Images/CreerExo.png")));
@@ -93,7 +96,6 @@ public class PanelCreerExo extends JPanel{
         groupe.add(butRadTortueCoul);
         
         JPanel panel3 = new JPanel(new GridLayout(2,3));
-        //panel3.add(textChoixTortue);
         panel3.add(butRadTortueNorm);
         panel3.add(butRadTortueRap);
         panel3.add(butRadTortueCoul);
@@ -143,48 +145,81 @@ public class PanelCreerExo extends JPanel{
         
         
     }
-    
+    /**
+     * Méthode getButAddImage
+     * @return butAddImage: JButton 
+     */
     public JButton getButAddImage(){
         return butAddImage;
     }
-    
+    /**
+     * Méthode getButValidForm
+     * @return butValidForm:  JButton
+     */
     public JButton getButValidForm(){
         return butValidForm;
     }
-    
+    /**
+     * Méthode getImageExo
+     * @return imageExo: ImageIcon 
+     */
     public ImageIcon getImageExo(){
         return imageExo;
     }
-    
+    /**
+     * Méthode setImageExo
+     * @param newImage : Image qu'on souhaite affecter à l'exercice
+     */
     public void setImageExo(ImageIcon newImage){
         imageExo=newImage;
         affImageExo.setIcon(new ImageIcon((newImage).getImage().getScaledInstance(300,300, Image.SCALE_DEFAULT)));
     }
-    
+    /**
+     * Méthode getLabAffImage
+     * @return affImageExo:  JLabel
+     */
     public JLabel getLabAffImage(){
         return affImageExo;
     }
-    
+    /**
+     * Méthode getLabApercuImg
+     * @return textAffImage:  JLabel
+     */
     public JLabel getLabApercuImg(){
         return textAffImage;
     }
-    
+    /**
+     * Méthode getTextNomExo
+     * @return textFieldNomExo:  JTextField
+     */
     public JTextField getTextNomExo(){
         return textFieldNomExo;
     }
-    
+    /**
+     * Méthode getTextComExo
+     * @return textFieldCommExo:JTextField  
+     */
     public JTextField getTextComExo(){
         return textFieldCommExo;
     }
-    
+    /**
+     * Méthode getRadTortNorm
+     * @return butRadTortueNorm: JRadioButton 
+     */
     public JRadioButton getRadTortNorm(){
         return butRadTortueNorm;
     }
-    
+    /**
+     * Méthode getRadTortRap
+     * @return butRadTortueRap:  JRadioButton
+     */
     public JRadioButton getRadTortRap(){
         return butRadTortueRap;
     }
-    
+    /**
+     * Méthode getRadTortCoul
+     * @return butRadTortueCoul:  JRadioButton
+     */
     public JRadioButton getRadTortCoul(){
         return butRadTortueCoul;
     }

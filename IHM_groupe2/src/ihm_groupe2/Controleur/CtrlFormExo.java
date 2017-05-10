@@ -7,35 +7,26 @@ import ihm_groupe2.Noyau_fonctionnel.FiltreSimple;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileSystemView;
 
 /**
  * Classe CtrlFormExo
- Permet de controler les actions faites dans le formulaire de création ou de modification d'exercice
- Verifie s'il y a une modification ou non.
+ * Permet de controler les actions faites dans le formulaire de création ou de modification d'exercice
+ * Verifie s'il y a une modification ou non.
  * Si tous les champs sont bons et que l'exercice est créer, l'utilisateur est redirigé vers la liste des exercices (JTable)
+ * 
  * @author Groupe 2
  */
 public class CtrlFormExo implements ActionListener{
@@ -44,14 +35,26 @@ public class CtrlFormExo implements ActionListener{
     private ApplicationProf appli;
     private String nomImg;
     
+    /**
+     * Constructeur du controleur CtrlFormExo
+     * @param lePanel : panel du formulaire de l'exercice
+     * @param lAppli : application utilisée
+     */
     public CtrlFormExo(PanelCreerExo lePanel, ApplicationProf lAppli){
         panelFormExo = lePanel;
         appli = lAppli;
     }
     
     @Override
+    /**
+     * Méthode actionPerformed
+     * Permet d'effectuer les actions en fonction de l'événement qui s'est produit
+     * Les boutons/actions possibles traitées ici sont ajouter une image
+     * valider le formulaire.
+     * @param e : action event
+     */
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == panelFormExo.getButAddImage()){
+        if (e.getSource() == panelFormExo.getButAddImage()){ //AJOUTER UNE IMAGE
             // Permet de chercher un fichier à partir du Bureau
             FileSystemView vueSysteme = FileSystemView.getFileSystemView(); 
             File home = vueSysteme.getHomeDirectory();
@@ -108,7 +111,7 @@ public class CtrlFormExo implements ActionListener{
                 
              }
             
-        } else if (e.getSource() == panelFormExo.getButValidForm()){
+        } else if (e.getSource() == panelFormExo.getButValidForm()){ //VALIDER EXERCICE
             // Validation des informations
             Boolean validation = true;
             int choixTortue = -1;
@@ -141,20 +144,20 @@ public class CtrlFormExo implements ActionListener{
                             choixTortue=2;
                         }else if (panelFormExo.getRadTortCoul().isSelected()){
                             choixTortue=1;
-                        }else{
+                        }else{ //SI AUCUNES TORTUES N EST CHOISIES
                             validation = false;
                             //Boîte du message d'information.
                             JOptionPane boiteDial = new JOptionPane();
                             boiteDial.showMessageDialog(null, "Vous devez choisir une tortue", "Création exercice", JOptionPane.INFORMATION_MESSAGE);
                         }
                     }
-                }else{
+                }else{ //SI AUCUNE IMAGE N EST CHOISIE
                     validation = false;
                     //Boîte du message d'information.
                     JOptionPane boiteDial = new JOptionPane();
                     boiteDial.showMessageDialog(null, "Vous devez ajouter une image à cet exercice", "Création exercice", JOptionPane.INFORMATION_MESSAGE);
                 }
-            }else{
+            }else{ //PAS DE NOM 
                 validation = false;
                 //Boîte du message d'information.
                 JOptionPane boiteDial = new JOptionPane();
@@ -169,7 +172,14 @@ public class CtrlFormExo implements ActionListener{
         }
     }
 
-    
+    /**
+     * Méthode copier
+     * Permet de copier un fichier vers un autre dossier
+     * @param source : localisation du fichier à déplacer
+     * @param dest : destination du fichier à déplacer
+     * 
+     * @return true/false si le fichier s'est bien copié ou non
+     */
     public static boolean copier(File source, File dest) { 
         try (InputStream sourceFile = new java.io.FileInputStream(source);  
                 OutputStream destinationFile = new FileOutputStream(dest)) { 
@@ -184,6 +194,5 @@ public class CtrlFormExo implements ActionListener{
             return false; // Erreur 
         } 
         return true; // Résultat OK   
-}
-    
+    }
 }

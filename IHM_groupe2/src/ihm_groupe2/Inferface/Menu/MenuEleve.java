@@ -58,8 +58,8 @@ public class MenuEleve extends JPanel{
      * Constructeur de la classe MenuEleve
      * Permet de créer le menu pour un eleve
      * @param eleve : concerné par le menu (ses dessins)
-     * @param lAppli
-     * @param exo 
+     * @param lAppli: Application en cours
+     * @param exo : Exercice en cours
      */
     public MenuEleve(Eleve eleve,ApplicationEleve lAppli, Exercice exo, int num){
         eleveConnecte = eleve;
@@ -76,7 +76,6 @@ public class MenuEleve extends JPanel{
         JPanel panelTitre = new JPanel();
         panelTitre.setBorder(new javax.swing.border.BevelBorder(BevelBorder.RAISED));
         panelTitre.setBackground(Color.white);
-        //JLabel texteTitre = new JLabel("Bonjour "+ eleveConnecte.getPrenomPersonne() + " "+  eleveConnecte.getNomPersonne());
         JLabel texteTitre = new JLabel(new ImageIcon(getClass().getResource("/Images/BienvenueEleve.png")));
         texteTitre.setPreferredSize(new Dimension(800,90));
         panelTitre.add(texteTitre);
@@ -323,35 +322,59 @@ public class MenuEleve extends JPanel{
                 
                 
     }
-    
+    /**
+     * Méthode getButFaireExo
+     * @return butFaireExo: JButton
+     */
     public JButton getButFaireExo(){
         return butFaireExo;
     }
-    
+    /**
+     * Méthode getButExoSuiv
+     * @return butSuivExo: JButton
+     */
     public JButton getButExoSuiv(){
         return butSuivExo;
     }
-    
+    /**
+     * Méthode getButExoPrec
+     * @return butPrecExo: JButton
+     */
     public JButton getButExoPrec(){
         return butPrecExo;
     }
-    
+    /**
+     * Méthode getButTentSuiv
+     * @return butSuivTent: JButton
+     */
     public JButton getButTentSuiv(){
         return butSuivTent;
     }
-    
+    /**
+     * Méthode getButTentPrec
+     * @return butPrecTent: JButton
+     */
     public JButton getButTentPrec(){
         return butPrecTent;
     }
-    
+    /**
+     * Méthode getButRejouerTent
+     * @return rejouerTentative: JButton
+     */
     public JButton getButRejouerTent(){
         return rejouerTentative;
     }
-            
+    /**
+     * Méthode getExoEnCours
+     * @return exoEnCours: Exercice
+     */     
     public Exercice getExoEnCours(){
         return exoEnCours;
     }
-    
+    /**
+     * Méthode getReaEnCours
+     * @return tentEnCours: Realisation
+     */
     public Realisation getReaEnCours(){
         return tentEnCours;
     }

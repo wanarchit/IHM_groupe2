@@ -45,7 +45,11 @@ public class PanelModifExo extends JPanel{
     private ImageIcon imageExo; // Permet de charger l'image de l'exercice
     private JLabel affImageExo;
     private Exercice lExo;
-    
+    /**
+     * Constructeur de la classe PanelModifExo 
+     * @param exerciceModifie : Exercice que l'on modifie
+     * @param lAppli : Application en cours
+     */
     public PanelModifExo(Exercice exerciceModifie, ApplicationProf lAppli){
         appli = lAppli;
         lExo = exerciceModifie;
@@ -159,48 +163,81 @@ public class PanelModifExo extends JPanel{
         
         
     }
-    
+    /**
+     * MéthodegetExoModif
+     * @return lExo:Exercice
+     */
     public Exercice getExoModif(){
         return lExo;
     }
-    
+    /**
+     * MéthodegetButAddImage
+     * @return butAddImage:JButton
+     */
     public JButton getButAddImage(){
         return butAddImage;
     }
-    
+    /**
+     * Méthode getButValidForm
+     * @return butValidForm:JButton
+     */
     public JButton getButValidForm(){
         return butValidForm;
     }
-    
+    /**
+     * Méthode getImageExo
+     * @return imageExo:ImageIcon
+     */
     public ImageIcon getImageExo(){
         return imageExo;
     }
-    
+    /**
+     * Méthode setImageExo
+     * @param newImage : Image que l'on affecte à l'exercice lors de la modification
+     */
     public void setImageExo(ImageIcon newImage){
         imageExo=newImage;
         affImageExo.setIcon(new ImageIcon((newImage).getImage().getScaledInstance(300,300, Image.SCALE_DEFAULT)));
     }
-    
+    /**
+     * Méthode getLabAffImage
+     * @return affImageExo: JLabel
+     */
     public JLabel getLabAffImage(){
         return affImageExo;
     }
-    
+    /**
+     * Méthode getTextNomExo
+     * @return textFieldNomExo:JTextField
+     */
     public JTextField getTextNomExo(){
         return textFieldNomExo;
     }
-    
+    /**
+     * Méthode getTextComExo
+     * @return textFieldCommExo:JTextField
+     */
     public JTextField getTextComExo(){
         return textFieldCommExo;
     }
-    
+    /**
+     * Méthode getRadTortNorm
+     * @return butRadTortueNorm:JRadioButton
+     */
     public JRadioButton getRadTortNorm(){
         return butRadTortueNorm;
     }
-    
+    /**
+     * Méthode getRadTortRap
+     * @return butRadTortueRap:JRadioButton
+     */
     public JRadioButton getRadTortRap(){
         return butRadTortueRap;
     }
-    
+    /**
+     * Méthode getRadTortCoul
+     * @return butRadTortueCoul: getRadTortCoul
+     */
     public JRadioButton getRadTortCoul(){
         return butRadTortueCoul; 
     }
