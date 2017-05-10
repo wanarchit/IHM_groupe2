@@ -65,14 +65,14 @@ public class MenuConnexionProf extends JPanel{
         panIden.add(panMdp);
         
         JPanel panButVal = new JPanel();
-        validationConnexion = new JButton(new ImageIcon(getClass().getResource("/Images/Connexion.jpg")));
+        validationConnexion = new JButton(new ImageIcon(getClass().getResource("/Images/Connexion1.jpg")));
         validationConnexion.setPreferredSize(new Dimension(200,50));
         validationConnexion.setBorderPainted(false);
         
         panButVal.add(validationConnexion);
         
         JPanel panButAnn = new JPanel();
-        annulerConnexion = new JButton(new ImageIcon(getClass().getResource("/Images/Annuler.jpg")));
+        annulerConnexion = new JButton(new ImageIcon(getClass().getResource("/Images/Annuler1.jpg")));
         annulerConnexion.setPreferredSize(new Dimension(200,50));
         annulerConnexion.setBorderPainted(false);
         panButAnn.add(annulerConnexion);
